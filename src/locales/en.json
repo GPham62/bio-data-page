@@ -1,4 +1,29 @@
 {
+  "home": {
+    "badge_live": "Live",
+    "badge_wip": "WIP",
+    "open_hint": "open →",
+    "cards": {
+      "bio": {
+        "title": "Pham Tuan Anh",
+        "role": "Game Dev → Data Analyst",
+        "desc": "Former Unity / C# developer turned data analyst. Building end-to-end pipelines and uncovering insights in real-world datasets.",
+        "tags": ["Bio", "Career", "Game-Dev"]
+      },
+      "p1": {
+        "title": "Global Tech Recruit Analysis",
+        "role": "2023 – 2025",
+        "desc": "End-to-end pipeline — 1.6M job postings cleaned, 12 visualisations, salary regression model R² 0.35.",
+        "tags": ["EDA", "ML", "SQL", "MotherDuck"]
+      },
+      "p2": {
+        "title": "Coming Soon",
+        "role": "Next Project",
+        "desc": "Data engineering project currently in progress. Stack and dataset TBD — check back soon.",
+        "tags": ["WIP"]
+      }
+    }
+  },
   "header": {
     "brand": "data.portfolio",
     "badge": "MotherDuck · DuckDB",
@@ -11,7 +36,7 @@
   },
   "footer": {
     "built": "Built with React · Recharts · Vite",
-    "data": "Data from MotherDuck / DuckDB"
+    "data": "Data scraped from Google Jobs · Imported to MotherDuck · Queried via DuckDB"
   },
   "p1": {
     "tag": "Project 01",
@@ -47,6 +72,10 @@
     "chart_skills_sub": "All postings 2023–2025",
     "chart_countries": "Top 10 Countries",
     "chart_countries_sub": "By total job postings",
+    "insight_label": "// insight",
+    "s1_insight": "Senior ML and Data Science roles command the highest premiums — exceeding $140K median in the US. Roles offering remote flexibility (35–50%) correlate with above-average compensation, suggesting remote capability is priced into tech salaries.",
+    "s2_insight": "Hiring volume peaked in early 2023 and normalised through 2024, reflecting post-pandemic recalibration in tech headcount. Remote work share held stable at 20–30% despite broader return-to-office pressures — data roles retain stronger remote negotiability than the general market.",
+    "s3_insight": "SQL is the universal language of data — appearing in 385K postings, it outpaces Python by roughly 2×. The US dominates global postings by a wide margin, but India and the UK represent fast-growing demand centres, signalling that distributed hiring is becoming standard for data teams.",
     "s4_title": "ML Salary Predictor",
     "s4_sub": "Linear Regression on log-transformed salary — US jobs only",
     "ml_r2_sub": "explains 35% of salary variance",
@@ -56,6 +85,7 @@
     "ml_winner_label": "Winner",
     "chart_features": "Feature Impact on Salary (%)",
     "chart_features_sub": "Ridge Regression coefficients",
+    "s4_insight": "Linear Regression outperformed Ridge at this feature count — regularisation added no benefit, meaning the signal-to-noise ratio was already clean. An R² of 0.35 explains roughly a third of salary variance, which is respectable given that unmodelled factors (negotiation, company size, cost-of-living) account for much of the remainder. The top salary boosters are seniority and US location; the top reducer is being outside the US market.",
     "ml_note": "<strong>Why log-transform?</strong> Salary skewness was 1.272 (right-tailed). Log-transforming the target normalises the distribution, making linear regression work correctly. Predictions are exponentiated back at inference time. Ridge vs Plain Linear: both scored R²≈0.35 — regularisation wasn't needed at this feature count."
   },
   "bio": {

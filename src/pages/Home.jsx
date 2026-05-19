@@ -1,39 +1,17 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import styles from './Home.module.css'
 
 const CARDS = [
-  {
-    id: 'bio',
-    num: '00',
-    title: 'Pham Tuan Anh',
-    role: 'Game Dev → Data Analyst',
-    desc: 'Former Unity / C# developer turned data analyst. Building end-to-end pipelines and uncovering insights in real-world datasets.',
-    tags: ['Python', 'SQL', 'DuckDB', 'React'],
-    status: null,
-  },
-  {
-    id: 'p1',
-    num: '01',
-    title: 'Global Tech Recruit Analysis',
-    role: '2023 – 2025',
-    desc: 'End-to-end pipeline — 1.6M job postings cleaned, 12 visualisations, salary regression model R² 0.35.',
-    tags: ['EDA', 'ML', 'SQL', 'MotherDuck'],
-    status: 'live',
-  },
-  {
-    id: 'p2',
-    num: '02',
-    title: 'Coming Soon',
-    role: 'Next Project',
-    desc: 'Data engineering project currently in progress. Stack and dataset TBD — check back soon.',
-    tags: ['WIP'],
-    status: 'wip',
-  },
+  { id: 'bio', num: '00', status: null },
+  { id: 'p1',  num: '01', status: 'live' },
+  { id: 'p2',  num: '02', status: 'wip' },
 ]
 
 const GIF_SRCS = CARDS.map(c => `/gif_import/${c.id}.gif`)
 
 export default function Home({ setActive }) {
+  const { t } = useTranslation()
   const [current, setCurrent] = useState(0)
   const locked = useRef(false)
 
@@ -105,22 +83,22 @@ export default function Home({ setActive }) {
               <div className={styles.cardInner}>
                 <div className={styles.cardTop}>
                   <span className={styles.cardNum}>{card.num}</span>
-                  {card.status === 'live' && <span className={styles.badgeLive}>Live</span>}
-                  {card.status === 'wip'  && <span className={styles.badgeWip}>WIP</span>}
+                  {card.status === 'live' && <span className={styles.badgeLive}>{t('home.badge_live')}</span>}
+                  {card.status === 'wip'  && <span className={styles.badgeWip}>{t('home.badge_wip')}</span>}
                 </div>
 
-                <h2 className={styles.cardTitle}>{card.title}</h2>
-                <p className={styles.cardRole}>{card.role}</p>
-                <p className={styles.cardDesc}>{card.desc}</p>
+                <h2 className={styles.cardTitle}>{t(`home.cards.${card.id}.title`)}</h2>
+                <p className={styles.cardRole}>{t(`home.cards.${card.id}.role`)}</p>
+                <p className={styles.cardDesc}>{t(`home.cards.${card.id}.desc`)}</p>
 
                 <div className={styles.cardTags}>
-                  {card.tags.map(tag => (
+                  {t(`home.cards.${card.id}.tags`, { returnObjects: true }).map(tag => (
                     <span key={tag} className={styles.tag}>{tag}</span>
                   ))}
                 </div>
 
                 {isCenter && (
-                  <div className={styles.enterHint}>open →</div>
+                  <div className={styles.enterHint}>{t('home.open_hint')}</div>
                 )}
               </div>
               </div>

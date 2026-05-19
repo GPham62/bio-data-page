@@ -165,6 +165,33 @@
 
 .mlNote strong { color: var(--text); }
 
+/* Insight */
+.insight {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--green);
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin-top: 16px;
+}
+
+.insightLabel {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--green);
+  letter-spacing: 0.1em;
+}
+
+.insightText {
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--text);
+  margin: 0;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .kpiRow  { grid-template-columns: repeat(3, 1fr); }

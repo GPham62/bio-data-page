@@ -109,6 +109,10 @@ export default function Project1({ setActive }) {
             </ResponsiveContainer>
           </ChartCard>
         </div>
+        <div className={styles.insight}>
+          <span className={styles.insightLabel}>{t('p1.insight_label')}</span>
+          <p className={styles.insightText}>{t('p1.s1_insight')}</p>
+        </div>
       </section>
 
       {/* Section 2: Trends */}
@@ -129,6 +133,10 @@ export default function Project1({ setActive }) {
               </LineChart>
             </ResponsiveContainer>
           </ChartCard>
+        </div>
+        <div className={styles.insight}>
+          <span className={styles.insightLabel}>{t('p1.insight_label')}</span>
+          <p className={styles.insightText}>{t('p1.s2_insight')}</p>
         </div>
       </section>
 
@@ -159,6 +167,10 @@ export default function Project1({ setActive }) {
               </BarChart>
             </ResponsiveContainer>
           </ChartCard>
+        </div>
+        <div className={styles.insight}>
+          <span className={styles.insightLabel}>{t('p1.insight_label')}</span>
+          <p className={styles.insightText}>{t('p1.s3_insight')}</p>
         </div>
       </section>
 
@@ -206,6 +218,10 @@ export default function Project1({ setActive }) {
         <div className={styles.mlNote}>
           <span className={styles.mlNoteIcon}>ℹ</span>
           <p dangerouslySetInnerHTML={{ __html: t('p1.ml_note') }} />
+        </div>
+        <div className={styles.insight}>
+          <span className={styles.insightLabel}>{t('p1.insight_label')}</span>
+          <p className={styles.insightText}>{t('p1.s4_insight')}</p>
         </div>
       </section>
 

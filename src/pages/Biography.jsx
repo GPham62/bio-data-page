@@ -14,12 +14,19 @@ export default function Biography({ setActive }) {
 
       {/* ── Hero ── */}
       <section className={`${styles.hero} fade-up`}>
-        <div className={styles.heroTag}>{t('bio.tag')}</div>
-        <h1 className={styles.title}>
-          {t('bio.title1')}<br />
-          <span className={styles.accent}>{t('bio.title2')}</span>
-        </h1>
-        <p className={styles.intro}>{t('bio.intro')}</p>
+        <div className={styles.heroInner}>
+          <div className={styles.heroText}>
+            <div className={styles.heroTag}>{t('bio.tag')}</div>
+            <h1 className={styles.title}>
+              {t('bio.title1')}<br />
+              <span className={styles.accent}>{t('bio.title2')}</span>
+            </h1>
+            <p className={styles.intro}>{t('bio.intro')}</p>
+          </div>
+          <div className={styles.avatarWrap}>
+            <img src="/bio/profile.png" alt="Pham Tuan Anh" className={styles.avatar} />
+          </div>
+        </div>
       </section>
 
       {/* ── Section 01 · Career Journey ── */}

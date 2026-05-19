@@ -1,4 +1,29 @@
 {
+  "home": {
+    "badge_live": "Trực Tiếp",
+    "badge_wip": "Đang Làm",
+    "open_hint": "mở →",
+    "cards": {
+      "bio": {
+        "title": "Phạm Tuấn Anh",
+        "role": "Dev Game → Phân Tích Dữ Liệu",
+        "desc": "Cựu lập trình viên Unity / C# chuyển sang phân tích dữ liệu. Xây dựng pipeline end-to-end và khai thác insights từ dữ liệu thực tế.",
+        "tags": ["Giới Thiệu", "Sự Nghiệp", "Phát Triển Game"]
+      },
+      "p1": {
+        "title": "Phân Tích Tuyển Dụng Công Nghệ Toàn Cầu",
+        "role": "2023 – 2025",
+        "desc": "Pipeline end-to-end — làm sạch 1.6 triệu tin tuyển dụng, 12 biểu đồ, mô hình dự đoán lương R² 0.35.",
+        "tags": ["EDA", "ML", "SQL", "MotherDuck"]
+      },
+      "p2": {
+        "title": "Sắp Ra Mắt",
+        "role": "Dự Án Tiếp Theo",
+        "desc": "Dự án kỹ thuật dữ liệu tiếp theo đang được thực hiện. Stack và bộ dữ liệu chưa xác định — hãy quay lại sau.",
+        "tags": ["Đang Làm"]
+      }
+    }
+  },
   "header": {
     "brand": "data.portfolio",
     "badge": "MotherDuck · DuckDB",
@@ -11,7 +36,7 @@
   },
   "footer": {
     "built": "Xây dựng bằng React · Recharts · Vite",
-    "data": "Dữ liệu từ MotherDuck / DuckDB"
+    "data": "Dữ liệu thu thập từ Google Jobs · Nhập vào MotherDuck · Truy vấn qua DuckDB"
   },
   "p1": {
     "tag": "Dự Án 01",
@@ -47,6 +72,10 @@
     "chart_skills_sub": "Tất cả tin đăng 2023–2025",
     "chart_countries": "Top 10 Quốc Gia",
     "chart_countries_sub": "Theo tổng tin tuyển dụng",
+    "insight_label": "// nhận xét",
+    "s1_insight": "Các vị trí ML và Data Science cấp Senior có mức lương cao nhất — vượt $140K trung vị tại thị trường Mỹ. Các vai trò cho phép làm từ xa (35–50%) tương quan với mức lương trên trung bình, cho thấy khả năng làm từ xa đã được tính vào mức lương trong ngành công nghệ.",
+    "s2_insight": "Khối lượng tuyển dụng đạt đỉnh vào đầu năm 2023 và ổn định trong năm 2024, phản ánh sự điều chỉnh nhân sự hậu đại dịch. Tỷ lệ làm từ xa duy trì ổn định ở mức 20–30% bất chấp áp lực quay lại văn phòng — các vị trí dữ liệu giữ được ưu thế đàm phán làm từ xa tốt hơn thị trường chung.",
+    "s3_insight": "SQL là ngôn ngữ phổ quát của dữ liệu — xuất hiện trong 385K tin đăng, vượt Python khoảng 2 lần. Mỹ chiếm tỷ trọng lớn nhất trong tin tuyển dụng toàn cầu, nhưng Ấn Độ và Anh là các trung tâm nhu cầu phát triển nhanh, cho thấy xu hướng tuyển dụng phân tán đang trở thành tiêu chuẩn.",
     "s4_title": "Dự Đoán Lương bằng ML",
     "s4_sub": "Hồi quy tuyến tính trên lương đã log-transform — Chỉ việc làm tại Mỹ",
     "ml_r2_sub": "Giải thích 35% phương sai lương",
@@ -56,6 +85,7 @@
     "ml_winner_label": "Mô Hình Tốt Nhất",
     "chart_features": "Tác Động Đặc Trưng Lên Lương (%)",
     "chart_features_sub": "Hệ số Ridge Regression",
+    "s4_insight": "Linear Regression vượt trội Ridge ở số lượng đặc trưng này — điều chuẩn hoá không mang lại lợi ích, cho thấy tỷ lệ tín hiệu-nhiễu đã đủ tốt. R² = 0.35 giải thích khoảng một phần ba phương sai lương — khá tốt vì các yếu tố chưa được mô hình hoá (đàm phán lương, quy mô công ty, chi phí sinh hoạt) chiếm phần lớn phần còn lại. Các yếu tố tăng lương mạnh nhất là cấp bậc cao và làm việc tại Mỹ; yếu tố giảm lương lớn nhất là ở ngoài thị trường Mỹ.",
     "ml_note": "<strong>Tại sao log-transform?</strong> Độ lệch lương là 1.272 (đuôi phải). Log-transform mục tiêu giúp phân phối đều hơn, giúp hồi quy tuyến tính hoạt động chính xác. Dự đoán được lấy mũ ngược lại khi suy luận. Ridge vs Hồi quy tuyến tính thông thường: cả hai đạt R²≈0.35 — không cần điều chuẩn ở số lượng đặc trưng này."
   },
   "bio": {
