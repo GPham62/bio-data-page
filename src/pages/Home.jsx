@@ -5,7 +5,8 @@ import styles from './Home.module.css'
 const CARDS = [
   { id: 'bio', num: '00', status: null },
   { id: 'p1',  num: '01', status: 'live' },
-  { id: 'p2',  num: '02', status: 'wip' },
+  { id: 'p2',  num: '02', status: 'live' },
+  { id: 'p3',  num: '03', status: 'live' },
 ]
 
 const GIF_SRCS = CARDS.map(c => `/gif_import/${c.id}.gif`)

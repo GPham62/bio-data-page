@@ -43,8 +43,11 @@ export default function Project1({ setActive }) {
 
   return (
     <div className={styles.page} style={{ position: 'relative' }}>
+      <button className="prev-btn" onClick={() => setActive('bio')}>
+        {t('nav.bio')}
+      </button>
       <button className="next-btn" onClick={() => setActive('p2')}>
-        02 / Coming Soon →
+        {t('nav.p2')}
       </button>
 
       {/* Hero */}

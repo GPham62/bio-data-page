@@ -5,7 +5,7 @@
   overflow: hidden;
 }
 
-.card:hover { border-color: #2a3340; }
+.card:hover { border-color: var(--border); }
 
 .header {
   display: flex;
