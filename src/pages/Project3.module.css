@@ -67,6 +67,27 @@
   padding: 3px 10px;
 }
 
+.kaggleLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--purple);
+  border: 1px solid rgba(163, 113, 247, 0.3);
+  border-radius: 6px;
+  padding: 7px 12px;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.kaggleLink:hover {
+  border-color: var(--purple);
+  background: rgba(163, 113, 247, 0.06);
+  text-decoration: none;
+}
+
 /* KPI row */
 .kpiRow {
   display: grid;

@@ -32,11 +32,12 @@ const Tip = ({ active, payload, label, prefix = '', suffix = '' }) => {
 
 const fmt    = (v) => v >= 1000 ? `${(v / 1000).toFixed(0)}k` : v
 const fmtUSD = (v) => `$${(v / 1000).toFixed(0)}k`
+const pct    = (v) => `${(v * 100).toFixed(0)}%`
 
-const featureData = [
-  ...mlResults.topReducers.map(f => ({ ...f, color: '#ef553b' })).reverse(),
-  ...mlResults.topBoosters.map(f => ({ ...f, color: '#00cc96' })),
-]
+// Recharts renders the first datum at the bottom of a vertical bar chart, so
+// reverse the most-important-first list to put the strongest driver on top.
+const importanceData = [...mlResults.featureImportance].reverse()
+const topDriver      = mlResults.featureImportance[0]
 
 export default function Project1({ setActive }) {
   const { t } = useTranslation()
@@ -76,7 +77,7 @@ export default function Project1({ setActive }) {
         <StatCard label={t('p1.kpi_countries')}  value={stats.countriesCovered} sub={t('p1.kpi_countries_sub')} accent="var(--green)"  delay={0.10} />
         <StatCard label={t('p1.kpi_salary_rec')} value="77K"    sub={t('p1.kpi_salary_rec_sub')} accent="var(--purple)" delay={0.15} />
         <StatCard label={t('p1.kpi_median')}     value="$110K"  sub={t('p1.kpi_median_sub')}     accent="var(--accent2)"delay={0.20} />
-        <StatCard label={t('p1.kpi_r2')}         value="0.35"   sub={t('p1.kpi_r2_sub')}         accent="var(--green)"  delay={0.25} />
+        <StatCard label={t('p1.kpi_r2')}         value="80%"    sub={t('p1.kpi_r2_sub')}         accent="var(--green)"  delay={0.25} />
         <StatCard label={t('p1.kpi_skill')}      value="SQL"    sub={t('p1.kpi_skill_sub')}      accent="var(--purple)" delay={0.30} />
       </section>
 
@@ -183,36 +184,36 @@ export default function Project1({ setActive }) {
 
         <div className={styles.mlMeta}>
           <div className={styles.mlScore} style={{ '--ml-accent': 'var(--accent)' }}>
-            <span className={styles.mlScoreLabel}>R²</span>
-            <span className={styles.mlScoreVal}>{mlResults.r2}</span>
-            <span className={styles.mlScoreSub}>{t('p1.ml_r2_sub')}</span>
+            <span className={styles.mlScoreLabel}>{t('p1.ml_acc_label')}</span>
+            <span className={styles.mlScoreVal}>{pct(mlResults.accuracy)}</span>
+            <span className={styles.mlScoreSub}>{t('p1.ml_acc_sub')}</span>
           </div>
           <div className={styles.mlScore} style={{ '--ml-accent': 'var(--accent2)' }}>
-            <span className={styles.mlScoreLabel}>MAE</span>
-            <span className={styles.mlScoreVal}>${mlResults.mae.toLocaleString()}</span>
-            <span className={styles.mlScoreSub}>{t('p1.ml_mae_sub')}</span>
+            <span className={styles.mlScoreLabel}>ROC-AUC</span>
+            <span className={styles.mlScoreVal}>{mlResults.rocAuc}</span>
+            <span className={styles.mlScoreSub}>{t('p1.ml_auc_sub')}</span>
           </div>
           <div className={styles.mlScore} style={{ '--ml-accent': 'var(--purple)' }}>
-            <span className={styles.mlScoreLabel}>RMSE</span>
-            <span className={styles.mlScoreVal}>${mlResults.rmse.toLocaleString()}</span>
-            <span className={styles.mlScoreSub}>{t('p1.ml_rmse_sub')}</span>
+            <span className={styles.mlScoreLabel}>F1</span>
+            <span className={styles.mlScoreVal}>{mlResults.f1}</span>
+            <span className={styles.mlScoreSub}>{t('p1.ml_f1_sub', { precision: mlResults.precision, recall: mlResults.recall })}</span>
           </div>
           <div className={styles.mlScore} style={{ '--ml-accent': 'var(--green)' }}>
-            <span className={styles.mlScoreLabel}>{t('p1.ml_winner_label')}</span>
-            <span className={styles.mlScoreVal}>{mlResults.winner}</span>
-            <span className={styles.mlScoreSub}>{mlResults.trainSize.toLocaleString()} / {mlResults.testSize.toLocaleString()} — {t('p1.ml_winner_sub')}</span>
+            <span className={styles.mlScoreLabel}>{t('p1.ml_base_label')}</span>
+            <span className={styles.mlScoreVal}>{pct(mlResults.baseline)}</span>
+            <span className={styles.mlScoreSub}>{t('p1.ml_base_sub')}</span>
           </div>
         </div>
 
         <ChartCard title={t('p1.chart_features')} sub={t('p1.chart_features_sub')} delay={0.1}>
-          <ResponsiveContainer width="100%" height={280}>
-            <BarChart data={featureData} layout="vertical" margin={{ left: 0, right: 30 }}>
+          <ResponsiveContainer width="100%" height={340}>
+            <BarChart data={importanceData} layout="vertical" margin={{ left: 0, right: 30 }} barSize={18}>
               <CartesianGrid strokeDasharray="3 3" stroke="#1e2530" horizontal={false} />
               <XAxis type="number" tickFormatter={v => `${v}%`} tick={{ fill: '#636e7b', fontSize: 10 }} axisLine={false} tickLine={false} />
-              <YAxis type="category" dataKey="feature" width={160} tick={{ fill: '#cdd9e5', fontSize: 10 }} axisLine={false} tickLine={false} />
+              <YAxis type="category" dataKey="feature" width={130} tick={{ fill: '#cdd9e5', fontSize: 10 }} axisLine={false} tickLine={false} />
               <Tooltip content={<Tip suffix="%" />} />
-              <Bar dataKey="impact" radius={[0, 3, 3, 0]}>
-                {featureData.map((d, i) => <Cell key={i} fill={d.color} />)}
+              <Bar dataKey="importance" radius={[0, 3, 3, 0]}>
+                {importanceData.map((d, i) => <Cell key={i} fill={d.direction > 0 ? '#00cc96' : '#ef553b'} />)}
               </Bar>
             </BarChart>
           </ResponsiveContainer>
@@ -225,6 +226,22 @@ export default function Project1({ setActive }) {
         <div className={styles.insight}>
           <span className={styles.insightLabel}>{t('p1.insight_label')}</span>
           <p className={styles.insightText}>{t('p1.s4_insight')}</p>
+        </div>
+      </section>
+
+      {/* Section 5: Recommendations */}
+      <section className={styles.section}>
+        <SectionTitle index="05" title={t('p1.s5_title')} sub={t('p1.s5_sub')} />
+        <div className={styles.recsBox}>
+          <h3 className={styles.recsTitle}>{t('p1.recs_title')}</h3>
+          <ul className={styles.recsList}>
+            {t('p1.recs_items', { returnObjects: true }).map((item, i) => (
+              <li key={i} className={styles.recsItem}>
+                <span className={styles.recsNum}>0{i + 1}</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

@@ -9,7 +9,7 @@ import SectionTitle from '../components/SectionTitle.jsx'
 import ChartCard    from '../components/ChartCard.jsx'
 import {
   stats, monthlyRevenue, topCountries, rfmSegments,
-  rfmScatter, cohortData,
+  rfmScatter, cohortData, kaggleUrl,
 } from '../data/project3.js'
 import styles from './Project3.module.css'
 
@@ -136,6 +136,9 @@ export default function Project3({ setActive }) {
             <span key={tech} className={styles.pill}>{tech}</span>
           ))}
         </div>
+        <a className={styles.kaggleLink} href={kaggleUrl} target="_blank" rel="noopener noreferrer">
+          {t('p3.kaggle_link')} <span aria-hidden>↗</span>
+        </a>
       </section>
 
       {/* KPIs */}

@@ -11,6 +11,9 @@ export const stats = {
   topCountry: 'United Kingdom',
 }
 
+// Source dataset on Kaggle (verify/replace if you used a different mirror)
+export const kaggleUrl = 'https://www.kaggle.com/datasets/carrie1/ecommerce-data'
+
 export const monthlyRevenue = [
   { month: 'Dec 10', revenue: 748957 },
   { month: 'Jan 11', revenue: 560000 },

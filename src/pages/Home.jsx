@@ -14,6 +14,10 @@ const GIF_SRCS = CARDS.map(c => `/gif_import/${c.id}.gif`)
 export default function Home({ setActive }) {
   const { t } = useTranslation()
   const [current, setCurrent] = useState(0)
+  // Per-GIF orientation, detected from the loaded image's natural size, so a
+  // landscape clip (bio/p1) renders with `cover` while a portrait clip (p2)
+  // switches to `contain` and isn't cropped to a sliver.
+  const [portraitMap, setPortraitMap] = useState({})
   const locked = useRef(false)
 
   useEffect(() => {
@@ -62,8 +66,15 @@ export default function Home({ setActive }) {
           <img
             key={card.id}
             src={`/gif_import/${card.id}.gif`}
-            className={`${styles.gif} ${i === current ? styles.gifVisible : ''}`}
+            className={`${styles.gif} ${portraitMap[card.id] ? styles.gifPortrait : ''} ${i === current ? styles.gifVisible : ''}`}
             alt=""
+            onLoad={(e) => {
+              const { naturalWidth: w, naturalHeight: h } = e.currentTarget
+              if (!w || !h) return
+              setPortraitMap(prev =>
+                prev[card.id] !== undefined ? prev : { ...prev, [card.id]: h > w }
+              )
+            }}
           />
         ))}
       </div>

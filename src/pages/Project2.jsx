@@ -9,7 +9,7 @@ import SectionTitle from '../components/SectionTitle.jsx'
 import ChartCard    from '../components/ChartCard.jsx'
 import {
   stats, groupSizes, retention1Data, retention7Data,
-  bootstrapData, gameRoundsData,
+  bootstrapData, gameRoundsData, kaggleUrl,
 } from '../data/project2.js'
 import styles from './Project2.module.css'
 
@@ -62,6 +62,9 @@ export default function Project2({ setActive }) {
             <span key={tech} className={styles.pill}>{tech}</span>
           ))}
         </div>
+        <a className={styles.kaggleLink} href={kaggleUrl} target="_blank" rel="noopener noreferrer">
+          {t('p2.kaggle_link')} <span aria-hidden>↗</span>
+        </a>
       </section>
 
       {/* KPIs */}
@@ -131,6 +134,10 @@ export default function Project2({ setActive }) {
             </ResponsiveContainer>
           </ChartCard>
         </div>
+        <div className={styles.note}>
+          <span className={styles.noteIcon}>ℹ</span>
+          <p dangerouslySetInnerHTML={{ __html: t('p2.note_retention') }} />
+        </div>
         <div className={styles.insight}>
           <span className={styles.insightLabel}>{t('p2.insight_label')}</span>
           <p className={styles.insightText}>{t('p2.s2_insight')}</p>
@@ -166,6 +173,10 @@ export default function Project2({ setActive }) {
               </AreaChart>
             </ResponsiveContainer>
           </ChartCard>
+        </div>
+        <div className={styles.note}>
+          <span className={styles.noteIcon}>ℹ</span>
+          <p dangerouslySetInnerHTML={{ __html: t('p2.note_bootstrap') }} />
         </div>
         <div className={styles.insight}>
           <span className={styles.insightLabel}>{t('p2.insight_label')}</span>

@@ -107,7 +107,7 @@ export default function Biography({ setActive }) {
             </div>
           </a>
           <a
-            href="https://www.linkedin.com/in/pham-tuan-anh"
+            href="https://www.linkedin.com/in/tuananhpham6296/"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.contactCard}
@@ -115,17 +115,17 @@ export default function Biography({ setActive }) {
             <span className={styles.contactIcon}>LI</span>
             <div>
               <span className={styles.contactLabel}>LinkedIn</span>
-              <span className={styles.contactValue}>pham-tuan-anh</span>
+              <span className={styles.contactValue}>tuananhpham6296</span>
             </div>
           </a>
           <a
-            href="mailto:phamtuananh6200@gmail.com"
+            href="mailto:ptuananh196@gmail.com"
             className={styles.contactCard}
           >
             <span className={styles.contactIcon}>@</span>
             <div>
               <span className={styles.contactLabel}>Email</span>
-              <span className={styles.contactValue}>phamtuananh6200</span>
+              <span className={styles.contactValue}>ptuananh196</span>
             </div>
           </a>
         </div>

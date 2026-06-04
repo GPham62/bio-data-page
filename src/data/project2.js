@@ -17,6 +17,9 @@ export const stats = {
   bootstrapCIHigh: 1.28,
 }
 
+// Source dataset on Kaggle
+export const kaggleUrl = 'https://www.kaggle.com/datasets/mursideyarkin/mobile-games-ab-testing-cookie-cats'
+
 export const groupSizes = [
   { group: 'Gate 30', count: 44700 },
   { group: 'Gate 40', count: 45489 },
