@@ -86,6 +86,16 @@ export default function Biography({ setActive }) {
               genre: 'Idle · Action',
               url: 'https://play.google.com/store/apps/details?id=com.stickman.monster.epic.stickman.war.shadow.idle.game&hl=en',
             },
+            {
+              name: 'Epic Shadow Idle RPG',
+              genre: 'Idle · RPG',
+              url: 'https://play.google.com/store/apps/details?id=com.tsh012.cyber.war.idle.rpg.games&hl=en',
+            },
+            {
+              name: 'Space War Idle RPG',
+              genre: 'Idle · Strategy',
+              url: 'https://play.google.com/store/apps/details?id=com.zitga.multiverse.war.idle.star.trek.game&hl=en',
+            },
           ].map(g => (
             <a key={g.name} href={g.url} target="_blank" rel="noopener noreferrer" className={styles.gameCard}>
               <span className={styles.gameIcon}>GP</span>

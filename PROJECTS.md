@@ -44,7 +44,7 @@ you go. Use `/projects <name>` to jump into one.
 - Prev/next buttons → Home / Project 01.
 - Hero: tag, two-line title (`bio.title1` + accented `bio.title2`), intro, and avatar `/bio/profile.png`.
 - Section 01 — Technical Skills: pills rendered from the `bio.skills` array.
-- Section 02 — Background: pivot box with text, then a 3-card game grid linking to **Relic Bag: Shadow Hunter**, **Shadow War: Idle RPG Survival**, and **Stickman vs Monster: Idle RPG** on Google Play (purple-accented `.gameCard` style).
+- Section 02 — Background: pivot box with text, then a 3-card game grid linking to **Relic Bag: Shadow Hunter**, **Shadow War: Idle RPG Survival**, **Stickman vs Monster: Idle RPG**, **Epic Shadow Idle RPG**, and **Space War Idle RPG** on Google Play (purple-accented `.gameCard` style).
 - Section 03 — Contact: GitHub (`GPham62`), LinkedIn (`pham-tuan-anh`), email (`mailto:phamtuananh6200@gmail.com`).
 - Note: email handle shown here (`phamtuananh6200`) differs from the account email in project config (`ptuananh196@gmail.com`) — confirm which is intended.
 - Copy comes from i18n keys under `bio.*` and `nav.*`.
