@@ -7,6 +7,19 @@ you go. Use `/projects <name>` to jump into one.
 > Reminder: any user-visible string change must update **both** `src/locales/en.json`
 > and `src/locales/vi.json` in the same edit.
 
+> **Writing-style note:** keep all user-facing copy as **friendly and warm as
+> possible** — write like a real person talking, not a press release. Favour
+> conversational, playful phrasing over stiff/corporate wording. Contractions,
+> light humour, and direct address ("you") are encouraged. _e.g._ prefer
+> "A new data project is cooking. Just you wait!" over "A new end-to-end data
+> project is currently in the works." Apply the same warmth to the Vietnamese
+> copy (natural, spoken tone — e.g. "Chờ chút nha!").
+
+> **Continuous-project convention:** the final section is always a **Coming Soon**
+> placeholder, kept empty by default. When you add a real project, insert it
+> **before** the placeholder and bump the placeholder to the new last index — so
+> the portfolio always ends on an "in-progress / more to come" note.
+
 ---
 
 ## Project 1 — Home (`src/pages/Home.jsx` + `Home.module.css`)
@@ -101,6 +114,20 @@ you go. Use `/projects <name>` to jump into one.
 - Recharts `Tip` + `ScatterTip` tooltips; `fmt`/`fmtUSD` formatters. Insight blocks use `.insight*` styles.
 
 **To fix**
+- [ ]
+- [ ]
+- [ ]
+
+---
+
+## Project 6 — Coming Soon _(placeholder — keep last)_
+
+**Current state**
+- _Empty by default._ This is the continuous-project placeholder that always
+  sits at the last index. When the next project is ready, replace this with the
+  real project section and add a fresh **Coming Soon** placeholder below it.
+
+**To fix**/
 - [ ]
 - [ ]
 - [ ]

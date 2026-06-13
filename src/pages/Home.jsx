@@ -7,6 +7,8 @@ const CARDS = [
   { id: 'p1',  num: '01', status: 'live' },
   { id: 'p2',  num: '02', status: 'live' },
   { id: 'p3',  num: '03', status: 'live' },
+  // Continuous-project placeholder — always last, not clickable (no page to open).
+  { id: 'coming', num: '04', status: 'wip', locked: true },
 ]
 
 const GIF_SRCS = CARDS.map(c => `/gif_import/${c.id}.gif`)
@@ -87,9 +89,9 @@ export default function Home({ setActive }) {
           return (
             <div
               key={card.id}
-              className={`${styles.card} ${isCenter ? styles.cardCenter : styles.cardSide}`}
+              className={`${styles.card} ${isCenter ? styles.cardCenter : styles.cardSide} ${card.locked && isCenter ? styles.cardLocked : ''}`}
               style={{ '--offset': offset }}
-              onClick={() => isCenter ? setActive(card.id) : go(offset)}
+              onClick={() => isCenter ? (card.locked || setActive(card.id)) : go(offset)}
             >
               <div className={`${styles.floatWrap} ${isCenter ? styles.floating : ''}`}>
               <div className={styles.cardInner}>
@@ -110,7 +112,9 @@ export default function Home({ setActive }) {
                 </div>
 
                 {isCenter && (
-                  <div className={styles.enterHint}>{t('home.open_hint')}</div>
+                  card.locked
+                    ? <div className={styles.soonHint}>{t('home.soon_hint')}</div>
+                    : <div className={styles.enterHint}>{t('home.open_hint')}</div>
                 )}
               </div>
               </div>
