@@ -9,7 +9,7 @@ import SectionTitle from '../components/SectionTitle.jsx'
 import ChartCard    from '../components/ChartCard.jsx'
 import {
   salaryByTitle, topCountries, remoteByTitle,
-  topSkills, monthlyTrend, mlResults, stats,
+  topSkills, monthlyTrend, mlResults, stats, colabUrl,
 } from '../data/project1.js'
 import styles from './Project1.module.css'
 
@@ -69,6 +69,9 @@ export default function Project1({ setActive }) {
             <span key={t} className={styles.pill}>{t}</span>
           ))}
         </div>
+        <a className={styles.colabLink} href={colabUrl} target="_blank" rel="noopener noreferrer">
+          {t('p1.colab_link')} <span aria-hidden>↗</span>
+        </a>
       </section>
 
       {/* KPIs */}
@@ -115,7 +118,7 @@ export default function Project1({ setActive }) {
         </div>
         <div className={styles.insight}>
           <span className={styles.insightLabel}>{t('p1.insight_label')}</span>
-          <p className={styles.insightText}>{t('p1.s1_insight')}</p>
+          <p className={styles.insightText} dangerouslySetInnerHTML={{ __html: t('p1.s1_insight') }} />
         </div>
       </section>
 
@@ -140,7 +143,7 @@ export default function Project1({ setActive }) {
         </div>
         <div className={styles.insight}>
           <span className={styles.insightLabel}>{t('p1.insight_label')}</span>
-          <p className={styles.insightText}>{t('p1.s2_insight')}</p>
+          <p className={styles.insightText} dangerouslySetInnerHTML={{ __html: t('p1.s2_insight') }} />
         </div>
       </section>
 
@@ -174,7 +177,7 @@ export default function Project1({ setActive }) {
         </div>
         <div className={styles.insight}>
           <span className={styles.insightLabel}>{t('p1.insight_label')}</span>
-          <p className={styles.insightText}>{t('p1.s3_insight')}</p>
+          <p className={styles.insightText} dangerouslySetInnerHTML={{ __html: t('p1.s3_insight') }} />
         </div>
       </section>
 
@@ -225,7 +228,7 @@ export default function Project1({ setActive }) {
         </div>
         <div className={styles.insight}>
           <span className={styles.insightLabel}>{t('p1.insight_label')}</span>
-          <p className={styles.insightText}>{t('p1.s4_insight')}</p>
+          <p className={styles.insightText} dangerouslySetInnerHTML={{ __html: t('p1.s4_insight') }} />
         </div>
       </section>
 
@@ -238,7 +241,7 @@ export default function Project1({ setActive }) {
             {t('p1.recs_items', { returnObjects: true }).map((item, i) => (
               <li key={i} className={styles.recsItem}>
                 <span className={styles.recsNum}>0{i + 1}</span>
-                <span>{item}</span>
+                <span dangerouslySetInnerHTML={{ __html: item }} />
               </li>
             ))}
           </ul>

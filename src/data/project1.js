@@ -2,17 +2,19 @@
 // Replace any value here with real exports from your Colab notebook.
 // e.g. df_salary.groupby('job_title_short')['salary_annual'].median().reset_index().to_dict('records')
 
+export const colabUrl = 'https://colab.research.google.com/drive/1jLuh6oGoBoDFdXSB7WcCt0wRFnNFsuc-'
+
 export const salaryByTitle = [
-  { title: 'Sr. Data Scientist',  salary: 157500 },
-  { title: 'Sr. Data Engineer',   salary: 147500 },
-  { title: 'Software Engineer',   salary: 140000 },
-  { title: 'Data Scientist',      salary: 135000 },
-  { title: 'ML Engineer',         salary: 133500 },
-  { title: 'Data Engineer',       salary: 127500 },
-  { title: 'Cloud Engineer',      salary: 118000 },
-  { title: 'Sr. Data Analyst',    salary: 112500 },
-  { title: 'Business Analyst',    salary:  95000 },
-  { title: 'Data Analyst',        salary:  90000 },
+  { title: 'Sr. Data Scientist',  salary: 149653 },
+  { title: 'Sr. Data Engineer',   salary: 142300 },
+  { title: 'Software Engineer',   salary: 135000 },
+  { title: 'Data Engineer',       salary: 125000 },
+  { title: 'ML Engineer',         salary: 125000 },
+  { title: 'Data Scientist',      salary: 119600 },
+  { title: 'Cloud Engineer',      salary: 115000 },
+  { title: 'Sr. Data Analyst',    salary: 110000 },
+  { title: 'Business Analyst',    salary:  90658 },
+  { title: 'Data Analyst',        salary:  82500 },
 ]
 
 export const topCountries = [
@@ -29,16 +31,16 @@ export const topCountries = [
 ]
 
 export const remoteByTitle = [
-  { title: 'Sr. Data Engineer',  pct: 14.2 },
-  { title: 'Data Engineer',      pct: 13.1 },
-  { title: 'ML Engineer',        pct: 12.7 },
-  { title: 'Sr. Data Scientist', pct: 11.9 },
-  { title: 'Data Scientist',     pct: 11.3 },
-  { title: 'Software Engineer',  pct:  9.8 },
-  { title: 'Cloud Engineer',     pct:  9.1 },
-  { title: 'Sr. Data Analyst',   pct:  7.4 },
-  { title: 'Data Analyst',       pct:  6.2 },
-  { title: 'Business Analyst',   pct:  4.9 },
+  { title: 'Sr. Data Engineer',  pct: 14.4 },
+  { title: 'Data Engineer',      pct: 11.2 },
+  { title: 'ML Engineer',        pct: 11.1 },
+  { title: 'Sr. Data Scientist', pct: 10.4 },
+  { title: 'Data Scientist',     pct:  8.9 },
+  { title: 'Sr. Data Analyst',   pct:  7.9 },
+  { title: 'Software Engineer',  pct:  7.6 },
+  { title: 'Data Analyst',       pct:  6.7 },
+  { title: 'Business Analyst',   pct:  6.1 },
+  { title: 'Cloud Engineer',     pct:  4.4 },
 ]
 
 export const topSkills = [
@@ -55,18 +57,18 @@ export const topSkills = [
 ]
 
 export const monthlyTrend = [
-  { month: 'Jan 23', postings: 48000, remote: 8.1 },
-  { month: 'Mar 23', postings: 62000, remote: 8.9 },
-  { month: 'May 23', postings: 71000, remote: 9.4 },
-  { month: 'Jul 23', postings: 68000, remote: 9.8 },
-  { month: 'Sep 23', postings: 75000, remote: 10.2 },
-  { month: 'Nov 23', postings: 79000, remote: 10.8 },
-  { month: 'Jan 24', postings: 83000, remote: 11.3 },
-  { month: 'Mar 24', postings: 88000, remote: 11.9 },
-  { month: 'May 24', postings: 91000, remote: 12.1 },
-  { month: 'Jul 24', postings: 87000, remote: 12.4 },
-  { month: 'Sep 24', postings: 94000, remote: 12.8 },
-  { month: 'Nov 24', postings: 98000, remote: 13.1 },
+  { month: 'Jul 24', postings:  51152, remote: 13.6 },
+  { month: 'Aug 24', postings:  47748, remote: 12.0 },
+  { month: 'Sep 24', postings:  30215, remote: 10.5 },
+  { month: 'Oct 24', postings:  19052, remote:  7.8 },
+  { month: 'Nov 24', postings:  13779, remote:  8.6 },
+  { month: 'Dec 24', postings:  34117, remote:  8.3 },
+  { month: 'Jan 25', postings:  67650, remote:  4.2 },
+  { month: 'Feb 25', postings:  84548, remote:  2.8 },
+  { month: 'Mar 25', postings:  73505, remote:  3.1 },
+  { month: 'Apr 25', postings:  44880, remote:  2.9 },
+  { month: 'May 25', postings:  40404, remote:  3.9 },
+  { month: 'Jun 25', postings:  33628, remote:  4.8 },
 ]
 
 // Binary classification: does a posting pay ABOVE the median salary?
@@ -104,7 +106,7 @@ export const mlResults = {
 
 export const stats = {
   totalPostings:  1615930,
-  countriesCovered: 151,
+  countriesCovered: 160,
   salaryRecords:   77072,
   dateRange:      '2023 – 2025',
   medianSalary:   110000,

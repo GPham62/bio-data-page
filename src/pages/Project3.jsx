@@ -9,7 +9,7 @@ import SectionTitle from '../components/SectionTitle.jsx'
 import ChartCard    from '../components/ChartCard.jsx'
 import {
   stats, monthlyRevenue, topCountries, rfmSegments,
-  rfmScatter, cohortData, kaggleUrl,
+  rfmScatter, cohortData, kaggleUrl, colabUrl,
 } from '../data/project3.js'
 import styles from './Project3.module.css'
 
@@ -136,9 +136,14 @@ export default function Project3({ setActive }) {
             <span key={tech} className={styles.pill}>{tech}</span>
           ))}
         </div>
-        <a className={styles.kaggleLink} href={kaggleUrl} target="_blank" rel="noopener noreferrer">
-          {t('p3.kaggle_link')} <span aria-hidden>↗</span>
-        </a>
+        <div className={styles.linkRow}>
+          <a className={styles.kaggleLink} href={kaggleUrl} target="_blank" rel="noopener noreferrer">
+            {t('p3.kaggle_link')} <span aria-hidden>↗</span>
+          </a>
+          <a className={styles.colabLink} href={colabUrl} target="_blank" rel="noopener noreferrer">
+            {t('p3.colab_link')} <span aria-hidden>↗</span>
+          </a>
+        </div>
       </section>
 
       {/* KPIs */}
@@ -181,7 +186,7 @@ export default function Project3({ setActive }) {
         </div>
         <div className={styles.insight}>
           <span className={styles.insightLabel}>{t('p3.insight_label')}</span>
-          <p className={styles.insightText}>{t('p3.s1_insight')}</p>
+          <p className={styles.insightText} dangerouslySetInnerHTML={{ __html: t('p3.s1_insight') }} />
         </div>
       </section>
 
@@ -226,7 +231,7 @@ export default function Project3({ setActive }) {
         </div>
         <div className={styles.insight}>
           <span className={styles.insightLabel}>{t('p3.insight_label')}</span>
-          <p className={styles.insightText}>{t('p3.s2_insight')}</p>
+          <p className={styles.insightText} dangerouslySetInnerHTML={{ __html: t('p3.s2_insight') }} />
         </div>
       </section>
 
@@ -236,7 +241,7 @@ export default function Project3({ setActive }) {
         <CohortHeatmap data={cohortData} t={t} />
         <div className={styles.insight}>
           <span className={styles.insightLabel}>{t('p3.insight_label')}</span>
-          <p className={styles.insightText}>{t('p3.s3_insight')}</p>
+          <p className={styles.insightText} dangerouslySetInnerHTML={{ __html: t('p3.s3_insight') }} />
         </div>
       </section>
 
@@ -249,7 +254,7 @@ export default function Project3({ setActive }) {
             {t('p3.recs_items', { returnObjects: true }).map((item, i) => (
               <li key={i} className={styles.recsItem}>
                 <span className={styles.recsNum}>0{i + 1}</span>
-                <span>{item}</span>
+                <span dangerouslySetInnerHTML={{ __html: item }} />
               </li>
             ))}
           </ul>

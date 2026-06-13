@@ -44,7 +44,7 @@ you go. Use `/projects <name>` to jump into one.
 - Prev/next buttons → Home / Project 01.
 - Hero: tag, two-line title (`bio.title1` + accented `bio.title2`), intro, and avatar `/bio/profile.png`.
 - Section 01 — Technical Skills: pills rendered from the `bio.skills` array.
-- Section 02 — Background: pivot box with external links to **Epic Shadow** and **Space War** on Google Play.
+- Section 02 — Background: pivot box with text, then a 3-card game grid linking to **Relic Bag: Shadow Hunter**, **Shadow War: Idle RPG Survival**, and **Stickman vs Monster: Idle RPG** on Google Play (purple-accented `.gameCard` style).
 - Section 03 — Contact: GitHub (`GPham62`), LinkedIn (`pham-tuan-anh`), email (`mailto:phamtuananh6200@gmail.com`).
 - Note: email handle shown here (`phamtuananh6200`) differs from the account email in project config (`ptuananh196@gmail.com`) — confirm which is intended.
 - Copy comes from i18n keys under `bio.*` and `nav.*`.
@@ -58,16 +58,17 @@ you go. Use `/projects <name>` to jump into one.
 
 ## Project 3 — Project 01 page (`src/pages/Project1.jsx` + `Project1.module.css`)
 
-**Dataset:** special — no Kaggle link (sourced via DuckDB / MotherDuck).
+**Dataset:** sourced via DuckDB / MotherDuck (no Kaggle link).
+**Colab notebook:** https://colab.research.google.com/drive/1jLuh6oGoBoDFdXSB7WcCt0wRFnNFsuc-
 
 **Current state**
 - Prev/next buttons → Biography / Project 02. Data from `src/data/project1.js`.
 - Hero: two tags, title, sub, and a tech-stack pill row (Python, DuckDB, MotherDuck, Pandas, Plotly, Scikit-learn, Google Colab).
-- KPI row: 6 `StatCard`s (postings, countries, salary records, median, R², top skill).
+- KPI row: 6 `StatCard`s (postings, countries, salary records, median, Accuracy %, top skill).
 - Section 01 — Salary: vertical bar (salary by title) + remote-% bar, with insight.
 - Section 02 — Trends: dual-axis line chart (postings + remote %), with insight.
 - Section 03 — Skills + Geo: top-skills bar + top-countries bar, with insight.
-- Section 04 — ML: R²/MAE/RMSE/winner score tiles, feature-impact bar (`featureData` = reversed reducers + boosters), an `ml_note` rendered via `dangerouslySetInnerHTML`, and insight.
+- Section 04 — ML: **binary classifier** (Gradient Boosting) — Accuracy/ROC-AUC/F1/Baseline score tiles, feature-impact bar (green = pushes high pay, red = pushes low pay), `ml_note` via `dangerouslySetInnerHTML`, and insight. Target = high pay (above $110K median). Not a regression model.
 - Recharts custom `Tip` tooltip; `fmt`/`fmtUSD` axis formatters. Insight blocks use `.insight*` styles (recently resized).
 
 **To fix**
@@ -79,7 +80,8 @@ you go. Use `/projects <name>` to jump into one.
 
 ## Project 4 — Project 02 page (`src/pages/Project2.jsx` + `Project2.module.css`)
 
-**Kaggle dataset:** _<[paste Cookie Cats Kaggle link](https://www.kaggle.com/datasets/mursideyarkin/mobile-games-ab-testing-cookie-cats)>_
+**Kaggle dataset:** https://www.kaggle.com/datasets/mursideyarkin/mobile-games-ab-testing-cookie-cats
+**Colab notebook:** https://colab.research.google.com/drive/15A4qz4yaRjBL-G__NavQPTf9eWeeAg9S
 
 **Current state**
 - Prev/next buttons → Project 01 / Project 03. Data from `src/data/project2.js`.
@@ -101,7 +103,8 @@ you go. Use `/projects <name>` to jump into one.
 
 ## Project 5 — Project 03 page (`src/pages/Project3.jsx` + `Project3.module.css`)
 
-**Kaggle dataset:** _<paste Online Retail Kaggle link>_
+**Kaggle dataset:** https://www.kaggle.com/datasets/carrie1/ecommerce-data
+**Colab notebook:** https://colab.research.google.com/drive/1-vCUdEub3nRus2PkR2jQZf8hHn3_zMVQ
 
 **Current state**
 - Prev/next buttons → Project 02 / Home. Data from `src/data/project3.js`.

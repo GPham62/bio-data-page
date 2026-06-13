@@ -88,6 +88,39 @@
   text-decoration: none;
 }
 
+.colabLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--green);
+  border: 1px solid rgba(0, 204, 150, 0.3);
+  border-radius: 6px;
+  padding: 7px 12px;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.colabLink:hover {
+  border-color: var(--green);
+  background: rgba(0, 204, 150, 0.06);
+  text-decoration: none;
+}
+
+.linkRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 0;
+}
+
+.linkRow .kaggleLink,
+.linkRow .colabLink {
+  margin-top: 18px;
+}
+
 /* KPI row */
 .kpiRow {
   display: grid;
@@ -140,6 +173,16 @@
   margin: 0;
 }
 
+.insightText strong {
+  color: var(--accent2);
+  font-weight: 600;
+}
+
+.conclusionText strong {
+  color: var(--accent2);
+  font-weight: 600;
+}
+
 /* Method note */
 .note {
   display: flex;
@@ -182,7 +225,7 @@
 }
 
 .conclusionText {
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.85;
   color: var(--text);
   margin: 0;

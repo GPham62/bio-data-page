@@ -65,21 +65,36 @@ export default function Biography({ setActive }) {
           <span className={styles.pivotArrow}>&#8599;</span>
           <div>
             <span className={styles.pivotLabel}>{t('bio.pivot_label')}</span>
-            <p className={styles.pivotText}>
-              {t('bio.pivot_text')}{' '}
-              <a
-                href="https://play.google.com/store/apps/details?id=com.tsh012.cyber.war.idle.rpg.games&hl=en"
-                target="_blank"
-                rel="noopener noreferrer"
-              >Epic Shadow</a>
-              {' & '}
-              <a
-                href="https://play.google.com/store/apps/details?id=com.zitga.multiverse.war.idle.star.trek.game&hl=en"
-                target="_blank"
-                rel="noopener noreferrer"
-              >Space War</a>
-            </p>
+            <p className={styles.pivotText}>{t('bio.pivot_text')}</p>
           </div>
+        </div>
+
+        <div className={styles.gameGrid}>
+          {[
+            {
+              name: 'Relic Bag: Shadow Hunter',
+              genre: 'Puzzle · Action',
+              url: 'https://play.google.com/store/apps/details?id=com.TSH014.bag.fight.stickman.shadow.hero.puzzle&hl=en',
+            },
+            {
+              name: 'Shadow War: Idle RPG Survival',
+              genre: 'Idle · RPG',
+              url: 'https://play.google.com/store/apps/details?id=com.shadow.war.legend.slime.idle.rpg.survival.game&hl=en',
+            },
+            {
+              name: 'Stickman vs Monster: Idle RPG',
+              genre: 'Idle · Action',
+              url: 'https://play.google.com/store/apps/details?id=com.stickman.monster.epic.stickman.war.shadow.idle.game&hl=en',
+            },
+          ].map(g => (
+            <a key={g.name} href={g.url} target="_blank" rel="noopener noreferrer" className={styles.gameCard}>
+              <span className={styles.gameIcon}>GP</span>
+              <div>
+                <span className={styles.gameName}>{g.name}</span>
+                <span className={styles.gameGenre}>{g.genre}</span>
+              </div>
+            </a>
+          ))}
         </div>
       </section>
 

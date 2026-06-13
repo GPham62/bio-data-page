@@ -171,6 +171,67 @@
   margin: 0;
 }
 
+/* Game grid */
+.gameGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.gameCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+}
+
+.gameCard:hover {
+  border-color: var(--purple);
+  background: rgba(163, 113, 247, 0.04);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.gameIcon {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--purple);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(163, 113, 247, 0.08);
+  border: 1px solid rgba(163, 113, 247, 0.15);
+  flex-shrink: 0;
+}
+
+.gameName {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text);
+  display: block;
+  line-height: 1.4;
+}
+
+.gameGenre {
+  font-family: var(--mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  display: block;
+  margin-top: 3px;
+}
+
 /* Contact row */
 .contactRow {
   display: grid;
@@ -233,6 +294,7 @@
 @media (max-width: 768px) {
   .heroInner   { flex-direction: column-reverse; gap: 28px; }
   .avatarWrap  { width: 120px; height: 120px; }
+  .gameGrid    { grid-template-columns: 1fr; }
   .contactRow  { grid-template-columns: 1fr; }
 }
 

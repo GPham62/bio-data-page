@@ -13,6 +13,7 @@ export const stats = {
 
 // Source dataset on Kaggle (verify/replace if you used a different mirror)
 export const kaggleUrl = 'https://www.kaggle.com/datasets/carrie1/ecommerce-data'
+export const colabUrl  = 'https://colab.research.google.com/drive/1-vCUdEub3nRus2PkR2jQZf8hHn3_zMVQ'
 
 export const monthlyRevenue = [
   { month: 'Dec 10', revenue: 748957 },
