@@ -1,20 +1,6 @@
-.page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 32px 80px;
-}
-
-/* Hero */
-.hero {
-  padding: 56px 0 40px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 48px;
-}
-
-.heroMeta {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
+.heroAccent {
+  color: var(--accent2);
+  -webkit-text-stroke: 1px var(--accent2);
 }
 
 .tag {
@@ -25,45 +11,6 @@
   color: var(--accent2);
   border: 1px solid rgba(255, 107, 53, 0.3);
   border-radius: 3px;
-  padding: 3px 10px;
-}
-
-.heroTitle {
-  font-family: var(--head);
-  font-size: clamp(36px, 6vw, 64px);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  color: var(--text);
-  margin-bottom: 16px;
-}
-
-.heroAccent {
-  color: var(--accent2);
-  -webkit-text-stroke: 1px var(--accent2);
-}
-
-.heroSub {
-  max-width: 640px;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.8;
-  margin-bottom: 24px;
-}
-
-.heroStack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.pill {
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 100px;
   padding: 3px 10px;
 }
 
@@ -129,60 +76,6 @@
   margin-bottom: 56px;
 }
 
-/* Sections */
-.section {
-  margin-bottom: 60px;
-}
-
-.grid2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.grid1 {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-}
-
-/* Insight */
-.insight {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-left: 2px solid var(--accent2);
-  border-radius: 6px;
-  padding: 21px 27px;
-  margin-top: 16px;
-}
-
-.insightLabel {
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--accent2);
-  letter-spacing: 0.1em;
-}
-
-.insightText {
-  font-size: 16px;
-  line-height: 1.8;
-  color: var(--text);
-  margin: 0;
-}
-
-.insightText strong {
-  color: var(--accent2);
-  font-weight: 600;
-}
-
-.conclusionText strong {
-  color: var(--accent2);
-  font-weight: 600;
-}
-
 /* Method note */
 .note {
   display: flex;
@@ -231,13 +124,16 @@
   margin: 0;
 }
 
+.conclusionText strong {
+  color: var(--accent2);
+  font-weight: 600;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .kpiRow { grid-template-columns: repeat(2, 1fr); }
-  .grid2  { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 600px) {
-  .page   { padding: 0 16px 60px; }
   .kpiRow { grid-template-columns: repeat(2, 1fr); }
 }

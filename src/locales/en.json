@@ -41,7 +41,7 @@
       "title": "A Bit About Me",
       "sub": "From shipping games to shipping insights.",
       "pivot_label": "Career switch",
-      "pivot_text": "I spent years as a solo/indie mobile game developer — owning everything from gameplay code to player-retention metrics, and shipping 5 games to Google Play. Chasing those retention numbers is what pulled me toward data: I wanted to understand the \"why\" behind the charts, not just watch them move. So I switched lanes into data analysis full-time.",
+      "pivot_text": "I spent years as a mobile game developer at studios like Zitga Studio and Inwave Studio — working across gameplay code, live-ops, and player-retention metrics, and shipping 5 games to Google Play. Chasing those retention numbers is what pulled me toward data: I wanted to understand the \"why\" behind the charts, not just watch them move. So I switched lanes into data analysis full-time.",
       "games_label": "Games shipped on Google Play"
     },
     "portfolio": {
@@ -55,28 +55,24 @@
       "text": "Open to junior data analyst roles and freelance projects. If you've got a dataset that needs answers, I'd love to hear about it.",
       "cta": "Email Me"
     },
-    "cards": {
+    "projects": {
       "p1": {
         "title": "Global Tech Recruit Analysis",
-        "role": "EDA · ML · SQL",
         "desc": "I cleaned 1.6M job postings end-to-end, trained a high-pay classifier (80% accuracy) to find what skills and titles actually drive top salaries.",
         "tags": ["EDA", "ML", "SQL", "MotherDuck"]
       },
       "p2": {
         "title": "Cookie Cats A/B Testing",
-        "role": "A/B Test · Statistics",
         "desc": "Does moving a game’s gate change who comes back? I dug into 90K players to find out — and the stats agree.",
         "tags": ["A/B Test", "Python", "SciPy", "Bootstrap"]
       },
       "p3": {
         "title": "E-Commerce Segmentation",
-        "role": "RFM · Cohort Analysis",
         "desc": "I sorted 4,372 customers from 542K transactions into RFM groups, mapped who keeps coming back, and turned it into real business moves.",
         "tags": ["RFM", "SQL", "Cohort", "Pandas"]
       },
       "coming": {
         "title": "More Coming Soon",
-        "role": "Next project in progress",
         "desc": "A new end-to-end data project is cooking. Just you wait!",
         "tags": ["In Progress", "Stay Tuned"]
       }
@@ -100,6 +96,8 @@
     "title2": "Analysis",
     "sub": "End-to-end data pipeline connecting MotherDuck cloud warehouse via DuckDB, cleaning 1.6M job postings, producing 12 Plotly visualisations, and training a Gradient Boosting classifier — 80% accuracy at predicting above-median pay.",
     "colab_link": "View notebook on Colab",
+    "sql_link": "View SQL Pipeline",
+    "sql_card_title": "04_skills_mart.sql — Skill Demand Query",
     "kpi_postings": "Total Postings",
     "kpi_postings_sub": "2023 – 2025",
     "kpi_countries": "Countries",

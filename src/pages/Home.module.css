@@ -199,14 +199,14 @@
 }
 
 /* ── Selected projects (hover grid) ── */
-.portfolioGrid {
+.projectGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   margin-bottom: 16px;
 }
 
-.portfolioCard {
+.projectCard {
   background: var(--bg2);
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -215,32 +215,32 @@
   transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
 
-.portfolioCard:hover {
+.projectCard:hover {
   border-color: var(--accent-blue);
   transform: translateY(-4px);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
 }
 
-.portfolioThumbWrap {
+.projectThumbWrap {
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
   background: var(--bg3);
 }
 
-.portfolioThumb {
+.projectThumb {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.4s ease, filter 0.4s ease;
 }
 
-.portfolioCard:hover .portfolioThumb {
+.projectCard:hover .projectThumb {
   transform: scale(1.06);
   filter: brightness(0.55);
 }
 
-.portfolioTopRow {
+.projectTopRow {
   position: absolute;
   top: 12px;
   left: 12px;
@@ -250,7 +250,7 @@
   justify-content: space-between;
 }
 
-.portfolioNum {
+.projectNum {
   font-family: var(--mono);
   font-size: 11px;
   letter-spacing: 0.1em;
@@ -261,7 +261,7 @@
   backdrop-filter: blur(4px);
 }
 
-.portfolioKicker {
+.projectKicker {
   position: absolute;
   left: 16px;
   bottom: 14px;
@@ -276,16 +276,16 @@
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-.portfolioCard:hover .portfolioKicker {
+.projectCard:hover .projectKicker {
   opacity: 1;
   transform: translateY(0);
 }
 
-.portfolioInfo {
+.projectInfo {
   padding: 20px 20px 18px;
 }
 
-.portfolioCardTitle {
+.projectCardTitle {
   font-family: var(--head);
   font-size: 17px;
   font-weight: 700;
@@ -293,7 +293,7 @@
   margin: 0;
 }
 
-.portfolioDetails {
+.projectDetails {
   margin-top: 14px;
   max-height: 0;
   opacity: 0;
@@ -301,19 +301,19 @@
   transition: max-height 0.3s ease, opacity 0.2s ease;
 }
 
-.portfolioCard:hover .portfolioDetails {
+.projectCard:hover .projectDetails {
   max-height: 220px;
   opacity: 1;
 }
 
 @media (hover: none) {
-  .portfolioDetails {
+  .projectDetails {
     max-height: none;
     opacity: 1;
   }
 }
 
-.portfolioCardDesc {
+.projectCardDesc {
   font-size: 13px;
   line-height: 1.7;
   color: var(--muted);
@@ -324,14 +324,14 @@
   overflow: hidden;
 }
 
-.portfolioTags {
+.projectTags {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
   margin-bottom: 14px;
 }
 
-.portfolioTag {
+.projectTag {
   font-family: var(--mono);
   font-size: 10px;
   text-transform: uppercase;
@@ -369,7 +369,7 @@
   flex-shrink: 0;
 }
 
-.enterHint {
+.hint {
   font-family: var(--mono);
   font-size: 11px;
   color: var(--accent-blue);
@@ -476,7 +476,7 @@
 /* ── Responsive ── */
 @media (max-width: 860px) {
   .whatIDoGrid  { grid-template-columns: 1fr; }
-  .portfolioGrid { grid-template-columns: 1fr; }
+  .projectGrid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {

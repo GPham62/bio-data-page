@@ -41,7 +41,7 @@
       "title": "Một Chút Về Mình",
       "sub": "Từ làm game đến làm insight.",
       "pivot_label": "Bước chuyển sự nghiệp",
-      "pivot_text": "Mình từng có nhiều năm làm game mobile indie/solo — tự tay làm từ gameplay code đến theo dõi chỉ số retention người chơi, và đã phát hành 5 game lên Google Play. Chính việc đào sâu vào số liệu retention là thứ kéo mình đến với data: mình muốn hiểu \"tại sao\" đằng sau biểu đồ, không chỉ nhìn nó thay đổi. Vậy là mình chuyển hẳn sang làm data analyst full-time.",
+      "pivot_text": "Mình từng có nhiều năm làm game developer tại các studio như Zitga Studio và Inwave Studio — làm đủ thứ từ gameplay code, live-ops đến theo dõi chỉ số retention người chơi, và đã phát hành 5 game lên Google Play. Chính việc đào sâu vào số liệu retention là thứ kéo mình đến với data: mình muốn hiểu \"tại sao\" đằng sau biểu đồ, không chỉ nhìn nó thay đổi. Vậy là mình chuyển hẳn sang làm data analyst full-time.",
       "games_label": "Game đã phát hành trên Google Play"
     },
     "portfolio": {
@@ -55,28 +55,24 @@
       "text": "Mình đang tìm vị trí junior data analyst và nhận thêm dự án freelance. Nếu bạn có dữ liệu cần được trả lời, mình rất muốn nghe về nó.",
       "cta": "Gửi Email"
     },
-    "cards": {
+    "projects": {
       "p1": {
         "title": "Phân Tích Tuyển Dụng Công Nghệ Toàn Cầu",
-        "role": "EDA · ML · SQL",
         "desc": "Tôi làm sạch 1.6 triệu tin tuyển dụng end-to-end, huấn luyện bộ phân loại (80% chính xác) để tìm kỹ năng và chức danh nào thật sự kéo lương lên cao.",
         "tags": ["EDA", "ML", "SQL", "MotherDuck"]
       },
       "p2": {
         "title": "Cookie Cats — Kiểm Định A/B",
-        "role": "A/B Test · Thống Kê",
         "desc": "Đổi vị trí cổng trong game có làm người chơi quay lại nhiều hơn không? Tôi mổ xẻ 90K người chơi để tìm câu trả lời — và thống kê gật đầu.",
         "tags": ["A/B Test", "Python", "SciPy", "Bootstrap"]
       },
       "p3": {
         "title": "Phân Khúc Khách Hàng TMDT",
-        "role": "RFM · Phân Tích Cohort",
         "desc": "Tôi chia 4.372 khách hàng từ 542K giao dịch thành các nhóm RFM, vẽ bản đồ ai hay quay lại, rồi biến thành hành động kinh doanh thật.",
         "tags": ["RFM", "SQL", "Cohort", "Pandas"]
       },
       "coming": {
         "title": "Sắp Có Thêm",
-        "role": "Dự án tiếp theo đang thực hiện",
         "desc": "Một dự án dữ liệu end-to-end mới đang lên lò. Chờ chút nha!",
         "tags": ["Đang Làm", "Đón Xem"]
       }
@@ -100,6 +96,8 @@
     "title2": "Công Nghệ Toàn Cầu",
     "sub": "Pipeline dữ liệu end-to-end kết nối kho dữ liệu đám mây MotherDuck qua DuckDB, làm sạch 1.6 triệu tin tuyển dụng, tạo 12 biểu đồ Plotly và huấn luyện bộ phân loại Gradient Boosting — 80% độ chính xác trong dự đoán lương trên mức trung vị.",
     "colab_link": "Xem notebook trên Colab",
+    "sql_link": "Xem SQL Pipeline",
+    "sql_card_title": "04_skills_mart.sql — Truy Vấn Nhu Cầu Kỹ Năng",
     "kpi_postings": "Tổng Tin Đăng",
     "kpi_postings_sub": "2023 – 2025",
     "kpi_countries": "Quốc Gia",

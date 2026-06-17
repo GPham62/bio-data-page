@@ -1,20 +1,6 @@
-.page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 32px 80px;
-}
-
-/* Hero */
-.hero {
-  padding: 56px 0 40px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 48px;
-}
-
-.heroMeta {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
+.heroAccent {
+  color: var(--accent);
+  -webkit-text-stroke: 1px var(--accent);
 }
 
 .tag {
@@ -28,43 +14,15 @@
   padding: 3px 10px;
 }
 
-.heroTitle {
-  font-family: var(--head);
-  font-size: clamp(36px, 6vw, 64px);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  color: var(--text);
-  margin-bottom: 16px;
-}
-
-.heroAccent {
-  color: var(--accent);
-  -webkit-text-stroke: 1px var(--accent);
-}
-
-.heroSub {
-  max-width: 640px;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.8;
-  margin-bottom: 24px;
-}
-
-.heroStack {
+.linkRow {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 10px;
+  margin-top: 0;
 }
 
-.pill {
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  padding: 3px 10px;
+.linkRow .colabLink {
+  margin-top: 18px;
 }
 
 .colabLink {
@@ -88,29 +46,82 @@
   text-decoration: none;
 }
 
+.sqlLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  border-radius: 6px;
+  padding: 7px 12px;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.sqlLink:hover {
+  border-color: var(--accent);
+  background: rgba(0, 229, 255, 0.06);
+  text-decoration: none;
+}
+
+/* SQL snippet card */
+.sqlCard {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 16px;
+}
+
+.sqlCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg3);
+}
+
+.sqlCardTitle {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.sqlCardLink {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+
+.sqlCardLink:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.sqlCode {
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.75;
+  color: #cdd9e5;
+  padding: 20px 24px;
+  margin: 0;
+  overflow-x: auto;
+  white-space: pre;
+}
+
 /* KPI row */
 .kpiRow {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 12px;
   margin-bottom: 56px;
-}
-
-/* Sections */
-.section {
-  margin-bottom: 60px;
-}
-
-.grid2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.grid1 {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
 }
 
 /* ML */
@@ -186,97 +197,13 @@
 
 .mlNote strong { color: var(--text); }
 
-/* Insight */
-.insight {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-left: 2px solid var(--accent);
-  border-radius: 6px;
-  padding: 21px 27px;
-  margin-top: 16px;
-}
-
-.insightLabel {
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--accent);
-  letter-spacing: 0.1em;
-}
-
-.insightText {
-  font-size: 16px;
-  line-height: 1.8;
-  color: var(--text);
-  margin: 0;
-}
-
-.insightText strong {
-  color: var(--accent);
-  font-weight: 600;
-}
-
-.recsItem strong {
-  color: var(--accent);
-  font-weight: 600;
-}
-
-/* Recommendations box */
-.recsBox {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-top: 2px solid var(--accent);
-  border-radius: 8px;
-  padding: 28px 24px;
-}
-
-.recsTitle {
-  font-family: var(--head);
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--accent);
-  margin-bottom: 16px;
-}
-
-.recsList {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.recsItem {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  font-size: 16px;
-  line-height: 1.8;
-  color: var(--text);
-}
-
-.recsNum {
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--accent);
-  background: rgba(0, 229, 255, 0.1);
-  border: 1px solid rgba(0, 229, 255, 0.2);
-  border-radius: 4px;
-  padding: 3px 9px;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
 /* Responsive */
 @media (max-width: 900px) {
-  .kpiRow  { grid-template-columns: repeat(3, 1fr); }
-  .mlMeta  { grid-template-columns: repeat(2, 1fr); }
-  .grid2   { grid-template-columns: 1fr; }
+  .kpiRow { grid-template-columns: repeat(3, 1fr); }
+  .mlMeta { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 600px) {
-  .page    { padding: 0 16px 60px; }
-  .kpiRow  { grid-template-columns: repeat(2, 1fr); }
-  .mlMeta  { grid-template-columns: 1fr 1fr; }
+  .kpiRow { grid-template-columns: repeat(2, 1fr); }
+  .mlMeta { grid-template-columns: 1fr 1fr; }
 }

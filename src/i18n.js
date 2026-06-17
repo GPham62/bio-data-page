@@ -11,7 +11,7 @@ i18n
       en: { translation: en },
       vi: { translation: vi },
     },
-    lng: localStorage.getItem('lang') || 'en',
+    lng: localStorage.getItem('locale') || 'en',
     fallbackLng: 'en',
     interpolation: { escapeValue: false },
   })

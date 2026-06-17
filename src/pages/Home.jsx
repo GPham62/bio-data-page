@@ -151,27 +151,27 @@ export default function Home({ setActive }) {
       <section className={styles.section}>
         <SectionTitle index="03" title={t('home.portfolio.title')} sub={t('home.portfolio.sub')} />
 
-        <div className={styles.portfolioGrid}>
-          {PROJECTS.map(card => (
-            <div key={card.id} className={styles.portfolioCard} onClick={() => setActive(card.id)}>
-              <div className={styles.portfolioThumbWrap}>
-                <img src={`/gif_import/${card.id}.gif`} className={styles.portfolioThumb} alt="" />
-                <div className={styles.portfolioTopRow}>
-                  <span className={styles.portfolioNum}>{card.num}</span>
+        <div className={styles.projectGrid}>
+          {PROJECTS.map(project => (
+            <div key={project.id} className={styles.projectCard} onClick={() => setActive(project.id)}>
+              <div className={styles.projectThumbWrap}>
+                <img src={`/gif_import/${project.id}.gif`} className={styles.projectThumb} alt="" />
+                <div className={styles.projectTopRow}>
+                  <span className={styles.projectNum}>{project.num}</span>
                   <span className={styles.badgeLive}>{t('home.badge_live')}</span>
                 </div>
-                <span className={styles.portfolioKicker}>{t('home.portfolio.label')}</span>
+                <span className={styles.projectKicker}>{t('home.portfolio.label')}</span>
               </div>
-              <div className={styles.portfolioInfo}>
-                <h3 className={styles.portfolioCardTitle}>{t(`home.cards.${card.id}.title`)}</h3>
-                <div className={styles.portfolioDetails}>
-                  <p className={styles.portfolioCardDesc}>{t(`home.cards.${card.id}.desc`)}</p>
-                  <div className={styles.portfolioTags}>
-                    {t(`home.cards.${card.id}.tags`, { returnObjects: true }).map(tag => (
-                      <span key={tag} className={styles.portfolioTag}>{tag}</span>
+              <div className={styles.projectInfo}>
+                <h3 className={styles.projectCardTitle}>{t(`home.projects.${project.id}.title`)}</h3>
+                <div className={styles.projectDetails}>
+                  <p className={styles.projectCardDesc}>{t(`home.projects.${project.id}.desc`)}</p>
+                  <div className={styles.projectTags}>
+                    {t(`home.projects.${project.id}.tags`, { returnObjects: true }).map(tag => (
+                      <span key={tag} className={styles.projectTag}>{tag}</span>
                     ))}
                   </div>
-                  <div className={styles.enterHint}>{t('home.open_hint')}</div>
+                  <div className={styles.hint}>{t('home.open_hint')}</div>
                 </div>
               </div>
             </div>
@@ -181,8 +181,8 @@ export default function Home({ setActive }) {
         <div className={styles.comingSoonBanner}>
           <span className={styles.badgeWip}>{t('home.badge_wip')}</span>
           <div>
-            <span className={styles.comingSoonTitle}>{t('home.cards.coming.title')}</span>
-            <span className={styles.comingSoonDesc}>{t('home.cards.coming.desc')}</span>
+            <span className={styles.comingSoonTitle}>{t('home.projects.coming.title')}</span>
+            <span className={styles.comingSoonDesc}>{t('home.projects.coming.desc')}</span>
           </div>
         </div>
       </section>

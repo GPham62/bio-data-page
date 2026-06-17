@@ -7,36 +7,20 @@ import {
 import StatCard     from '../components/StatCard.jsx'
 import SectionTitle from '../components/SectionTitle.jsx'
 import ChartCard    from '../components/ChartCard.jsx'
+import ChartTooltip from '../components/ChartTooltip.jsx'
+import InsightBlock from '../components/InsightBlock.jsx'
+import { fmt } from '../utils/formatters.js'
 import {
   stats, groupSizes, retention1Data, retention7Data,
   bootstrapData, gameRoundsData, kaggleUrl, colabUrl,
 } from '../data/project2.js'
 import styles from './Project2.module.css'
 
-const Tip = ({ active, payload, label, prefix = '', suffix = '' }) => {
-  if (!active || !payload?.length) return null
-  return (
-    <div style={{
-      background: '#0d1117', border: '1px solid #21262d',
-      padding: '8px 12px', borderRadius: 6, fontFamily: 'var(--mono)', fontSize: 11,
-    }}>
-      <p style={{ color: '#7d8590', marginBottom: 4 }}>{label}</p>
-      {payload.map((p, i) => (
-        <p key={i} style={{ color: p.color || '#ff6b35' }}>
-          {p.name}: <strong>{prefix}{p.value?.toLocaleString()}{suffix}</strong>
-        </p>
-      ))}
-    </div>
-  )
-}
-
-const fmt = (v) => v >= 1000 ? `${(v / 1000).toFixed(0)}k` : v
-
 export default function Project2({ setActive }) {
   const { t } = useTranslation()
 
   return (
-    <div className={styles.page} style={{ position: 'relative' }}>
+    <div className="projectPage" style={{ position: 'relative' }}>
       <button className="prev-btn" onClick={() => setActive('p1')}>
         {t('nav.p1')}
       </button>
@@ -45,21 +29,21 @@ export default function Project2({ setActive }) {
       </button>
 
       {/* Hero */}
-      <section className={`${styles.hero} fade-up`}>
-        <div className={styles.heroMeta}>
+      <section className="projectHero fade-up">
+        <div className="projectHeroMeta">
           <span className={styles.tag}>{t('p2.tag')}</span>
           <span className={styles.tag} style={{ borderColor: 'rgba(0,204,150,0.3)', color: 'var(--green)' }}>
             {t('p2.tag2')}
           </span>
         </div>
-        <h1 className={styles.heroTitle}>
+        <h1 className="projectHeroTitle">
           {t('p2.title1')}<br />
           <span className={styles.heroAccent}>{t('p2.title2')}</span>
         </h1>
-        <p className={styles.heroSub}>{t('p2.sub')}</p>
-        <div className={styles.heroStack}>
+        <p className="projectHeroSub">{t('p2.sub')}</p>
+        <div className="projectHeroStack">
           {['Python', 'Pandas', 'SciPy', 'NumPy', 'Bootstrap Testing', 'Chi-Square'].map(tech => (
-            <span key={tech} className={styles.pill}>{tech}</span>
+            <span key={tech} className="projectPill">{tech}</span>
           ))}
         </div>
         <div className={styles.linkRow}>
@@ -81,16 +65,16 @@ export default function Project2({ setActive }) {
       </section>
 
       {/* Section 1: Experiment Design */}
-      <section className={styles.section}>
+      <section className="projectSection">
         <SectionTitle index="01" title={t('p2.s1_title')} sub={t('p2.s1_sub')} />
-        <div className={styles.grid1}>
+        <div className="projectGrid1">
           <ChartCard title={t('p2.chart_groups')} sub={t('p2.chart_groups_sub')} delay={0.05}>
             <ResponsiveContainer width="100%" height={200}>
               <BarChart data={groupSizes} margin={{ left: 0, right: 20, top: 10, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#1e2530" horizontal={false} />
                 <XAxis dataKey="group" tick={{ fill: '#cdd9e5', fontSize: 11 }} axisLine={false} tickLine={false} />
                 <YAxis tickFormatter={fmt} tick={{ fill: '#636e7b', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <Tooltip content={<Tip />} />
+                <Tooltip content={<ChartTooltip color="#ff6b35" />} />
                 <Bar dataKey="count" radius={[4, 4, 0, 0]}>
                   <Cell fill="#ff6b35" />
                   <Cell fill="#a371f7" />
@@ -99,23 +83,20 @@ export default function Project2({ setActive }) {
             </ResponsiveContainer>
           </ChartCard>
         </div>
-        <div className={styles.insight}>
-          <span className={styles.insightLabel}>{t('p2.insight_label')}</span>
-          <p className={styles.insightText} dangerouslySetInnerHTML={{ __html: t('p2.s1_insight') }} />
-        </div>
+        <InsightBlock label={t('p2.insight_label')} text={t('p2.s1_insight')} accent="var(--accent2)" />
       </section>
 
       {/* Section 2: Retention Analysis */}
-      <section className={styles.section}>
+      <section className="projectSection">
         <SectionTitle index="02" title={t('p2.s2_title')} sub={t('p2.s2_sub')} />
-        <div className={styles.grid2}>
+        <div className="projectGrid2">
           <ChartCard title={t('p2.chart_ret1')} sub={t('p2.chart_ret1_sub')} delay={0.05}>
             <ResponsiveContainer width="100%" height={220}>
               <BarChart data={retention1Data} margin={{ left: 0, right: 20, top: 10, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#1e2530" horizontal={false} />
                 <XAxis dataKey="group" tick={{ fill: '#cdd9e5', fontSize: 11 }} axisLine={false} tickLine={false} />
                 <YAxis domain={[42, 46]} tickFormatter={v => `${v}%`} tick={{ fill: '#636e7b', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <Tooltip content={<Tip suffix="%" />} />
+                <Tooltip content={<ChartTooltip suffix="%" color="#ff6b35" />} />
                 <Bar dataKey="rate" name="Retention" radius={[4, 4, 0, 0]}>
                   <Cell fill="#ff6b35" />
                   <Cell fill="#a371f7" />
@@ -130,7 +111,7 @@ export default function Project2({ setActive }) {
                 <CartesianGrid strokeDasharray="3 3" stroke="#1e2530" horizontal={false} />
                 <XAxis dataKey="group" tick={{ fill: '#cdd9e5', fontSize: 11 }} axisLine={false} tickLine={false} />
                 <YAxis domain={[17, 20]} tickFormatter={v => `${v}%`} tick={{ fill: '#636e7b', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <Tooltip content={<Tip suffix="%" />} />
+                <Tooltip content={<ChartTooltip suffix="%" color="#ff6b35" />} />
                 <Bar dataKey="rate" name="Retention" radius={[4, 4, 0, 0]}>
                   <Cell fill="#ff6b35" />
                   <Cell fill="#a371f7" />
@@ -143,16 +124,13 @@ export default function Project2({ setActive }) {
           <span className={styles.noteIcon}>ℹ</span>
           <p dangerouslySetInnerHTML={{ __html: t('p2.note_retention') }} />
         </div>
-        <div className={styles.insight}>
-          <span className={styles.insightLabel}>{t('p2.insight_label')}</span>
-          <p className={styles.insightText} dangerouslySetInnerHTML={{ __html: t('p2.s2_insight') }} />
-        </div>
+        <InsightBlock label={t('p2.insight_label')} text={t('p2.s2_insight')} accent="var(--accent2)" />
       </section>
 
       {/* Section 3: Bootstrap Analysis */}
-      <section className={styles.section}>
+      <section className="projectSection">
         <SectionTitle index="03" title={t('p2.s3_title')} sub={t('p2.s3_sub')} />
-        <div className={styles.grid1}>
+        <div className="projectGrid1">
           <ChartCard title={t('p2.chart_bootstrap')} sub={t('p2.chart_bootstrap_sub')} delay={0.05}>
             <ResponsiveContainer width="100%" height={280}>
               <AreaChart data={bootstrapData} margin={{ left: 0, right: 20, top: 10, bottom: 5 }}>
@@ -165,7 +143,7 @@ export default function Project2({ setActive }) {
                   tickLine={false}
                 />
                 <YAxis tick={{ fill: '#636e7b', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <Tooltip content={<Tip suffix="%" />} />
+                <Tooltip content={<ChartTooltip suffix="%" color="#ff6b35" />} />
                 <ReferenceLine x={0} stroke="#636e7b" strokeDasharray="3 3" />
                 <Area
                   type="monotone"
@@ -183,23 +161,20 @@ export default function Project2({ setActive }) {
           <span className={styles.noteIcon}>ℹ</span>
           <p dangerouslySetInnerHTML={{ __html: t('p2.note_bootstrap') }} />
         </div>
-        <div className={styles.insight}>
-          <span className={styles.insightLabel}>{t('p2.insight_label')}</span>
-          <p className={styles.insightText} dangerouslySetInnerHTML={{ __html: t('p2.s3_insight') }} />
-        </div>
+        <InsightBlock label={t('p2.insight_label')} text={t('p2.s3_insight')} accent="var(--accent2)" />
       </section>
 
       {/* Section 4: Game Rounds Distribution */}
-      <section className={styles.section}>
+      <section className="projectSection">
         <SectionTitle index="04" title={t('p2.s4_title')} sub={t('p2.s4_sub')} />
-        <div className={styles.grid1}>
+        <div className="projectGrid1">
           <ChartCard title={t('p2.chart_rounds')} sub={t('p2.chart_rounds_sub')} delay={0.05}>
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={gameRoundsData} margin={{ left: 0, right: 20, top: 10, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#1e2530" horizontal={false} />
                 <XAxis dataKey="range" tick={{ fill: '#cdd9e5', fontSize: 10 }} axisLine={false} tickLine={false} />
                 <YAxis tickFormatter={fmt} tick={{ fill: '#636e7b', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <Tooltip content={<Tip />} />
+                <Tooltip content={<ChartTooltip color="#ff6b35" />} />
                 <Legend wrapperStyle={{ fontSize: 11, color: '#636e7b' }} />
                 <Bar dataKey="gate30" name="Gate 30" fill="#ff6b35" radius={[3, 3, 0, 0]} />
                 <Bar dataKey="gate40" name="Gate 40" fill="#a371f7" radius={[3, 3, 0, 0]} />
@@ -207,14 +182,11 @@ export default function Project2({ setActive }) {
             </ResponsiveContainer>
           </ChartCard>
         </div>
-        <div className={styles.insight}>
-          <span className={styles.insightLabel}>{t('p2.insight_label')}</span>
-          <p className={styles.insightText} dangerouslySetInnerHTML={{ __html: t('p2.s4_insight') }} />
-        </div>
+        <InsightBlock label={t('p2.insight_label')} text={t('p2.s4_insight')} accent="var(--accent2)" />
       </section>
 
       {/* Conclusion */}
-      <section className={styles.section}>
+      <section className="projectSection">
         <div className={styles.conclusion}>
           <h3 className={styles.conclusionTitle}>{t('p2.conclusion_title')}</h3>
           <p className={styles.conclusionText} dangerouslySetInnerHTML={{ __html: t('p2.conclusion_text') }} />

@@ -1,20 +1,6 @@
-.page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 32px 80px;
-}
-
-/* Hero */
-.hero {
-  padding: 56px 0 40px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 48px;
-}
-
-.heroMeta {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
+.heroAccent {
+  color: var(--green);
+  -webkit-text-stroke: 1px var(--green);
 }
 
 .tag {
@@ -25,45 +11,6 @@
   color: var(--green);
   border: 1px solid rgba(0, 204, 150, 0.3);
   border-radius: 3px;
-  padding: 3px 10px;
-}
-
-.heroTitle {
-  font-family: var(--head);
-  font-size: clamp(36px, 6vw, 64px);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  color: var(--text);
-  margin-bottom: 16px;
-}
-
-.heroAccent {
-  color: var(--green);
-  -webkit-text-stroke: 1px var(--green);
-}
-
-.heroSub {
-  max-width: 640px;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.8;
-  margin-bottom: 24px;
-}
-
-.heroStack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.pill {
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 100px;
   padding: 3px 10px;
 }
 
@@ -129,186 +76,11 @@
   margin-bottom: 56px;
 }
 
-/* Sections */
-.section {
-  margin-bottom: 60px;
-}
-
-.grid2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.grid1 {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-}
-
-/* Insight */
-.insight {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-left: 2px solid var(--green);
-  border-radius: 6px;
-  padding: 21px 27px;
-  margin-top: 16px;
-}
-
-.insightLabel {
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--green);
-  letter-spacing: 0.1em;
-}
-
-.insightText {
-  font-size: 16px;
-  line-height: 1.8;
-  color: var(--text);
-  margin: 0;
-}
-
-.insightText strong {
-  color: var(--green);
-  font-weight: 600;
-}
-
-.recsItem strong {
-  color: var(--green);
-  font-weight: 600;
-}
-
-/* Cohort heatmap */
-.heatmapWrap {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 20px;
-  overflow-x: auto;
-}
-
-.heatmapTitle {
-  font-family: var(--head);
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-
-.heatmapSub {
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-  margin-bottom: 16px;
-}
-
-.heatmap {
-  display: grid;
-  gap: 2px;
-  font-family: var(--mono);
-  font-size: 10px;
-}
-
-.heatmapHeader {
-  display: contents;
-}
-
-.heatmapHeaderCell {
-  padding: 6px 4px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.heatmapRow {
-  display: contents;
-}
-
-.heatmapLabel {
-  padding: 6px 8px;
-  color: var(--text);
-  font-size: 10px;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-}
-
-.heatmapCell {
-  padding: 6px 4px;
-  text-align: center;
-  border-radius: 3px;
-  color: var(--text);
-  font-size: 10px;
-  min-width: 42px;
-  transition: transform 0.15s;
-}
-
-.heatmapCell:hover {
-  transform: scale(1.1);
-  z-index: 1;
-}
-
-/* Recommendations box */
-.recsBox {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-top: 2px solid var(--green);
-  border-radius: 8px;
-  padding: 28px 24px;
-}
-
-.recsTitle {
-  font-family: var(--head);
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--green);
-  margin-bottom: 16px;
-}
-
-.recsList {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.recsItem {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  font-size: 16px;
-  line-height: 1.8;
-  color: var(--text);
-}
-
-.recsNum {
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--green);
-  background: rgba(0, 204, 150, 0.1);
-  border: 1px solid rgba(0, 204, 150, 0.2);
-  border-radius: 4px;
-  padding: 3px 9px;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
 /* Responsive */
 @media (max-width: 900px) {
   .kpiRow { grid-template-columns: repeat(3, 1fr); }
-  .grid2  { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 600px) {
-  .page   { padding: 0 16px 60px; }
   .kpiRow { grid-template-columns: repeat(2, 1fr); }
 }

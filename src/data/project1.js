@@ -3,6 +3,7 @@
 // e.g. df_salary.groupby('job_title_short')['salary_annual'].median().reset_index().to_dict('records')
 
 export const colabUrl = 'https://colab.research.google.com/drive/1jLuh6oGoBoDFdXSB7WcCt0wRFnNFsuc-'
+export const sqlUrl   = 'https://github.com/GPham62/bio-data-page/tree/main/sql/project1'
 
 export const salaryByTitle = [
   { title: 'Sr. Data Scientist',  salary: 149653 },

@@ -19,10 +19,10 @@ export default function Sidebar({ active, setActive }) {
     localStorage.setItem('theme', theme)
   }, [theme])
 
-  const toggleLang = () => {
+  const toggleLocale = () => {
     const next = isVI ? 'en' : 'vi'
     i18n.changeLanguage(next)
-    localStorage.setItem('lang', next)
+    localStorage.setItem('locale', next)
   }
 
   const toggleTheme = () => setTheme(prev => (prev === 'dark' ? 'light' : 'dark'))
@@ -81,7 +81,7 @@ export default function Sidebar({ active, setActive }) {
 
           <button
             className={styles.pillToggle}
-            onClick={toggleLang}
+            onClick={toggleLocale}
             title={isVI ? 'Switch to English' : 'Chuyển sang Tiếng Việt'}
           >
             <span className={`${styles.pillOpt} ${!isVI ? styles.pillActive : ''}`}>EN</span>
