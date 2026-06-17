@@ -1,0 +1,188 @@
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  border-right: 1px solid var(--border);
+  background: var(--bg2);
+  padding: 40px 28px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 100%;
+  transition: opacity 0.2s;
+}
+
+.profile:hover {
+  opacity: 0.8;
+}
+
+.avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent-blue);
+}
+
+.avatarFallback {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg3);
+  border: 2px solid var(--accent-blue);
+  font-family: var(--head);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--accent-blue);
+}
+
+.profileName {
+  margin-top: 16px;
+  font-family: var(--head);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.profileRole {
+  margin-top: 4px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 40px;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  padding: 10px 8px;
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s, background 0.2s;
+}
+
+.navItem:hover {
+  color: var(--text);
+  background: rgba(89, 136, 255, 0.06);
+}
+
+.navDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--border);
+  flex-shrink: 0;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.navActive {
+  color: var(--text);
+}
+
+.navActive .navDot {
+  background: var(--accent-blue);
+  box-shadow: 0 0 6px var(--accent-blue);
+}
+
+.social {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.socialLink {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.socialLink:hover {
+  color: var(--accent-blue);
+  text-decoration: none;
+}
+
+.toggleGroup {
+  margin-top: 14px;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.pillToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 5px 12px;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  transition: border-color 0.2s;
+}
+
+.pillToggle:hover {
+  border-color: var(--accent-blue);
+}
+
+.pillOpt {
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.pillOpt.pillActive {
+  color: var(--accent-blue);
+}
+
+.pillDiv {
+  color: var(--border);
+  font-size: 9px;
+}
+
+@media (max-width: 1024px) {
+  .sidebar { display: none; }
+}

@@ -1,153 +1,211 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import SectionTitle from '../components/SectionTitle.jsx'
 import styles from './Home.module.css'
 
-const CARDS = [
-  { id: 'bio', num: '00', status: null },
-  { id: 'p1',  num: '01', status: 'live' },
-  { id: 'p2',  num: '02', status: 'live' },
-  { id: 'p3',  num: '03', status: 'live' },
-  // Continuous-project placeholder — always last, not clickable (no page to open).
-  { id: 'coming', num: '04', status: 'wip', locked: true },
+const PROJECTS = [
+  { id: 'p1', num: '01' },
+  { id: 'p2', num: '02' },
+  { id: 'p3', num: '03' },
 ]
 
-const GIF_SRCS = CARDS.map(c => `/gif_import/${c.id}.gif`)
+const GAMES = [
+  {
+    name: 'Relic Bag: Shadow Hunter',
+    genre: 'Puzzle · Action',
+    url: 'https://play.google.com/store/apps/details?id=com.TSH014.bag.fight.stickman.shadow.hero.puzzle&hl=en',
+  },
+  {
+    name: 'Shadow War: Idle RPG Survival',
+    genre: 'Idle · RPG',
+    url: 'https://play.google.com/store/apps/details?id=com.shadow.war.legend.slime.idle.rpg.survival.game&hl=en',
+  },
+  {
+    name: 'Stickman vs Monster: Idle RPG',
+    genre: 'Idle · Action',
+    url: 'https://play.google.com/store/apps/details?id=com.stickman.monster.epic.stickman.war.shadow.idle.game&hl=en',
+  },
+  {
+    name: 'Epic Shadow Idle RPG',
+    genre: 'Idle · RPG',
+    url: 'https://play.google.com/store/apps/details?id=com.tsh012.cyber.war.idle.rpg.games&hl=en',
+  },
+  {
+    name: 'Space War Idle RPG',
+    genre: 'Idle · Strategy',
+    url: 'https://play.google.com/store/apps/details?id=com.zitga.multiverse.war.idle.star.trek.game&hl=en',
+  },
+]
+
+// Flat two-tone icons in the naledi.co.uk reference style — hand-drawn inline
+// so the set shares one accent color instead of pulling in an icon library.
+function IconCollect() {
+  return (
+    <svg width="34" height="34" viewBox="0 0 64 64" fill="none">
+      <rect x="14" y="10" width="30" height="40" rx="4" fill="rgba(89,136,255,0.15)" stroke="var(--accent-blue)" strokeWidth="2" />
+      <line x1="21" y1="22" x2="37" y2="22" stroke="var(--accent-blue)" strokeWidth="2" strokeLinecap="round" />
+      <line x1="21" y1="30" x2="37" y2="30" stroke="var(--accent-blue)" strokeWidth="2" strokeLinecap="round" />
+      <line x1="21" y1="38" x2="31" y2="38" stroke="var(--accent-blue)" strokeWidth="2" strokeLinecap="round" />
+      <circle cx="44" cy="44" r="11" fill="var(--bg2)" stroke="var(--accent-blue)" strokeWidth="2" />
+      <path d="M39.5 44l3 3 6.5-6.5" stroke="var(--accent-blue)" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function IconProcess() {
+  return (
+    <svg width="34" height="34" viewBox="0 0 64 64" fill="none">
+      <circle cx="32" cy="14" r="8" fill="rgba(89,136,255,0.15)" stroke="var(--accent-blue)" strokeWidth="2" />
+      <line x1="32" y1="22" x2="32" y2="32" stroke="var(--accent-blue)" strokeWidth="2" />
+      <line x1="16" y1="40" x2="32" y2="32" stroke="var(--accent-blue)" strokeWidth="2" />
+      <line x1="48" y1="40" x2="32" y2="32" stroke="var(--accent-blue)" strokeWidth="2" />
+      <rect x="8" y="40" width="16" height="13" rx="2.5" fill="rgba(89,136,255,0.15)" stroke="var(--accent-blue)" strokeWidth="2" />
+      <rect x="40" y="40" width="16" height="13" rx="2.5" fill="rgba(89,136,255,0.15)" stroke="var(--accent-blue)" strokeWidth="2" />
+    </svg>
+  )
+}
+
+function IconVisualize() {
+  return (
+    <svg width="34" height="34" viewBox="0 0 64 64" fill="none">
+      <rect x="10" y="38" width="9" height="15" rx="1.5" fill="var(--accent-blue)" opacity="0.4" />
+      <rect x="24" y="29" width="9" height="24" rx="1.5" fill="var(--accent-blue)" opacity="0.6" />
+      <rect x="38" y="18" width="9" height="35" rx="1.5" fill="var(--accent-blue)" opacity="0.8" />
+      <rect x="52" y="9" width="9" height="44" rx="1.5" fill="var(--accent-blue)" />
+    </svg>
+  )
+}
+
+const WHATIDO_ICONS = [IconCollect, IconProcess, IconVisualize]
 
 export default function Home({ setActive }) {
   const { t } = useTranslation()
-  const [current, setCurrent] = useState(0)
-  // Per-GIF orientation, detected from the loaded image's natural size, so a
-  // landscape clip (bio/p1) renders with `cover` while a portrait clip (p2)
-  // switches to `contain` and isn't cropped to a sliver.
-  const [portraitMap, setPortraitMap] = useState({})
-  const locked = useRef(false)
 
+  // Warm the browser cache for the grid thumbnails before they scroll into view.
   useEffect(() => {
-    GIF_SRCS.forEach(src => { new Image().src = src })
+    PROJECTS.forEach(p => { new Image().src = `/gif_import/${p.id}.gif` })
   }, [])
 
-  const go = useCallback((dir) => {
-    if (locked.current) return
-    setCurrent(prev => {
-      const next = prev + dir
-      if (next < 0 || next >= CARDS.length) return prev
-      return next
-    })
-    locked.current = true
-    setTimeout(() => { locked.current = false }, 550)
-  }, [])
-
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === 'ArrowLeft')  go(-1)
-      if (e.key === 'ArrowRight') go(1)
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [go])
-
-  useEffect(() => {
-    let last = 0
-    const onWheel = (e) => {
-      const now = Date.now()
-      if (now - last < 700) return
-      last = now
-      if (e.deltaY > 20 || e.deltaX > 20) go(1)
-      else if (e.deltaY < -20 || e.deltaX < -20) go(-1)
-    }
-    window.addEventListener('wheel', onWheel, { passive: true })
-    return () => window.removeEventListener('wheel', onWheel)
-  }, [go])
+  const whatIDoItems = t('home.whatIDo.items', { returnObjects: true })
 
   return (
     <div className={styles.page}>
 
-      {/* blurred GIF background — one per card, cross-fades on swipe */}
-      <div className={styles.gifBg} aria-hidden>
-        {CARDS.map((card, i) => (
-          <img
-            key={card.id}
-            src={`/gif_import/${card.id}.gif`}
-            className={`${styles.gif} ${portraitMap[card.id] ? styles.gifPortrait : ''} ${i === current ? styles.gifVisible : ''}`}
-            alt=""
-            onLoad={(e) => {
-              const { naturalWidth: w, naturalHeight: h } = e.currentTarget
-              if (!w || !h) return
-              setPortraitMap(prev =>
-                prev[card.id] !== undefined ? prev : { ...prev, [card.id]: h > w }
-              )
-            }}
-          />
-        ))}
-      </div>
+      {/* ── Friendly greeting hero ── */}
+      <section className={`${styles.greetSection} fade-up`}>
+        <span className={styles.greetKicker}>{t('home.greeting.kicker')}</span>
+        <h1 className={styles.greetTitle}>{t('home.greeting.title')}</h1>
+        <p className={styles.greetText}>{t('home.greeting.p1')}</p>
+        <p className={styles.greetText}>{t('home.greeting.p2')}</p>
+      </section>
 
-      <div className={styles.stage}>
-        {CARDS.map((card, i) => {
-          const offset = i - current
-          if (Math.abs(offset) > 1) return null
-          const isCenter = offset === 0
-          return (
-            <div
-              key={card.id}
-              className={`${styles.card} ${isCenter ? styles.cardCenter : styles.cardSide} ${card.locked && isCenter ? styles.cardLocked : ''}`}
-              style={{ '--offset': offset }}
-              onClick={() => isCenter ? (card.locked || setActive(card.id)) : go(offset)}
-            >
-              <div className={`${styles.floatWrap} ${isCenter ? styles.floating : ''}`}>
-              <div className={styles.cardInner}>
-                <div className={styles.cardTop}>
-                  <span className={styles.cardNum}>{card.num}</span>
-                  {card.status === 'live' && <span className={styles.badgeLive}>{t('home.badge_live')}</span>}
-                  {card.status === 'wip'  && <span className={styles.badgeWip}>{t('home.badge_wip')}</span>}
-                </div>
-
-                <h2 className={styles.cardTitle}>{t(`home.cards.${card.id}.title`)}</h2>
-                <p className={styles.cardRole}>{t(`home.cards.${card.id}.role`)}</p>
-                <p className={styles.cardDesc}>{t(`home.cards.${card.id}.desc`)}</p>
-
-                <div className={styles.cardTags}>
-                  {t(`home.cards.${card.id}.tags`, { returnObjects: true }).map(tag => (
-                    <span key={tag} className={styles.tag}>{tag}</span>
+      {/* ── What I Can Do — 3 column ── */}
+      <section className={styles.section}>
+        <SectionTitle index="01" title={t('home.whatIDo.title')} sub={t('home.whatIDo.sub')} />
+        <div className={styles.whatIDoGrid}>
+          {whatIDoItems.map((item, i) => {
+            const Icon = WHATIDO_ICONS[i]
+            return (
+              <div key={item.title} className={styles.whatIDoCard}>
+                <div className={styles.whatIDoIconWrap}><Icon /></div>
+                <h3 className={styles.whatIDoTitle}>{item.title}</h3>
+                <p className={styles.whatIDoDesc}>{item.desc}</p>
+                <div className={styles.skillRow}>
+                  {item.skills.map(skill => (
+                    <span key={skill} className={styles.skillTag}>{skill}</span>
                   ))}
                 </div>
-
-                {isCenter && (
-                  card.locked
-                    ? <div className={styles.soonHint}>{t('home.soon_hint')}</div>
-                    : <div className={styles.enterHint}>{t('home.open_hint')}</div>
-                )}
               </div>
+            )
+          })}
+        </div>
+      </section>
+
+      {/* ── About me (condensed) ── */}
+      <section className={styles.section}>
+        <SectionTitle index="02" title={t('home.about.title')} sub={t('home.about.sub')} />
+
+        <div className={styles.pivotBox}>
+          <span className={styles.pivotArrow}>&#8599;</span>
+          <div>
+            <span className={styles.pivotLabel}>{t('home.about.pivot_label')}</span>
+            <p className={styles.pivotText}>{t('home.about.pivot_text')}</p>
+          </div>
+        </div>
+
+        <div className={styles.gamesLabel}>{t('home.about.games_label')}</div>
+        <div className={styles.gameGrid}>
+          {GAMES.map(g => (
+            <a key={g.name} href={g.url} target="_blank" rel="noopener noreferrer" className={styles.gameCard}>
+              <span className={styles.gameIcon}>▶</span>
+              <div>
+                <span className={styles.gameName}>{g.name}</span>
+                <span className={styles.gameGenre}>{g.genre}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Selected projects — naledi-style hover grid (folds in the old carousel's GIF + motion) ── */}
+      <section className={styles.section}>
+        <SectionTitle index="03" title={t('home.portfolio.title')} sub={t('home.portfolio.sub')} />
+
+        <div className={styles.portfolioGrid}>
+          {PROJECTS.map(card => (
+            <div key={card.id} className={styles.portfolioCard} onClick={() => setActive(card.id)}>
+              <div className={styles.portfolioThumbWrap}>
+                <img src={`/gif_import/${card.id}.gif`} className={styles.portfolioThumb} alt="" />
+                <div className={styles.portfolioTopRow}>
+                  <span className={styles.portfolioNum}>{card.num}</span>
+                  <span className={styles.badgeLive}>{t('home.badge_live')}</span>
+                </div>
+                <span className={styles.portfolioKicker}>{t('home.portfolio.label')}</span>
+              </div>
+              <div className={styles.portfolioInfo}>
+                <h3 className={styles.portfolioCardTitle}>{t(`home.cards.${card.id}.title`)}</h3>
+                <div className={styles.portfolioDetails}>
+                  <p className={styles.portfolioCardDesc}>{t(`home.cards.${card.id}.desc`)}</p>
+                  <div className={styles.portfolioTags}>
+                    {t(`home.cards.${card.id}.tags`, { returnObjects: true }).map(tag => (
+                      <span key={tag} className={styles.portfolioTag}>{tag}</span>
+                    ))}
+                  </div>
+                  <div className={styles.enterHint}>{t('home.open_hint')}</div>
+                </div>
               </div>
             </div>
-          )
-        })}
-      </div>
+          ))}
+        </div>
 
-      <div className={styles.controls}>
-        <button
-          className={styles.arrow}
-          onClick={() => go(-1)}
-          disabled={current === 0}
-        >←</button>
+        <div className={styles.comingSoonBanner}>
+          <span className={styles.badgeWip}>{t('home.badge_wip')}</span>
+          <div>
+            <span className={styles.comingSoonTitle}>{t('home.cards.coming.title')}</span>
+            <span className={styles.comingSoonDesc}>{t('home.cards.coming.desc')}</span>
+          </div>
+        </div>
+      </section>
 
-        <span className={styles.counter}>{current + 1} / {CARDS.length}</span>
-
-        <button
-          className={styles.arrow}
-          onClick={() => go(1)}
-          disabled={current === CARDS.length - 1}
-        >→</button>
-      </div>
-
-      <div className={styles.dots}>
-        {CARDS.map((_, i) => (
-          <button
-            key={i}
-            className={`${styles.dot} ${i === current ? styles.dotActive : ''}`}
-            onClick={() => setCurrent(i)}
-          />
-        ))}
-      </div>
+      {/* ── Get in touch ── */}
+      <section className={`${styles.contactSection} fade-up`}>
+        <div className={styles.contactCard}>
+          <span className={styles.greetKicker}>{t('home.contact.kicker')}</span>
+          <h2 className={styles.contactTitle}>{t('home.contact.title')}</h2>
+          <p className={styles.contactText}>{t('home.contact.text')}</p>
+          <div className={styles.contactActions}>
+            <a href="mailto:ptuananh196@gmail.com" className={styles.contactBtn}>
+              {t('home.contact.cta')}
+            </a>
+            <a href="https://www.linkedin.com/in/tuananhpham6296/" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+              {t('sidebar.social.linkedin')}
+            </a>
+            <a href="https://github.com/GPham62" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+              {t('sidebar.social.github')}
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

@@ -1,23 +1,61 @@
 {
   "nav": {
     "home": "← Trang Chủ",
-    "bio": "00 / Giới Thiệu",
     "p1": "01 / Phân Tích Tuyển Dụng →",
     "p2": "02 / Cookie Cats A/B →",
     "p3": "03 / Thương Mại Điện Tử →"
+  },
+  "sidebar": {
+    "role": "Junior Data Analyst",
+    "nav": {
+      "home": "Trang Chủ",
+      "resume": "Hồ Sơ"
+    },
+    "social": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "email": "Email"
+    }
   },
   "home": {
     "badge_live": "Trực Tiếp",
     "badge_wip": "Đang Làm",
     "open_hint": "mở →",
     "soon_hint": "sắp ra mắt",
+    "greeting": {
+      "kicker": "// xin chào",
+      "title": "Chào, mình là Tuấn Anh 👋",
+      "p1": "Mình là data analyst, chuyên biến những bảng dữ liệu và file thô lộn xộn thành câu trả lời mà người khác có thể hành động ngay — pipeline SQL, biểu đồ rõ ràng, và machine learning khi câu hỏi cần đến nó.",
+      "p2": "Cuộn xuống để xem mình làm được gì, một chút về background, và 3 dự án mình tự hào nhất."
+    },
+    "whatIDo": {
+      "title": "Mình Làm Được Gì",
+      "sub": "Ba bước, một pipeline — từ dữ liệu thô đến quyết định.",
+      "items": [
+        { "title": "Thu thập", "desc": "Mình lấy dữ liệu từ bất cứ đâu nó tồn tại — API, cloud warehouse, file CSV thô — và làm sạch đến khi đáng tin cậy.", "skills": ["SQL", "Python", "DuckDB", "MotherDuck"] },
+        { "title": "Xử lý", "desc": "Mình định hình dữ liệu thô thành các model có cấu trúc, sau đó áp dụng thống kê hoặc machine learning để trả lời đúng câu hỏi đặt ra.", "skills": ["Pandas", "SciPy", "Scikit-learn", "A/B Testing"] },
+        { "title": "Trực quan hoá", "desc": "Mình biến kết quả thành biểu đồ và dashboard mà người không chuyên cũng đọc hiểu trong mười giây.", "skills": ["Plotly", "Recharts", "Power BI"] }
+      ]
+    },
+    "about": {
+      "title": "Một Chút Về Mình",
+      "sub": "Từ làm game đến làm insight.",
+      "pivot_label": "Bước chuyển sự nghiệp",
+      "pivot_text": "Mình từng có nhiều năm làm game mobile indie/solo — tự tay làm từ gameplay code đến theo dõi chỉ số retention người chơi, và đã phát hành 5 game lên Google Play. Chính việc đào sâu vào số liệu retention là thứ kéo mình đến với data: mình muốn hiểu \"tại sao\" đằng sau biểu đồ, không chỉ nhìn nó thay đổi. Vậy là mình chuyển hẳn sang làm data analyst full-time.",
+      "games_label": "Game đã phát hành trên Google Play"
+    },
+    "portfolio": {
+      "title": "Dự Án Tiêu Biểu",
+      "sub": "Ba dự án end-to-end — từ dữ liệu thô đến đề xuất hành động.",
+      "label": "Dự Án Cá Nhân"
+    },
+    "contact": {
+      "kicker": "// nói chuyện nhé",
+      "title": "Liên Hệ",
+      "text": "Mình đang tìm vị trí junior data analyst và nhận thêm dự án freelance. Nếu bạn có dữ liệu cần được trả lời, mình rất muốn nghe về nó.",
+      "cta": "Gửi Email"
+    },
     "cards": {
-      "bio": {
-        "title": "Phạm Tuấn Anh",
-        "role": "Junior Data Analyst",
-        "desc": "Từ lập trình game chuyển sang phân tích dữ liệu — tôi xây pipeline end-to-end và đào insight thật từ mớ dữ liệu lộn xộn ngoài đời.",
-        "tags": ["Giới Thiệu", "Kỹ Năng", "Liên Hệ"]
-      },
       "p1": {
         "title": "Phân Tích Tuyển Dụng Công Nghệ Toàn Cầu",
         "role": "EDA · ML · SQL",
@@ -44,36 +82,16 @@
       }
     }
   },
-  "header": {
-    "brand": "data.portfolio",
-    "badge": "MotherDuck · DuckDB",
-    "bio_label": "00 / Giới Thiệu",
-    "bio_tag": "Kỹ Năng · Liên Hệ",
-    "p1_label": "01 / Phân Tích Tuyển Dụng",
-    "p1_tag": "EDA · ML · SQL",
-    "p2_label": "02 / Cookie Cats",
-    "p2_tag": "A/B Test · Thống Kê",
-    "p3_label": "03 / TMDT",
-    "p3_tag": "RFM · Cohort"
+  "resume": {
+    "kicker": "// hồ sơ",
+    "title": "Hồ Sơ",
+    "text": "Bản PDF sẽ có sớm. Trong lúc chờ, 3 dự án end-to-end của mình kể câu chuyện rõ hơn bất kỳ danh sách bullet nào — xem thử đi.",
+    "cta_projects": "Xem Dự Án",
+    "cta_email": "Gửi Email"
   },
   "footer": {
     "built": "Xây dựng bằng React · Recharts · Vite",
     "data": "Dữ liệu từ Google Jobs, Cookie Cats (Kaggle), UCI Online Retail II"
-  },
-  "bio": {
-    "tag": "// giới.thiệu",
-    "title1": "Junior",
-    "title2": "Data Analyst",
-    "intro": "Phân tích viên dữ liệu với nền tảng phát triển game. Tôi xây dựng pipeline dữ liệu end-to-end, thực hiện phân tích thống kê và biến dữ liệu thô thành những hiểu biết rõ ràng và khả thi. Hiện đang tìm kiếm cơ hội phát triển trong một đội ngũ định hướng dữ liệu.",
-    "s1_title": "Kỹ Năng Chuyên Môn",
-    "s1_sub": "Công cụ và công nghệ tôi sử dụng",
-    "skills": ["SQL", "Python", "Pandas", "Tableau", "Power BI", "DuckDB", "Recharts", "Scikit-learn", "Excel", "A/B Testing", "EDA", "Regression"],
-    "s2_title": "Hành Trình",
-    "s2_sub": "Tôi đến với dữ liệu như thế nào",
-    "pivot_label": "Dev Game → Dữ Liệu",
-    "pivot_text": "Trước khi làm dữ liệu, tôi đã phát hành 3 game di động trên Google Play. Trải nghiệm đó dạy tôi tư duy hệ thống, tối ưu hiệu suất và lặp lại nhanh chóng — những kỹ năng chuyển đổi trực tiếp sang phân tích dữ liệu.",
-    "s3_title": "Liên Hệ",
-    "s3_sub": "Kết nối với tôi"
   },
   "p1": {
     "tag": "Dự Án 01",

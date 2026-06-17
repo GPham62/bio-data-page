@@ -5,12 +5,27 @@
   --border:   #1e2530;
   --accent:   #00e5ff;
   --accent2:  #ff6b35;
+  --accent-blue: #5988ff;
   --green:    #00cc96;
   --purple:   #a371f7;
   --text:     #cdd9e5;
   --muted:    #636e7b;
   --mono:     'Space Mono', monospace;
   --head:     'Syne', 'Be Vietnam Pro', sans-serif;
+}
+
+:root[data-theme="light"] {
+  --bg:       #f6f7f9;
+  --bg2:      #ffffff;
+  --bg3:      #eef1f5;
+  --border:   #dde2e8;
+  --accent:   #0089a3;
+  --accent2:  #d9531e;
+  --accent-blue: #3a63d8;
+  --green:    #08966f;
+  --purple:   #7c4fd1;
+  --text:     #1b2330;
+  --muted:    #5b6472;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -24,6 +39,7 @@ body {
   line-height: 1.7;
   min-height: 100vh;
   overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 /* dot grid background */
@@ -31,11 +47,12 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: radial-gradient(circle, #1e2530 1px, transparent 1px);
+  background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
   background-size: 28px 28px;
   opacity: 0.5;
   pointer-events: none;
   z-index: 0;
+  transition: background-image 0.25s ease;
 }
 
 #root { position: relative; z-index: 1; }

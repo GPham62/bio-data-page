@@ -1,23 +1,61 @@
 {
   "nav": {
     "home": "← Home",
-    "bio": "00 / About Me",
     "p1": "01 / Recruit Analysis →",
     "p2": "02 / Cookie Cats A/B →",
     "p3": "03 / E-Commerce →"
+  },
+  "sidebar": {
+    "role": "Junior Data Analyst",
+    "nav": {
+      "home": "Home",
+      "resume": "Resume"
+    },
+    "social": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "email": "Email"
+    }
   },
   "home": {
     "badge_live": "Live",
     "badge_wip": "WIP",
     "open_hint": "open →",
     "soon_hint": "coming soon",
+    "greeting": {
+      "kicker": "// hello",
+      "title": "Hey, I'm Tuấn Anh 👋",
+      "p1": "I'm a data analyst who turns messy spreadsheets and raw tables into answers people actually act on — SQL pipelines, clean visuals, and machine learning when the question calls for it.",
+      "p2": "Scroll down for what I work with, a bit about my background, and the three projects I'm most proud of."
+    },
+    "whatIDo": {
+      "title": "What I Can Do",
+      "sub": "Three steps, one pipeline — from raw data to a decision.",
+      "items": [
+        { "title": "Collect", "desc": "I pull data from wherever it lives — APIs, cloud warehouses, raw CSVs — and clean it until it's trustworthy.", "skills": ["SQL", "Python", "DuckDB", "MotherDuck"] },
+        { "title": "Process", "desc": "I shape raw tables into structured models, then layer in statistics or machine learning to answer the actual question.", "skills": ["Pandas", "SciPy", "Scikit-learn", "A/B Testing"] },
+        { "title": "Visualise", "desc": "I turn the result into charts and dashboards that someone non-technical can read in ten seconds.", "skills": ["Plotly", "Recharts", "Power BI"] }
+      ]
+    },
+    "about": {
+      "title": "A Bit About Me",
+      "sub": "From shipping games to shipping insights.",
+      "pivot_label": "Career switch",
+      "pivot_text": "I spent years as a solo/indie mobile game developer — owning everything from gameplay code to player-retention metrics, and shipping 5 games to Google Play. Chasing those retention numbers is what pulled me toward data: I wanted to understand the \"why\" behind the charts, not just watch them move. So I switched lanes into data analysis full-time.",
+      "games_label": "Games shipped on Google Play"
+    },
+    "portfolio": {
+      "title": "Selected Projects",
+      "sub": "Three end-to-end projects — from raw data to a recommendation.",
+      "label": "Personal Project"
+    },
+    "contact": {
+      "kicker": "// say hi",
+      "title": "Let's Talk",
+      "text": "Open to junior data analyst roles and freelance projects. If you've got a dataset that needs answers, I'd love to hear about it.",
+      "cta": "Email Me"
+    },
     "cards": {
-      "bio": {
-        "title": "Pham Tuan Anh",
-        "role": "Junior Data Analyst",
-        "desc": "Game dev turned data analyst — I build end-to-end pipelines and dig real insights out of messy, real-world data.",
-        "tags": ["Bio", "Skills", "Contact"]
-      },
       "p1": {
         "title": "Global Tech Recruit Analysis",
         "role": "EDA · ML · SQL",
@@ -44,36 +82,16 @@
       }
     }
   },
-  "header": {
-    "brand": "data.portfolio",
-    "badge": "MotherDuck · DuckDB",
-    "bio_label": "00 / About",
-    "bio_tag": "Skills · Contact",
-    "p1_label": "01 / Recruit Analysis",
-    "p1_tag": "EDA · ML · SQL",
-    "p2_label": "02 / Cookie Cats",
-    "p2_tag": "A/B Test · Stats",
-    "p3_label": "03 / E-Commerce",
-    "p3_tag": "RFM · Cohort"
+  "resume": {
+    "kicker": "// resume",
+    "title": "Resume",
+    "text": "A polished PDF resume is on the way. In the meantime, my three end-to-end data projects show the work better than a bullet list — take a look.",
+    "cta_projects": "See Projects",
+    "cta_email": "Email Me"
   },
   "footer": {
     "built": "Built with React · Recharts · Vite",
     "data": "Data sourced from Google Jobs, Cookie Cats (Kaggle), UCI Online Retail II"
-  },
-  "bio": {
-    "tag": "// about.me",
-    "title1": "Junior",
-    "title2": "Data Analyst",
-    "intro": "Data analyst with a background in game development. I build end-to-end data pipelines, run statistical analyses, and turn messy datasets into clear, actionable insights. Currently looking for opportunities to grow in a data-driven team.",
-    "s1_title": "Technical Skills",
-    "s1_sub": "Tools and technologies I work with",
-    "skills": ["SQL", "Python", "Pandas", "Tableau", "Power BI", "DuckDB", "Recharts", "Scikit-learn", "Excel", "A/B Testing", "EDA", "Regression"],
-    "s2_title": "Background",
-    "s2_sub": "How I got into data",
-    "pivot_label": "Game Dev → Data",
-    "pivot_text": "Before data, I shipped 3 mobile games on Google Play. That experience taught me systems thinking, performance optimisation, and iterating under constraints — all skills that transfer directly to data analysis.",
-    "s3_title": "Contact",
-    "s3_sub": "Let’s connect"
   },
   "p1": {
     "tag": "Project 01",

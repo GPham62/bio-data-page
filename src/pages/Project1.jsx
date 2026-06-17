@@ -44,8 +44,8 @@ export default function Project1({ setActive }) {
 
   return (
     <div className={styles.page} style={{ position: 'relative' }}>
-      <button className="prev-btn" onClick={() => setActive('bio')}>
-        {t('nav.bio')}
+      <button className="prev-btn" onClick={() => setActive('home')}>
+        {t('nav.home')}
       </button>
       <button className="next-btn" onClick={() => setActive('p2')}>
         {t('nav.p2')}

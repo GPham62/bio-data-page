@@ -1,0 +1,97 @@
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 80px 32px 100px;
+}
+
+.kicker {
+  display: block;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent-blue);
+  letter-spacing: 0.06em;
+  margin-bottom: 18px;
+}
+
+.titleRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.title {
+  font-family: var(--head);
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 0;
+}
+
+.badgeWip {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent2);
+  border: 1px solid rgba(255, 107, 53, 0.35);
+  border-radius: 100px;
+  padding: 4px 12px;
+  flex-shrink: 0;
+  margin-top: 10px;
+}
+
+.text {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--muted);
+  margin: 0 0 36px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--bg);
+  background: var(--accent-blue);
+  border: none;
+  border-radius: 100px;
+  padding: 12px 26px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.btnPrimary:hover {
+  opacity: 0.88;
+  transform: translateY(-2px);
+}
+
+.btnSecondary {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.btnSecondary:hover {
+  color: var(--accent-blue);
+  border-color: var(--accent-blue);
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .page { padding: 48px 16px 64px; }
+}
