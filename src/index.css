@@ -24,8 +24,8 @@
   --accent-blue: #3a63d8;
   --green:    #08966f;
   --purple:   #7c4fd1;
-  --text:     #1b2330;
-  --muted:    #5b6472;
+  --text:     #3d1c02;
+  --muted:    #7a6350;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

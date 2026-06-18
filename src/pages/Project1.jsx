@@ -13,7 +13,7 @@ import RecommendationsList from '../components/RecommendationsList.jsx'
 import { fmt, fmtUSD, pct } from '../utils/formatters.js'
 import {
   salaryByTitle, topCountries, remoteByTitle,
-  topSkills, monthlyTrend, mlResults, stats, colabUrl, sqlUrl,
+  topSkills, monthlyTrend, mlResults, stats, pythonUrl, sqlUrl,
 } from '../data/project1.js'
 import styles from './Project1.module.css'
 
@@ -69,13 +69,13 @@ export default function Project1({ setActive }) {
         </h1>
         <p className="projectHeroSub">{t('p1.sub')}</p>
         <div className="projectHeroStack">
-          {['SQL', 'Python', 'DuckDB', 'MotherDuck', 'Pandas', 'Plotly', 'Scikit-learn', 'Google Colab'].map(tech => (
+          {['SQL', 'Python', 'DuckDB', 'MotherDuck', 'Pandas', 'Plotly', 'Scikit-learn'].map(tech => (
             <span key={tech} className="projectPill">{tech}</span>
           ))}
         </div>
         <div className={styles.linkRow}>
-          <a className={styles.colabLink} href={colabUrl} target="_blank" rel="noopener noreferrer">
-            {t('p1.colab_link')} <span aria-hidden>↗</span>
+          <a className={styles.pythonLink} href={pythonUrl} target="_blank" rel="noopener noreferrer">
+            {t('p1.python_link')} <span aria-hidden>↗</span>
           </a>
           <a className={styles.sqlLink} href={sqlUrl} target="_blank" rel="noopener noreferrer">
             {t('p1.sql_link')} <span aria-hidden>↗</span>
@@ -89,7 +89,7 @@ export default function Project1({ setActive }) {
         <StatCard label={t('p1.kpi_countries')}  value={stats.countriesCovered} sub={t('p1.kpi_countries_sub')} accent="var(--green)"  delay={0.10} />
         <StatCard label={t('p1.kpi_salary_rec')} value="77K"    sub={t('p1.kpi_salary_rec_sub')} accent="var(--purple)" delay={0.15} />
         <StatCard label={t('p1.kpi_median')}     value="$110K"  sub={t('p1.kpi_median_sub')}     accent="var(--accent2)"delay={0.20} />
-        <StatCard label={t('p1.kpi_r2')}         value="80%"    sub={t('p1.kpi_r2_sub')}         accent="var(--green)"  delay={0.25} />
+        <StatCard label={t('p1.kpi_r2')}         value="R² 0.53" sub={t('p1.kpi_r2_sub')}        accent="var(--green)"  delay={0.25} />
         <StatCard label={t('p1.kpi_skill')}      value="SQL"    sub={t('p1.kpi_skill_sub')}      accent="var(--purple)" delay={0.30} />
       </section>
 
@@ -196,23 +196,23 @@ export default function Project1({ setActive }) {
 
         <div className={styles.mlMeta}>
           <div className={styles.mlScore} style={{ '--ml-accent': 'var(--accent)' }}>
-            <span className={styles.mlScoreLabel}>{t('p1.ml_acc_label')}</span>
-            <span className={styles.mlScoreVal}>{pct(mlResults.accuracy)}</span>
-            <span className={styles.mlScoreSub}>{t('p1.ml_acc_sub')}</span>
+            <span className={styles.mlScoreLabel}>{t('p1.ml_r2_label')}</span>
+            <span className={styles.mlScoreVal}>{mlResults.r2}</span>
+            <span className={styles.mlScoreSub}>{t('p1.ml_r2_sub')}</span>
           </div>
           <div className={styles.mlScore} style={{ '--ml-accent': 'var(--accent2)' }}>
-            <span className={styles.mlScoreLabel}>ROC-AUC</span>
-            <span className={styles.mlScoreVal}>{mlResults.rocAuc}</span>
-            <span className={styles.mlScoreSub}>{t('p1.ml_auc_sub')}</span>
+            <span className={styles.mlScoreLabel}>{t('p1.ml_mae_label')}</span>
+            <span className={styles.mlScoreVal}>{fmtUSD(mlResults.mae)}</span>
+            <span className={styles.mlScoreSub}>{t('p1.ml_mae_sub')}</span>
           </div>
           <div className={styles.mlScore} style={{ '--ml-accent': 'var(--purple)' }}>
-            <span className={styles.mlScoreLabel}>F1</span>
-            <span className={styles.mlScoreVal}>{mlResults.f1}</span>
-            <span className={styles.mlScoreSub}>{t('p1.ml_f1_sub', { precision: mlResults.precision, recall: mlResults.recall })}</span>
+            <span className={styles.mlScoreLabel}>{t('p1.ml_trainr2_label')}</span>
+            <span className={styles.mlScoreVal}>{mlResults.trainR2}</span>
+            <span className={styles.mlScoreSub}>{t('p1.ml_trainr2_sub')}</span>
           </div>
           <div className={styles.mlScore} style={{ '--ml-accent': 'var(--green)' }}>
             <span className={styles.mlScoreLabel}>{t('p1.ml_base_label')}</span>
-            <span className={styles.mlScoreVal}>{pct(mlResults.baseline)}</span>
+            <span className={styles.mlScoreVal}>{fmtUSD(mlResults.baselineMae)}</span>
             <span className={styles.mlScoreSub}>{t('p1.ml_base_sub')}</span>
           </div>
         </div>

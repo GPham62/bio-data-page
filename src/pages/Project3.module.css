@@ -35,7 +35,19 @@
   text-decoration: none;
 }
 
-.colabLink {
+.linkRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 0;
+}
+
+.linkRow .kaggleLink,
+.linkRow .sqlLink {
+  margin-top: 18px;
+}
+
+.sqlLink {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -50,22 +62,59 @@
   transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
 
-.colabLink:hover {
+.sqlLink:hover {
   border-color: var(--green);
   background: rgba(0, 204, 150, 0.06);
   text-decoration: none;
 }
 
-.linkRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 0;
+/* SQL snippet card */
+.sqlCard {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 16px;
 }
 
-.linkRow .kaggleLink,
-.linkRow .colabLink {
-  margin-top: 18px;
+.sqlCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg3);
+}
+
+.sqlCardTitle {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--green);
+}
+
+.sqlCardLink {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+
+.sqlCardLink:hover {
+  color: var(--green);
+  text-decoration: none;
+}
+
+.sqlCode {
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.75;
+  color: #cdd9e5;
+  padding: 20px 24px;
+  margin: 0;
+  overflow-x: auto;
+  white-space: pre;
 }
 
 /* KPI row */

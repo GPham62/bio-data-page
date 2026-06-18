@@ -14,9 +14,34 @@ import CohortHeatmap       from '../components/CohortHeatmap.jsx'
 import { fmt, fmtUSD } from '../utils/formatters.js'
 import {
   stats, monthlyRevenue, topCountries, rfmSegments,
-  rfmScatter, cohortData, kaggleUrl, colabUrl,
+  rfmScatter, cohortData, kaggleUrl, sqlUrl,
 } from '../data/project3.js'
 import styles from './Project3.module.css'
+
+const SQL_SNIPPET = `-- RFM scoring: quintile scores per customer using window functions
+WITH rfm_raw AS (
+    SELECT
+        CustomerID                                        AS customer_id,
+        DATEDIFF('day', MAX(InvoiceDate::DATE),
+            (SELECT MAX(InvoiceDate::DATE) + INTERVAL '1 day'
+             FROM online_retail WHERE CustomerID IS NOT NULL
+               AND Quantity > 0 AND UnitPrice > 0
+               AND InvoiceNo NOT LIKE 'C%'))              AS recency_days,
+        COUNT(DISTINCT InvoiceNo)                         AS frequency,
+        ROUND(SUM(Quantity * UnitPrice), 2)               AS monetary
+    FROM  online_retail
+    WHERE CustomerID IS NOT NULL
+      AND Quantity > 0 AND UnitPrice > 0
+      AND InvoiceNo NOT LIKE 'C%'
+    GROUP BY CustomerID
+)
+SELECT
+    customer_id, recency_days, frequency, monetary,
+    6 - NTILE(5) OVER (ORDER BY recency_days ASC)        AS r_score,
+    NTILE(5)     OVER (ORDER BY frequency    ASC)        AS f_score,
+    NTILE(5)     OVER (ORDER BY monetary     ASC)        AS m_score
+FROM  rfm_raw
+ORDER BY monetary DESC;`
 
 const SEGMENT_COLORS = {
   'Champions':       '#00cc96',
@@ -78,8 +103,8 @@ export default function Project3({ setActive }) {
           <a className={styles.kaggleLink} href={kaggleUrl} target="_blank" rel="noopener noreferrer">
             {t('p3.kaggle_link')} <span aria-hidden>↗</span>
           </a>
-          <a className={styles.colabLink} href={colabUrl} target="_blank" rel="noopener noreferrer">
-            {t('p3.colab_link')} <span aria-hidden>↗</span>
+          <a className={styles.sqlLink} href={sqlUrl} target="_blank" rel="noopener noreferrer">
+            {t('p3.sql_link')} <span aria-hidden>↗</span>
           </a>
         </div>
       </section>
@@ -163,6 +188,15 @@ export default function Project3({ setActive }) {
               </BarChart>
             </ResponsiveContainer>
           </ChartCard>
+        </div>
+        <div className={styles.sqlCard}>
+          <div className={styles.sqlCardHeader}>
+            <span className={styles.sqlCardTitle}>{t('p3.sql_card_title')}</span>
+            <a className={styles.sqlCardLink} href={sqlUrl} target="_blank" rel="noopener noreferrer">
+              {t('p3.sql_link')} ↗
+            </a>
+          </div>
+          <pre className={styles.sqlCode}>{SQL_SNIPPET}</pre>
         </div>
         <InsightBlock label={t('p3.insight_label')} text={t('p3.s2_insight')} accent="var(--green)" />
       </section>

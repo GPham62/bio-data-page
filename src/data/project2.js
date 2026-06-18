@@ -19,7 +19,7 @@ export const stats = {
 
 // Source dataset on Kaggle
 export const kaggleUrl = 'https://www.kaggle.com/datasets/mursideyarkin/mobile-games-ab-testing-cookie-cats'
-export const colabUrl  = 'https://colab.research.google.com/drive/15A4qz4yaRjBL-G__NavQPTf9eWeeAg9S'
+export const sqlUrl    = 'https://github.com/GPham62/bio-data-page/tree/main/sql/project2'
 
 export const groupSizes = [
   { group: 'Gate 30', count: 44700 },

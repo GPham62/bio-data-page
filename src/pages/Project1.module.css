@@ -21,11 +21,11 @@
   margin-top: 0;
 }
 
-.linkRow .colabLink {
+.linkRow .pythonLink {
   margin-top: 18px;
 }
 
-.colabLink {
+.pythonLink {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -40,7 +40,7 @@
   transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
 
-.colabLink:hover {
+.pythonLink:hover {
   border-color: var(--accent);
   background: rgba(0, 229, 255, 0.06);
   text-decoration: none;

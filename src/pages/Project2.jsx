@@ -12,9 +12,24 @@ import InsightBlock from '../components/InsightBlock.jsx'
 import { fmt } from '../utils/formatters.js'
 import {
   stats, groupSizes, retention1Data, retention7Data,
-  bootstrapData, gameRoundsData, kaggleUrl, colabUrl,
+  bootstrapData, gameRoundsData, kaggleUrl, sqlUrl,
 } from '../data/project2.js'
 import styles from './Project2.module.css'
+
+const SQL_SNIPPET = `-- Retention rate by gate group (1-day and 7-day)
+SELECT
+    version                                          AS gate_group,
+    COUNT(*)                                         AS total_players,
+    ROUND(AVG(retention_1::INTEGER) * 100, 2)        AS retention_1day_pct,
+    ROUND(AVG(retention_7::INTEGER) * 100, 2)        AS retention_7day_pct,
+    SUM(retention_1::INTEGER)                        AS returned_day1,
+    COUNT(*) - SUM(retention_1::INTEGER)             AS not_returned_day1,
+    SUM(retention_7::INTEGER)                        AS returned_day7,
+    COUNT(*) - SUM(retention_7::INTEGER)             AS not_returned_day7
+FROM  cookie_cats
+WHERE version IN ('gate_30', 'gate_40')
+GROUP BY version
+ORDER BY version;`
 
 export default function Project2({ setActive }) {
   const { t } = useTranslation()
@@ -50,8 +65,8 @@ export default function Project2({ setActive }) {
           <a className={styles.kaggleLink} href={kaggleUrl} target="_blank" rel="noopener noreferrer">
             {t('p2.kaggle_link')} <span aria-hidden>↗</span>
           </a>
-          <a className={styles.colabLink} href={colabUrl} target="_blank" rel="noopener noreferrer">
-            {t('p2.colab_link')} <span aria-hidden>↗</span>
+          <a className={styles.sqlLink} href={sqlUrl} target="_blank" rel="noopener noreferrer">
+            {t('p2.sql_link')} <span aria-hidden>↗</span>
           </a>
         </div>
       </section>
@@ -123,6 +138,15 @@ export default function Project2({ setActive }) {
         <div className={styles.note}>
           <span className={styles.noteIcon}>ℹ</span>
           <p dangerouslySetInnerHTML={{ __html: t('p2.note_retention') }} />
+        </div>
+        <div className={styles.sqlCard}>
+          <div className={styles.sqlCardHeader}>
+            <span className={styles.sqlCardTitle}>{t('p2.sql_card_title')}</span>
+            <a className={styles.sqlCardLink} href={sqlUrl} target="_blank" rel="noopener noreferrer">
+              {t('p2.sql_link')} ↗
+            </a>
+          </div>
+          <pre className={styles.sqlCode}>{SQL_SNIPPET}</pre>
         </div>
         <InsightBlock label={t('p2.insight_label')} text={t('p2.s2_insight')} accent="var(--accent2)" />
       </section>

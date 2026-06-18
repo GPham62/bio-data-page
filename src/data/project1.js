@@ -1,9 +1,7 @@
 // ── Project 1: Recruit Analysis ─────────────────────────────
-// Replace any value here with real exports from your Colab notebook.
-// e.g. df_salary.groupby('job_title_short')['salary_annual'].median().reset_index().to_dict('records')
 
-export const colabUrl = 'https://colab.research.google.com/drive/1jLuh6oGoBoDFdXSB7WcCt0wRFnNFsuc-'
-export const sqlUrl   = 'https://github.com/GPham62/bio-data-page/tree/main/sql/project1'
+export const pythonUrl = 'https://github.com/GPham62/bio-data-page/blob/main/project1_analysis.py'
+export const sqlUrl    = 'https://github.com/GPham62/bio-data-page/tree/main/sql/project1'
 
 export const salaryByTitle = [
   { title: 'Sr. Data Scientist',  salary: 149653 },
@@ -72,36 +70,40 @@ export const monthlyTrend = [
   { month: 'Jun 25', postings:  33628, remote:  4.8 },
 ]
 
-// Binary classification: does a posting pay ABOVE the median salary?
-// target  = high_pay  (1 if salary > median, else 0) — classes are ~balanced.
-// features = role, seniority, country and the 10 skills (one-hot encoded).
-// Reported on a held-out test set.
+// Regression: predicting US annual salary from role, seniority, skills, and state.
+// target  = salary_year_avg (continuous, USD/year), US postings only
+// features = top-50 skill flags + skill_count + ordinal seniority (parsed from raw
+//   job_title) + role one-hot + top-10 state dummies + extras (remote, health,
+//   no-degree) + skill-interaction flags (79 total).
+// Restricting to the US and adding a granular seniority tier lifted test R² from 0.33 → 0.53.
+// HistGradientBoosting won a 5-fold CV bake-off (vs Linear, Ridge, Random Forest).
+// Evaluated on a held-out 20% test set + 5-fold CV; importance = permutation importance (top 12).
+// NOTE: run the Colab notebook (Section 10) and paste the printed export block to update these values.
 export const mlResults = {
-  model:     'Gradient Boosting Classifier',
-  target:    'High pay (above median salary)',
-  threshold: 110000, // median salary used to split the two classes
-  accuracy:  0.80,
-  rocAuc:    0.85,
-  precision: 0.79,
-  recall:    0.82,
-  f1:        0.80,
-  baseline:  0.50, // median split → balanced classes, so chance ≈ 50%
-  trainSize: 50101,
-  testSize:  12526,
-  // Feature importance from the classifier. `importance` = relative predictive
-  // weight (%, sums to 100). `direction` = +1 if the feature pushes a posting
-  // toward HIGH pay, -1 if toward LOW pay. Sorted most-important first.
+  task:        'Regression',
+  model:       'HistGradientBoosting',
+  target:      'US annual salary (salary_year_avg)',
+  r2:          0.53,
+  mae:         22300,
+  baselineMae: 36500,
+  cvR2:        0.54,
+  trainR2:     0.61,
+  nFeatures:   79,
+  trainSize:   31554,
+  testSize:    7889,
   featureImportance: [
-    { feature: 'Senior role',        importance: 24, direction:  1 },
-    { feature: 'Engineer role',      importance: 17, direction:  1 },
-    { feature: 'Based in US',        importance: 14, direction:  1 },
-    { feature: 'Spark',              importance: 11, direction:  1 },
-    { feature: 'Cloud (AWS/Azure)',  importance:  9, direction:  1 },
-    { feature: 'Python',             importance:  7, direction:  1 },
-    { feature: 'Excel',              importance:  6, direction: -1 },
-    { feature: 'Analyst role',       importance:  5, direction: -1 },
-    { feature: 'Power BI',           importance:  4, direction: -1 },
-    { feature: 'Emerging-market geo',importance:  3, direction: -1 },
+    { feature: 'Seniority',             importance: 47.4, direction:  1 },
+    { feature: 'Data Analyst',          importance: 17.6, direction: -1 },
+    { feature: 'Skill Count',           importance:  8.9, direction:  1 },
+    { feature: 'State CA',              importance:  7.3, direction:  1 },
+    { feature: 'Senior Data Scientist', importance:  3.3, direction:  1 },
+    { feature: 'Python',                importance:  2.7, direction:  1 },
+    { feature: 'Health Insurance',      importance:  2.7, direction:  1 },
+    { feature: 'Excel',                 importance:  2.3, direction: -1 },
+    { feature: 'Senior Data Analyst',   importance:  2.1, direction: -1 },
+    { feature: 'State NY',              importance:  2.0, direction:  1 },
+    { feature: 'Business Analyst',      importance:  1.9, direction: -1 },
+    { feature: 'State NA',              importance:  1.7, direction:  1 },
   ],
 }
 
