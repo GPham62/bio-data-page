@@ -25,8 +25,15 @@
     "greeting": {
       "kicker": "// xin chào",
       "title": "Chào, mình là Tuấn Anh 👋",
-      "p1": "Mình là data analyst, chuyên biến những bảng dữ liệu và file thô lộn xộn thành câu trả lời mà người khác có thể hành động ngay — pipeline SQL, biểu đồ rõ ràng, và machine learning khi câu hỏi cần đến nó.",
-      "p2": "Cuộn xuống để xem mình làm được gì, một chút về background, và 3 dự án mình tự hào nhất."
+      "tagline": "Cựu game dev. Vẫn đang tìm hiểu tại sao con người làm những thứ họ làm — giờ với dữ liệu thay vì level design.",
+      "currently": {
+        "label_playing": "Đang chơi",
+        "label_reading": "Đang đọc",
+        "label_building": "Đang làm",
+        "playing": "Heroes of Might & Magic: Olden Era · Helldivers 2",
+        "reading": "Theory of Fun — Raph Koster",
+        "building": "Portfolio dữ liệu + tìm việc"
+      }
     },
     "whatIDo": {
       "title": "Mình Làm Được Gì",

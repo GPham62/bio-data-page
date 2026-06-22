@@ -25,8 +25,15 @@
     "greeting": {
       "kicker": "// hello",
       "title": "Hey, I'm Tuấn Anh 👋",
-      "p1": "I'm a data analyst who turns messy spreadsheets and raw tables into answers people actually act on — SQL pipelines, clean visuals, and machine learning when the question calls for it.",
-      "p2": "Scroll down for what I work with, a bit about my background, and the three projects I'm most proud of."
+      "tagline": "Ex game dev. Still figuring out why humans do what they do — now with data instead of level design.",
+      "currently": {
+        "label_playing": "Playing",
+        "label_reading": "Reading",
+        "label_building": "Building",
+        "playing": "Heroes of Might & Magic: Olden Era · Helldivers 2",
+        "reading": "Theory of Fun — Raph Koster",
+        "building": "Data portfolio + job hunt"
+      }
     },
     "whatIDo": {
       "title": "What I Can Do",

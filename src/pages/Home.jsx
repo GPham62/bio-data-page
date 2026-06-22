@@ -80,12 +80,31 @@ export default function Home({ setActive }) {
   return (
     <div className={styles.page}>
 
-      {/* ── Friendly greeting hero ── */}
-      <section className={`${styles.greetSection} fade-up`}>
-        <span className={styles.greetKicker}>{t('home.greeting.kicker')}</span>
-        <h1 className={styles.greetTitle}>{t('home.greeting.title')}</h1>
-        <p className={styles.greetText}>{t('home.greeting.p1')}</p>
-        <p className={styles.greetText}>{t('home.greeting.p2')}</p>
+      {/* ── Hero ── */}
+      <section className={`${styles.heroRow} fade-up`}>
+        <div className={styles.heroPic}>[ photo ]</div>
+        <div>
+          <span className={styles.greetKicker}>{t('home.greeting.kicker')}</span>
+          <h1 className={styles.greetTitle}>{t('home.greeting.title')}</h1>
+          <p className={styles.tagline}>{t('home.greeting.tagline')}</p>
+          <div className={styles.currentlyBlock}>
+            <div className={styles.currentlyRow}>
+              <span className={styles.currentlyIcon}>🎮</span>
+              <span className={styles.currentlyLabel}>{t('home.greeting.currently.label_playing')}</span>
+              <span className={styles.currentlyVal}>{t('home.greeting.currently.playing')}</span>
+            </div>
+            <div className={styles.currentlyRow}>
+              <span className={styles.currentlyIcon}>📚</span>
+              <span className={styles.currentlyLabel}>{t('home.greeting.currently.label_reading')}</span>
+              <span className={styles.currentlyVal}>{t('home.greeting.currently.reading')}</span>
+            </div>
+            <div className={styles.currentlyRow}>
+              <span className={styles.currentlyIcon}>🛠️</span>
+              <span className={styles.currentlyLabel}>{t('home.greeting.currently.label_building')}</span>
+              <span className={styles.currentlyVal}>{t('home.greeting.currently.building')}</span>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* ── What I Can Do — 3 column ── */}
