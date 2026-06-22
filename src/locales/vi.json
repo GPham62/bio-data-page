@@ -35,13 +35,25 @@
         "building": "Portfolio dữ liệu + tìm việc"
       }
     },
-    "whatIDo": {
-      "title": "Mình Làm Được Gì",
-      "sub": "Ba bước, một pipeline — từ dữ liệu thô đến quyết định.",
-      "items": [
-        { "title": "Thu thập", "desc": "Mình lấy dữ liệu từ bất cứ đâu nó tồn tại — API, cloud warehouse, file CSV thô — và làm sạch đến khi đáng tin cậy.", "skills": ["SQL", "Python", "DuckDB", "MotherDuck"] },
-        { "title": "Xử lý", "desc": "Mình định hình dữ liệu thô thành các model có cấu trúc, sau đó áp dụng thống kê hoặc machine learning để trả lời đúng câu hỏi đặt ra.", "skills": ["Pandas", "SciPy", "Scikit-learn", "A/B Testing"] },
-        { "title": "Trực quan hoá", "desc": "Mình biến kết quả thành biểu đồ và dashboard mà người không chuyên cũng đọc hiểu trong mười giây.", "skills": ["Plotly", "Recharts", "Power BI"] }
+    "charSheet": {
+      "title": "Hồ Sơ Nhân Vật",
+      "sub": "Chỉ số tổng hợp từ 4 năm thực chiến.",
+      "class": "Data Analyst",
+      "former": "Game Developer",
+      "level": "Junior",
+      "exp": "4 năm (3 game dev · 1 tự học DA)",
+      "labels": {
+        "class": "NGHỀ",
+        "former": "TRƯỚC ĐÂY",
+        "level": "CẤP ĐỘ",
+        "exp": "KINH NGHIỆM"
+      },
+      "skills": [
+        { "name": "SQL",      "level": "Nâng cao",     "pct": 78 },
+        { "name": "Python",   "level": "Trung bình",   "pct": 50 },
+        { "name": "Power BI", "level": "Trung bình",   "pct": 50 },
+        { "name": "Excel",    "level": "Trung bình",   "pct": 38 },
+        { "name": "Unity/C#", "level": "Thành thạo",   "pct": 100, "former": true }
       ]
     },
     "about": {

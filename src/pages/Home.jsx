@@ -5,44 +5,6 @@ import styles from './Home.module.css'
 
 const PROJECTS = ['p1', 'p2', 'p3']
 
-function IconCollect() {
-  return (
-    <svg width="34" height="34" viewBox="0 0 64 64" fill="none">
-      <rect x="14" y="10" width="30" height="40" rx="4" fill="rgba(89,136,255,0.15)" stroke="var(--accent-blue)" strokeWidth="2" />
-      <line x1="21" y1="22" x2="37" y2="22" stroke="var(--accent-blue)" strokeWidth="2" strokeLinecap="round" />
-      <line x1="21" y1="30" x2="37" y2="30" stroke="var(--accent-blue)" strokeWidth="2" strokeLinecap="round" />
-      <line x1="21" y1="38" x2="31" y2="38" stroke="var(--accent-blue)" strokeWidth="2" strokeLinecap="round" />
-      <circle cx="44" cy="44" r="11" fill="var(--bg2)" stroke="var(--accent-blue)" strokeWidth="2" />
-      <path d="M39.5 44l3 3 6.5-6.5" stroke="var(--accent-blue)" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
-}
-
-function IconProcess() {
-  return (
-    <svg width="34" height="34" viewBox="0 0 64 64" fill="none">
-      <circle cx="32" cy="14" r="8" fill="rgba(89,136,255,0.15)" stroke="var(--accent-blue)" strokeWidth="2" />
-      <line x1="32" y1="22" x2="32" y2="32" stroke="var(--accent-blue)" strokeWidth="2" />
-      <line x1="16" y1="40" x2="32" y2="32" stroke="var(--accent-blue)" strokeWidth="2" />
-      <line x1="48" y1="40" x2="32" y2="32" stroke="var(--accent-blue)" strokeWidth="2" />
-      <rect x="8" y="40" width="16" height="13" rx="2.5" fill="rgba(89,136,255,0.15)" stroke="var(--accent-blue)" strokeWidth="2" />
-      <rect x="40" y="40" width="16" height="13" rx="2.5" fill="rgba(89,136,255,0.15)" stroke="var(--accent-blue)" strokeWidth="2" />
-    </svg>
-  )
-}
-
-function IconVisualize() {
-  return (
-    <svg width="34" height="34" viewBox="0 0 64 64" fill="none">
-      <rect x="10" y="38" width="9" height="15" rx="1.5" fill="var(--accent-blue)" opacity="0.4" />
-      <rect x="24" y="29" width="9" height="24" rx="1.5" fill="var(--accent-blue)" opacity="0.6" />
-      <rect x="38" y="18" width="9" height="35" rx="1.5" fill="var(--accent-blue)" opacity="0.8" />
-      <rect x="52" y="9" width="9" height="44" rx="1.5" fill="var(--accent-blue)" />
-    </svg>
-  )
-}
-
-const WHATIDO_ICONS = [IconCollect, IconProcess, IconVisualize]
 
 const GAMES = [
   {
@@ -75,8 +37,6 @@ const GAMES = [
 export default function Home({ setActive }) {
   const { t } = useTranslation()
 
-  const whatIDoItems = t('home.whatIDo.items', { returnObjects: true })
-
   return (
     <div className={styles.page}>
 
@@ -107,25 +67,47 @@ export default function Home({ setActive }) {
         </div>
       </section>
 
-      {/* ── What I Can Do — 3 column ── */}
+      {/* ── Character Sheet ── */}
       <section className={styles.section}>
-        <SectionTitle index="01" title={t('home.whatIDo.title')} sub={t('home.whatIDo.sub')} />
-        <div className={styles.whatIDoGrid}>
-          {whatIDoItems.map((item, i) => {
-            const Icon = WHATIDO_ICONS[i]
-            return (
-              <div key={item.title} className={styles.whatIDoCard}>
-                <div className={styles.whatIDoIconWrap}><Icon /></div>
-                <h3 className={styles.whatIDoTitle}>{item.title}</h3>
-                <p className={styles.whatIDoDesc}>{item.desc}</p>
-                <div className={styles.skillRow}>
-                  {item.skills.map(skill => (
-                    <span key={skill} className={styles.skillTag}>{skill}</span>
-                  ))}
+        <SectionTitle index="02" title={t('home.charSheet.title')} sub={t('home.charSheet.sub')} />
+        <div className={styles.charSheet}>
+          <div className={styles.charSheetHeader}>
+            <div className={styles.charRow}>
+              <span className={styles.charLabel}>{t('home.charSheet.labels.class')}</span>
+              <span className={styles.charVal}>{t('home.charSheet.class')}</span>
+            </div>
+            <div className={styles.charRow}>
+              <span className={styles.charLabel}>{t('home.charSheet.labels.former')}</span>
+              <span className={styles.charVal}>{t('home.charSheet.former')}</span>
+            </div>
+            <div className={styles.charRow}>
+              <span className={styles.charLabel}>{t('home.charSheet.labels.level')}</span>
+              <span className={styles.charVal}>{t('home.charSheet.level')}</span>
+            </div>
+            <div className={styles.charRow}>
+              <span className={styles.charLabel}>{t('home.charSheet.labels.exp')}</span>
+              <span className={styles.charVal}>{t('home.charSheet.exp')}</span>
+            </div>
+          </div>
+          <div className={styles.charDivider} />
+          <div className={styles.charSkills}>
+            {t('home.charSheet.skills', { returnObjects: true }).map(skill => (
+              <div key={skill.name} className={styles.statRow}>
+                <span className={skill.former ? styles.statNameFormer : styles.statName}>
+                  {skill.name}
+                </span>
+                <div className={styles.statBar}>
+                  <div
+                    className={skill.former ? styles.statBarFillFormer : styles.statBarFill}
+                    style={{ width: `${skill.pct}%` }}
+                  />
                 </div>
+                <span className={skill.former ? styles.statLevelFormer : styles.statLevel}>
+                  {skill.level}{skill.former ? ' ↩' : ''}
+                </span>
               </div>
-            )
-          })}
+            ))}
+          </div>
         </div>
       </section>
 

@@ -35,13 +35,25 @@
         "building": "Data portfolio + job hunt"
       }
     },
-    "whatIDo": {
-      "title": "What I Can Do",
-      "sub": "Three steps, one pipeline — from raw data to a decision.",
-      "items": [
-        { "title": "Collect", "desc": "I pull data from wherever it lives — APIs, cloud warehouses, raw CSVs — and clean it until it's trustworthy.", "skills": ["SQL", "Python", "DuckDB", "MotherDuck"] },
-        { "title": "Process", "desc": "I shape raw tables into structured models, then layer in statistics or machine learning to answer the actual question.", "skills": ["Pandas", "SciPy", "Scikit-learn", "A/B Testing"] },
-        { "title": "Visualise", "desc": "I turn the result into charts and dashboards that someone non-technical can read in ten seconds.", "skills": ["Plotly", "Recharts", "Power BI"] }
+    "charSheet": {
+      "title": "Player Profile",
+      "sub": "Stats compiled from 4 years in the field.",
+      "class": "Data Analyst",
+      "former": "Game Developer",
+      "level": "Junior",
+      "exp": "4 years (3 game dev · 1 self-directed DA)",
+      "labels": {
+        "class": "CLASS",
+        "former": "FORMER",
+        "level": "LEVEL",
+        "exp": "EXP"
+      },
+      "skills": [
+        { "name": "SQL",      "level": "Advanced",     "pct": 78 },
+        { "name": "Python",   "level": "Intermediate",  "pct": 50 },
+        { "name": "Power BI", "level": "Intermediate",  "pct": 50 },
+        { "name": "Excel",    "level": "Intermediate",  "pct": 38 },
+        { "name": "Unity/C#", "level": "Expert",        "pct": 100, "former": true }
       ]
     },
     "about": {
