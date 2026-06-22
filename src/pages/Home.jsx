@@ -101,64 +101,44 @@ function drawShadowWar(ctx) {
   px(ctx, 7, 14, B)
 }
 
-// Stickman vs Monster: Idle RPG — horned monster with fangs
+// Stickman vs Monster: Idle RPG — stickman in an action stance
 function drawStickmanMonster(ctx) {
-  const P = '#a371f7', B = '#5988ff', W = '#ffffff'
-  // Horns
-  px(ctx, 3, 1, P); px(ctx, 12, 1, P)
-  px(ctx, 3, 2, P); px(ctx, 4, 2, P); px(ctx, 11, 2, P); px(ctx, 12, 2, P)
-  // Head top
-  ;[4, 5, 6, 7, 8, 9, 10, 11].forEach(x => px(ctx, x, 3, P))
-  ;[3, 4, 5, 6, 7, 8, 9, 10, 11, 12].forEach(x => px(ctx, x, 4, P))
-  // Eyes (white sclera)
-  px(ctx, 5, 5, W); px(ctx, 6, 5, W); px(ctx, 9, 5, W); px(ctx, 10, 5, W)
-  ;[3, 4, 7, 8, 11, 12].forEach(x => px(ctx, x, 5, P))
-  // Pupils (blue glow)
-  px(ctx, 6, 6, B); px(ctx, 9, 6, B)
-  ;[3, 4, 5, 7, 8, 10, 11, 12].forEach(x => px(ctx, x, 6, P))
-  // Mouth row
-  ;[3, 4, 5, 6, 7, 8, 9, 10, 11, 12].forEach(x => px(ctx, x, 7, P))
-  // Fangs (white)
-  px(ctx, 5, 8, W); px(ctx, 7, 8, W); px(ctx, 8, 8, W); px(ctx, 10, 8, W)
-  ;[3, 4, 6, 9, 11, 12].forEach(x => px(ctx, x, 8, P))
-  // Body bottom
-  ;[4, 5, 6, 7, 8, 9, 10, 11].forEach(x => px(ctx, x, 9, P))
-  // Claws
-  px(ctx, 3, 10, B); px(ctx, 4, 10, P); px(ctx, 5, 10, P)
-  px(ctx, 10, 10, P); px(ctx, 11, 10, P); px(ctx, 12, 10, B)
-  px(ctx, 4, 11, P); px(ctx, 11, 11, P)
+  const W = '#ffffff', B = '#5988ff'
+  // Head (round, rows 1-3)
+  ;[7, 8].forEach(x => px(ctx, x, 1, W))
+  ;[6, 7, 8, 9].forEach(x => px(ctx, x, 2, W))
+  ;[7, 8].forEach(x => px(ctx, x, 3, W))
+  // Spine (rows 4-7)
+  ;[7, 8].forEach(x => px(ctx, x, 4, W))
+  ;[7, 8].forEach(x => px(ctx, x, 5, W))
+  ;[7, 8].forEach(x => px(ctx, x, 6, W))
+  ;[7, 8].forEach(x => px(ctx, x, 7, W))
+  // Left arm raised, blue fist
+  px(ctx, 6, 4, W); px(ctx, 5, 3, W); px(ctx, 4, 2, B)
+  // Right arm raised, blue fist
+  px(ctx, 9, 4, W); px(ctx, 10, 3, W); px(ctx, 11, 2, B)
+  // Left leg (spread stance)
+  px(ctx, 6, 8, W); px(ctx, 5, 9, W); px(ctx, 4, 10, W); px(ctx, 4, 11, W)
+  // Right leg (spread stance)
+  px(ctx, 9, 8, W); px(ctx, 10, 9, W); px(ctx, 11, 10, W); px(ctx, 11, 11, W)
 }
 
-// Epic Shadow Idle RPG — cyber mech with glowing visor
+// Epic Shadow Idle RPG — an epic upright sword
 function drawEpicShadow(ctx) {
-  const P = '#a371f7', B = '#5988ff', D = '#1a0d30', G = '#8b8fa8'
-  // Antenna
-  px(ctx, 7, 0, P)
-  // Helmet top
-  ;[5, 6, 7, 8, 9, 10].forEach(x => px(ctx, x, 1, G))
-  ;[4, 5, 6, 7, 8, 9, 10, 11].forEach(x => px(ctx, x, 2, G))
-  // Head sides
-  ;[4, 5, 6, 7, 8, 9, 10, 11].forEach(x => px(ctx, x, 3, G))
-  // Visor (glowing blue on dark)
-  ;[4, 5, 6, 7, 8, 9, 10, 11].forEach(x => px(ctx, x, 4, D))
-  ;[5, 6, 7, 8, 9, 10].forEach(x => px(ctx, x, 4, B))
-  // Lower face
-  ;[4, 5, 6, 7, 8, 9, 10, 11].forEach(x => px(ctx, x, 5, G))
-  ;[5, 6, 7, 8, 9, 10].forEach(x => px(ctx, x, 6, G))
-  // Neck
-  px(ctx, 7, 7, P); px(ctx, 8, 7, P)
-  // Shoulders / body
-  ;[3, 4, 5, 6, 7, 8, 9, 10, 11, 12].forEach(x => px(ctx, x, 8, P))
-  ;[3, 4, 5, 6, 9, 10, 11, 12].forEach(x => px(ctx, x, 9, P))
-  // Chest core (blue glow)
-  px(ctx, 7, 9, B); px(ctx, 8, 9, B)
-  // Arms
-  px(ctx, 2, 8, G); px(ctx, 13, 8, G)
-  px(ctx, 2, 9, G); px(ctx, 13, 9, G)
-  px(ctx, 2, 10, G); px(ctx, 13, 10, G)
-  // Lower body
-  ;[5, 6, 7, 8, 9, 10].forEach(x => px(ctx, x, 10, P))
-  ;[5, 6, 9, 10].forEach(x => px(ctx, x, 11, P))
+  const W = '#ffffff', B = '#5988ff', P = '#a371f7', G = '#8b8fa8'
+  // Blade tip
+  px(ctx, 7, 1, W); px(ctx, 8, 1, W)
+  // Blade (white edge + blue core, rows 2-8)
+  for (let y = 2; y <= 8; y++) { px(ctx, 7, y, W); px(ctx, 8, y, B) }
+  // Crossguard tips
+  px(ctx, 4, 8, P); px(ctx, 11, 8, P)
+  // Crossguard (wide, purple)
+  ;[4, 5, 6, 7, 8, 9, 10, 11].forEach(x => px(ctx, x, 9, P))
+  // Grip
+  px(ctx, 7, 10, G); px(ctx, 8, 10, G)
+  px(ctx, 7, 11, G); px(ctx, 8, 11, G)
+  // Pommel
+  ;[6, 7, 8, 9].forEach(x => px(ctx, x, 12, P))
 }
 
 function PixelCanvas({ draw }) {
@@ -291,50 +271,9 @@ export default function Home({ setActive }) {
         </div>
       </section>
 
-      {/* ── Shipped Games ── */}
-      <section className={styles.section}>
-        <SectionTitle index="03" title={t('home.games.title')} sub={t('home.games.sub')} />
-        <div className={styles.gameShowcaseGrid}>
-          {SHOWCASE_GAMES.map(game => (
-            <a
-              key={game.name}
-              href={game.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.gameShowcaseCard}
-            >
-              <PixelCanvas draw={game.draw} />
-              <span className={styles.gameShowcaseName}>{game.name}</span>
-              <span className={styles.gameShowcaseGenre}>{game.genre}</span>
-              <span className={styles.gameShowcaseCta}>{t('home.games.cta')}</span>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      {/* ── About me (condensed) ── */}
-      <section className={styles.section}>
-        <SectionTitle index="04" title={t('home.about.title')} sub={t('home.about.sub')} />
-
-        <div className={styles.pivotBox}>
-          <span className={styles.pivotArrow}>&#8599;</span>
-          <div>
-            <span className={styles.pivotLabel}>{t('home.about.pivot_label')}</span>
-            <p className={styles.pivotText}>{t('home.about.pivot_text')}</p>
-          </div>
-        </div>
-
-        <div className={styles.thinkBox}>
-          <div>
-            <span className={styles.thinkLabel}>{t('home.about.think_label')}</span>
-            <p className={styles.thinkText}>{t('home.about.think_text')}</p>
-          </div>
-        </div>
-      </section>
-
       {/* ── Selected projects — naledi-style hover grid (folds in the old carousel's GIF + motion) ── */}
       <section className={styles.section}>
-        <SectionTitle index="05" title={t('home.portfolio.title')} sub={t('home.portfolio.sub')} />
+        <SectionTitle index="03" title={t('home.portfolio.title')} sub={t('home.portfolio.sub')} />
 
         <div className={styles.projectGrid}>
           {PROJECTS.map((id, i) => (
@@ -369,6 +308,47 @@ export default function Home({ setActive }) {
             <span className={styles.comingSoonTitle}>{t('home.projects.coming.title')}</span>
             <span className={styles.comingSoonDesc}>{t('home.projects.coming.desc')}</span>
           </div>
+        </div>
+      </section>
+
+      {/* ── About me (condensed) ── */}
+      <section className={styles.section}>
+        <SectionTitle index="04" title={t('home.about.title')} sub={t('home.about.sub')} />
+
+        <div className={styles.pivotBox}>
+          <span className={styles.pivotArrow}>&#8599;</span>
+          <div>
+            <span className={styles.pivotLabel}>{t('home.about.pivot_label')}</span>
+            <p className={styles.pivotText}>{t('home.about.pivot_text')}</p>
+          </div>
+        </div>
+
+        <div className={styles.thinkBox}>
+          <div>
+            <span className={styles.thinkLabel}>{t('home.about.think_label')}</span>
+            <p className={styles.thinkText}>{t('home.about.think_text')}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Shipped Games ── */}
+      <section className={styles.section}>
+        <SectionTitle index="05" title={t('home.games.title')} sub={t('home.games.sub')} />
+        <div className={styles.gameShowcaseGrid}>
+          {SHOWCASE_GAMES.map(game => (
+            <a
+              key={game.name}
+              href={game.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.gameShowcaseCard}
+            >
+              <PixelCanvas draw={game.draw} />
+              <span className={styles.gameShowcaseName}>{game.name}</span>
+              <span className={styles.gameShowcaseGenre}>{game.genre}</span>
+              <span className={styles.gameShowcaseCta}>{t('home.games.cta')}</span>
+            </a>
+          ))}
         </div>
       </section>
 
