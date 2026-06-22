@@ -216,7 +216,6 @@ export default function Home({ setActive }) {
 
       {/* ── Hero ── */}
       <section className={`${styles.heroRow} fade-up`}>
-        <div className={styles.heroPic}>[ photo ]</div>
         <div>
           <span className={styles.greetKicker}>{t('home.greeting.kicker')}</span>
           <h1 className={styles.greetTitle}>{t('home.greeting.title')}</h1>

@@ -10,27 +10,8 @@
 
 /* ── Hero ── */
 .heroRow {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 40px;
-  align-items: flex-start;
   max-width: 780px;
   margin-bottom: 72px;
-}
-
-.heroPic {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 2px dashed var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted);
-  flex-shrink: 0;
-  letter-spacing: 0.06em;
 }
 
 .greetKicker {
@@ -609,8 +590,6 @@
 
 /* ── Responsive ── */
 @media (max-width: 860px) {
-  .heroRow { grid-template-columns: 1fr; }
-  .heroPic { margin: 0 auto; }
   .projectGrid { grid-template-columns: 1fr; }
 }
 

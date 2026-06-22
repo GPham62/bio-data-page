@@ -33,12 +33,14 @@ export default function Sidebar({ active, setActive }) {
         {avatarBroken ? (
           <div className={styles.avatarFallback}>TA</div>
         ) : (
-          <img
-            src="/bio/profile.png"
-            alt="Pham Tuan Anh"
-            className={styles.avatar}
-            onError={() => setAvatarBroken(true)}
-          />
+          <div className={styles.avatarWrap}>
+            <img
+              src="/bio/profile.png"
+              alt="Pham Tuan Anh"
+              className={styles.avatar}
+              onError={() => setAvatarBroken(true)}
+            />
+          </div>
         )}
         <div className={styles.profileName}>Pham Tuan Anh</div>
         <div className={styles.profileRole}>{t('sidebar.role')}</div>
