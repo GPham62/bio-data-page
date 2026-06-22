@@ -1,44 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import SectionTitle from '../components/SectionTitle.jsx'
 import styles from './Home.module.css'
 
-const PROJECTS = [
-  { id: 'p1', num: '01' },
-  { id: 'p2', num: '02' },
-  { id: 'p3', num: '03' },
-]
+const PROJECTS = ['p1', 'p2', 'p3']
 
-const GAMES = [
-  {
-    name: 'Relic Bag: Shadow Hunter',
-    genre: 'Puzzle · Action',
-    url: 'https://play.google.com/store/apps/details?id=com.TSH014.bag.fight.stickman.shadow.hero.puzzle&hl=en',
-  },
-  {
-    name: 'Shadow War: Idle RPG Survival',
-    genre: 'Idle · RPG',
-    url: 'https://play.google.com/store/apps/details?id=com.shadow.war.legend.slime.idle.rpg.survival.game&hl=en',
-  },
-  {
-    name: 'Stickman vs Monster: Idle RPG',
-    genre: 'Idle · Action',
-    url: 'https://play.google.com/store/apps/details?id=com.stickman.monster.epic.stickman.war.shadow.idle.game&hl=en',
-  },
-  {
-    name: 'Epic Shadow Idle RPG',
-    genre: 'Idle · RPG',
-    url: 'https://play.google.com/store/apps/details?id=com.tsh012.cyber.war.idle.rpg.games&hl=en',
-  },
-  {
-    name: 'Space War Idle RPG',
-    genre: 'Idle · Strategy',
-    url: 'https://play.google.com/store/apps/details?id=com.zitga.multiverse.war.idle.star.trek.game&hl=en',
-  },
-]
-
-// Flat two-tone icons in the naledi.co.uk reference style — hand-drawn inline
-// so the set shares one accent color instead of pulling in an icon library.
 function IconCollect() {
   return (
     <svg width="34" height="34" viewBox="0 0 64 64" fill="none">
@@ -78,13 +44,36 @@ function IconVisualize() {
 
 const WHATIDO_ICONS = [IconCollect, IconProcess, IconVisualize]
 
+const GAMES = [
+  {
+    name: 'Relic Bag: Shadow Hunter',
+    genre: 'Puzzle · Action',
+    url: 'https://play.google.com/store/apps/details?id=com.TSH014.bag.fight.stickman.shadow.hero.puzzle&hl=en',
+  },
+  {
+    name: 'Shadow War: Idle RPG Survival',
+    genre: 'Idle · RPG',
+    url: 'https://play.google.com/store/apps/details?id=com.shadow.war.legend.slime.idle.rpg.survival.game&hl=en',
+  },
+  {
+    name: 'Stickman vs Monster: Idle RPG',
+    genre: 'Idle · Action',
+    url: 'https://play.google.com/store/apps/details?id=com.stickman.monster.epic.stickman.war.shadow.idle.game&hl=en',
+  },
+  {
+    name: 'Epic Shadow Idle RPG',
+    genre: 'Idle · RPG',
+    url: 'https://play.google.com/store/apps/details?id=com.tsh012.cyber.war.idle.rpg.games&hl=en',
+  },
+  {
+    name: 'Space War Idle RPG',
+    genre: 'Idle · Strategy',
+    url: 'https://play.google.com/store/apps/details?id=com.zitga.multiverse.war.idle.star.trek.game&hl=en',
+  },
+]
+
 export default function Home({ setActive }) {
   const { t } = useTranslation()
-
-  // Warm the browser cache for the grid thumbnails before they scroll into view.
-  useEffect(() => {
-    PROJECTS.forEach(p => { new Image().src = `/gif_import/${p.id}.gif` })
-  }, [])
 
   const whatIDoItems = t('home.whatIDo.items', { returnObjects: true })
 
@@ -152,22 +141,22 @@ export default function Home({ setActive }) {
         <SectionTitle index="03" title={t('home.portfolio.title')} sub={t('home.portfolio.sub')} />
 
         <div className={styles.projectGrid}>
-          {PROJECTS.map(project => (
-            <div key={project.id} className={styles.projectCard} onClick={() => setActive(project.id)}>
+          {PROJECTS.map((id, i) => (
+            <div key={id} className={styles.projectCard} onClick={() => setActive(id)}>
               <div className={styles.projectThumbWrap}>
-                <img src={`/gif_import/${project.id}.gif`} className={styles.projectThumb} alt="" />
+                <img src={`/gif_import/${id}.gif`} className={styles.projectThumb} alt="" />
                 <div className={styles.projectTopRow}>
-                  <span className={styles.projectNum}>{project.num}</span>
+                  <span className={styles.projectNum}>0{i + 1}</span>
                   <span className={styles.badgeLive}>{t('home.badge_live')}</span>
                 </div>
                 <span className={styles.projectKicker}>{t('home.portfolio.label')}</span>
               </div>
               <div className={styles.projectInfo}>
-                <h3 className={styles.projectCardTitle}>{t(`home.projects.${project.id}.title`)}</h3>
+                <h3 className={styles.projectCardTitle}>{t(`home.projects.${id}.title`)}</h3>
                 <div className={styles.projectDetails}>
-                  <p className={styles.projectCardDesc}>{t(`home.projects.${project.id}.desc`)}</p>
+                  <p className={styles.projectCardDesc}>{t(`home.projects.${id}.desc`)}</p>
                   <div className={styles.projectTags}>
-                    {t(`home.projects.${project.id}.tags`, { returnObjects: true }).map(tag => (
+                    {t(`home.projects.${id}.tags`, { returnObjects: true }).map(tag => (
                       <span key={tag} className={styles.projectTag}>{tag}</span>
                     ))}
                   </div>

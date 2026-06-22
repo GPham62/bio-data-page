@@ -40,9 +40,6 @@
   margin: 0 0 14px;
 }
 
-.greetText:last-child {
-  margin-bottom: 0;
-}
 
 /* ── What I Can Do ── */
 .whatIDoGrid {
@@ -56,6 +53,7 @@
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 28px 24px;
+  text-align: center;
   transition: border-color 0.2s, transform 0.2s;
 }
 
@@ -63,6 +61,7 @@
   border-color: var(--accent-blue);
   transform: translateY(-3px);
 }
+
 
 .whatIDoIconWrap {
   width: 56px;
@@ -72,7 +71,7 @@
   justify-content: center;
   background: rgba(89, 136, 255, 0.08);
   border-radius: 10px;
-  margin-bottom: 18px;
+  margin: 0 auto 18px;
 }
 
 .whatIDoTitle {
@@ -94,6 +93,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  justify-content: center;
 }
 
 .skillTag {
@@ -454,7 +454,6 @@
 .contactBtn:hover {
   opacity: 0.88;
   transform: translateY(-2px);
-  text-decoration: none;
 }
 
 .contactLink {
@@ -470,7 +469,6 @@
 .contactLink:hover {
   color: var(--accent-blue);
   border-color: var(--accent-blue);
-  text-decoration: none;
 }
 
 /* ── Responsive ── */

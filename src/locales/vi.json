@@ -81,9 +81,8 @@
   "resume": {
     "kicker": "// hồ sơ",
     "title": "Hồ Sơ",
-    "text": "Bản PDF sẽ có sớm. Trong lúc chờ, 3 dự án end-to-end của mình kể câu chuyện rõ hơn bất kỳ danh sách bullet nào — xem thử đi.",
-    "cta_projects": "Xem Dự Án",
-    "cta_email": "Gửi Email"
+    "open": "Mở tab mới",
+    "hint": "Ctrl+P → Lưu dưới dạng PDF để tải về"
   },
   "footer": {
     "built": "Xây dựng bằng React · Recharts · Vite",

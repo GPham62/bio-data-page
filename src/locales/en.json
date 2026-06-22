@@ -81,9 +81,8 @@
   "resume": {
     "kicker": "// resume",
     "title": "Resume",
-    "text": "A polished PDF resume is on the way. In the meantime, my three end-to-end data projects show the work better than a bullet list — take a look.",
-    "cta_projects": "See Projects",
-    "cta_email": "Email Me"
+    "open": "Open in new tab",
+    "hint": "Ctrl+P → Save as PDF to download"
   },
   "footer": {
     "built": "Built with React · Recharts · Vite",
