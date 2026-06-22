@@ -242,6 +242,35 @@
   margin: 0;
 }
 
+.thinkBox {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--purple);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 28px;
+}
+
+.thinkLabel {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--purple);
+  margin-bottom: 8px;
+}
+
+.thinkText {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+  margin: 0;
+}
+
 .gamesLabel {
   font-family: var(--mono);
   font-size: 12px;

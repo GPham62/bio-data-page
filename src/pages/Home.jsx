@@ -281,6 +281,13 @@ export default function Home({ setActive }) {
           </div>
         </div>
 
+        <div className={styles.thinkBox}>
+          <div>
+            <span className={styles.thinkLabel}>{t('home.about.think_label')}</span>
+            <p className={styles.thinkText}>{t('home.about.think_text')}</p>
+          </div>
+        </div>
+
         <div className={styles.gamesLabel}>{t('home.about.games_label')}</div>
         <div className={styles.gameGrid}>
           {GAMES.map(g => (
