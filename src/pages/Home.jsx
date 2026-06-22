@@ -123,22 +123,36 @@ function drawStickmanMonster(ctx) {
   px(ctx, 9, 8, W); px(ctx, 10, 9, W); px(ctx, 11, 10, W); px(ctx, 11, 11, W)
 }
 
-// Epic Shadow Idle RPG — an epic upright sword
+// Epic Shadow Idle RPG — a robot raising a glowing sword
 function drawEpicShadow(ctx) {
-  const W = '#ffffff', B = '#5988ff', P = '#a371f7', G = '#8b8fa8'
-  // Blade tip
-  px(ctx, 7, 1, W); px(ctx, 8, 1, W)
-  // Blade (white edge + blue core, rows 2-8)
-  for (let y = 2; y <= 8; y++) { px(ctx, 7, y, W); px(ctx, 8, y, B) }
-  // Crossguard tips
-  px(ctx, 4, 8, P); px(ctx, 11, 8, P)
-  // Crossguard (wide, purple)
-  ;[4, 5, 6, 7, 8, 9, 10, 11].forEach(x => px(ctx, x, 9, P))
-  // Grip
-  px(ctx, 7, 10, G); px(ctx, 8, 10, G)
-  px(ctx, 7, 11, G); px(ctx, 8, 11, G)
-  // Pommel
-  ;[6, 7, 8, 9].forEach(x => px(ctx, x, 12, P))
+  const W = '#ffffff', B = '#5988ff', P = '#a371f7', G = '#8b8fa8', D = '#1a0d30'
+  // Head
+  ;[6, 7, 8].forEach(x => px(ctx, x, 1, G))
+  ;[6, 7, 8].forEach(x => px(ctx, x, 2, G))
+  // Visor (dark band, blue eyes)
+  px(ctx, 7, 2, D)
+  px(ctx, 6, 2, B); px(ctx, 8, 2, B)
+  // Neck
+  px(ctx, 7, 3, G)
+  // Torso (purple armour)
+  ;[5, 6, 7, 8, 9].forEach(x => px(ctx, x, 4, P))
+  ;[5, 6, 7, 8, 9].forEach(x => px(ctx, x, 5, P))
+  ;[6, 7, 8].forEach(x => px(ctx, x, 6, P))
+  // Chest core (blue glow)
+  px(ctx, 7, 5, B)
+  // Left arm (down at side)
+  px(ctx, 4, 4, G); px(ctx, 4, 5, G); px(ctx, 4, 6, G)
+  // Right arm raised toward the hilt
+  px(ctx, 10, 4, G); px(ctx, 10, 3, G)
+  // Sword guard (purple, by the hand)
+  px(ctx, 10, 2, P); px(ctx, 11, 3, P)
+  // Blade (diagonal up-right, white edge + blue)
+  px(ctx, 11, 2, W); px(ctx, 12, 1, W); px(ctx, 13, 0, B)
+  px(ctx, 12, 2, B); px(ctx, 11, 1, B)
+  // Legs
+  px(ctx, 6, 7, G); px(ctx, 8, 7, G)
+  px(ctx, 6, 8, G); px(ctx, 8, 8, G)
+  px(ctx, 5, 9, G); px(ctx, 6, 9, G); px(ctx, 8, 9, G); px(ctx, 9, 9, G)
 }
 
 function PixelCanvas({ draw }) {
