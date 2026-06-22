@@ -63,6 +63,11 @@
       "pivot_text": "Mình từng có nhiều năm làm game developer tại các studio như Zitga Studio và Inwave Studio — làm đủ thứ từ gameplay code, live-ops đến theo dõi chỉ số retention người chơi, và đã phát hành 5 game lên Google Play. Chính việc đào sâu vào số liệu retention là thứ kéo mình đến với data: mình muốn hiểu \"tại sao\" đằng sau biểu đồ, không chỉ nhìn nó thay đổi. Vậy là mình chuyển hẳn sang làm data analyst full-time.",
       "games_label": "Game đã phát hành trên Google Play"
     },
+    "games": {
+      "title": "Game Đã Phát Hành",
+      "sub": "Ba game đã lên Google Play.",
+      "cta": "Play Store ↗"
+    },
     "portfolio": {
       "title": "Dự Án Tiêu Biểu",
       "sub": "Ba dự án end-to-end — từ dữ liệu thô đến đề xuất hành động.",

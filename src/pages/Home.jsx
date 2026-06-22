@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import SectionTitle from '../components/SectionTitle.jsx'
 import styles from './Home.module.css'
@@ -31,6 +31,143 @@ const GAMES = [
     name: 'Space War Idle RPG',
     genre: 'Idle · Strategy',
     url: 'https://play.google.com/store/apps/details?id=com.zitga.multiverse.war.idle.star.trek.game&hl=en',
+  },
+]
+
+// 16×16 grid, S=5 → 80px. Canvas is 160×160 (2× DPR), scaled with ctx.scale(2,2).
+const S = 5
+
+function px(ctx, x, y, color) {
+  ctx.fillStyle = color
+  ctx.fillRect(x * S, y * S, S - 1, S - 1)
+}
+
+// Space War Idle RPG — pixel spaceship
+function drawSpaceWar(ctx) {
+  const B = '#5988ff', P = '#a371f7', W = '#ffffff'
+  // Nose
+  px(ctx, 7, 1, B); px(ctx, 8, 1, B)
+  // Upper body
+  ;[6, 7, 8, 9].forEach(x => px(ctx, x, 2, B))
+  // Cockpit row
+  ;[5, 6, 9, 10].forEach(x => px(ctx, x, 3, B))
+  px(ctx, 7, 3, W); px(ctx, 8, 3, W)
+  // Wings
+  for (let x = 2; x <= 13; x++) px(ctx, x, 4, B)
+  for (let x = 3; x <= 12; x++) px(ctx, x, 5, B)
+  // Lower body
+  ;[4, 5, 6, 7, 8, 9, 10, 11].forEach(x => px(ctx, x, 6, B))
+  // Engine glow
+  ;[5, 6, 9, 10].forEach(x => px(ctx, x, 7, B))
+  px(ctx, 7, 7, P); px(ctx, 8, 7, P)
+  // Exhaust
+  ;[6, 7, 8, 9].forEach(x => px(ctx, x, 8, P))
+  px(ctx, 7, 9, P); px(ctx, 8, 9, P)
+  px(ctx, 7, 10, P)
+}
+
+// Relic Bag: Shadow Hunter — stickman fighter with sword
+function drawRelicBag(ctx) {
+  const B = '#5988ff', P = '#a371f7', W = '#ffffff', G = '#8b8fa8'
+  // Head
+  ;[6, 7, 8, 9].forEach(x => px(ctx, x, 1, W))
+  ;[5, 10].forEach(x => px(ctx, x, 2, W))
+  px(ctx, 6, 2, B); px(ctx, 7, 2, W); px(ctx, 8, 2, W); px(ctx, 9, 2, B)
+  ;[5, 10].forEach(x => px(ctx, x, 3, W))
+  ;[6, 7, 8, 9].forEach(x => px(ctx, x, 3, W))
+  ;[6, 7, 8, 9].forEach(x => px(ctx, x, 4, W))
+  // Neck
+  px(ctx, 7, 5, W); px(ctx, 8, 5, W)
+  // Body
+  ;[5, 6, 7, 8, 9, 10].forEach(x => px(ctx, x, 6, B))
+  ;[5, 6, 7, 8, 9, 10].forEach(x => px(ctx, x, 7, B))
+  // Left arm
+  px(ctx, 3, 6, W); px(ctx, 4, 6, W)
+  // Right arm + sword
+  px(ctx, 11, 6, W); px(ctx, 12, 6, W)
+  ;[13, 14, 15].forEach(x => px(ctx, x, 6, P))
+  px(ctx, 13, 5, P); px(ctx, 13, 7, P) // crossguard
+  // Legs
+  ;[5, 6].forEach(x => px(ctx, x, 8, G))
+  ;[9, 10].forEach(x => px(ctx, x, 8, G))
+  ;[5, 6].forEach(x => px(ctx, x, 9, G))
+  ;[9, 10].forEach(x => px(ctx, x, 9, G))
+  px(ctx, 5, 10, G); px(ctx, 6, 10, G)
+  px(ctx, 9, 10, G); px(ctx, 10, 10, G)
+  // Relic bag (left side, purple)
+  ;[1, 2, 3, 4].forEach(x => px(ctx, x, 9, P))
+  ;[1, 2, 3, 4].forEach(x => px(ctx, x, 10, P))
+  ;[1, 2, 3, 4].forEach(x => px(ctx, x, 11, P))
+  ;[2, 3].forEach(x => px(ctx, x, 12, P))
+}
+
+// Shadow War: Idle RPG — cloaked warrior silhouette
+function drawShadowWar(ctx) {
+  const P = '#a371f7', B = '#5988ff', D = '#1a0d30', W = '#ffffff'
+  // Hood
+  ;[5, 6, 7, 8, 9, 10].forEach(x => px(ctx, x, 1, P))
+  ;[4, 5, 6, 7, 8, 9, 10, 11].forEach(x => px(ctx, x, 2, P))
+  // Face (dark interior)
+  ;[4, 5, 6, 7, 8, 9, 10, 11].forEach(x => px(ctx, x, 3, D))
+  ;[4, 5, 6, 7, 8, 9, 10, 11].forEach(x => px(ctx, x, 4, D))
+  // Glowing eyes (blue)
+  px(ctx, 6, 3, B); px(ctx, 7, 3, B)
+  px(ctx, 8, 3, B); px(ctx, 9, 3, B)
+  // Jaw / chin
+  ;[4, 5, 6, 7, 8, 9, 10, 11].forEach(x => px(ctx, x, 5, P))
+  // Cloak spreading outward
+  ;[5, 6, 7, 8, 9, 10].forEach(x => px(ctx, x, 6, P))
+  ;[4, 5, 6, 7, 8, 9, 10, 11].forEach(x => px(ctx, x, 7, P))
+  ;[3, 4, 5, 6, 7, 8, 9, 10, 11, 12].forEach(x => px(ctx, x, 8, P))
+  ;[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].forEach(x => px(ctx, x, 9, P))
+  ;[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].forEach(x => px(ctx, x, 10, P))
+  // Feet
+  ;[2, 3, 4].forEach(x => px(ctx, x, 11, P))
+  ;[11, 12, 13].forEach(x => px(ctx, x, 11, P))
+  // Sword glow beneath cloak (blue)
+  ;[6, 7, 8, 9].forEach(x => px(ctx, x, 12, B))
+  px(ctx, 7, 13, B); px(ctx, 8, 13, B)
+  px(ctx, 7, 14, B)
+}
+
+function PixelCanvas({ draw }) {
+  const ref = useRef(null)
+  useEffect(() => {
+    const canvas = ref.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    ctx.scale(2, 2)
+    draw(ctx)
+  }, []) // ponytail: draw fns are module-level constants, stable across renders
+  return (
+    <canvas
+      ref={ref}
+      width={160}
+      height={160}
+      className={styles.gameShowcaseCanvas}
+      style={{ width: 80, height: 80 }}
+    />
+  )
+}
+
+const SHOWCASE_GAMES = [
+  {
+    name: 'Relic Bag: Shadow Hunter',
+    genre: 'Puzzle · Action',
+    url: 'https://play.google.com/store/apps/details?id=com.TSH014.bag.fight.stickman.shadow.hero.puzzle&hl=en',
+    draw: drawRelicBag,
+  },
+  {
+    name: 'Shadow War: Idle RPG Survival',
+    genre: 'Idle · RPG',
+    url: 'https://play.google.com/store/apps/details?id=com.shadow.war.legend.slime.idle.rpg.survival.game&hl=en',
+    draw: drawShadowWar,
+  },
+  {
+    name: 'Space War Idle RPG',
+    genre: 'Idle · Strategy',
+    url: 'https://play.google.com/store/apps/details?id=com.zitga.multiverse.war.idle.star.trek.game&hl=en',
+    draw: drawSpaceWar,
   },
 ]
 
@@ -111,9 +248,30 @@ export default function Home({ setActive }) {
         </div>
       </section>
 
+      {/* ── Shipped Games ── */}
+      <section className={styles.section}>
+        <SectionTitle index="03" title={t('home.games.title')} sub={t('home.games.sub')} />
+        <div className={styles.gameShowcaseGrid}>
+          {SHOWCASE_GAMES.map(game => (
+            <a
+              key={game.name}
+              href={game.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.gameShowcaseCard}
+            >
+              <PixelCanvas draw={game.draw} />
+              <span className={styles.gameShowcaseName}>{game.name}</span>
+              <span className={styles.gameShowcaseGenre}>{game.genre}</span>
+              <span className={styles.gameShowcaseCta}>{t('home.games.cta')}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
       {/* ── About me (condensed) ── */}
       <section className={styles.section}>
-        <SectionTitle index="02" title={t('home.about.title')} sub={t('home.about.sub')} />
+        <SectionTitle index="04" title={t('home.about.title')} sub={t('home.about.sub')} />
 
         <div className={styles.pivotBox}>
           <span className={styles.pivotArrow}>&#8599;</span>
@@ -139,7 +297,7 @@ export default function Home({ setActive }) {
 
       {/* ── Selected projects — naledi-style hover grid (folds in the old carousel's GIF + motion) ── */}
       <section className={styles.section}>
-        <SectionTitle index="03" title={t('home.portfolio.title')} sub={t('home.portfolio.sub')} />
+        <SectionTitle index="05" title={t('home.portfolio.title')} sub={t('home.portfolio.sub')} />
 
         <div className={styles.projectGrid}>
           {PROJECTS.map((id, i) => (

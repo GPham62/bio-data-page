@@ -63,6 +63,11 @@
       "pivot_text": "I spent years as a mobile game developer at studios like Zitga Studio and Inwave Studio — working across gameplay code, live-ops, and player-retention metrics, and shipping 5 games to Google Play. Chasing those retention numbers is what pulled me toward data: I wanted to understand the \"why\" behind the charts, not just watch them move. So I switched lanes into data analysis full-time.",
       "games_label": "Games shipped on Google Play"
     },
+    "games": {
+      "title": "Shipped Games",
+      "sub": "Three games that went live on Google Play.",
+      "cta": "Play Store ↗"
+    },
     "portfolio": {
       "title": "Selected Projects",
       "sub": "Three end-to-end projects — from raw data to a recommendation.",

@@ -297,6 +297,69 @@
   margin-top: 2px;
 }
 
+/* ── Game Showcase ── */
+.gameShowcaseGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.gameShowcaseCard {
+  background: var(--bg2);
+  border: 1px solid var(--purple);
+  border-radius: 10px;
+  padding: 24px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.gameShowcaseCard:hover {
+  border-color: var(--accent-blue);
+  transform: translateY(-3px);
+}
+
+.gameShowcaseCanvas {
+  display: block;
+  margin: 0 auto 16px;
+  image-rendering: pixelated;
+}
+
+.gameShowcaseName {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.gameShowcaseGenre {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--purple);
+  border: 1px solid var(--purple);
+  border-radius: 100px;
+  padding: 2px 10px;
+  margin-bottom: 12px;
+}
+
+.gameShowcaseCta {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  transition: color 0.2s;
+}
+
+.gameShowcaseCard:hover .gameShowcaseCta {
+  color: var(--accent-blue);
+}
+
 /* ── Selected projects (hover grid) ── */
 .projectGrid {
   display: grid;
@@ -579,6 +642,7 @@
 
 @media (max-width: 640px) {
   .gameGrid { grid-template-columns: 1fr; }
+  .gameShowcaseGrid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 600px) {
