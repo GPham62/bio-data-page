@@ -271,61 +271,6 @@
   margin: 0;
 }
 
-.gamesLabel {
-  font-family: var(--mono);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  margin-bottom: 12px;
-}
-
-.gameGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.gameCard {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 14px 16px;
-  text-decoration: none;
-  transition: border-color 0.2s, background 0.2s, transform 0.15s;
-}
-
-.gameCard:hover {
-  border-color: var(--purple);
-  background: rgba(163, 113, 247, 0.04);
-  transform: translateY(-2px);
-}
-
-.gameIcon {
-  font-size: 13px;
-  color: var(--purple);
-  flex-shrink: 0;
-}
-
-.gameName {
-  display: block;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text);
-  line-height: 1.4;
-}
-
-.gameGenre {
-  display: block;
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--muted);
-  margin-top: 2px;
-}
-
 /* ── Game Showcase ── */
 .gameShowcaseGrid {
   display: grid;
@@ -670,7 +615,6 @@
 }
 
 @media (max-width: 640px) {
-  .gameGrid { grid-template-columns: 1fr; }
   .gameShowcaseGrid { grid-template-columns: 1fr; }
 }
 

@@ -62,12 +62,11 @@
       "pivot_label": "Career switch",
       "pivot_text": "I spent years as a mobile game developer at studios like Zitga Studio and Inwave Studio — working across gameplay code, live-ops, and player-retention metrics, and shipping 5 games to Google Play. Chasing those retention numbers is what pulled me toward data: I wanted to understand the \"why\" behind the charts, not just watch them move. So I switched lanes into data analysis full-time.",
       "think_label": "How I Think",
-      "think_text": "I approach problems the way I designed game systems — find the feedback loop, measure what changes behaviour, cut what doesn't move the needle. Theory of Fun put words to it: learning IS the fun. Data analysis is the same thing with a different dataset.",
-      "games_label": "Games shipped on Google Play"
+      "think_text": "I approach problems the way I designed game systems — find the feedback loop, measure what changes behaviour, cut what doesn't move the needle. Theory of Fun put words to it: learning IS the fun. Data analysis is the same thing with a different dataset."
     },
     "games": {
       "title": "Shipped Games",
-      "sub": "Three games that went live on Google Play.",
+      "sub": "Five games that went live on Google Play.",
       "cta": "Play Store ↗"
     },
     "portfolio": {

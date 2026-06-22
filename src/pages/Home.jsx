@@ -5,35 +5,6 @@ import styles from './Home.module.css'
 
 const PROJECTS = ['p1', 'p2', 'p3']
 
-
-const GAMES = [
-  {
-    name: 'Relic Bag: Shadow Hunter',
-    genre: 'Puzzle · Action',
-    url: 'https://play.google.com/store/apps/details?id=com.TSH014.bag.fight.stickman.shadow.hero.puzzle&hl=en',
-  },
-  {
-    name: 'Shadow War: Idle RPG Survival',
-    genre: 'Idle · RPG',
-    url: 'https://play.google.com/store/apps/details?id=com.shadow.war.legend.slime.idle.rpg.survival.game&hl=en',
-  },
-  {
-    name: 'Stickman vs Monster: Idle RPG',
-    genre: 'Idle · Action',
-    url: 'https://play.google.com/store/apps/details?id=com.stickman.monster.epic.stickman.war.shadow.idle.game&hl=en',
-  },
-  {
-    name: 'Epic Shadow Idle RPG',
-    genre: 'Idle · RPG',
-    url: 'https://play.google.com/store/apps/details?id=com.tsh012.cyber.war.idle.rpg.games&hl=en',
-  },
-  {
-    name: 'Space War Idle RPG',
-    genre: 'Idle · Strategy',
-    url: 'https://play.google.com/store/apps/details?id=com.zitga.multiverse.war.idle.star.trek.game&hl=en',
-  },
-]
-
 // 16×16 grid, S=5 → 80px. Canvas is 160×160 (2× DPR), scaled with ctx.scale(2,2).
 const S = 5
 
@@ -130,6 +101,66 @@ function drawShadowWar(ctx) {
   px(ctx, 7, 14, B)
 }
 
+// Stickman vs Monster: Idle RPG — horned monster with fangs
+function drawStickmanMonster(ctx) {
+  const P = '#a371f7', B = '#5988ff', W = '#ffffff'
+  // Horns
+  px(ctx, 3, 1, P); px(ctx, 12, 1, P)
+  px(ctx, 3, 2, P); px(ctx, 4, 2, P); px(ctx, 11, 2, P); px(ctx, 12, 2, P)
+  // Head top
+  ;[4, 5, 6, 7, 8, 9, 10, 11].forEach(x => px(ctx, x, 3, P))
+  ;[3, 4, 5, 6, 7, 8, 9, 10, 11, 12].forEach(x => px(ctx, x, 4, P))
+  // Eyes (white sclera)
+  px(ctx, 5, 5, W); px(ctx, 6, 5, W); px(ctx, 9, 5, W); px(ctx, 10, 5, W)
+  ;[3, 4, 7, 8, 11, 12].forEach(x => px(ctx, x, 5, P))
+  // Pupils (blue glow)
+  px(ctx, 6, 6, B); px(ctx, 9, 6, B)
+  ;[3, 4, 5, 7, 8, 10, 11, 12].forEach(x => px(ctx, x, 6, P))
+  // Mouth row
+  ;[3, 4, 5, 6, 7, 8, 9, 10, 11, 12].forEach(x => px(ctx, x, 7, P))
+  // Fangs (white)
+  px(ctx, 5, 8, W); px(ctx, 7, 8, W); px(ctx, 8, 8, W); px(ctx, 10, 8, W)
+  ;[3, 4, 6, 9, 11, 12].forEach(x => px(ctx, x, 8, P))
+  // Body bottom
+  ;[4, 5, 6, 7, 8, 9, 10, 11].forEach(x => px(ctx, x, 9, P))
+  // Claws
+  px(ctx, 3, 10, B); px(ctx, 4, 10, P); px(ctx, 5, 10, P)
+  px(ctx, 10, 10, P); px(ctx, 11, 10, P); px(ctx, 12, 10, B)
+  px(ctx, 4, 11, P); px(ctx, 11, 11, P)
+}
+
+// Epic Shadow Idle RPG — cyber mech with glowing visor
+function drawEpicShadow(ctx) {
+  const P = '#a371f7', B = '#5988ff', D = '#1a0d30', G = '#8b8fa8'
+  // Antenna
+  px(ctx, 7, 0, P)
+  // Helmet top
+  ;[5, 6, 7, 8, 9, 10].forEach(x => px(ctx, x, 1, G))
+  ;[4, 5, 6, 7, 8, 9, 10, 11].forEach(x => px(ctx, x, 2, G))
+  // Head sides
+  ;[4, 5, 6, 7, 8, 9, 10, 11].forEach(x => px(ctx, x, 3, G))
+  // Visor (glowing blue on dark)
+  ;[4, 5, 6, 7, 8, 9, 10, 11].forEach(x => px(ctx, x, 4, D))
+  ;[5, 6, 7, 8, 9, 10].forEach(x => px(ctx, x, 4, B))
+  // Lower face
+  ;[4, 5, 6, 7, 8, 9, 10, 11].forEach(x => px(ctx, x, 5, G))
+  ;[5, 6, 7, 8, 9, 10].forEach(x => px(ctx, x, 6, G))
+  // Neck
+  px(ctx, 7, 7, P); px(ctx, 8, 7, P)
+  // Shoulders / body
+  ;[3, 4, 5, 6, 7, 8, 9, 10, 11, 12].forEach(x => px(ctx, x, 8, P))
+  ;[3, 4, 5, 6, 9, 10, 11, 12].forEach(x => px(ctx, x, 9, P))
+  // Chest core (blue glow)
+  px(ctx, 7, 9, B); px(ctx, 8, 9, B)
+  // Arms
+  px(ctx, 2, 8, G); px(ctx, 13, 8, G)
+  px(ctx, 2, 9, G); px(ctx, 13, 9, G)
+  px(ctx, 2, 10, G); px(ctx, 13, 10, G)
+  // Lower body
+  ;[5, 6, 7, 8, 9, 10].forEach(x => px(ctx, x, 10, P))
+  ;[5, 6, 9, 10].forEach(x => px(ctx, x, 11, P))
+}
+
 function PixelCanvas({ draw }) {
   const ref = useRef(null)
   useEffect(() => {
@@ -162,6 +193,18 @@ const SHOWCASE_GAMES = [
     genre: 'Idle · RPG',
     url: 'https://play.google.com/store/apps/details?id=com.shadow.war.legend.slime.idle.rpg.survival.game&hl=en',
     draw: drawShadowWar,
+  },
+  {
+    name: 'Stickman vs Monster: Idle RPG',
+    genre: 'Idle · Action',
+    url: 'https://play.google.com/store/apps/details?id=com.stickman.monster.epic.stickman.war.shadow.idle.game&hl=en',
+    draw: drawStickmanMonster,
+  },
+  {
+    name: 'Epic Shadow Idle RPG',
+    genre: 'Idle · RPG',
+    url: 'https://play.google.com/store/apps/details?id=com.tsh012.cyber.war.idle.rpg.games&hl=en',
+    draw: drawEpicShadow,
   },
   {
     name: 'Space War Idle RPG',
@@ -286,19 +329,6 @@ export default function Home({ setActive }) {
             <span className={styles.thinkLabel}>{t('home.about.think_label')}</span>
             <p className={styles.thinkText}>{t('home.about.think_text')}</p>
           </div>
-        </div>
-
-        <div className={styles.gamesLabel}>{t('home.about.games_label')}</div>
-        <div className={styles.gameGrid}>
-          {GAMES.map(g => (
-            <a key={g.name} href={g.url} target="_blank" rel="noopener noreferrer" className={styles.gameCard}>
-              <span className={styles.gameIcon}>▶</span>
-              <div>
-                <span className={styles.gameName}>{g.name}</span>
-                <span className={styles.gameGenre}>{g.genre}</span>
-              </div>
-            </a>
-          ))}
         </div>
       </section>
 
