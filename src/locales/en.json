@@ -47,12 +47,12 @@
         "exp": "EXP"
       },
       "skills": [
-        { "name": "SQL",                  "level": "Advanced",     "icon": "/skill-icons/sql.svg" },
-        { "name": "Python",               "level": "Intermediate", "icon": "/skill-icons/python.svg" },
-        { "name": "Power BI",             "level": "Intermediate", "icon": "/skill-icons/powerbi.svg" },
-        { "name": "Excel",                "level": "Intermediate", "icon": "/skill-icons/excel.svg" },
-        { "name": "Unity/C#",             "level": "Expert",       "former": true, "icon": "/skill-icons/unity.svg" },
-        { "name": "AI-Assisted Analysis", "level": "Everyday",     "icon": "/skill-icons/ai.svg" }
+        { "name": "SQL",                  "level": "Advanced",     "icon": "/skill-icons/sql.png" },
+        { "name": "Python",               "level": "Intermediate", "icon": "/skill-icons/python.png" },
+        { "name": "Power BI",             "level": "Intermediate", "icon": "/skill-icons/powerbi.png" },
+        { "name": "Excel",                "level": "Intermediate", "icon": "/skill-icons/excel.png" },
+        { "name": "Unity/C#",             "level": "Expert",       "former": true, "icon": "/skill-icons/unity.png" },
+        { "name": "AI-Assisted Analysis", "level": "Everyday",     "icon": "/skill-icons/ai.png" }
       ]
     },
     "about": {

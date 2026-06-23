@@ -3,12 +3,12 @@ import en from './en.json'
 import vi from './vi.json'
 
 const EXPECTED_ICONS = [
-  '/skill-icons/sql.svg',
-  '/skill-icons/python.svg',
-  '/skill-icons/powerbi.svg',
-  '/skill-icons/excel.svg',
-  '/skill-icons/unity.svg',
-  '/skill-icons/ai.svg',
+  '/skill-icons/sql.png',
+  '/skill-icons/python.png',
+  '/skill-icons/powerbi.png',
+  '/skill-icons/excel.png',
+  '/skill-icons/unity.png',
+  '/skill-icons/ai.png',
 ]
 
 describe('charSheet skills data', () => {
@@ -20,7 +20,7 @@ describe('charSheet skills data', () => {
       skills.forEach((s) => {
         expect(typeof s.name).toBe('string')
         expect(typeof s.level).toBe('string')
-        expect(s.icon).toMatch(/^\/skill-icons\/.+\.svg$/)
+        expect(s.icon).toMatch(/^\/skill-icons\/.+\.png$/)
         expect(s).not.toHaveProperty('pct')
       })
     })
@@ -38,10 +38,10 @@ describe('charSheet skills data', () => {
 
   it('adds the AI-Assisted Analysis skill in both locales', () => {
     expect(en.home.charSheet.skills.at(-1)).toMatchObject({
-      name: 'AI-Assisted Analysis', level: 'Everyday', icon: '/skill-icons/ai.svg',
+      name: 'AI-Assisted Analysis', level: 'Everyday', icon: '/skill-icons/ai.png',
     })
     expect(vi.home.charSheet.skills.at(-1)).toMatchObject({
-      name: 'AI-Assisted Analysis', level: 'Dùng hằng ngày', icon: '/skill-icons/ai.svg',
+      name: 'AI-Assisted Analysis', level: 'Dùng hằng ngày', icon: '/skill-icons/ai.png',
     })
   })
 })

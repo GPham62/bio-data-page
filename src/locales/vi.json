@@ -47,12 +47,12 @@
         "exp": "KINH NGHIỆM"
       },
       "skills": [
-        { "name": "SQL",                  "level": "Nâng cao",       "icon": "/skill-icons/sql.svg" },
-        { "name": "Python",               "level": "Trung bình",     "icon": "/skill-icons/python.svg" },
-        { "name": "Power BI",             "level": "Trung bình",     "icon": "/skill-icons/powerbi.svg" },
-        { "name": "Excel",                "level": "Trung bình",     "icon": "/skill-icons/excel.svg" },
-        { "name": "Unity/C#",             "level": "Thành thạo",     "former": true, "icon": "/skill-icons/unity.svg" },
-        { "name": "AI-Assisted Analysis", "level": "Dùng hằng ngày", "icon": "/skill-icons/ai.svg" }
+        { "name": "SQL",                  "level": "Nâng cao",       "icon": "/skill-icons/sql.png" },
+        { "name": "Python",               "level": "Trung bình",     "icon": "/skill-icons/python.png" },
+        { "name": "Power BI",             "level": "Trung bình",     "icon": "/skill-icons/powerbi.png" },
+        { "name": "Excel",                "level": "Trung bình",     "icon": "/skill-icons/excel.png" },
+        { "name": "Unity/C#",             "level": "Thành thạo",     "former": true, "icon": "/skill-icons/unity.png" },
+        { "name": "AI-Assisted Analysis", "level": "Dùng hằng ngày", "icon": "/skill-icons/ai.png" }
       ]
     },
     "about": {
