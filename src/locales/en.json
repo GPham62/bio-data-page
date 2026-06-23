@@ -27,11 +27,9 @@
       "title": "Hey, I'm Tuấn Anh 👋",
       "tagline": "Ex game dev. Still figuring out why humans do what they do — now with data instead of level design.",
       "currently": {
-        "label_playing": "Playing",
         "label_reading": "Reading",
         "label_building": "Building",
-        "playing": "Heroes of Might & Magic: Olden Era · Helldivers 2",
-        "reading": "Theory of Fun — Raph Koster",
+        "reading": "Naked Statistics — Charles Wheelan",
         "building": "Data portfolio + job hunt"
       }
     },
@@ -49,11 +47,12 @@
         "exp": "EXP"
       },
       "skills": [
-        { "name": "SQL",      "level": "Advanced",     "pct": 78 },
-        { "name": "Python",   "level": "Intermediate",  "pct": 50 },
-        { "name": "Power BI", "level": "Intermediate",  "pct": 50 },
-        { "name": "Excel",    "level": "Intermediate",  "pct": 38 },
-        { "name": "Unity/C#", "level": "Expert",        "pct": 100, "former": true }
+        { "name": "SQL",                  "level": "Advanced",     "icon": "/skill-icons/sql.svg" },
+        { "name": "Python",               "level": "Intermediate", "icon": "/skill-icons/python.svg" },
+        { "name": "Power BI",             "level": "Intermediate", "icon": "/skill-icons/powerbi.svg" },
+        { "name": "Excel",                "level": "Intermediate", "icon": "/skill-icons/excel.svg" },
+        { "name": "Unity/C#",             "level": "Expert",       "former": true, "icon": "/skill-icons/unity.svg" },
+        { "name": "AI-Assisted Analysis", "level": "Everyday",     "icon": "/skill-icons/ai.svg" }
       ]
     },
     "about": {

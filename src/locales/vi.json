@@ -27,11 +27,9 @@
       "title": "Chào, mình là Tuấn Anh 👋",
       "tagline": "Cựu game dev. Vẫn đang tìm hiểu tại sao con người làm những thứ họ làm — giờ với dữ liệu thay vì level design.",
       "currently": {
-        "label_playing": "Đang chơi",
         "label_reading": "Đang đọc",
         "label_building": "Đang làm",
-        "playing": "Heroes of Might & Magic: Olden Era · Helldivers 2",
-        "reading": "Theory of Fun — Raph Koster",
+        "reading": "Naked Statistics — Charles Wheelan",
         "building": "Portfolio dữ liệu + tìm việc"
       }
     },
@@ -49,11 +47,12 @@
         "exp": "KINH NGHIỆM"
       },
       "skills": [
-        { "name": "SQL",      "level": "Nâng cao",     "pct": 78 },
-        { "name": "Python",   "level": "Trung bình",   "pct": 50 },
-        { "name": "Power BI", "level": "Trung bình",   "pct": 50 },
-        { "name": "Excel",    "level": "Trung bình",   "pct": 38 },
-        { "name": "Unity/C#", "level": "Thành thạo",   "pct": 100, "former": true }
+        { "name": "SQL",                  "level": "Nâng cao",       "icon": "/skill-icons/sql.svg" },
+        { "name": "Python",               "level": "Trung bình",     "icon": "/skill-icons/python.svg" },
+        { "name": "Power BI",             "level": "Trung bình",     "icon": "/skill-icons/powerbi.svg" },
+        { "name": "Excel",                "level": "Trung bình",     "icon": "/skill-icons/excel.svg" },
+        { "name": "Unity/C#",             "level": "Thành thạo",     "former": true, "icon": "/skill-icons/unity.svg" },
+        { "name": "AI-Assisted Analysis", "level": "Dùng hằng ngày", "icon": "/skill-icons/ai.svg" }
       ]
     },
     "about": {
