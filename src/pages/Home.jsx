@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import SectionTitle from '../components/SectionTitle.jsx'
+import Fx from '../components/Fx.jsx'
 import styles from './Home.module.css'
 
 const PROJECTS = ['p1', 'p2', 'p3']
@@ -11,30 +12,35 @@ const SHOWCASE_GAMES = [
     genre: 'Puzzle · Action',
     url: 'https://play.google.com/store/apps/details?id=com.TSH014.bag.fight.stickman.shadow.hero.puzzle&hl=en',
     icon: '/game-icons/relic-bag.png',
+    fx: '[metal]',
   },
   {
     name: 'Shadow War: Idle RPG Survival',
     genre: 'Idle · RPG',
     url: 'https://play.google.com/store/apps/details?id=com.shadow.war.legend.slime.idle.rpg.survival.game&hl=en',
     icon: '/game-icons/shadow-war.png',
+    fx: '[fire]',
   },
   {
     name: 'Stickman vs Monster: Idle RPG',
     genre: 'Idle · Action',
     url: 'https://play.google.com/store/apps/details?id=com.stickman.monster.epic.stickman.war.shadow.idle.game&hl=en',
     icon: '/game-icons/stickman-monster.png',
+    fx: '[electric]',
   },
   {
     name: 'Epic Shadow Idle RPG',
     genre: 'Idle · RPG',
     url: 'https://play.google.com/store/apps/details?id=com.tsh012.cyber.war.idle.rpg.games&hl=en',
     icon: '/game-icons/epic-shadow.png',
+    fx: '[ice]',
   },
   {
     name: 'Space War Idle RPG',
     genre: 'Idle · Strategy',
     url: 'https://play.google.com/store/apps/details?id=com.zitga.multiverse.war.idle.star.trek.game&hl=en',
     icon: '/game-icons/space-war.png',
+    fx: '[smoke]',
   },
 ]
 
@@ -48,13 +54,6 @@ export default function Home({ setActive }) {
   const m = fullTitle.match(/^(.*?)(\s*\p{Extended_Pictographic}[\p{Extended_Pictographic}️‍]*\s*)$/u)
   const titleWords = m ? m[1] : fullTitle
   const titleTrail = m ? m[2] : ''
-  const titleRef = useRef(null)
-  useEffect(() => {
-    const el = titleRef.current
-    if (!el || !window.TextFX) return            // engine loads from index.html; absent in tests
-    window.TextFX.mount(el)                       // reads data-textfx, rebuilds as per-char spans
-    return () => window.TextFX.destroy(el)
-  }, [titleWords])
 
   return (
     <div className={styles.page}>
@@ -66,9 +65,7 @@ export default function Home({ setActive }) {
           <h1 className={styles.greetTitle}>
             {/* keyed by language so a locale switch replaces the span outright
                 instead of letting React reconcile the engine-mutated DOM */}
-            <span key={i18n.language} ref={titleRef} className="textfx" data-textfx={`[wave]${titleWords}[/]`}>
-              {titleWords}
-            </span>
+            <Fx key={i18n.language} effect="[wave f=0.5]">{titleWords}</Fx>
             {titleTrail}
           </h1>
           <p className={styles.tagline}>{t('home.greeting.tagline')}</p>
@@ -89,7 +86,7 @@ export default function Home({ setActive }) {
 
       {/* ── Character Sheet ── */}
       <section className={styles.section}>
-        <SectionTitle index="02" title={t('home.charSheet.title')} sub={t('home.charSheet.sub')} fxIndex />
+        <SectionTitle index="02" title={t('home.charSheet.title')} sub={t('home.charSheet.sub')} fxIndex fxTitle />
         <div className={styles.charSheet}>
           <div className={styles.charSheetHeader}>
             <div className={styles.charRow}>
@@ -117,7 +114,7 @@ export default function Home({ setActive }) {
                 className={skill.former ? styles.skillChipFormer : styles.skillChip}
               >
                 <img src={skill.icon} alt="" className={styles.skillIcon} />
-                <span className={styles.skillName}>{skill.name}</span>
+                <Fx effect="[wiggle]" hover className={styles.skillName}>{skill.name}</Fx>
                 <span className={styles.skillLevel}>
                   {skill.level}{skill.former ? ' ↩' : ''}
                 </span>
@@ -129,7 +126,7 @@ export default function Home({ setActive }) {
 
       {/* ── Selected projects — naledi-style hover grid (folds in the old carousel's GIF + motion) ── */}
       <section className={styles.section}>
-        <SectionTitle index="03" title={t('home.portfolio.title')} sub={t('home.portfolio.sub')} fxIndex />
+        <SectionTitle index="03" title={t('home.portfolio.title')} sub={t('home.portfolio.sub')} fxIndex fxTitle />
 
         <div className={styles.projectGrid}>
           {PROJECTS.map((id, i) => (
@@ -138,12 +135,14 @@ export default function Home({ setActive }) {
                 <img src={`/gif_import/${id}.gif`} className={styles.projectThumb} alt="" />
                 <div className={styles.projectTopRow}>
                   <span className={styles.projectNum}>0{i + 1}</span>
-                  <span className={styles.badgeLive}>{t('home.badge_live')}</span>
+                  <Fx effect="[pulse a=0.5]" className={styles.badgeLive}>{t('home.badge_live')}</Fx>
                 </div>
                 <span className={styles.projectKicker}>{t('home.portfolio.label')}</span>
               </div>
               <div className={styles.projectInfo}>
-                <h3 className={styles.projectCardTitle}>{t(`home.projects.${id}.title`)}</h3>
+                <h3 className={styles.projectCardTitle}>
+                  <Fx effect="[wave]" hover>{t(`home.projects.${id}.title`)}</Fx>
+                </h3>
                 <div className={styles.projectDetails}>
                   <p className={styles.projectCardDesc}>{t(`home.projects.${id}.desc`)}</p>
                   <div className={styles.projectTags}>
@@ -169,7 +168,7 @@ export default function Home({ setActive }) {
 
       {/* ── About me (condensed) ── */}
       <section className={styles.section}>
-        <SectionTitle index="04" title={t('home.about.title')} sub={t('home.about.sub')} fxIndex />
+        <SectionTitle index="04" title={t('home.about.title')} sub={t('home.about.sub')} fxIndex fxTitle />
 
         <div className={styles.pivotBox}>
           <span className={styles.pivotArrow}>&#8599;</span>
@@ -189,7 +188,7 @@ export default function Home({ setActive }) {
 
       {/* ── Shipped Games ── */}
       <section className={styles.section}>
-        <SectionTitle index="05" title={t('home.games.title')} sub={t('home.games.sub')} fxIndex />
+        <SectionTitle index="05" title={t('home.games.title')} sub={t('home.games.sub')} fxIndex fxTitle />
         <div className={styles.gameShowcaseGrid}>
           {SHOWCASE_GAMES.map(game => (
             <a
@@ -200,7 +199,7 @@ export default function Home({ setActive }) {
               className={styles.gameShowcaseCard}
             >
               <img src={game.icon} alt={game.name} width={80} height={80} className={styles.gameShowcaseCanvas} />
-              <span className={styles.gameShowcaseName}>{game.name}</span>
+              <Fx effect={game.fx} hover className={styles.gameShowcaseName}>{game.name}</Fx>
               <span className={styles.gameShowcaseGenre}>{game.genre}</span>
               <span className={styles.gameShowcaseCta}>{t('home.games.cta')}</span>
             </a>

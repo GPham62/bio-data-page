@@ -36,6 +36,6 @@ describe('SectionTitle', () => {
     render(<SectionTitle index="02" title="Title" fxIndex />)
     const idx = screen.getByText('02')
     expect(idx.className).toContain('textfx')
-    expect(idx.getAttribute('data-textfx')).toBe('[fade f=0.35 min=0.5]02[/]')
+    expect(idx.getAttribute('data-textfx')).toBe('[fade f=0.5 min=0.2]02[/]')
   })
 })

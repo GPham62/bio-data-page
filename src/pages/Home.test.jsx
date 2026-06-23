@@ -44,7 +44,7 @@ describe('Home', () => {
       const fx = container.querySelector('h1 .textfx')
       expect(fx).toBeTruthy()
       // engine instructions live in data-textfx; visible text stays clean (no literal tags, no JS)
-      expect(fx.getAttribute('data-textfx')).toMatch(/^\[wave\].*\[\/\]$/)
+      expect(fx.getAttribute('data-textfx')).toMatch(/^\[wave[^\]]*\].*\[\/\]$/)
       expect(fx.textContent).not.toMatch(/[[\]]/)
       expect(fx.textContent).not.toMatch(/\p{Extended_Pictographic}/u)
       // the emoji is still in the heading, just rendered alongside the animated span
