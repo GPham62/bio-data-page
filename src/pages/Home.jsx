@@ -89,7 +89,7 @@ export default function Home({ setActive }) {
 
       {/* ── Character Sheet ── */}
       <section className={styles.section}>
-        <SectionTitle index="02" title={t('home.charSheet.title')} sub={t('home.charSheet.sub')} />
+        <SectionTitle index="02" title={t('home.charSheet.title')} sub={t('home.charSheet.sub')} fxIndex />
         <div className={styles.charSheet}>
           <div className={styles.charSheetHeader}>
             <div className={styles.charRow}>
@@ -129,7 +129,7 @@ export default function Home({ setActive }) {
 
       {/* ── Selected projects — naledi-style hover grid (folds in the old carousel's GIF + motion) ── */}
       <section className={styles.section}>
-        <SectionTitle index="03" title={t('home.portfolio.title')} sub={t('home.portfolio.sub')} />
+        <SectionTitle index="03" title={t('home.portfolio.title')} sub={t('home.portfolio.sub')} fxIndex />
 
         <div className={styles.projectGrid}>
           {PROJECTS.map((id, i) => (
@@ -169,7 +169,7 @@ export default function Home({ setActive }) {
 
       {/* ── About me (condensed) ── */}
       <section className={styles.section}>
-        <SectionTitle index="04" title={t('home.about.title')} sub={t('home.about.sub')} />
+        <SectionTitle index="04" title={t('home.about.title')} sub={t('home.about.sub')} fxIndex />
 
         <div className={styles.pivotBox}>
           <span className={styles.pivotArrow}>&#8599;</span>
@@ -189,7 +189,7 @@ export default function Home({ setActive }) {
 
       {/* ── Shipped Games ── */}
       <section className={styles.section}>
-        <SectionTitle index="05" title={t('home.games.title')} sub={t('home.games.sub')} />
+        <SectionTitle index="05" title={t('home.games.title')} sub={t('home.games.sub')} fxIndex />
         <div className={styles.gameShowcaseGrid}>
           {SHOWCASE_GAMES.map(game => (
             <a
