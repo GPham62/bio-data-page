@@ -144,9 +144,10 @@ describe('Home', () => {
       })
     })
 
-    it('renders one pixel-art canvas per shipped game', () => {
+    it('renders one pixel-art icon per shipped game', () => {
       const { container } = renderWithI18n(<Home setActive={noop} />)
-      expect(container.querySelectorAll('canvas')).toHaveLength(5)
+      const icons = container.querySelectorAll('img[src^="/game-icons/"]')
+      expect(icons).toHaveLength(5)
     })
   })
 
