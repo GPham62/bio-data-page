@@ -209,7 +209,22 @@ const SHOWCASE_GAMES = [
 ]
 
 export default function Home({ setActive }) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+
+  // ── Text FX hero title ──
+  // ponytail: the engine spans every UTF-16 unit, which splits astral emoji into
+  // broken halves — so keep any trailing pictograph (👋) outside the animated span.
+  const fullTitle = t('home.greeting.title')
+  const m = fullTitle.match(/^(.*?)(\s*\p{Extended_Pictographic}[\p{Extended_Pictographic}️‍]*\s*)$/u)
+  const titleWords = m ? m[1] : fullTitle
+  const titleTrail = m ? m[2] : ''
+  const titleRef = useRef(null)
+  useEffect(() => {
+    const el = titleRef.current
+    if (!el || !window.TextFX) return            // engine loads from index.html; absent in tests
+    window.TextFX.mount(el)                       // reads data-textfx, rebuilds as per-char spans
+    return () => window.TextFX.destroy(el)
+  }, [titleWords])
 
   return (
     <div className={styles.page}>
@@ -218,14 +233,16 @@ export default function Home({ setActive }) {
       <section className={`${styles.heroRow} fade-up`}>
         <div>
           <span className={styles.greetKicker}>{t('home.greeting.kicker')}</span>
-          <h1 className={styles.greetTitle}>{t('home.greeting.title')}</h1>
+          <h1 className={styles.greetTitle}>
+            {/* keyed by language so a locale switch replaces the span outright
+                instead of letting React reconcile the engine-mutated DOM */}
+            <span key={i18n.language} ref={titleRef} className="textfx" data-textfx={`[wave]${titleWords}[/]`}>
+              {titleWords}
+            </span>
+            {titleTrail}
+          </h1>
           <p className={styles.tagline}>{t('home.greeting.tagline')}</p>
           <div className={styles.currentlyBlock}>
-            <div className={styles.currentlyRow}>
-              <span className={styles.currentlyIcon}>🎮</span>
-              <span className={styles.currentlyLabel}>{t('home.greeting.currently.label_playing')}</span>
-              <span className={styles.currentlyVal}>{t('home.greeting.currently.playing')}</span>
-            </div>
             <div className={styles.currentlyRow}>
               <span className={styles.currentlyIcon}>📚</span>
               <span className={styles.currentlyLabel}>{t('home.greeting.currently.label_reading')}</span>
@@ -265,17 +282,13 @@ export default function Home({ setActive }) {
           <div className={styles.charDivider} />
           <div className={styles.charSkills}>
             {t('home.charSheet.skills', { returnObjects: true }).map(skill => (
-              <div key={skill.name} className={styles.statRow}>
-                <span className={skill.former ? styles.statNameFormer : styles.statName}>
-                  {skill.name}
-                </span>
-                <div className={styles.statBar}>
-                  <div
-                    className={skill.former ? styles.statBarFillFormer : styles.statBarFill}
-                    style={{ width: `${skill.pct}%` }}
-                  />
-                </div>
-                <span className={skill.former ? styles.statLevelFormer : styles.statLevel}>
+              <div
+                key={skill.name}
+                className={skill.former ? styles.skillChipFormer : styles.skillChip}
+              >
+                <img src={skill.icon} alt="" className={styles.skillIcon} />
+                <span className={styles.skillName}>{skill.name}</span>
+                <span className={styles.skillLevel}>
                   {skill.level}{skill.former ? ' ↩' : ''}
                 </span>
               </div>

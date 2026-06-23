@@ -28,9 +28,8 @@ describe('Home', () => {
       expect(screen.getByText(en.home.greeting.tagline)).toBeInTheDocument()
     })
 
-    it('renders all three "Currently" rows with their values', () => {
+    it('renders the "Currently" rows with their values', () => {
       renderWithI18n(<Home setActive={noop} />)
-      expect(screen.getByText(en.home.greeting.currently.playing)).toBeInTheDocument()
       expect(screen.getByText(en.home.greeting.currently.reading)).toBeInTheDocument()
       expect(screen.getByText(en.home.greeting.currently.building)).toBeInTheDocument()
     })
@@ -38,6 +37,18 @@ describe('Home', () => {
     it('no longer renders an empty "[ photo ]" hero placeholder', () => {
       renderWithI18n(<Home setActive={noop} />)
       expect(screen.queryByText(/\[ photo \]/)).not.toBeInTheDocument()
+    })
+
+    it('wires the title into Text FX (wave) and keeps the emoji outside the animated span', () => {
+      const { container } = renderWithI18n(<Home setActive={noop} />)
+      const fx = container.querySelector('h1 .textfx')
+      expect(fx).toBeTruthy()
+      // engine instructions live in data-textfx; visible text stays clean (no literal tags, no JS)
+      expect(fx.getAttribute('data-textfx')).toMatch(/^\[wave\].*\[\/\]$/)
+      expect(fx.textContent).not.toMatch(/[[\]]/)
+      expect(fx.textContent).not.toMatch(/\p{Extended_Pictographic}/u)
+      // the emoji is still in the heading, just rendered alongside the animated span
+      expect(container.querySelector('h1').textContent).toMatch(/\p{Extended_Pictographic}/u)
     })
   })
 
@@ -63,7 +74,7 @@ describe('Home', () => {
   })
 
   describe('character sheet', () => {
-    it('renders the class, level, and all five skill rows', () => {
+    it('renders the class, level, and all six skill rows', () => {
       renderWithI18n(<Home setActive={noop} />)
       // Scope to the character-sheet section: skill names like "SQL"/"Python"
       // also appear in the project tags, so a global query would be ambiguous.
@@ -75,6 +86,19 @@ describe('Home', () => {
       expect(scoped.getByText(en.home.charSheet.level)).toBeInTheDocument()
       en.home.charSheet.skills.forEach((skill) => {
         expect(scoped.getByText(skill.name)).toBeInTheDocument()
+      })
+    })
+
+    it('renders one decorative icon image per skill (replacing the old bars)', () => {
+      renderWithI18n(<Home setActive={noop} />)
+      const section = screen
+        .getByRole('heading', { level: 2, name: en.home.charSheet.title })
+        .closest('section')
+      // Decorative icons use alt="" → not in the a11y tree; query by tag.
+      const imgs = section.querySelectorAll('img')
+      expect(imgs).toHaveLength(en.home.charSheet.skills.length)
+      en.home.charSheet.skills.forEach((skill, i) => {
+        expect(imgs[i]).toHaveAttribute('src', skill.icon)
       })
     })
 

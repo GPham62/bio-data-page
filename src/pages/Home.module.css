@@ -125,66 +125,50 @@
 
 .charSkills {
   padding: 20px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.statRow {
   display: grid;
-  grid-template-columns: 80px 1fr 110px;
-  align-items: center;
-  gap: 14px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 18px;
 }
 
-.statName {
+.skillChip,
+.skillChipFormer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.skillChipFormer {
+  opacity: 0.55;
+}
+
+.skillIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.skillName {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text);
+  min-width: 0;
 }
 
-.statNameFormer {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+.skillChipFormer .skillName {
   color: var(--muted);
-  opacity: 0.6;
 }
 
-.statBar {
-  height: 7px;
-  background: rgba(89, 136, 255, 0.1);
-  border-radius: 100px;
-  overflow: hidden;
-}
-
-.statBarFill {
-  height: 100%;
-  border-radius: 100px;
-  background: var(--accent-blue);
-}
-
-.statBarFillFormer {
-  height: 100%;
-  border-radius: 100px;
-  background: var(--purple);
-  opacity: 0.5;
-}
-
-.statLevel {
+.skillLevel {
+  margin-left: auto;
+  padding-left: 8px;
   font-size: 10px;
   color: var(--muted);
   text-align: right;
   letter-spacing: 0.04em;
-}
-
-.statLevelFormer {
-  font-size: 10px;
-  color: var(--muted);
-  text-align: right;
-  letter-spacing: 0.04em;
-  opacity: 0.5;
+  white-space: nowrap;
 }
 
 /* ── About me ── */
@@ -595,6 +579,7 @@
 
 @media (max-width: 640px) {
   .gameShowcaseGrid { grid-template-columns: 1fr; }
+  .charSkills { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 600px) {
