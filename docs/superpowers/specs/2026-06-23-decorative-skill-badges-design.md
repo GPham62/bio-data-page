@@ -40,7 +40,7 @@ replace `ai.svg`".
 | Power BI   | Intermediate  | Trung bình       | `powerbi.svg`   | star              | no     |
 | Excel      | Intermediate  | Trung bình       | `excel.svg`     | heart             | no     |
 | Unity/C#   | Expert        | Thành thạo       | `unity.svg`     | dice              | yes    |
-| AI Workflow| Daily driver  | Dùng hằng ngày   | `ai.svg`        | wand / sparkle    | no     |
+| AI Workflow| Everyday      | Dùng hằng ngày   | `ai.svg`        | wand / sparkle    | no     |
 
 New skill name in vi: **Quy trình AI**.
 
@@ -97,7 +97,7 @@ skill chips. Each chip:
 Two new user-facing strings, added to both locales in the same change:
 
 - name: `AI Workflow` / `Quy trình AI`
-- level: `Daily driver` / `Dùng hằng ngày`
+- level: `Everyday` / `Dùng hằng ngày`
 
 No other text changes. Removing `pct` touches no visible text.
 
