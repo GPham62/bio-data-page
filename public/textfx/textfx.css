@@ -36,19 +36,16 @@
 .textfx[data-tfx-on] .tfx-fire {
   --g: var(--tfx-gain, 1);
   color: color-mix(in srgb, currentColor, var(--tfx-fire-c) calc(var(--g) * 100%));
-  text-shadow: 0 0 4px  color-mix(in srgb, transparent, #000 calc(var(--g) * 55%)),
-               0 0 10px color-mix(in srgb, transparent, var(--tfx-fire-a) calc(var(--g) * 100%)),
-               0 0 20px color-mix(in srgb, transparent, var(--tfx-fire-b) calc(var(--g) * 100%));
+  text-shadow: 0 0 3px color-mix(in srgb, transparent, #000 calc(var(--g) * 55%)),
+               0 0 7px color-mix(in srgb, transparent, var(--tfx-fire-a) calc(var(--g) * 100%));
   animation: tfxFire .85s infinite alternate;
 }
 @keyframes tfxFire {
-  from { text-shadow: 0 0 4px  color-mix(in srgb, transparent, #000 calc(var(--g) * 55%)),
-                      0 0 8px  color-mix(in srgb, transparent, var(--tfx-fire-a) calc(var(--g) * 100%)),
+  from { text-shadow: 0 0 3px color-mix(in srgb, transparent, #000 calc(var(--g) * 55%)),
+                      0 0 6px color-mix(in srgb, transparent, var(--tfx-fire-a) calc(var(--g) * 100%)); }
+  to   { text-shadow: 0 0 3px  color-mix(in srgb, transparent, #000 calc(var(--g) * 50%)),
+                      0 0 10px color-mix(in srgb, transparent, var(--tfx-fire-c) calc(var(--g) * 100%)),
                       0 0 16px color-mix(in srgb, transparent, var(--tfx-fire-b) calc(var(--g) * 100%)); }
-  to   { text-shadow: 0 0 4px  color-mix(in srgb, transparent, #000 calc(var(--g) * 50%)),
-                      0 0 14px color-mix(in srgb, transparent, var(--tfx-fire-c) calc(var(--g) * 100%)),
-                      0 0 30px color-mix(in srgb, transparent, var(--tfx-fire-b) calc(var(--g) * 100%)),
-                      0 0 46px color-mix(in srgb, transparent, var(--tfx-fire-hot) calc(var(--g) * 100%)); }
 }
 .textfx[data-tfx-on] .tfx-smoke {
   --g: var(--tfx-gain, 1);
@@ -91,8 +88,6 @@
 
 /* shared particle layer (the engine appends one of these to <body>) */
 .tfx-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9998; }
-/* back layer renders fire/smoke behind page text so glyphs stay readable */
-.tfx-canvas--back { z-index: -1; }
 
 /* respect reduced-motion: hold the legible end-state, no looping glow */
 @media (prefers-reduced-motion: reduce) {

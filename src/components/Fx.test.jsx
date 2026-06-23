@@ -21,4 +21,11 @@ describe('Fx', () => {
     expect(el.className).toContain('name')
     expect(el.className).toContain('textfx')
   })
+
+  it('passes the pop envelope through to data-tfx-pop, omitting it when unset', () => {
+    const { rerender } = render(<Fx effect="[fire]" pop="130,400,450">Shadow War</Fx>)
+    expect(screen.getByText('Shadow War').getAttribute('data-tfx-pop')).toBe('130,400,450')
+    rerender(<Fx effect="[wave]">Plain</Fx>)
+    expect(screen.getByText('Plain')).not.toHaveAttribute('data-tfx-pop')
+  })
 })

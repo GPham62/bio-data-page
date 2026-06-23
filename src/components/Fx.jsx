@@ -13,10 +13,14 @@ import React, { useEffect, useRef } from 'react'
  *        the trigger, the gain envelope (easeInSine in / easeOutCubic out) and
  *        reduced-motion handling — this component just mounts it.
  *
+ * pop — "in,hold,out" ms for the reveal/hover envelope (e.g. "130,400,450").
+ *        Slow elementals want a long hold; snappy motion a short one. Omit for
+ *        the engine defaults.
+ *
  * Clean text is rendered as children so it shows before/without JS and never
  * leaks literal "[fire]…[/]" tags; the engine reads the markup from data-textfx.
  */
-export default function Fx({ effect, mode = 'reveal', tag: Tag = 'span', className, children }) {
+export default function Fx({ effect, mode = 'reveal', pop, tag: Tag = 'span', className, children }) {
   const ref = useRef(null)
   const text = String(children ?? '')
   const src = `${effect}${text}[/]`
@@ -26,7 +30,7 @@ export default function Fx({ effect, mode = 'reveal', tag: Tag = 'span', classNa
     if (!el || !window.TextFX) return            // engine loads from index.html; absent in tests
     const inst = window.TextFX.mount(el, src)
     return () => { if (inst) inst.destroy(); el.__tfx = null }
-  }, [src, mode])
+  }, [src, mode, pop])
 
   return (
     <Tag
@@ -34,6 +38,7 @@ export default function Fx({ effect, mode = 'reveal', tag: Tag = 'span', classNa
       className={className ? `${className} textfx` : 'textfx'}
       data-textfx={src}
       data-tfx-mode={mode}
+      data-tfx-pop={pop}
     >
       {children}
     </Tag>

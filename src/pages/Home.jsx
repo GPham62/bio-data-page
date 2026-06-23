@@ -13,6 +13,7 @@ const SHOWCASE_GAMES = [
     url: 'https://play.google.com/store/apps/details?id=com.TSH014.bag.fight.stickman.shadow.hero.puzzle&hl=en',
     icon: '/game-icons/relic-bag.png',
     fx: '[metal]',
+    pop: '120,250,380',
   },
   {
     name: 'Shadow War: Idle RPG Survival',
@@ -20,6 +21,7 @@ const SHOWCASE_GAMES = [
     url: 'https://play.google.com/store/apps/details?id=com.shadow.war.legend.slime.idle.rpg.survival.game&hl=en',
     icon: '/game-icons/shadow-war.png',
     fx: '[fire]',
+    pop: '130,400,450',
   },
   {
     name: 'Stickman vs Monster: Idle RPG',
@@ -27,6 +29,7 @@ const SHOWCASE_GAMES = [
     url: 'https://play.google.com/store/apps/details?id=com.stickman.monster.epic.stickman.war.shadow.idle.game&hl=en',
     icon: '/game-icons/stickman-monster.png',
     fx: '[electric]',
+    pop: '80,250,300',
   },
   {
     name: 'Epic Shadow Idle RPG',
@@ -34,6 +37,7 @@ const SHOWCASE_GAMES = [
     url: 'https://play.google.com/store/apps/details?id=com.tsh012.cyber.war.idle.rpg.games&hl=en',
     icon: '/game-icons/epic-shadow.png',
     fx: '[ice]',
+    pop: '120,450,500',
   },
   {
     name: 'Space War Idle RPG',
@@ -41,6 +45,7 @@ const SHOWCASE_GAMES = [
     url: 'https://play.google.com/store/apps/details?id=com.zitga.multiverse.war.idle.star.trek.game&hl=en',
     icon: '/game-icons/space-war.png',
     fx: '[smoke]',
+    pop: '130,450,550',
   },
 ]
 
@@ -114,7 +119,7 @@ export default function Home({ setActive }) {
                 className={skill.former ? styles.skillChipFormer : styles.skillChip}
               >
                 <img src={skill.icon} alt="" className={styles.skillIcon} />
-                <Fx effect="[wiggle]" className={styles.skillName}>{skill.name}</Fx>
+                <Fx effect="[wiggle]" pop="90,200,260" className={styles.skillName}>{skill.name}</Fx>
                 <span className={styles.skillLevel}>
                   {skill.level}{skill.former ? ' ↩' : ''}
                 </span>
@@ -135,13 +140,13 @@ export default function Home({ setActive }) {
                 <img src={`/gif_import/${id}.gif`} className={styles.projectThumb} alt="" />
                 <div className={styles.projectTopRow}>
                   <span className={styles.projectNum}>0{i + 1}</span>
-                  <Fx effect="[pulse a=0.5]" className={styles.badgeLive}>{t('home.badge_live')}</Fx>
+                  <Fx effect="[pulse a=0.5]" pop="100,150,280" className={styles.badgeLive}>{t('home.badge_live')}</Fx>
                 </div>
                 <span className={styles.projectKicker}>{t('home.portfolio.label')}</span>
               </div>
               <div className={styles.projectInfo}>
                 <h3 className={styles.projectCardTitle}>
-                  <Fx effect="[wave]">{t(`home.projects.${id}.title`)}</Fx>
+                  <Fx effect="[wave]" pop="110,200,300">{t(`home.projects.${id}.title`)}</Fx>
                 </h3>
                 <div className={styles.projectDetails}>
                   <p className={styles.projectCardDesc}>{t(`home.projects.${id}.desc`)}</p>
@@ -199,7 +204,7 @@ export default function Home({ setActive }) {
               className={styles.gameShowcaseCard}
             >
               <img src={game.icon} alt={game.name} width={80} height={80} className={styles.gameShowcaseCanvas} />
-              <Fx effect={game.fx} className={styles.gameShowcaseName}>{game.name}</Fx>
+              <Fx effect={game.fx} pop={game.pop} className={styles.gameShowcaseName}>{game.name}</Fx>
               <span className={styles.gameShowcaseGenre}>{game.genre}</span>
               <span className={styles.gameShowcaseCta}>{t('home.games.cta')}</span>
             </a>

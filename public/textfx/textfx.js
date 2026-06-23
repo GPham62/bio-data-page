@@ -37,7 +37,9 @@
                 global.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---- intensity envelope (gain 0→1) ---- */
-  var IN_MS = 200, OUT_MS = 360, POP_IN = 120, POP_OUT = 200;
+  // IN_MS/OUT_MS drive hover-mode in/out blends; the reveal/hover "pop" uses
+  // per-instance durations (data-tfx-pop="in,hold,out") with these as defaults.
+  var IN_MS = 200, OUT_MS = 360, POP_IN = 120, POP_HOLD = 180, POP_OUT = 300;
   function easeInSine(x){ return 1 - Math.cos((x * Math.PI) / 2); }
   function easeOutCubic(x){ return 1 - Math.pow(1 - x, 3); }
   function clamp01(x){ return x < 0 ? 0 : x > 1 ? 1 : x; }
@@ -143,6 +145,12 @@
     // trigger mode: always | hover | reveal  (default keeps text live)
     this.mode = (el.getAttribute('data-tfx-mode') || 'always').toLowerCase();
     if (['always','hover','reveal'].indexOf(this.mode) < 0) this.mode = 'always';
+    // per-effect pop envelope: ease-in, hold-at-full, ease-out (ms)
+    var pop = (el.getAttribute('data-tfx-pop') || '').split(',');
+    this.popIn   = parseFloat(pop[0]) || POP_IN;
+    this.popHold = isNaN(parseFloat(pop[1])) ? POP_HOLD : parseFloat(pop[1]);
+    this.popOut  = parseFloat(pop[2]) || POP_OUT;
+    this.curHold = this.popHold;        // active hold for the current pop (hover trims it)
     this.gain = 0;
     this.phase = 'idle';     // idle | in | hold | out | pop
     this.t0 = 0;
@@ -178,17 +186,17 @@
       // one-shot pop the first time it scrolls into view (visible in BOTH axes,
       // so it only fires once the user can actually see it), then a fresh
       // one-shot pop on every hover.
-      this._onEnter = function(){ self.trigger('pop'); };
+      this._onEnter = function(){ self.pop(true); };       // hover: trimmed hold
       this.el.addEventListener('pointerenter', this._onEnter);
       if ('IntersectionObserver' in global){
         this.observer = new IntersectionObserver(function(entries){
           if (entries[0].isIntersecting){
             self.observer.disconnect(); self.observer = null;   // reveal is one-shot
-            self.trigger('pop');
+            self.pop(false);                                    // first view: full hold
           }
         }, { threshold: 0.4 });
         this.observer.observe(this.el);
-      } else { this.trigger('pop'); }
+      } else { this.pop(false); }
     }
   };
   // begin an envelope phase ('in' on hover-enter, 'out' on leave, 'pop' on reveal)
@@ -198,6 +206,15 @@
     if (kind === 'out'){ this.phase = 'out'; }
     else if (kind === 'pop'){ this.phase = 'pop'; }
     else { this.phase = 'in'; }
+    this.el.setAttribute('data-tfx-on', '');
+    activate(this);
+  };
+  // one-shot reveal/hover pop: ease-in → hold-at-full → ease-out, then settle.
+  Instance.prototype.pop = function(hover){
+    this.t0 = performance.now();
+    // hover replays are snappier: no hold for motion/colour, a short puff for particles
+    this.curHold = hover ? (this.fxChars.length ? 150 : 0) : this.popHold;
+    this.phase = 'pop';
     this.el.setAttribute('data-tfx-on', '');
     activate(this);
   };
@@ -252,8 +269,10 @@
         if (po >= 1){ inst.gain = 0; inst.phase = 'idle'; inst.rest(); deactivate(inst); continue; }
       }
       else if (ph === 'pop'){
-        if (e < POP_IN) inst.gain = easeInSine(e / POP_IN);
-        else if (e < POP_IN + POP_OUT) inst.gain = 1 - easeOutCubic((e - POP_IN) / POP_OUT);
+        var pin = inst.popIn, phd = inst.curHold, pout = inst.popOut;
+        if (e < pin) inst.gain = easeInSine(e / pin);
+        else if (e < pin + phd) inst.gain = 1;                       // hold at full
+        else if (e < pin + phd + pout) inst.gain = 1 - easeOutCubic((e - pin - phd) / pout);
         else { inst.gain = 0; inst.phase = 'idle'; inst.rest(); deactivate(inst); continue; }
       }
       if (inst.mode !== 'always') inst.el.style.setProperty('--tfx-gain', inst.gain.toFixed(3));
@@ -280,7 +299,9 @@
       case 'pulse':  a.scale *= 1 + Math.sin(t*5*F + i*0.4*W)*0.22*A; break;
       case 'wobble': a.rot += Math.sin(t*7*F + i*W)*9*A; a.scale *= 1 + Math.sin(t*5*F + i*W)*0.08; break;
       case 'fade':   a.opacity = (spec.min!=null?spec.min:0.22) + (1-(spec.min!=null?spec.min:0.22))*(0.5+0.5*Math.sin(t*4*F + i*0.5*W)); break;
-      case 'rainb':  a.color = 'hsl(' + ((t*110*F + i*22*W) % 360) + ',' + ((spec.s!=null?spec.s:92) * g).toFixed(1) + '%,' + (spec.l!=null?spec.l:66) + '%)'; break;
+      case 'rainb':  var hu = spec.c!=null ? spec.c + Math.sin(t*1.2*F + i*0.5*W)*(spec.r!=null?spec.r:40)   // banded around c (on-brand)
+                                           : (t*110*F + i*22*W) % 360;                                       // full spectrum (default)
+                     a.color = 'hsl(' + hu + ',' + ((spec.s!=null?spec.s:92) * g).toFixed(1) + '%,' + (spec.l!=null?spec.l:66) + '%)'; break;
       /* elemental motion accents (glow = CSS, particles = canvas) */
       case 'fire':   a.scale *= 1 + Math.sin(t*22*F + i*1.7)*0.05; a.ty += Math.sin(t*13*F + i)*amp*0.07; break;
       case 'wind':   a.tx += Math.sin(t*6*F + i*0.5)*amp*0.5; a.rot += Math.sin(t*5*F + i*0.3)*4; break;
@@ -308,17 +329,13 @@
   }
 
   /* ---------------- particle system ---------------- */
-  var canvas = null, cx = null, backCanvas = null, backCx = null, W = 0, H = 0, dpr = 1, P = [];
+  var canvas = null, cx = null, W = 0, H = 0, dpr = 1, P = [];
   var MAX = 2000, rnd = function(a, b){ return a + Math.random()*(b - a); };
 
   function ensureCanvas(){
     if (canvas) return;
-    // back layer — sits behind page text (fire/smoke render here)
-    backCanvas = document.createElement('canvas');
-    backCanvas.className = 'tfx-canvas tfx-canvas--back';
-    document.body.insertBefore(backCanvas, document.body.firstChild);
-    backCx = backCanvas.getContext('2d');
-    // front layer — sparks, metal, wind, ice, electric render over text
+    // single layer over the page — fire/smoke on an opaque card were invisible
+    // on a back canvas, so every element renders here (ponytail: one canvas).
     canvas = document.createElement('canvas');
     canvas.className = 'tfx-canvas';
     document.body.appendChild(canvas);
@@ -332,24 +349,22 @@
   function sizeCanvas(){
     dpr = Math.min(global.devicePixelRatio || 1, 2);
     W = global.innerWidth; H = global.innerHeight;
-    [canvas, backCanvas].forEach(function(cv){
-      if (!cv) return;
-      cv.width = W*dpr; cv.height = H*dpr;
-      cv.style.width = W + 'px'; cv.style.height = H + 'px';
-      cv.getContext('2d').setTransform(dpr, 0, 0, dpr, 0, 0);
-    });
+    if (!canvas) return;
+    canvas.width = W*dpr; canvas.height = H*dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    cx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
   function emit(type, r, mul){
     var w = r.width, n;
     switch (type){
       case 'fire':
-        n = Math.min(6, Math.max(1, w*0.08)) * mul;
+        n = Math.min(4, Math.max(1, w*0.06)) * mul;
         for (var i=0;i<n;i++) P.length<MAX && P.push({ type:type, x:r.left+Math.random()*w, y:r.bottom-rnd(0,r.height*0.4),
-          vx:rnd(-0.4,0.4), vy:rnd(-2.6,-1.1), life:rnd(28,52), max:52, size:rnd(3,8), hue:rnd(18,46) });
+          vx:rnd(-0.4,0.4), vy:rnd(-2.6,-1.1), life:rnd(18,34), max:34, size:rnd(3,8), hue:rnd(18,46) });
         break;
       case 'smoke':
-        if (Math.random()<0.4*mul) P.length<MAX && P.push({ type:type, x:r.left+Math.random()*w, y:r.top+rnd(-2,6),
-          vx:rnd(-0.2,0.5), vy:rnd(-0.9,-0.35), life:rnd(70,120), max:120, size:rnd(6,14) });
+        if (Math.random()<0.3*mul) P.length<MAX && P.push({ type:type, x:r.left+Math.random()*w, y:r.top+rnd(-2,6),
+          vx:rnd(-0.2,0.5), vy:rnd(-0.9,-0.35), life:rnd(34,60), max:60, size:rnd(6,14) });
         break;
       case 'metal':
         if (Math.random()<0.22*mul) { var edgeTop = Math.random()<0.5;
@@ -363,7 +378,7 @@
         break;
       case 'ice':
         if (Math.random()<0.45*mul) P.length<MAX && P.push({ type:type, x:r.left+Math.random()*w, y:r.bottom-rnd(0,4),
-          vx:rnd(-0.4,0.4), vy:rnd(0.5,1.6), life:rnd(50,90), max:90, size:rnd(1.4,3.2) });
+          vx:rnd(-0.4,0.4), vy:rnd(0.5,1.6), life:rnd(30,54), max:54, size:rnd(1.4,3.2) });
         break;
       case 'electric':
         if (Math.random()<0.4*mul){ var ex=r.left+Math.random()*w, ey=r.top+Math.random()*r.height;
@@ -374,7 +389,6 @@
   function tickParticles(){
     if (!canvas) return;
     cx.clearRect(0, 0, W, H);
-    backCx.clearRect(0, 0, W, H);
     for (var n = 0; n < active.length; n++){
       var inst = active[n], g = inst.gain, fxC = inst.fxChars;
       if (g < 0.04) continue;                 // no emission until the effect ramps in
@@ -391,14 +405,14 @@
       switch (p.type){
         case 'fire':
           p.x+=p.vx; p.y+=p.vy; p.vy+=0.012; p.vx*=0.99;
-          backCx.globalCompositeOperation='lighter';
-          backCx.fillStyle='hsla('+p.hue+',100%,'+(48+a*22)+'%,'+(a*0.85)+')';
-          backCx.beginPath(); backCx.arc(p.x,p.y,p.size*a,0,6.283); backCx.fill(); break;
+          cx.globalCompositeOperation='lighter';
+          cx.fillStyle='hsla('+p.hue+',100%,'+(48+a*22)+'%,'+(a*0.85)+')';
+          cx.beginPath(); cx.arc(p.x,p.y,p.size*a,0,6.283); cx.fill(); break;
         case 'smoke':
           p.x+=p.vx; p.y+=p.vy; p.size+=0.22; p.vx+=0.004;
-          backCx.globalCompositeOperation='source-over';
-          backCx.fillStyle='rgba(155,155,165,'+(a*0.16)+')';
-          backCx.beginPath(); backCx.arc(p.x,p.y,p.size,0,6.283); backCx.fill(); break;
+          cx.globalCompositeOperation='source-over';
+          cx.fillStyle='rgba(155,155,165,'+(a*0.16)+')';
+          cx.beginPath(); cx.arc(p.x,p.y,p.size,0,6.283); cx.fill(); break;
         case 'metal':
           cx.globalCompositeOperation='lighter';
           var tw=Math.sin((1-a)*Math.PI);
@@ -428,7 +442,6 @@
       }
     }
     cx.globalCompositeOperation='source-over';
-    backCx.globalCompositeOperation='source-over';
   }
 
   /* ---------------- loop ---------------- */

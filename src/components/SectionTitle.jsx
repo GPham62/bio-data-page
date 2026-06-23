@@ -6,13 +6,13 @@ export default function SectionTitle({ index, title, sub, fxIndex = false, fxTit
   return (
     <div className={`${styles.wrap} fade-up`}>
       {fxIndex ? (
-        <Fx effect="[fade f=0.5 min=0.2]" className={styles.index}>{index}</Fx>
+        <Fx effect="[fade f=0.5 min=0.2]" pop="120,120,320" className={styles.index}>{index}</Fx>
       ) : (
         <span className={styles.index}>{index}</span>
       )}
       <div>
         <h2 className={styles.title}>
-          {fxTitle ? <Fx effect="[pulse a=0.5][rainb]">{title}</Fx> : title}
+          {fxTitle ? <Fx effect="[pulse a=0.5][rainb c=195 r=40 l=70]" pop="140,220,360">{title}</Fx> : title}
         </h2>
         {sub && <p className={styles.sub}>{sub}</p>}
       </div>

@@ -37,6 +37,14 @@ describe('SectionTitle', () => {
     const idx = screen.getByText('02')
     expect(idx.className).toContain('textfx')
     expect(idx.getAttribute('data-tfx-mode')).toBe('reveal')
+    expect(idx.getAttribute('data-tfx-pop')).toBe('120,120,320')
     expect(idx.textContent).not.toMatch(/[[\]]/)
+  })
+
+  it('gives the fxTitle a brand-banded rainbow and its own pop envelope', () => {
+    render(<SectionTitle index="03" title="Bananas" fxTitle />)
+    const title = screen.getByText('Bananas')
+    expect(title.getAttribute('data-textfx')).toContain('rainb c=195 r=40 l=70')
+    expect(title.getAttribute('data-tfx-pop')).toBe('140,220,360')
   })
 })
