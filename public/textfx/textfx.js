@@ -175,10 +175,15 @@
       this.el.addEventListener('pointerenter', this._onEnter);
       this.el.addEventListener('pointerleave', this._onLeave);
     } else if (this.mode === 'reveal'){
+      // one-shot pop the first time it scrolls into view (visible in BOTH axes,
+      // so it only fires once the user can actually see it), then a fresh
+      // one-shot pop on every hover.
+      this._onEnter = function(){ self.trigger('pop'); };
+      this.el.addEventListener('pointerenter', this._onEnter);
       if ('IntersectionObserver' in global){
         this.observer = new IntersectionObserver(function(entries){
           if (entries[0].isIntersecting){
-            self.observer.disconnect(); self.observer = null;   // one-shot
+            self.observer.disconnect(); self.observer = null;   // reveal is one-shot
             self.trigger('pop');
           }
         }, { threshold: 0.4 });
