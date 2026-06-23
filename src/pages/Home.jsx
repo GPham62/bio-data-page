@@ -65,7 +65,7 @@ export default function Home({ setActive }) {
           <h1 className={styles.greetTitle}>
             {/* keyed by language so a locale switch replaces the span outright
                 instead of letting React reconcile the engine-mutated DOM */}
-            <Fx key={i18n.language} effect="[wave f=0.5]">{titleWords}</Fx>
+            <Fx key={i18n.language} mode="always" effect="[wave f=0.5]">{titleWords}</Fx>
             {titleTrail}
           </h1>
           <p className={styles.tagline}>{t('home.greeting.tagline')}</p>
@@ -114,7 +114,7 @@ export default function Home({ setActive }) {
                 className={skill.former ? styles.skillChipFormer : styles.skillChip}
               >
                 <img src={skill.icon} alt="" className={styles.skillIcon} />
-                <Fx effect="[wiggle]" hover className={styles.skillName}>{skill.name}</Fx>
+                <Fx effect="[wiggle]" className={styles.skillName}>{skill.name}</Fx>
                 <span className={styles.skillLevel}>
                   {skill.level}{skill.former ? ' ↩' : ''}
                 </span>
@@ -141,7 +141,7 @@ export default function Home({ setActive }) {
               </div>
               <div className={styles.projectInfo}>
                 <h3 className={styles.projectCardTitle}>
-                  <Fx effect="[wave]" hover>{t(`home.projects.${id}.title`)}</Fx>
+                  <Fx effect="[wave]">{t(`home.projects.${id}.title`)}</Fx>
                 </h3>
                 <div className={styles.projectDetails}>
                   <p className={styles.projectCardDesc}>{t(`home.projects.${id}.desc`)}</p>
@@ -199,7 +199,7 @@ export default function Home({ setActive }) {
               className={styles.gameShowcaseCard}
             >
               <img src={game.icon} alt={game.name} width={80} height={80} className={styles.gameShowcaseCanvas} />
-              <Fx effect={game.fx} hover className={styles.gameShowcaseName}>{game.name}</Fx>
+              <Fx effect={game.fx} className={styles.gameShowcaseName}>{game.name}</Fx>
               <span className={styles.gameShowcaseGenre}>{game.genre}</span>
               <span className={styles.gameShowcaseCta}>{t('home.games.cta')}</span>
             </a>

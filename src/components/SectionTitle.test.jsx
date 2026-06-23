@@ -32,10 +32,11 @@ describe('SectionTitle', () => {
     expect(idx).not.toHaveAttribute('data-textfx')
   })
 
-  it('adds TextFX fade markup to the index when fxIndex is set', () => {
+  it('wraps the index in a reveal-mode Fx when fxIndex is set, with no tag leakage', () => {
     render(<SectionTitle index="02" title="Title" fxIndex />)
     const idx = screen.getByText('02')
     expect(idx.className).toContain('textfx')
-    expect(idx.getAttribute('data-textfx')).toBe('[fade f=0.5 min=0.2]02[/]')
+    expect(idx.getAttribute('data-tfx-mode')).toBe('reveal')
+    expect(idx.textContent).not.toMatch(/[[\]]/)
   })
 })

@@ -12,7 +12,7 @@ export default function SectionTitle({ index, title, sub, fxIndex = false, fxTit
       )}
       <div>
         <h2 className={styles.title}>
-          {fxTitle ? <Fx effect="[wave]" hover>{title}</Fx> : title}
+          {fxTitle ? <Fx effect="[pulse a=0.5][rainb]">{title}</Fx> : title}
         </h2>
         {sub && <p className={styles.sub}>{sub}</p>}
       </div>

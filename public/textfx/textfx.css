@@ -1,0 +1,100 @@
+/* ============================================================
+   Text FX — design tokens + base styles
+   Every visual is driven from these custom properties; override
+   them on :root (or any scope) to re-theme the whole system.
+   ============================================================ */
+:root {
+  /* motion tokens are read by the JS engine via TextFX.configure(),
+     these mirror the defaults for reference */
+  /* --tfx-speed: 1;  --tfx-amp: 0.16; */
+
+  /* elemental color tokens */
+  --tfx-fire-a: #ff6a00;
+  --tfx-fire-b: #ff3d00;
+  --tfx-fire-c:  #ffe1a6;
+  --tfx-fire-hot: #ff1500;
+  --tfx-smoke:   #c7c7ce;
+  --tfx-metal-1: #c2c7cd;
+  --tfx-metal-2: #ffffff;
+  --tfx-metal-3: #e2e5ea;
+  --tfx-wind:    #d6e4ff;
+  --tfx-ice:     #c4ecff;
+  --tfx-elec:    #b3f7ff;
+  --tfx-elec-a:  #00e5ff;
+  --tfx-elec-b:  #00b8ff;
+}
+
+/* per-character cell — transforms are applied inline by the engine */
+.tfx-word { white-space: nowrap; }
+.tfx-char { display: inline-block; will-change: transform, opacity; }
+
+/* the engine flags an element while it owns it */
+.textfx[data-tfx-ready] { white-space: pre-wrap; }
+
+/* ---- elemental text styling — applies only while active; --tfx-gain (0→1)
+   scales glow + color so the effect eases in/out with the engine envelope ---- */
+.textfx[data-tfx-on] .tfx-fire {
+  --g: var(--tfx-gain, 1);
+  color: color-mix(in srgb, currentColor, var(--tfx-fire-c) calc(var(--g) * 100%));
+  text-shadow: 0 0 4px  color-mix(in srgb, transparent, #000 calc(var(--g) * 55%)),
+               0 0 10px color-mix(in srgb, transparent, var(--tfx-fire-a) calc(var(--g) * 100%)),
+               0 0 20px color-mix(in srgb, transparent, var(--tfx-fire-b) calc(var(--g) * 100%));
+  animation: tfxFire .85s infinite alternate;
+}
+@keyframes tfxFire {
+  from { text-shadow: 0 0 4px  color-mix(in srgb, transparent, #000 calc(var(--g) * 55%)),
+                      0 0 8px  color-mix(in srgb, transparent, var(--tfx-fire-a) calc(var(--g) * 100%)),
+                      0 0 16px color-mix(in srgb, transparent, var(--tfx-fire-b) calc(var(--g) * 100%)); }
+  to   { text-shadow: 0 0 4px  color-mix(in srgb, transparent, #000 calc(var(--g) * 50%)),
+                      0 0 14px color-mix(in srgb, transparent, var(--tfx-fire-c) calc(var(--g) * 100%)),
+                      0 0 30px color-mix(in srgb, transparent, var(--tfx-fire-b) calc(var(--g) * 100%)),
+                      0 0 46px color-mix(in srgb, transparent, var(--tfx-fire-hot) calc(var(--g) * 100%)); }
+}
+.textfx[data-tfx-on] .tfx-smoke {
+  --g: var(--tfx-gain, 1);
+  color: color-mix(in srgb, currentColor, var(--tfx-smoke) calc(var(--g) * 100%));
+  text-shadow: 0 0 12px color-mix(in srgb, transparent, rgb(180 180 190 / .55) calc(var(--g) * 100%));
+}
+.textfx[data-tfx-on] .tfx-metal {
+  --g: var(--tfx-gain, 1);
+  /* each stop mixes toward currentColor — at gain 0 the fill is flat (plain text) */
+  background: linear-gradient(100deg,
+    color-mix(in srgb, currentColor, var(--tfx-metal-1) calc(var(--g) * 100%)) 0%,
+    color-mix(in srgb, currentColor, var(--tfx-metal-2) calc(var(--g) * 100%)) 24%,
+    color-mix(in srgb, currentColor, var(--tfx-metal-3) calc(var(--g) * 100%)) 48%,
+    color-mix(in srgb, currentColor, #ffffff calc(var(--g) * 100%)) 62%,
+    color-mix(in srgb, currentColor, var(--tfx-metal-1) calc(var(--g) * 100%)) 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 2px color-mix(in srgb, transparent, #000 calc(var(--g) * 55%)));
+  animation: tfxMetal 3.2s linear infinite;
+}
+@keyframes tfxMetal { to { background-position: 220% 0; } }
+.textfx[data-tfx-on] .tfx-wind {
+  --g: var(--tfx-gain, 1);
+  color: color-mix(in srgb, currentColor, var(--tfx-wind) calc(var(--g) * 100%));
+  text-shadow: 0 0 9px color-mix(in srgb, transparent, rgb(170 200 255 / .5) calc(var(--g) * 100%));
+}
+.textfx[data-tfx-on] .tfx-ice {
+  --g: var(--tfx-gain, 1);
+  color: color-mix(in srgb, currentColor, var(--tfx-ice) calc(var(--g) * 100%));
+  text-shadow: 0 0 11px color-mix(in srgb, transparent, rgb(150 220 255 / .75) calc(var(--g) * 100%)),
+               0 0 2px  color-mix(in srgb, transparent, #fff calc(var(--g) * 100%));
+}
+.textfx[data-tfx-on] .tfx-electric {
+  --g: var(--tfx-gain, 1);
+  color: color-mix(in srgb, currentColor, var(--tfx-elec) calc(var(--g) * 100%));
+  text-shadow: 0 0 8px  color-mix(in srgb, transparent, var(--tfx-elec-a) calc(var(--g) * 100%)),
+               0 0 18px color-mix(in srgb, transparent, var(--tfx-elec-b) calc(var(--g) * 100%));
+}
+
+/* shared particle layer (the engine appends one of these to <body>) */
+.tfx-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9998; }
+/* back layer renders fire/smoke behind page text so glyphs stay readable */
+.tfx-canvas--back { z-index: -1; }
+
+/* respect reduced-motion: hold the legible end-state, no looping glow */
+@media (prefers-reduced-motion: reduce) {
+  .tfx-fire, .tfx-metal { animation: none; }
+}
