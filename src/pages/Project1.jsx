@@ -10,7 +10,10 @@ import ChartCard           from '../components/ChartCard.jsx'
 import ChartTooltip        from '../components/ChartTooltip.jsx'
 import InsightBlock        from '../components/InsightBlock.jsx'
 import RecommendationsList from '../components/RecommendationsList.jsx'
+import SqlCard             from '../components/SqlCard.jsx'
+import Note                from '../components/Note.jsx'
 import { fmt, fmtUSD, pct } from '../utils/formatters.js'
+import { gridProps, axisMuted, axisStrong, axisStrong11 } from '../utils/chartTheme.js'
 import {
   salaryByTitle, topCountries, remoteByTitle,
   topSkills, monthlyTrend, mlResults, stats, pythonUrl, sqlUrl,
@@ -100,9 +103,9 @@ export default function Project1({ setActive }) {
           <ChartCard title={t('p1.chart_salary')} sub={t('p1.chart_salary_sub')} delay={0.05}>
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={salaryByTitle} layout="vertical" margin={{ left: 0, right: 20 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1e2530" horizontal={false} />
-                <XAxis type="number" tickFormatter={fmtUSD} tick={{ fill: '#636e7b', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <YAxis type="category" dataKey="title" width={130} tick={{ fill: '#cdd9e5', fontSize: 10 }} axisLine={false} tickLine={false} />
+                <CartesianGrid {...gridProps} horizontal={false} />
+                <XAxis type="number" tickFormatter={fmtUSD} {...axisMuted} />
+                <YAxis type="category" dataKey="title" width={130} {...axisStrong} />
                 <Tooltip content={<ChartTooltip prefix="$" />} />
                 <Bar dataKey="salary" radius={[0, 3, 3, 0]}>
                   {salaryByTitle.map((_, i) => (
@@ -116,9 +119,9 @@ export default function Project1({ setActive }) {
           <ChartCard title={t('p1.chart_remote')} sub={t('p1.chart_remote_sub')} delay={0.1}>
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={remoteByTitle} layout="vertical" margin={{ left: 0, right: 20 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1e2530" horizontal={false} />
-                <XAxis type="number" tickFormatter={v => `${v}%`} tick={{ fill: '#636e7b', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <YAxis type="category" dataKey="title" width={130} tick={{ fill: '#cdd9e5', fontSize: 10 }} axisLine={false} tickLine={false} />
+                <CartesianGrid {...gridProps} horizontal={false} />
+                <XAxis type="number" tickFormatter={v => `${v}%`} {...axisMuted} />
+                <YAxis type="category" dataKey="title" width={130} {...axisStrong} />
                 <Tooltip content={<ChartTooltip suffix="%" />} />
                 <Bar dataKey="pct" fill="#a371f7" radius={[0, 3, 3, 0]} />
               </BarChart>
@@ -135,10 +138,10 @@ export default function Project1({ setActive }) {
           <ChartCard title={t('p1.chart_trend')} sub={t('p1.chart_trend_sub')} delay={0.05}>
             <ResponsiveContainer width="100%" height={260}>
               <LineChart data={monthlyTrend} margin={{ left: 0, right: 20 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1e2530" />
-                <XAxis dataKey="month" tick={{ fill: '#636e7b', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <YAxis yAxisId="l" tickFormatter={fmt} tick={{ fill: '#636e7b', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <YAxis yAxisId="r" orientation="right" tickFormatter={v => `${v}%`} tick={{ fill: '#636e7b', fontSize: 10 }} axisLine={false} tickLine={false} />
+                <CartesianGrid {...gridProps} />
+                <XAxis dataKey="month" {...axisMuted} />
+                <YAxis yAxisId="l" tickFormatter={fmt} {...axisMuted} />
+                <YAxis yAxisId="r" orientation="right" tickFormatter={v => `${v}%`} {...axisMuted} />
                 <Tooltip content={<ChartTooltip />} />
                 <Legend wrapperStyle={{ fontSize: 11, color: '#636e7b' }} />
                 <Line yAxisId="l" type="monotone" dataKey="postings" name="Postings" stroke="#00e5ff" strokeWidth={2} dot={false} />
@@ -157,9 +160,9 @@ export default function Project1({ setActive }) {
           <ChartCard title={t('p1.chart_skills')} sub={t('p1.chart_skills_sub')} delay={0.05}>
             <ResponsiveContainer width="100%" height={340}>
               <BarChart data={topSkills} layout="vertical" margin={{ left: 0, right: 24, top: 4, bottom: 4 }} barSize={18}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1e2530" horizontal={false} />
-                <XAxis type="number" tickFormatter={fmt} tick={{ fill: '#636e7b', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <YAxis type="category" dataKey="skill" width={72} tick={{ fill: '#cdd9e5', fontSize: 11 }} axisLine={false} tickLine={false} />
+                <CartesianGrid {...gridProps} horizontal={false} />
+                <XAxis type="number" tickFormatter={fmt} {...axisMuted} />
+                <YAxis type="category" dataKey="skill" width={72} {...axisStrong11} />
                 <Tooltip content={<ChartTooltip />} />
                 <Bar dataKey="count" fill="#00e5ff" radius={[0, 3, 3, 0]} />
               </BarChart>
@@ -169,24 +172,16 @@ export default function Project1({ setActive }) {
           <ChartCard title={t('p1.chart_countries')} sub={t('p1.chart_countries_sub')} delay={0.1}>
             <ResponsiveContainer width="100%" height={340}>
               <BarChart data={topCountries} layout="vertical" margin={{ left: 0, right: 24, top: 4, bottom: 4 }} barSize={18}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1e2530" horizontal={false} />
-                <XAxis type="number" tickFormatter={fmt} tick={{ fill: '#636e7b', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <YAxis type="category" dataKey="country" width={100} tick={{ fill: '#cdd9e5', fontSize: 10 }} axisLine={false} tickLine={false} />
+                <CartesianGrid {...gridProps} horizontal={false} />
+                <XAxis type="number" tickFormatter={fmt} {...axisMuted} />
+                <YAxis type="category" dataKey="country" width={100} {...axisStrong} />
                 <Tooltip content={<ChartTooltip />} />
                 <Bar dataKey="postings" fill="#ff6b35" radius={[0, 3, 3, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </ChartCard>
         </div>
-        <div className={styles.sqlCard}>
-          <div className={styles.sqlCardHeader}>
-            <span className={styles.sqlCardTitle}>{t('p1.sql_card_title')}</span>
-            <a className={styles.sqlCardLink} href={sqlUrl} target="_blank" rel="noopener noreferrer">
-              {t('p1.sql_link')} ↗
-            </a>
-          </div>
-          <pre className={styles.sqlCode}>{SQL_SNIPPET}</pre>
-        </div>
+        <SqlCard title={t('p1.sql_card_title')} code={SQL_SNIPPET} href={sqlUrl} linkLabel={t('p1.sql_link')} accent="var(--accent)" />
         <InsightBlock label={t('p1.insight_label')} text={t('p1.s3_insight')} accent="var(--accent)" />
       </section>
 
@@ -220,9 +215,9 @@ export default function Project1({ setActive }) {
         <ChartCard title={t('p1.chart_features')} sub={t('p1.chart_features_sub')} delay={0.1}>
           <ResponsiveContainer width="100%" height={340}>
             <BarChart data={importanceData} layout="vertical" margin={{ left: 0, right: 30 }} barSize={18}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1e2530" horizontal={false} />
-              <XAxis type="number" tickFormatter={v => `${v}%`} tick={{ fill: '#636e7b', fontSize: 10 }} axisLine={false} tickLine={false} />
-              <YAxis type="category" dataKey="feature" width={130} tick={{ fill: '#cdd9e5', fontSize: 10 }} axisLine={false} tickLine={false} />
+              <CartesianGrid {...gridProps} horizontal={false} />
+              <XAxis type="number" tickFormatter={v => `${v}%`} {...axisMuted} />
+              <YAxis type="category" dataKey="feature" width={130} {...axisStrong} />
               <Tooltip content={<ChartTooltip suffix="%" />} />
               <Bar dataKey="importance" radius={[0, 3, 3, 0]}>
                 {importanceData.map((d, i) => <Cell key={i} fill={d.direction > 0 ? '#00cc96' : '#ef553b'} />)}
@@ -231,10 +226,7 @@ export default function Project1({ setActive }) {
           </ResponsiveContainer>
         </ChartCard>
 
-        <div className={styles.mlNote}>
-          <span className={styles.mlNoteIcon}>ℹ</span>
-          <p dangerouslySetInnerHTML={{ __html: t('p1.ml_note') }} />
-        </div>
+        <Note text={t('p1.ml_note')} accent="var(--accent)" />
         <InsightBlock label={t('p1.insight_label')} text={t('p1.s4_insight')} accent="var(--accent)" />
       </section>
 

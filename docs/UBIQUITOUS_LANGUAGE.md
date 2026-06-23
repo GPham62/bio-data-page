@@ -146,20 +146,82 @@
 
 &nbsp;
 
+# Project Analysis — Domain Concepts
+
+These are the analytical terms specific to each case study. They are a distinct
+**bounded context** from the Portfolio UI above: here `Project` means the *subject* of
+analysis, not a card on the home page.
+
+## A/B Test
+**Means:** A controlled experiment comparing two variants of a game to measure which retains players better — the Cookie Cats study (Project 2).
+**In code:** `src/data/project2.js` · `sql/project2/` · locale namespace `p2.*`
+**Banned aliases:** `experiment` (acceptable as plain prose, but the canonical noun is **A/B Test**), `split test`
+**Context:** Project Analysis
+
+## Gate
+**Means:** The progression checkpoint where players must wait or pay — the experiment's treatment variable, placed at either level 30 or level 40.
+**In code:** `gate_30` / `gate_40` (the two variants) · `groupSizes` · `sql/project2/01_retention_by_gate.sql`, `02_engagement_by_gate.sql`
+**Banned aliases:** `group`, `variant`, `arm`, `cohort` (a Gate is the *treatment*; **Cohort** is a time-based group — keep them separate)
+**Context:** Project Analysis
+
+## Retention
+**Means:** The share of players who return to the game N days after install — measured at day 1 and day 7.
+**In code:** `retention1Data` / `retention7Data` (D1 / D7) · `sql/project2/01_retention_by_gate.sql`
+**Banned aliases:** `return rate`, `stickiness`. Note: in **Cohort** analysis (Project 3) the same idea is the per-month `m0…m12` values — same concept, different context.
+**Context:** Project Analysis
+
+## Bootstrap
+**Means:** Resampling the data many times to estimate a confidence interval for the retention difference between gates.
+**In code:** `bootstrapMeanDiff`, `bootstrapCILow`, `bootstrapCIHigh`, `bootstrapData` · locale `note_bootstrap`
+**Banned aliases:** `resample`, `simulation`. The interval itself is the **CI** (confidence interval) — keep `CI` for the interval, `Bootstrap` for the method.
+**Context:** Project Analysis
+
+## RFM
+**Means:** A customer-scoring method ranking each customer by **R**ecency, **F**requency, and **M**onetary value — the e-commerce study (Project 3).
+**In code:** `rfmSegments`, `rfmScatter` (fields `recency`, `frequency`, `monetary`) · `sql/project3/01_rfm_scoring.sql`
+**Banned aliases:** `customer scoring`, `RFM model`. Spell the axes out as `recency` / `frequency` / `monetary` — never `r` / `f` / `m`.
+**Context:** Project Analysis
+
+## Segment
+**Means:** A named group of customers sharing an RFM profile — `Champions`, `Loyal`, `Potential Loyal`, `At Risk`, `Hibernating`, `Lost`.
+**In code:** `rfmSegments[].segment` · `sql/project3/02_segment_revenue.sql`
+**Banned aliases:** `tier`, `bucket`, `group`, `cluster`. The entity being segmented is a **Customer** (not `user`/`player` — that is Project 2's vocabulary).
+**Context:** Project Analysis
+
+## Cohort
+**Means:** Customers grouped by the month they first purchased, tracked across subsequent months to measure repeat-purchase retention.
+**In code:** `cohortData` (fields `cohort`, `m0…m12`) · `CohortHeatmap.jsx` · `sql/project3/03_cohort_retention.sql` · locale `p3.cohort_label`
+**Banned aliases:** `group`, `batch`, `generation`. A **Cohort** is time-based — do not call a **Gate** group or an RFM **Segment** a "cohort".
+**Context:** Project Analysis
+
+---
+
+&nbsp;
+
 # Drift Register
 
 Places where the codebase currently uses a term other than the canonical one.
+**Most of the prior register has been resolved** since the last scan — only #7 (partial) remains.
 
-| # | File / Location | Current term | Canonical term | Action |
-|---|---|---|---|---|
-| 1 | `Home.jsx:156` | `PROJECTS.map(card =>` | **Project** | Rename iterator: `PROJECTS.map(project =>` |
-| 2 | `Home.module.css` | `portfolioCard`, `portfolioGrid`, `portfolioCardTitle`, `portfolioCardDesc`, `portfolioDetails`, `portfolioInfo`, `portfolioKicker`, `portfolioNum`, `portfolioTag`, `portfolioTags`, `portfolioThumb`, `portfolioThumbWrap`, `portfolioTopRow` | `project` prefix | Rename all `portfolio*` CSS classes → `project*` (e.g. `projectCard`, `projectGrid`) |
-| 3 | `en.json`, `vi.json` | `home.cards.*` | `home.projects.*` | Rename locale namespace `cards` → `projects` |
-| 4 | `Home.module.css` | `greetSection`, `contactSection` | `section` + modifier | Sections should use `.section` class; page-specific layout overrides belong in a modifier or a named block, not a renamed class |
-| 5 | `Home.module.css` | `enterHint` | `hint` | Rename class `.enterHint` → `.hint` |
-| 6 | `src/locales/en.json` | `kpi_postings`, `kpi_median`, … | Use `kpi` prefix consistently — already doing this ✓ | No change needed; note that the *component* is `StatCard` — that divergence is acceptable as an implementation detail |
-| 7 | `Sidebar.jsx` | `toggleLang`, `localStorage.setItem('lang')`, `isVI` | **Locale** | Rename `toggleLang` → `toggleLocale`, localStorage key `'lang'` → `'locale'`, `isVI` → derive from `locale === 'vi'` |
-| 8 | `en.json` locale key naming | `home.cards.p1.role` | `.role` not used in UI (replaced by `tags`) — dead key | Remove `role` keys from all cards in both locales |
+| # | File / Location | Current term | Canonical term | Action | Status |
+|---|---|---|---|---|---|
+| 1 | `Home.jsx` | `PROJECTS.map(card =>` | **Project** | Rename iterator → `project` | ✅ Fixed |
+| 2 | `Home.module.css` | `portfolio*` classes | `project*` | Rename CSS classes | ✅ Fixed (no `portfolio*` classes remain) |
+| 3 | `en.json` / `vi.json` | `home.cards.*` | `home.projects.*` | Rename namespace | ✅ Fixed (now `home.projects`) |
+| 4 | `Home.module.css` | `greetSection`, `contactSection` | `section` + modifier | Use `.section`; page overrides via modifier | ✅ Fixed |
+| 5 | `Home.module.css` | `enterHint` | `hint` | Rename class | ✅ Fixed (`.hint`) |
+| 6 | `en.json` | `kpi_*` vs `StatCard` | **KPI** | Component name is impl detail | ✅ OK as-is |
+| 7 | `Sidebar.jsx:14,89,91` | `isVI` | **Locale** | `toggleLang`→`toggleLocale` & key `'lang'`→`'locale'` already done; `isVI` still hardcodes Vietnamese into a boolean | ⚠️ **Open** — see below |
+| 8 | `en.json` | dead `home.cards.p1.role` | (removed) | Drop dead key | ✅ Fixed (the surviving `role:"Junior Data Analyst"` at `en.json:9` is the live hero/identity role, not the dead card key) |
+
+## Remaining rename recommendation (not yet applied)
+
+**Drift #7 — `isVI` in `src/components/Sidebar.jsx`**
+- `const isVI = i18n.language === 'vi'` (line 14), used at lines 89 & 91.
+- Canonical concept is **Locale**, a two-valued thing (`en` | `vi`). A boolean named for one specific value bakes the Vietnamese branch into the identifier.
+- **Recommended rename:** `isVI` → `isVietnamese` (clearer), or better, drop the boolean and compare `locale === 'vi'` inline at the two use sites. Low priority, cosmetic — the localStorage key and toggle verb are already canonical.
+
+Confirm if you want this applied; it's the only live rename left.
 
 ---
 

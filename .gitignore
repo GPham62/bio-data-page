@@ -4,3 +4,12 @@ dist
 .DS_Store
 .claude/
 .playwright-mcp/
+
+# generated / dev scratch (ponytail: kept on disk, just out of git's way)
+coverage/
+/*.png
+/_*
+
+# large Power BI binary + raw source data (exceed GitHub's 100MB limit)
+*.pbix
+powerbi/p1/project1_data/

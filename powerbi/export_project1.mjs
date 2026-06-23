@@ -8,7 +8,7 @@ import {
   topSkills, monthlyTrend, mlResults, stats,
 } from '../src/data/project1.js'
 
-const outDir = join(dirname(fileURLToPath(import.meta.url)), 'project1_data')
+const outDir = join(dirname(fileURLToPath(import.meta.url)), 'p1', 'analysis')
 mkdirSync(outDir, { recursive: true })
 
 // Minimal CSV writer (escapes quotes/commas/newlines per RFC 4180).

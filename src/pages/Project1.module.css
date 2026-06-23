@@ -67,55 +67,6 @@
   text-decoration: none;
 }
 
-/* SQL snippet card */
-.sqlCard {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
-  margin-top: 16px;
-}
-
-.sqlCardHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--border);
-  background: var(--bg3);
-}
-
-.sqlCardTitle {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  color: var(--accent);
-}
-
-.sqlCardLink {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.04em;
-  transition: color 0.2s;
-}
-
-.sqlCardLink:hover {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-.sqlCode {
-  font-family: var(--mono);
-  font-size: 12px;
-  line-height: 1.75;
-  color: #cdd9e5;
-  padding: 20px 24px;
-  margin: 0;
-  overflow-x: auto;
-  white-space: pre;
-}
-
 /* KPI row */
 .kpiRow {
   display: grid;
@@ -174,28 +125,6 @@
   margin-top: auto;
   padding-top: 6px;
 }
-
-.mlNote {
-  display: flex;
-  gap: 12px;
-  background: rgba(0,229,255,0.04);
-  border: 1px solid rgba(0,229,255,0.12);
-  border-radius: 6px;
-  padding: 14px 16px;
-  margin-top: 16px;
-  font-size: 11px;
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-.mlNoteIcon {
-  color: var(--accent);
-  font-size: 14px;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.mlNote strong { color: var(--text); }
 
 /* Responsive */
 @media (max-width: 900px) {

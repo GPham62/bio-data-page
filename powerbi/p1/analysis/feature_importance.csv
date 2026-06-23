@@ -1,0 +1,13 @@
+feature,importance,direction,direction_label
+Seniority,47.4,1,Higher pay
+Data Analyst,17.6,-1,Lower pay
+Skill Count,8.9,1,Higher pay
+State CA,7.3,1,Higher pay
+Senior Data Scientist,3.3,1,Higher pay
+Python,2.7,1,Higher pay
+Health Insurance,2.7,1,Higher pay
+Excel,2.3,-1,Lower pay
+Senior Data Analyst,2.1,-1,Lower pay
+State NY,2,1,Higher pay
+Business Analyst,1.9,-1,Lower pay
+State NA,1.7,1,Higher pay

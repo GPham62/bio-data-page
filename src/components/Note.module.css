@@ -1,0 +1,22 @@
+.note {
+  display: flex;
+  gap: 12px;
+  /* 4% / 12% accent tint — equivalent to the original rgba(accent, 0.04 / 0.12) */
+  background: color-mix(in srgb, var(--note-accent, var(--accent)) 4%, transparent);
+  border: 1px solid color-mix(in srgb, var(--note-accent, var(--accent)) 12%, transparent);
+  border-radius: 6px;
+  padding: 14px 16px;
+  margin-top: 16px;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.icon {
+  color: var(--note-accent, var(--accent));
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.note strong { color: var(--text); }

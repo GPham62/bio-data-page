@@ -11,7 +11,9 @@ import ChartTooltip        from '../components/ChartTooltip.jsx'
 import InsightBlock        from '../components/InsightBlock.jsx'
 import RecommendationsList from '../components/RecommendationsList.jsx'
 import CohortHeatmap       from '../components/CohortHeatmap.jsx'
+import SqlCard             from '../components/SqlCard.jsx'
 import { fmt, fmtUSD } from '../utils/formatters.js'
+import { gridProps, axisMuted, axisStrong } from '../utils/chartTheme.js'
 import {
   stats, monthlyRevenue, topCountries, rfmSegments,
   rfmScatter, cohortData, kaggleUrl, sqlUrl,
@@ -126,9 +128,9 @@ export default function Project3({ setActive }) {
           <ChartCard title={t('p3.chart_revenue')} sub={t('p3.chart_revenue_sub')} delay={0.05}>
             <ResponsiveContainer width="100%" height={280}>
               <LineChart data={monthlyRevenue} margin={{ left: 10, right: 20 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1e2530" />
-                <XAxis dataKey="month" tick={{ fill: '#636e7b', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <YAxis tickFormatter={fmtUSD} tick={{ fill: '#636e7b', fontSize: 10 }} axisLine={false} tickLine={false} />
+                <CartesianGrid {...gridProps} />
+                <XAxis dataKey="month" {...axisMuted} />
+                <YAxis tickFormatter={fmtUSD} {...axisMuted} />
                 <Tooltip content={<ChartTooltip prefix="$" color="#00cc96" />} />
                 <Line type="monotone" dataKey="revenue" name="Revenue" stroke="#00cc96" strokeWidth={2} dot={{ r: 3, fill: '#00cc96' }} />
               </LineChart>
@@ -138,9 +140,9 @@ export default function Project3({ setActive }) {
           <ChartCard title={t('p3.chart_countries')} sub={t('p3.chart_countries_sub')} delay={0.1}>
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={topCountries} layout="vertical" margin={{ left: 0, right: 24 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1e2530" horizontal={false} />
-                <XAxis type="number" tickFormatter={fmtUSD} tick={{ fill: '#636e7b', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <YAxis type="category" dataKey="country" width={100} tick={{ fill: '#cdd9e5', fontSize: 10 }} axisLine={false} tickLine={false} />
+                <CartesianGrid {...gridProps} horizontal={false} />
+                <XAxis type="number" tickFormatter={fmtUSD} {...axisMuted} />
+                <YAxis type="category" dataKey="country" width={100} {...axisStrong} />
                 <Tooltip content={<ChartTooltip prefix="$" color="#00cc96" />} />
                 <Bar dataKey="revenue" name="Revenue" fill="#00cc96" radius={[0, 3, 3, 0]} />
               </BarChart>
@@ -157,9 +159,9 @@ export default function Project3({ setActive }) {
           <ChartCard title={t('p3.chart_rfm_scatter')} sub={t('p3.chart_rfm_scatter_sub')} delay={0.05}>
             <ResponsiveContainer width="100%" height={300}>
               <ScatterChart margin={{ left: 0, right: 20, top: 10, bottom: 10 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1e2530" />
-                <XAxis type="number" dataKey="recency" name="Recency" unit=" days" tick={{ fill: '#636e7b', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <YAxis type="number" dataKey="frequency" name="Frequency" unit=" orders" tick={{ fill: '#636e7b', fontSize: 10 }} axisLine={false} tickLine={false} />
+                <CartesianGrid {...gridProps} />
+                <XAxis type="number" dataKey="recency" name="Recency" unit=" days" {...axisMuted} />
+                <YAxis type="number" dataKey="frequency" name="Frequency" unit=" orders" {...axisMuted} />
                 <ZAxis type="number" dataKey="monetary" range={[40, 400]} />
                 <Tooltip content={<ScatterTip />} />
                 {Object.keys(SEGMENT_COLORS).map(seg => (
@@ -178,9 +180,9 @@ export default function Project3({ setActive }) {
           <ChartCard title={t('p3.chart_segments')} sub={t('p3.chart_segments_sub')} delay={0.1}>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={rfmSegments} layout="vertical" margin={{ left: 0, right: 24 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1e2530" horizontal={false} />
-                <XAxis type="number" tick={{ fill: '#636e7b', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <YAxis type="category" dataKey="segment" width={110} tick={{ fill: '#cdd9e5', fontSize: 10 }} axisLine={false} tickLine={false} />
+                <CartesianGrid {...gridProps} horizontal={false} />
+                <XAxis type="number" {...axisMuted} />
+                <YAxis type="category" dataKey="segment" width={110} {...axisStrong} />
                 <Tooltip content={<ChartTooltip color="#00cc96" />} />
                 <Bar dataKey="count" name="Customers" radius={[0, 3, 3, 0]}>
                   {rfmSegments.map((d, i) => <Cell key={i} fill={d.color} />)}
@@ -189,15 +191,7 @@ export default function Project3({ setActive }) {
             </ResponsiveContainer>
           </ChartCard>
         </div>
-        <div className={styles.sqlCard}>
-          <div className={styles.sqlCardHeader}>
-            <span className={styles.sqlCardTitle}>{t('p3.sql_card_title')}</span>
-            <a className={styles.sqlCardLink} href={sqlUrl} target="_blank" rel="noopener noreferrer">
-              {t('p3.sql_link')} ↗
-            </a>
-          </div>
-          <pre className={styles.sqlCode}>{SQL_SNIPPET}</pre>
-        </div>
+        <SqlCard title={t('p3.sql_card_title')} code={SQL_SNIPPET} href={sqlUrl} linkLabel={t('p3.sql_link')} accent="var(--green)" />
         <InsightBlock label={t('p3.insight_label')} text={t('p3.s2_insight')} accent="var(--green)" />
       </section>
 

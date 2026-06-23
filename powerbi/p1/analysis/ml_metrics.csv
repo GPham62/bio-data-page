@@ -1,0 +1,10 @@
+metric,value,kind
+Accuracy,,score
+ROC-AUC,,score
+Precision,,score
+Recall,,score
+F1,,score
+Baseline,,score
+Train Size,31554,count
+Test Size,7889,count
+Median Threshold,,usd

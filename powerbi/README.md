@@ -12,7 +12,7 @@ the Colab/MotherDuck analysis and pasted in as static arrays). These CSVs are a 
 > Tech-stack pills on the page (DuckDB / MotherDuck) describe the *original* analysis
 > pipeline, not a live connection.
 
-## Files (`project1_data/`)
+## Files (`p1/analysis/`)
 
 | CSV | Columns | Mirrors website chart |
 |---|---|---|
@@ -31,7 +31,7 @@ The MCP server can create measures/relationships and run DAX, but it **cannot im
 rows or draw visuals** — those are UI-only. So:
 
 1. In the open Power BI Desktop report: **Home → Get data → Text/CSV**.
-2. Pick a CSV from `powerbi/project1_data/`, click **Load**. Repeat for all 8.
+2. Pick a CSV from `powerbi/p1/analysis/`, click **Load**. Repeat for all 8.
    - Tip: **Get data → Folder** can batch them, but the schemas differ, so loading
      each file individually is simpler here.
 3. In **Model view**, confirm the 8 tables appear. Check data types:

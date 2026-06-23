@@ -139,7 +139,7 @@ Google Data Analytics Professional Certificate        Coursera · 04/2026
 • 8-course program covering data cleaning, SQL, R, Tableau, case studies
 
 Machine Learning                                      Coursera · 04/2026
-• Andrew Ng / Stanford — supervised/unsupervised learning, model evaluation
+• Andrew Ng / Stanford — supervised learning, model evaluation & optimization
 ```
 
 ---
