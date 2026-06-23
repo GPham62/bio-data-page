@@ -16,7 +16,7 @@ The skills render as progress bars (`SQL [████░░] Advanced`, etc.). 
 
 - Replace the bars with a **decorative, skimmable** badge layout: one RPG icon + skill name + level label per skill.
 - Icons are **swappable image files** (PNG or SVG) the user can replace later without touching code.
-- Add a new skill, **AI Workflow**, to signal day-to-day AI-assisted analysis.
+- Add a new skill, **AI-Assisted Analysis**, to signal day-to-day use of AI in the analysis workflow.
 - Keep the surrounding "Player Profile" framing (CLASS / LEVEL / EXP header).
 
 ## Non-goals
@@ -40,9 +40,9 @@ replace `ai.svg`".
 | Power BI   | Intermediate  | Trung bình       | `powerbi.svg`   | star              | no     |
 | Excel      | Intermediate  | Trung bình       | `excel.svg`     | heart             | no     |
 | Unity/C#   | Expert        | Thành thạo       | `unity.svg`     | dice              | yes    |
-| AI Workflow| Everyday      | Dùng hằng ngày   | `ai.svg`        | wand / sparkle    | no     |
+| AI-Assisted Analysis | Everyday | Dùng hằng ngày | `ai.svg`     | wand / sparkle    | no     |
 
-New skill name in vi: **Quy trình AI**.
+New skill name in vi: **Phân tích với AI**.
 
 ### Asset folder
 
@@ -86,7 +86,8 @@ skill chips. Each chip:
 - `.charSkills` becomes a 2-column grid (`grid-template-columns: 1fr 1fr; gap`), collapsing to one
   column on narrow widths (reuse the page's existing mobile breakpoint).
 - New `.skillChip` (and `.skillChipFormer` = muted/lower opacity, matching today's former
-  treatment): a small flex row — icon, name, level pushed to the end.
+  treatment): a small flex row — icon, name, level pushed to the end. The name may wrap (the
+  longest is "AI-Assisted Analysis"); the level label must not truncate and stays end-aligned.
 - `.skillIcon`: fixed `~20px` box, `object-fit: contain`. No forced color filter, so a swapped-in
   PNG/SVG renders as authored.
 - Remove the now-unused `.statRow`, `.statName`, `.statNameFormer`, `.statBar`, `.statBarFill`,
@@ -96,7 +97,7 @@ skill chips. Each chip:
 
 Two new user-facing strings, added to both locales in the same change:
 
-- name: `AI Workflow` / `Quy trình AI`
+- name: `AI-Assisted Analysis` / `Phân tích với AI`
 - level: `Everyday` / `Dùng hằng ngày`
 
 No other text changes. Removing `pct` touches no visible text.
