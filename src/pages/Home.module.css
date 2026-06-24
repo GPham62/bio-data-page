@@ -1,83 +1,83 @@
 .page {
-  max-width: 1200px;
+  max-width: 75rem;
   margin: 0 auto;
-  padding: 64px 32px 100px;
+  padding: 4rem 2rem 6.25rem;
 }
 
 .section {
-  margin-bottom: 64px;
+  margin-bottom: 4rem;
 }
 
 /* ── Hero ── */
 .heroRow {
-  max-width: 780px;
-  margin-bottom: 72px;
+  max-width: 48.75rem;
+  margin-bottom: 4.5rem;
 }
 
 .greetKicker {
   display: block;
   font-family: var(--mono);
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: var(--accent-blue);
   letter-spacing: 0.06em;
-  margin-bottom: 14px;
+  margin-bottom: 0.875rem;
 }
 
 .greetTitle {
   font-family: var(--head);
-  font-size: clamp(32px, 5vw, 52px);
+  font-size: clamp(2rem, 5vw, 3.25rem);
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: var(--text);
-  margin: 0 0 20px;
+  margin: 0 0 1.25rem;
 }
 
 .tagline {
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.85;
   color: var(--muted);
-  margin: 0 0 24px;
+  margin: 0 0 1.5rem;
   font-style: italic;
 }
 
 .currentlyBlock {
   background: var(--bg2);
-  border: 1px solid var(--border);
-  border-left: 2px solid var(--purple);
-  border-radius: 8px;
-  padding: 16px 20px;
+  border: 0.0625rem solid var(--border);
+  border-left: 0.125rem solid var(--purple);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 .currentlyRow {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 .currentlyIcon {
-  font-size: 16px;
-  width: 24px;
+  font-size: 1rem;
+  width: 1.5rem;
   text-align: center;
   flex-shrink: 0;
 }
 
 .currentlyLabel {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 0.6875rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--muted);
-  min-width: 72px;
+  min-width: 4.5rem;
   flex-shrink: 0;
 }
 
 .currentlyVal {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--text);
 }
 
@@ -85,56 +85,56 @@
 /* ── Character Sheet ── */
 .charSheet {
   background: var(--bg2);
-  border: 1px solid var(--purple);
-  border-radius: 10px;
+  border: 0.0625rem solid var(--purple);
+  border-radius: 0.625rem;
   font-family: var(--mono);
   overflow: hidden;
-  max-width: 680px;
+  max-width: 42.5rem;
 }
 
 .charSheetHeader {
-  padding: 20px 24px;
+  padding: 1.25rem 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .charRow {
   display: flex;
   align-items: baseline;
-  gap: 16px;
+  gap: 1rem;
 }
 
 .charLabel {
-  font-size: 10px;
+  font-size: 0.625rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--muted);
-  min-width: 90px;
+  min-width: 5.625rem;
 }
 
 .charVal {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--text);
 }
 
 .charDivider {
-  height: 1px;
+  height: 0.0625rem;
   background: var(--border);
 }
 
 .charSkills {
-  padding: 20px 24px;
+  padding: 1.25rem 1.5rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px 18px;
+  gap: 0.625rem 1.125rem;
 }
 
 .skillChip,
 .skillChipFormer {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.625rem;
   min-width: 0;
 }
 
@@ -143,14 +143,14 @@
 }
 
 .skillIcon {
-  width: 20px;
-  height: 20px;
+  width: 1.25rem;
+  height: 1.25rem;
   flex-shrink: 0;
   object-fit: contain;
 }
 
 .skillName {
-  font-size: 11px;
+  font-size: 0.6875rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text);
@@ -163,8 +163,8 @@
 
 .skillLevel {
   margin-left: auto;
-  padding-left: 8px;
-  font-size: 10px;
+  padding-left: 0.5rem;
+  font-size: 0.625rem;
   color: var(--muted);
   text-align: right;
   letter-spacing: 0.04em;
@@ -174,18 +174,18 @@
 /* ── About me ── */
 .pivotBox {
   display: flex;
-  gap: 18px;
+  gap: 1.125rem;
   align-items: flex-start;
   background: var(--bg2);
-  border: 1px solid var(--border);
-  border-left: 2px solid var(--accent-blue);
-  border-radius: 8px;
-  padding: 20px 24px;
-  margin-bottom: 28px;
+  border: 0.0625rem solid var(--border);
+  border-left: 0.125rem solid var(--accent-blue);
+  border-radius: 0.5rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.75rem;
 }
 
 .pivotArrow {
-  font-size: 20px;
+  font-size: 1.25rem;
   color: var(--accent-blue);
   line-height: 1.4;
 }
@@ -193,15 +193,15 @@
 .pivotLabel {
   display: block;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 0.6875rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--accent-blue);
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .pivotText {
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1.8;
   color: var(--text);
   margin: 0;
@@ -209,28 +209,28 @@
 
 .thinkBox {
   display: flex;
-  gap: 18px;
+  gap: 1.125rem;
   align-items: flex-start;
   background: var(--bg2);
-  border: 1px solid var(--border);
-  border-left: 2px solid var(--purple);
-  border-radius: 8px;
-  padding: 20px 24px;
-  margin-bottom: 28px;
+  border: 0.0625rem solid var(--border);
+  border-left: 0.125rem solid var(--purple);
+  border-radius: 0.5rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.75rem;
 }
 
 .thinkLabel {
   display: block;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 0.6875rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--purple);
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .thinkText {
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1.8;
   color: var(--text);
   margin: 0;
@@ -240,14 +240,14 @@
 .gameShowcaseGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 1.25rem;
 }
 
 .gameShowcaseCard {
   background: var(--bg2);
-  border: 1px solid var(--purple);
-  border-radius: 10px;
-  padding: 24px;
+  border: 0.0625rem solid var(--purple);
+  border-radius: 0.625rem;
+  padding: 1.5rem;
   text-align: center;
   text-decoration: none;
   display: block;
@@ -256,40 +256,40 @@
 
 .gameShowcaseCard:hover {
   border-color: var(--accent-blue);
-  transform: translateY(-3px);
+  transform: translateY(-0.1875rem);
 }
 
 .gameShowcaseCanvas {
   display: block;
-  margin: 0 auto 16px;
+  margin: 0 auto 1rem;
   image-rendering: pixelated;
 }
 
 .gameShowcaseName {
   display: block;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
   color: var(--text);
   line-height: 1.4;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .gameShowcaseGenre {
   display: inline-block;
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.06em;
   color: var(--purple);
-  border: 1px solid var(--purple);
-  border-radius: 100px;
-  padding: 2px 10px;
-  margin-bottom: 12px;
+  border: 0.0625rem solid var(--purple);
+  border-radius: 6.25rem;
+  padding: 0.125rem 0.625rem;
+  margin-bottom: 0.75rem;
 }
 
 .gameShowcaseCta {
   display: block;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 0.6875rem;
   color: var(--muted);
   letter-spacing: 0.06em;
   transition: color 0.2s;
@@ -303,14 +303,14 @@
 .projectGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-bottom: 16px;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .projectCard {
   background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  border: 0.0625rem solid var(--border);
+  border-radius: 0.75rem;
   overflow: hidden;
   cursor: pointer;
   transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
@@ -318,8 +318,8 @@
 
 .projectCard:hover {
   border-color: var(--accent-blue);
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  transform: translateY(-0.25rem);
+  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.45);
 }
 
 .projectThumbWrap {
@@ -343,9 +343,9 @@
 
 .projectTopRow {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  right: 12px;
+  top: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -353,27 +353,27 @@
 
 .projectNum {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 0.6875rem;
   letter-spacing: 0.1em;
   color: var(--text);
   background: rgba(7, 9, 13, 0.65);
-  border-radius: 100px;
-  padding: 3px 9px;
-  backdrop-filter: blur(4px);
+  border-radius: 6.25rem;
+  padding: 0.1875rem 0.5625rem;
+  backdrop-filter: blur(0.25rem);
 }
 
 .projectKicker {
   position: absolute;
-  left: 16px;
-  bottom: 14px;
+  left: 1rem;
+  bottom: 0.875rem;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 0.6875rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #fff;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.9), 0 0 0.625rem rgba(0, 0, 0, 0.6);
   opacity: 0;
-  transform: translateY(8px);
+  transform: translateY(0.5rem);
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
@@ -383,19 +383,19 @@
 }
 
 .projectInfo {
-  padding: 20px 20px 18px;
+  padding: 1.25rem 1.25rem 1.125rem;
 }
 
 .projectCardTitle {
   font-family: var(--head);
-  font-size: 17px;
+  font-size: 1.0625rem;
   font-weight: 700;
   color: var(--text);
   margin: 0;
 }
 
 .projectDetails {
-  margin-top: 14px;
+  margin-top: 0.875rem;
   max-height: 0;
   opacity: 0;
   overflow: hidden;
@@ -403,7 +403,7 @@
 }
 
 .projectCard:hover .projectDetails {
-  max-height: 220px;
+  max-height: 13.75rem;
   opacity: 1;
 }
 
@@ -415,10 +415,10 @@
 }
 
 .projectCardDesc {
-  font-size: 13px;
+  font-size: 0.8125rem;
   line-height: 1.7;
   color: var(--muted);
-  margin: 0 0 14px;
+  margin: 0 0 0.875rem;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -428,51 +428,51 @@
 .projectTags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 14px;
+  gap: 0.375rem;
+  margin-bottom: 0.875rem;
 }
 
 .projectTag {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text);
   background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 3px;
-  padding: 3px 9px;
+  border: 0.0625rem solid var(--border);
+  border-radius: 0.1875rem;
+  padding: 0.1875rem 0.5625rem;
 }
 
 /* ── Shared status badges + hint (also used on the coming-soon banner) ── */
 .badgeLive {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--green);
   background: rgba(7, 9, 13, 0.65);
-  border: 1px solid rgba(0, 204, 150, 0.4);
-  border-radius: 100px;
-  padding: 3px 10px;
-  backdrop-filter: blur(4px);
+  border: 0.0625rem solid rgba(0, 204, 150, 0.4);
+  border-radius: 6.25rem;
+  padding: 0.1875rem 0.625rem;
+  backdrop-filter: blur(0.25rem);
 }
 
 .badgeWip {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 0.625rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--accent2);
-  border: 1px solid rgba(255, 107, 53, 0.35);
-  border-radius: 100px;
-  padding: 3px 10px;
+  border: 0.0625rem solid rgba(255, 107, 53, 0.35);
+  border-radius: 6.25rem;
+  padding: 0.1875rem 0.625rem;
   flex-shrink: 0;
 }
 
 .hint {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 0.6875rem;
   color: var(--accent-blue);
   opacity: 0.8;
   letter-spacing: 0.06em;
@@ -481,89 +481,89 @@
 .comingSoonBanner {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 1rem;
   background: var(--bg2);
-  border: 1px dashed var(--border);
-  border-radius: 10px;
-  padding: 18px 22px;
+  border: 0.0625rem dashed var(--border);
+  border-radius: 0.625rem;
+  padding: 1.125rem 1.375rem;
 }
 
 .comingSoonTitle {
   display: block;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
   color: var(--text);
 }
 
 .comingSoonDesc {
   display: block;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--muted);
-  margin-top: 3px;
+  margin-top: 0.1875rem;
 }
 
 /* ── Get in touch ── */
 .contactSection {
-  margin-top: 8px;
+  margin-top: 0.5rem;
 }
 
 .contactCard {
   background: linear-gradient(160deg, rgba(89, 136, 255, 0.08), var(--bg2));
-  border: 1px solid rgba(89, 136, 255, 0.25);
-  border-radius: 14px;
-  padding: 48px 40px;
+  border: 0.0625rem solid rgba(89, 136, 255, 0.25);
+  border-radius: 0.875rem;
+  padding: 3rem 2.5rem;
   text-align: center;
 }
 
 .contactTitle {
   font-family: var(--head);
-  font-size: clamp(26px, 4vw, 38px);
+  font-size: clamp(1.625rem, 4vw, 2.375rem);
   font-weight: 800;
   color: var(--text);
-  margin: 0 0 14px;
+  margin: 0 0 0.875rem;
 }
 
 .contactText {
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1.8;
   color: var(--muted);
-  max-width: 480px;
-  margin: 0 auto 28px;
+  max-width: 30rem;
+  margin: 0 auto 1.75rem;
 }
 
 .contactActions {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 22px;
+  gap: 1.375rem;
   flex-wrap: wrap;
 }
 
 .contactBtn {
   font-family: var(--mono);
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   color: var(--bg);
   background: var(--accent-blue);
-  border-radius: 100px;
-  padding: 12px 26px;
+  border-radius: 6.25rem;
+  padding: 0.75rem 1.625rem;
   text-decoration: none;
   transition: opacity 0.2s, transform 0.2s;
 }
 
 .contactBtn:hover {
   opacity: 0.88;
-  transform: translateY(-2px);
+  transform: translateY(-0.125rem);
 }
 
 .contactLink {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 0.75rem;
   letter-spacing: 0.06em;
   color: var(--muted);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
+  border-bottom: 0.0625rem solid transparent;
   transition: color 0.2s, border-color 0.2s;
 }
 
@@ -583,7 +583,7 @@
 }
 
 @media (max-width: 600px) {
-  .page { padding: 40px 16px 64px; }
-  .comingSoonBanner { flex-direction: column; align-items: flex-start; gap: 10px; }
-  .contactCard { padding: 36px 24px; }
+  .page { padding: 2.5rem 1rem 4rem; }
+  .comingSoonBanner { flex-direction: column; align-items: flex-start; gap: 0.625rem; }
+  .contactCard { padding: 2.25rem 1.5rem; }
 }

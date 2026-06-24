@@ -143,7 +143,7 @@ export default function Project1({ setActive }) {
                 <YAxis yAxisId="l" tickFormatter={fmt} {...axisMuted} />
                 <YAxis yAxisId="r" orientation="right" tickFormatter={v => `${v}%`} {...axisMuted} />
                 <Tooltip content={<ChartTooltip />} />
-                <Legend wrapperStyle={{ fontSize: 11, color: '#636e7b' }} />
+                <Legend wrapperStyle={{ fontSize: '0.6875rem', color: '#636e7b' }} />
                 <Line yAxisId="l" type="monotone" dataKey="postings" name="Postings" stroke="#00e5ff" strokeWidth={2} dot={false} />
                 <Line yAxisId="r" type="monotone" dataKey="remote"   name="Remote %"  stroke="#00cc96" strokeWidth={2} dot={false} strokeDasharray="5 3" />
               </LineChart>

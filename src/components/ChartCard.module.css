@@ -1,7 +1,7 @@
 .card {
   background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  border: 0.0625rem solid var(--border);
+  border-radius: 0.5rem;
   overflow: hidden;
 }
 
@@ -11,14 +11,14 @@
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 12px;
-  padding: 14px 18px 10px;
-  border-bottom: 1px solid var(--border);
+  gap: 0.75rem;
+  padding: 0.875rem 1.125rem 0.625rem;
+  border-bottom: 0.0625rem solid var(--border);
 }
 
 .title {
   font-family: var(--head);
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--text);
   letter-spacing: 0.04em;
@@ -26,13 +26,13 @@
 }
 
 .sub {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: var(--muted);
   letter-spacing: 0.06em;
 }
 
 .body {
-  padding: 16px 12px 12px;
+  padding: 1rem 0.75rem 0.75rem;
 }
 
 @media (max-width: 768px) {

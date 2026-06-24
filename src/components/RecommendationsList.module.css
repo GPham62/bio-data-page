@@ -1,45 +1,45 @@
 .recsBox {
   background: var(--bg2);
-  border: 1px solid var(--border);
-  border-top: 2px solid var(--recs-accent, var(--accent));
-  border-radius: 8px;
-  padding: 28px 24px;
+  border: 0.0625rem solid var(--border);
+  border-top: 0.125rem solid var(--recs-accent, var(--accent));
+  border-radius: 0.5rem;
+  padding: 1.75rem 1.5rem;
 }
 
 .recsTitle {
   font-family: var(--head);
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--recs-accent, var(--accent));
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
 }
 
 .recsList {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 .recsItem {
   display: flex;
-  gap: 12px;
+  gap: 0.75rem;
   align-items: flex-start;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.8;
   color: var(--text);
 }
 
 .recsNum {
   font-family: var(--mono);
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: var(--recs-accent, var(--accent));
   background: color-mix(in srgb, var(--recs-accent, var(--accent)) 10%, transparent);
-  border: 1px solid color-mix(in srgb, var(--recs-accent, var(--accent)) 20%, transparent);
-  border-radius: 4px;
-  padding: 3px 9px;
+  border: 0.0625rem solid color-mix(in srgb, var(--recs-accent, var(--accent)) 20%, transparent);
+  border-radius: 0.25rem;
+  padding: 0.1875rem 0.5625rem;
   flex-shrink: 0;
-  margin-top: 2px;
+  margin-top: 0.125rem;
 }
 
 .recsItem strong {

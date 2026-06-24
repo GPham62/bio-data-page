@@ -61,7 +61,7 @@ const ScatterTip = ({ active, payload }) => {
   return (
     <div style={{
       background: '#0d1117', border: '1px solid #21262d',
-      padding: '8px 12px', borderRadius: 6, fontFamily: 'var(--mono)', fontSize: 11,
+      padding: '8px 12px', borderRadius: 6, fontFamily: 'var(--mono)', fontSize: '0.6875rem',
     }}>
       <p style={{ color: SEGMENT_COLORS[d.segment] || '#00cc96', marginBottom: 4 }}>{d.segment}</p>
       <p style={{ color: '#cdd9e5' }}>Recency: <strong>{d.recency} days</strong></p>
@@ -172,7 +172,7 @@ export default function Project3({ setActive }) {
                     fill={SEGMENT_COLORS[seg]}
                   />
                 ))}
-                <Legend wrapperStyle={{ fontSize: 10, color: '#636e7b' }} />
+                <Legend wrapperStyle={{ fontSize: '0.625rem', color: '#636e7b' }} />
               </ScatterChart>
             </ResponsiveContainer>
           </ChartCard>
