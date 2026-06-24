@@ -1,28 +1,28 @@
 .page {
-  max-width: 900px;
+  max-width: 56.25rem;
   margin: 0 auto;
-  padding: 64px 32px 100px;
+  padding: 4rem 2rem 6.25rem;
 }
 
 .kicker {
   display: block;
   font-family: var(--mono);
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: var(--accent-blue);
   letter-spacing: 0.06em;
-  margin-bottom: 18px;
+  margin-bottom: 1.125rem;
 }
 
 .titleRow {
   display: flex;
   align-items: baseline;
-  gap: 18px;
-  margin-bottom: 10px;
+  gap: 1.125rem;
+  margin-bottom: 0.625rem;
 }
 
 .title {
   font-family: var(--head);
-  font-size: clamp(32px, 5vw, 52px);
+  font-size: clamp(2rem, 5vw, 3.25rem);
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -32,11 +32,11 @@
 
 .openLink {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 0.75rem;
   letter-spacing: 0.06em;
   color: var(--accent-blue);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
+  border-bottom: 0.0625rem solid transparent;
   transition: border-color 0.2s;
   white-space: nowrap;
 }
@@ -47,20 +47,20 @@
 
 .hint {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--muted);
-  margin: 0 0 24px;
+  margin: 0 0 1.5rem;
 }
 
 .frame {
   width: 100%;
   height: 85vh;
-  border: 1px solid var(--border);
-  border-radius: 10px;
+  border: 0.0625rem solid var(--border);
+  border-radius: 0.625rem;
   background: white;
 }
 
 @media (max-width: 600px) {
-  .page { padding: 48px 16px 64px; }
+  .page { padding: 3rem 1rem 4rem; }
   .frame { height: 75vh; }
 }

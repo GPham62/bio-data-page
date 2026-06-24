@@ -5,7 +5,7 @@ export default function ChartTooltip({ active, payload, label, prefix = '', suff
   return (
     <div style={{
       background: '#0d1117', border: '1px solid #21262d',
-      padding: '8px 12px', borderRadius: 6, fontFamily: 'var(--mono)', fontSize: 11,
+      padding: '8px 12px', borderRadius: 6, fontFamily: 'var(--mono)', fontSize: '0.6875rem',
     }}>
       <p style={{ color: '#7d8590', marginBottom: 4 }}>{label}</p>
       {payload.map((p, i) => (

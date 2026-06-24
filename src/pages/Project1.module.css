@@ -1,42 +1,42 @@
 .heroAccent {
   color: var(--accent);
-  -webkit-text-stroke: 1px var(--accent);
+  -webkit-text-stroke: 0.0625rem var(--accent);
 }
 
 .tag {
-  font-size: 10px;
+  font-size: 0.625rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
-  border: 1px solid rgba(0,229,255,0.3);
-  border-radius: 3px;
-  padding: 3px 10px;
+  border: 0.0625rem solid rgba(0,229,255,0.3);
+  border-radius: 0.1875rem;
+  padding: 0.1875rem 0.625rem;
 }
 
 .linkRow {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 0.625rem;
   margin-top: 0;
 }
 
 .linkRow .pythonLink {
-  margin-top: 18px;
+  margin-top: 1.125rem;
 }
 
 .pythonLink {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  margin-top: 18px;
+  gap: 0.375rem;
+  margin-top: 1.125rem;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 0.6875rem;
   letter-spacing: 0.06em;
   color: var(--accent);
-  border: 1px solid rgba(0, 229, 255, 0.3);
-  border-radius: 6px;
-  padding: 7px 12px;
+  border: 0.0625rem solid rgba(0, 229, 255, 0.3);
+  border-radius: 0.375rem;
+  padding: 0.4375rem 0.75rem;
   transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
 
@@ -49,15 +49,15 @@
 .sqlLink {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  margin-top: 18px;
+  gap: 0.375rem;
+  margin-top: 1.125rem;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 0.6875rem;
   letter-spacing: 0.06em;
   color: var(--accent);
-  border: 1px solid rgba(0, 229, 255, 0.3);
-  border-radius: 6px;
-  padding: 7px 12px;
+  border: 0.0625rem solid rgba(0, 229, 255, 0.3);
+  border-radius: 0.375rem;
+  padding: 0.4375rem 0.75rem;
   transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
 
@@ -71,59 +71,59 @@
 .kpiRow {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 12px;
-  margin-bottom: 56px;
+  gap: 0.75rem;
+  margin-bottom: 3.5rem;
 }
 
 /* ML */
 .mlMeta {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
 }
 
 .mlScore {
   background: var(--bg2);
-  border: 1px solid var(--border);
-  border-top: 2px solid var(--ml-accent, var(--accent));
-  border-radius: 6px;
-  padding: 16px 18px 14px;
+  border: 0.0625rem solid var(--border);
+  border-top: 0.125rem solid var(--ml-accent, var(--accent));
+  border-radius: 0.375rem;
+  padding: 1rem 1.125rem 0.875rem;
   display: flex;
   flex-direction: column;
-  min-height: 112px;
+  min-height: 7rem;
   transition: border-color 0.2s, transform 0.2s;
 }
 
 .mlScore:hover {
   border-color: var(--ml-accent, var(--accent));
-  transform: translateY(-2px);
+  transform: translateY(-0.125rem);
 }
 
 .mlScoreLabel {
-  font-size: 14px;
+  font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: var(--ml-accent, var(--accent));
   opacity: 0.72;
   line-height: 1.4;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .mlScoreVal {
   font-family: var(--head);
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 800;
   color: var(--ml-accent, var(--accent));
   line-height: 1.15;
 }
 
 .mlScoreSub {
-  font-size: 11px;
+  font-size: 0.6875rem;
   color: var(--muted);
   line-height: 1.4;
   margin-top: auto;
-  padding-top: 6px;
+  padding-top: 0.375rem;
 }
 
 /* Responsive */

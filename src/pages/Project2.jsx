@@ -182,7 +182,7 @@ export default function Project2({ setActive }) {
                 <XAxis dataKey="range" {...axisStrong} />
                 <YAxis tickFormatter={fmt} {...axisMuted} />
                 <Tooltip content={<ChartTooltip color="#ff6b35" />} />
-                <Legend wrapperStyle={{ fontSize: 11, color: '#636e7b' }} />
+                <Legend wrapperStyle={{ fontSize: '0.6875rem', color: '#636e7b' }} />
                 <Bar dataKey="gate30" name="Gate 30" fill="#ff6b35" radius={[3, 3, 0, 0]} />
                 <Bar dataKey="gate40" name="Gate 40" fill="#a371f7" radius={[3, 3, 0, 0]} />
               </BarChart>
