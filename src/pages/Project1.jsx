@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  LineChart, Line, Legend, Cell, ErrorBar,
+  LineChart, Line, Cell, ErrorBar,
   ScatterChart, Scatter, LabelList, ReferenceLine,
 } from 'recharts'
 import StatCard            from '../components/StatCard.jsx'
@@ -14,15 +14,14 @@ import SqlCard             from '../components/SqlCard.jsx'
 import Note                from '../components/Note.jsx'
 import RoleSelectStrip from '../components/RoleSelectStrip.jsx'
 import OverlapHeatmap  from '../components/OverlapHeatmap.jsx'
-import { fmt, fmtUSD, pct } from '../utils/formatters.js'
+import { fmt, fmtUSD } from '../utils/formatters.js'
 import { gridProps, axisMuted, axisStrong } from '../utils/chartTheme.js'
 import {
-  salaryByTitle, remoteByTitle,
-  monthlyTrend, mlResults, pythonUrl, sqlUrl,
+  mlResults, pythonUrl, sqlUrl,
 } from '../data/project1.js'
 import {
   ROLE_COLORS, roleSalary, roleTrend, roleBarriers, overlapMatrix,
-  skillPremiumsDA, roleLadder, remotePremium, vietnamPostings,
+  skillPremiumsDA, vietnamPostings,
   heroCards, verdictRows,
 } from '../data/project1_roles.js'
 import styles from './Project1.module.css'
