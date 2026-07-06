@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   LineChart, Line, Legend, Cell, ErrorBar,
+  ScatterChart, Scatter, LabelList, ReferenceLine,
 } from 'recharts'
 import StatCard            from '../components/StatCard.jsx'
 import SectionTitle        from '../components/SectionTitle.jsx'
@@ -15,10 +16,10 @@ import Note                from '../components/Note.jsx'
 import RoleSelectStrip from '../components/RoleSelectStrip.jsx'
 import OverlapHeatmap  from '../components/OverlapHeatmap.jsx'
 import { fmt, fmtUSD, pct } from '../utils/formatters.js'
-import { gridProps, axisMuted, axisStrong, axisStrong11 } from '../utils/chartTheme.js'
+import { gridProps, axisMuted, axisStrong } from '../utils/chartTheme.js'
 import {
-  salaryByTitle, topCountries, remoteByTitle,
-  topSkills, monthlyTrend, mlResults, pythonUrl, sqlUrl,
+  salaryByTitle, remoteByTitle,
+  monthlyTrend, mlResults, pythonUrl, sqlUrl,
 } from '../data/project1.js'
 import {
   ROLE_COLORS, roleSalary, roleTrend, roleBarriers, overlapMatrix,
@@ -184,36 +185,37 @@ export default function Project1({ setActive }) {
         <InsightBlock label={t('p1.insight_label')} text={t('p1.s2_insight')} accent="var(--accent)" />
       </section>
 
-      {/* Section 3: Skills + Geo */}
+      {/* Section 03: Transition Map */}
       <section className="projectSection">
         <SectionTitle index="03" title={t('p1.s3_title')} sub={t('p1.s3_sub')} />
-        <div className="projectGrid2">
-          <ChartCard title={t('p1.chart_skills')} sub={t('p1.chart_skills_sub')} delay={0.05}>
-            <ResponsiveContainer width="100%" height={340}>
-              <BarChart data={topSkills} layout="vertical" margin={{ left: 0, right: 24, top: 4, bottom: 4 }} barSize={18}>
-                <CartesianGrid {...gridProps} horizontal={false} />
-                <XAxis type="number" tickFormatter={fmt} {...axisMuted} />
-                <YAxis type="category" dataKey="skill" width={72} {...axisStrong11} />
-                <Tooltip content={<ChartTooltip />} />
-                <Bar dataKey="count" fill="#00e5ff" radius={[0, 3, 3, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </ChartCard>
-
-          <ChartCard title={t('p1.chart_countries')} sub={t('p1.chart_countries_sub')} delay={0.1}>
-            <ResponsiveContainer width="100%" height={340}>
-              <BarChart data={topCountries} layout="vertical" margin={{ left: 0, right: 24, top: 4, bottom: 4 }} barSize={18}>
-                <CartesianGrid {...gridProps} horizontal={false} />
-                <XAxis type="number" tickFormatter={fmt} {...axisMuted} />
-                <YAxis type="category" dataKey="country" width={100} {...axisStrong} />
-                <Tooltip content={<ChartTooltip />} />
-                <Bar dataKey="postings" fill="#ff6b35" radius={[0, 3, 3, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </ChartCard>
-        </div>
+        <ChartCard title={t('p1.chart_overlap')} sub={t('p1.chart_overlap_sub')} delay={0.05}>
+          <OverlapHeatmap matrix={overlapMatrix} />
+        </ChartCard>
         <SqlCard title={t('p1.sql_card_title')} code={SQL_SNIPPET} href={sqlUrl} linkLabel={t('p1.sql_link')} accent="var(--accent)" />
         <InsightBlock label={t('p1.insight_label')} text={t('p1.s3_insight')} accent="var(--accent)" />
+      </section>
+
+      {/* Section 04: Skill ROI */}
+      <section className="projectSection">
+        <SectionTitle index="04" title={t('p1.s4_title')} sub={t('p1.s4_sub')} />
+        <ChartCard title={t('p1.chart_roi')} sub={t('p1.chart_roi_sub')} delay={0.05}>
+          <ResponsiveContainer width="100%" height={340}>
+            <ScatterChart margin={{ left: 8, right: 30, top: 16, bottom: 8 }}>
+              <CartesianGrid {...gridProps} />
+              <XAxis type="number" dataKey="demandPct" name="Demand" tickFormatter={v => `${v}%`} {...axisMuted} />
+              <YAxis type="number" dataKey="premium" name="Premium" tickFormatter={fmtUSD} {...axisMuted} />
+              <ReferenceLine y={0} stroke="#636e7b" strokeDasharray="4 3" />
+              <Tooltip content={<ChartTooltip prefix="$" />} cursor={{ strokeDasharray: '3 3' }} />
+              <Scatter data={skillPremiumsDA} fill="#00e5ff">
+                {skillPremiumsDA.map(d => (
+                  <Cell key={d.skill} fill={d.premium >= 0 ? '#00cc96' : '#ef553b'} />
+                ))}
+                <LabelList dataKey="skill" position="top" style={{ fontSize: '0.6875rem', fill: '#8b949e' }} />
+              </Scatter>
+            </ScatterChart>
+          </ResponsiveContainer>
+        </ChartCard>
+        <InsightBlock label={t('p1.insight_label')} text={t('p1.s4_insight')} accent="var(--accent)" />
       </section>
 
       {/* Section 4: ML */}
