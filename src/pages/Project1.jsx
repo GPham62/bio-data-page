@@ -53,6 +53,24 @@ FROM  job_postings_prep
 GROUP BY ALL
 ORDER BY skill_id, month_start_date, job_title_short;`
 
+const DAX_SNIPPET = `Degree Penalty ($) =
+-- Same-level comparison: raw medians are confounded by seniority
+VAR MedDegree =
+    MEDIANX(
+        FILTER(job_postings_fact,
+            job_postings_fact[job_no_degree_mention] = FALSE()
+            && job_postings_fact[salary_year_avg] >= 10000
+            && job_postings_fact[salary_year_avg] <= 600000),
+        job_postings_fact[salary_year_avg])
+VAR MedNoDegree =
+    MEDIANX(
+        FILTER(job_postings_fact,
+            job_postings_fact[job_no_degree_mention] = TRUE()
+            && job_postings_fact[salary_year_avg] >= 10000
+            && job_postings_fact[salary_year_avg] <= 600000),
+        job_postings_fact[salary_year_avg])
+RETURN MedNoDegree - MedDegree`
+
 export default function Project1({ setActive }) {
   const { t } = useTranslation()
 
@@ -315,6 +333,26 @@ export default function Project1({ setActive }) {
           </table>
         </div>
         <InsightBlock label={t('p1.insight_label')} text={t('p1.s7_insight')} accent="var(--green)" />
+      </section>
+
+      {/* Section 08: Power BI dashboard */}
+      <section className="projectSection">
+        <SectionTitle index="08" title={t('p1.s8_title')} sub={t('p1.s8_sub')} />
+        <div className="projectGrid1">
+          <ChartCard title={t('p1.dash_p1_caption')} delay={0.05}>
+            <img src="/p1_dashboard_faceoff.png" alt={t('p1.dash_p1_caption')} style={{ width: '100%', borderRadius: 6 }} />
+          </ChartCard>
+          <ChartCard title={t('p1.dash_p2_caption')} delay={0.1}>
+            <img src="/p1_dashboard_switching.png" alt={t('p1.dash_p2_caption')} style={{ width: '100%', borderRadius: 6 }} />
+          </ChartCard>
+        </div>
+        <SqlCard
+          title={t('p1.dax_card_title')}
+          code={DAX_SNIPPET}
+          href="https://github.com/GPham62/bio-data-page/raw/main/powerbi/p1/p1.pbix"
+          linkLabel={t('p1.dash_download')}
+          accent="var(--purple)"
+        />
       </section>
 
     </div>
