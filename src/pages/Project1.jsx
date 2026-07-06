@@ -12,12 +12,19 @@ import InsightBlock        from '../components/InsightBlock.jsx'
 import RecommendationsList from '../components/RecommendationsList.jsx'
 import SqlCard             from '../components/SqlCard.jsx'
 import Note                from '../components/Note.jsx'
+import RoleSelectStrip from '../components/RoleSelectStrip.jsx'
+import OverlapHeatmap  from '../components/OverlapHeatmap.jsx'
 import { fmt, fmtUSD, pct } from '../utils/formatters.js'
 import { gridProps, axisMuted, axisStrong, axisStrong11 } from '../utils/chartTheme.js'
 import {
   salaryByTitle, topCountries, remoteByTitle,
-  topSkills, monthlyTrend, mlResults, stats, pythonUrl, sqlUrl,
+  topSkills, monthlyTrend, mlResults, pythonUrl, sqlUrl,
 } from '../data/project1.js'
+import {
+  ROLE_COLORS, roleSalary, roleTrend, roleBarriers, overlapMatrix,
+  skillPremiumsDA, roleLadder, remotePremium, vietnamPostings,
+  heroCards, verdictRows,
+} from '../data/project1_roles.js'
 import styles from './Project1.module.css'
 
 // Recharts renders the first datum at the bottom of a vertical bar chart, so
@@ -72,10 +79,12 @@ export default function Project1({ setActive }) {
         </h1>
         <p className="projectHeroSub">{t('p1.sub')}</p>
         <div className="projectHeroStack">
-          {['SQL', 'Python', 'DuckDB', 'MotherDuck', 'Pandas', 'Plotly', 'Scikit-learn'].map(tech => (
+          {['SQL', 'Python', 'DuckDB', 'MotherDuck', 'Pandas', 'Plotly', 'Scikit-learn', 'Power BI', 'DAX'].map(tech => (
             <span key={tech} className="projectPill">{tech}</span>
           ))}
         </div>
+        <RoleSelectStrip cards={heroCards} />
+        <p className={styles.stripHint}>{t('p1.strip_hint')}</p>
         <div className={styles.linkRow}>
           <a className={styles.pythonLink} href={pythonUrl} target="_blank" rel="noopener noreferrer">
             {t('p1.python_link')} <span aria-hidden>↗</span>
@@ -89,11 +98,11 @@ export default function Project1({ setActive }) {
       {/* KPIs */}
       <section className={styles.kpiRow}>
         <StatCard label={t('p1.kpi_postings')}   value="1.6M"   sub={t('p1.kpi_postings_sub')}   accent="var(--accent)"  delay={0.05} />
-        <StatCard label={t('p1.kpi_countries')}  value={stats.countriesCovered} sub={t('p1.kpi_countries_sub')} accent="var(--green)"  delay={0.10} />
-        <StatCard label={t('p1.kpi_salary_rec')} value="77K"    sub={t('p1.kpi_salary_rec_sub')} accent="var(--purple)" delay={0.15} />
-        <StatCard label={t('p1.kpi_median')}     value="$110K"  sub={t('p1.kpi_median_sub')}     accent="var(--accent2)"delay={0.20} />
-        <StatCard label={t('p1.kpi_r2')}         value="R² 0.53" sub={t('p1.kpi_r2_sub')}        accent="var(--green)"  delay={0.25} />
-        <StatCard label={t('p1.kpi_skill')}      value="SQL"    sub={t('p1.kpi_skill_sub')}      accent="var(--purple)" delay={0.30} />
+        <StatCard label={t('p1.kpi_countries')}  value="5"      sub={t('p1.kpi_countries_sub')}  accent="var(--green)"   delay={0.10} />
+        <StatCard label={t('p1.kpi_salary_rec')} value="40K"    sub={t('p1.kpi_salary_rec_sub')} accent="var(--purple)"  delay={0.15} />
+        <StatCard label={t('p1.kpi_median')}     value="7.6%"   sub={t('p1.kpi_median_sub')}     accent="var(--accent2)" delay={0.20} />
+        <StatCard label={t('p1.kpi_r2')}         value="0.88"   sub={t('p1.kpi_r2_sub')}         accent="var(--green)"   delay={0.25} />
+        <StatCard label={t('p1.kpi_skill')}      value="+$12K"  sub={t('p1.kpi_skill_sub')}      accent="var(--purple)"  delay={0.30} />
       </section>
 
       {/* Section 1: Salary */}
