@@ -175,7 +175,14 @@
       "Add <strong>Spark or AWS/Azure</strong> to your stack — they’re the single strongest salary signal in the model.",
       "Aim for a <strong>Senior or Engineer title</strong> — seniority is the #1 predictor of landing above the $110K median.",
       "Target <strong>remote-friendly US roles</strong> — they concentrate the highest compensation in the dataset."
-    ]
+    ],
+    "strip_median": "median salary",
+    "strip_hint": "5 contenders. Scroll to see who wins.",
+    "badge_da": "Widest entry door",
+    "badge_ba": "DA’s twin, less code",
+    "badge_de": "Vietnam #1 · top pay",
+    "badge_ds": "Highest ceiling, needs degree",
+    "badge_se": "The baseline I know"
   },
   "p2": {
     "tag": "Project 02",

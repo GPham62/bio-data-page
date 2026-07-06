@@ -175,7 +175,14 @@
       "Thêm <strong>Spark hoặc AWS/Azure</strong> vào bộ kỹ năng — đây là tín hiệu lương mạnh nhất trong mô hình.",
       "Hướng tới <strong>chức danh Senior hoặc Kỹ sư</strong> — thâm niên là yếu tố dự báo #1 để đạt lương trên mức $110K trung vị.",
       "Nhắm vào <strong>vị trí remote tại Mỹ</strong> — nơi tập trung mức lương cao nhất trong tập dữ liệu."
-    ]
+    ],
+    "strip_median": "lương trung vị",
+    "strip_hint": "5 ứng viên. Cuộn xuống xem ai thắng.",
+    "badge_da": "Cửa vào rộng nhất",
+    "badge_ba": "Anh em với DA, ít code hơn",
+    "badge_de": "Số 1 Việt Nam · lương cao",
+    "badge_ds": "Trần cao nhất, cần bằng cấp",
+    "badge_se": "Vạch xuất phát của tôi"
   },
   "p2": {
     "tag": "Dự Án 02",
