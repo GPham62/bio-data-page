@@ -143,6 +143,47 @@ export default function Project1({ setActive }) {
         <InsightBlock label={t('p1.insight_label')} text={t('p1.s1_insight')} accent="var(--accent)" />
       </section>
 
+      {/* Section 02: Entry Barriers */}
+      <section className="projectSection">
+        <SectionTitle index="02" title={t('p1.s2_title')} sub={t('p1.s2_sub')} />
+        <div className="projectGrid2">
+          <ChartCard title={t('p1.chart_junior')} sub={t('p1.chart_junior_sub')} delay={0.05}>
+            <ResponsiveContainer width="100%" height={260}>
+              <BarChart data={roleBarriers} layout="vertical" margin={{ left: 0, right: 24 }}>
+                <CartesianGrid {...gridProps} horizontal={false} />
+                <XAxis type="number" tickFormatter={v => `${v}%`} {...axisMuted} />
+                <YAxis type="category" dataKey="role" width={130} {...axisStrong} />
+                <Tooltip content={<ChartTooltip suffix="%" />} />
+                <Bar dataKey="juniorPct" radius={[0, 3, 3, 0]} barSize={18}>
+                  {roleBarriers.map(r => {
+                    const short = roleSalary.find(x => x.role === r.role).short
+                    return <Cell key={r.role} fill={ROLE_COLORS[short]} />
+                  })}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </ChartCard>
+
+          <ChartCard title={t('p1.chart_degpen')} sub={t('p1.chart_degpen_sub')} delay={0.1}>
+            <ResponsiveContainer width="100%" height={260}>
+              <BarChart data={roleBarriers} layout="vertical" margin={{ left: 0, right: 30 }}>
+                <CartesianGrid {...gridProps} horizontal={false} />
+                <XAxis type="number" tickFormatter={fmtUSD} {...axisMuted} />
+                <YAxis type="category" dataKey="role" width={130} {...axisStrong} />
+                <Tooltip content={<ChartTooltip prefix="$" />} />
+                <Bar dataKey="degreePenaltyMid" radius={[0, 3, 3, 0]} barSize={18}>
+                  {roleBarriers.map(r => (
+                    <Cell key={r.role} fill={r.degreePenaltyMid < -5000 ? '#ef553b' : '#00cc96'} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </ChartCard>
+        </div>
+        <Note text={t('p1.confounder_note')} accent="var(--accent2)" />
+        <InsightBlock label={t('p1.insight_label')} text={t('p1.s2_insight')} accent="var(--accent)" />
+      </section>
+
       {/* Section 3: Skills + Geo */}
       <section className="projectSection">
         <SectionTitle index="03" title={t('p1.s3_title')} sub={t('p1.s3_sub')} />
