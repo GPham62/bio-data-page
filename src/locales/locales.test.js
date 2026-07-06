@@ -53,10 +53,6 @@ describe('locale parity (en.json <-> vi.json)', () => {
   })
 
   describe('translated arrays keep the same length', () => {
-    it('p1.recs_items has the same number of recommendations in both locales', () => {
-      expect(en.p1.recs_items.length).toBe(vi.p1.recs_items.length)
-    })
-
     it('p3.recs_items has the same number of recommendations in both locales', () => {
       expect(en.p3.recs_items.length).toBe(vi.p3.recs_items.length)
     })

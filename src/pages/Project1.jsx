@@ -10,7 +10,6 @@ import SectionTitle        from '../components/SectionTitle.jsx'
 import ChartCard           from '../components/ChartCard.jsx'
 import ChartTooltip        from '../components/ChartTooltip.jsx'
 import InsightBlock        from '../components/InsightBlock.jsx'
-import RecommendationsList from '../components/RecommendationsList.jsx'
 import SqlCard             from '../components/SqlCard.jsx'
 import Note                from '../components/Note.jsx'
 import RoleSelectStrip from '../components/RoleSelectStrip.jsx'
@@ -218,9 +217,9 @@ export default function Project1({ setActive }) {
         <InsightBlock label={t('p1.insight_label')} text={t('p1.s4_insight')} accent="var(--accent)" />
       </section>
 
-      {/* Section 4: ML */}
+      {/* Section 05: ML reframe */}
       <section className="projectSection">
-        <SectionTitle index="04" title={t('p1.s4_title')} sub={t('p1.s4_sub')} />
+        <SectionTitle index="05" title={t('p1.s5_title')} sub={t('p1.s5_sub')} />
 
         <div className={styles.mlMeta}>
           <div className={styles.mlScore} style={{ '--ml-accent': 'var(--accent)' }}>
@@ -260,17 +259,62 @@ export default function Project1({ setActive }) {
         </ChartCard>
 
         <Note text={t('p1.ml_note')} accent="var(--accent)" />
-        <InsightBlock label={t('p1.insight_label')} text={t('p1.s4_insight')} accent="var(--accent)" />
+        <InsightBlock label={t('p1.insight_label')} text={t('p1.s5_insight')} accent="var(--accent)" />
       </section>
 
-      {/* Section 5: Recommendations */}
+      {/* Section 06: Vietnam reality check */}
       <section className="projectSection">
-        <SectionTitle index="05" title={t('p1.s5_title')} sub={t('p1.s5_sub')} />
-        <RecommendationsList
-          title={t('p1.recs_title')}
-          items={t('p1.recs_items', { returnObjects: true })}
-          accent="var(--accent)"
-        />
+        <SectionTitle index="06" title={t('p1.s6_title')} sub={t('p1.s6_sub')} />
+        <div className={styles.vnCard}>
+          <div className={styles.vnTitle}>{t('p1.vn_title')}</div>
+          <div className={styles.vnRow}>
+            {vietnamPostings.map(v => {
+              const short = roleSalary.find(x => x.role === v.role).short
+              return (
+                <div key={v.role} className={styles.vnStat} style={{ '--vn-accent': ROLE_COLORS[short] }}>
+                  <span className={styles.vnShort}>{short}</span>
+                  <span className={styles.vnCount}>{fmt(v.postings)}</span>
+                  <span className={styles.vnN}>n = {fmt(v.postings)}</span>
+                </div>
+              )
+            })}
+          </div>
+          <Note text={t('p1.vn_caveat')} accent="var(--accent2)" />
+        </div>
+      </section>
+
+      {/* Section 07: Verdict */}
+      <section className="projectSection">
+        <SectionTitle index="07" title={t('p1.s7_title')} sub={t('p1.s7_sub')} />
+        <div className={styles.verdictWrap}>
+          <table className={styles.verdictTable}>
+            <thead>
+              <tr>
+                <th />
+                {['DA', 'BA', 'DE', 'DS', 'SE'].map(s => (
+                  <th key={s} style={{ color: ROLE_COLORS[s] }}>{s}</th>
+                ))}
+                <th>{t('p1.verdict_winner')}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {verdictRows.map(row => (
+                <tr key={row.axisKey}>
+                  <td className={styles.verdictAxis}>{t(`p1.verdict_axis_${row.axisKey}`)}</td>
+                  {['DA', 'BA', 'DE', 'DS', 'SE'].map(s => (
+                    <td key={s} className={row.winnerShort === s ? styles.verdictWin : undefined}>
+                      {row.cells[s]}
+                    </td>
+                  ))}
+                  <td className={styles.verdictWinner} style={{ color: ROLE_COLORS[row.winnerShort] }}>
+                    {row.winnerShort}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <InsightBlock label={t('p1.insight_label')} text={t('p1.s7_insight')} accent="var(--green)" />
       </section>
 
     </div>

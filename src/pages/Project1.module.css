@@ -142,11 +142,32 @@
   padding-top: 0.375rem;
 }
 
+.vnCard {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 1.25rem;
+  background: rgba(255,255,255,0.02);
+}
+.vnTitle { font-size: 0.9375rem; font-weight: 700; margin-bottom: 1rem; }
+.vnRow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.75rem; margin-bottom: 1rem; }
+.vnStat { display: flex; flex-direction: column; gap: 0.25rem; padding: 0.75rem; border-left: 2px solid var(--vn-accent); background: rgba(255,255,255,0.02); border-radius: 4px; }
+.vnShort { font-weight: 800; color: var(--vn-accent); }
+.vnCount { font-size: 1.125rem; font-weight: 700; }
+.vnN { font-size: 0.625rem; color: #636e7b; }
+.verdictWrap { overflow-x: auto; }
+.verdictTable { width: 100%; border-collapse: collapse; font-size: 0.8125rem; min-width: 560px; }
+.verdictTable th, .verdictTable td { padding: 0.625rem 0.75rem; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.verdictAxis { text-align: left !important; color: #8b949e; font-weight: 600; white-space: nowrap; }
+.verdictWin { background: rgba(0,204,150,0.12); font-weight: 700; border-radius: 4px; }
+.verdictWinner { font-weight: 800; }
+
 /* Responsive */
 @media (max-width: 900px) {
   .kpiRow { grid-template-columns: repeat(3, 1fr); }
   .mlMeta { grid-template-columns: repeat(2, 1fr); }
 }
+
+@media (max-width: 860px) { .vnRow { grid-template-columns: repeat(2, 1fr); } }
 
 @media (max-width: 600px) {
   .kpiRow { grid-template-columns: repeat(2, 1fr); }
