@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  LineChart, Line, Legend, Cell,
+  LineChart, Line, Legend, Cell, ErrorBar,
 } from 'recharts'
 import StatCard            from '../components/StatCard.jsx'
 import SectionTitle        from '../components/SectionTitle.jsx'
@@ -105,61 +105,42 @@ export default function Project1({ setActive }) {
         <StatCard label={t('p1.kpi_skill')}      value="+$12K"  sub={t('p1.kpi_skill_sub')}      accent="var(--purple)"  delay={0.30} />
       </section>
 
-      {/* Section 1: Salary */}
+      {/* Section 01: The Contenders */}
       <section className="projectSection">
         <SectionTitle index="01" title={t('p1.s1_title')} sub={t('p1.s1_sub')} />
-        <div className="projectGrid2">
+        <div className="projectGrid1">
           <ChartCard title={t('p1.chart_salary')} sub={t('p1.chart_salary_sub')} delay={0.05}>
-            <ResponsiveContainer width="100%" height={280}>
-              <BarChart data={salaryByTitle} layout="vertical" margin={{ left: 0, right: 20 }}>
+            <ResponsiveContainer width="100%" height={260}>
+              <BarChart data={roleSalary.map(r => ({ ...r, err: [r.median - r.p25, r.p75 - r.median] }))}
+                        layout="vertical" margin={{ left: 0, right: 30 }}>
                 <CartesianGrid {...gridProps} horizontal={false} />
                 <XAxis type="number" tickFormatter={fmtUSD} {...axisMuted} />
-                <YAxis type="category" dataKey="title" width={130} {...axisStrong} />
+                <YAxis type="category" dataKey="role" width={130} {...axisStrong} />
                 <Tooltip content={<ChartTooltip prefix="$" />} />
-                <Bar dataKey="salary" radius={[0, 3, 3, 0]}>
-                  {salaryByTitle.map((_, i) => (
-                    <Cell key={i} fill={i < 3 ? '#00cc96' : i < 6 ? '#00e5ff' : '#636e7b'} />
-                  ))}
+                <Bar dataKey="median" radius={[0, 3, 3, 0]} barSize={18}>
+                  {roleSalary.map(r => <Cell key={r.short} fill={ROLE_COLORS[r.short]} />)}
+                  <ErrorBar dataKey="err" direction="x" width={5} strokeWidth={1.5} stroke="#8b949e" />
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
           </ChartCard>
+        </div>
 
-          <ChartCard title={t('p1.chart_remote')} sub={t('p1.chart_remote_sub')} delay={0.1}>
-            <ResponsiveContainer width="100%" height={280}>
-              <BarChart data={remoteByTitle} layout="vertical" margin={{ left: 0, right: 20 }}>
-                <CartesianGrid {...gridProps} horizontal={false} />
-                <XAxis type="number" tickFormatter={v => `${v}%`} {...axisMuted} />
-                <YAxis type="category" dataKey="title" width={130} {...axisStrong} />
-                <Tooltip content={<ChartTooltip suffix="%" />} />
-                <Bar dataKey="pct" fill="#a371f7" radius={[0, 3, 3, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </ChartCard>
+        <div className={styles.multiples}>
+          {roleSalary.map((r, i) => (
+            <ChartCard key={r.short} title={r.role} sub={`${fmt(roleTrend.reduce((s, m) => s + (m[r.role] || 0), 0))} postings`} delay={0.05 + i * 0.04}>
+              <ResponsiveContainer width="100%" height={110}>
+                <LineChart data={roleTrend} margin={{ left: 0, right: 8, top: 4 }}>
+                  <XAxis dataKey="month" hide />
+                  <YAxis hide domain={[0, 'dataMax']} />
+                  <Tooltip content={<ChartTooltip />} />
+                  <Line type="monotone" dataKey={r.role} stroke={ROLE_COLORS[r.short]} strokeWidth={2} dot={false} />
+                </LineChart>
+              </ResponsiveContainer>
+            </ChartCard>
+          ))}
         </div>
         <InsightBlock label={t('p1.insight_label')} text={t('p1.s1_insight')} accent="var(--accent)" />
-      </section>
-
-      {/* Section 2: Trends */}
-      <section className="projectSection">
-        <SectionTitle index="02" title={t('p1.s2_title')} sub={t('p1.s2_sub')} />
-        <div className="projectGrid1">
-          <ChartCard title={t('p1.chart_trend')} sub={t('p1.chart_trend_sub')} delay={0.05}>
-            <ResponsiveContainer width="100%" height={260}>
-              <LineChart data={monthlyTrend} margin={{ left: 0, right: 20 }}>
-                <CartesianGrid {...gridProps} />
-                <XAxis dataKey="month" {...axisMuted} />
-                <YAxis yAxisId="l" tickFormatter={fmt} {...axisMuted} />
-                <YAxis yAxisId="r" orientation="right" tickFormatter={v => `${v}%`} {...axisMuted} />
-                <Tooltip content={<ChartTooltip />} />
-                <Legend wrapperStyle={{ fontSize: '0.6875rem', color: '#636e7b' }} />
-                <Line yAxisId="l" type="monotone" dataKey="postings" name="Postings" stroke="#00e5ff" strokeWidth={2} dot={false} />
-                <Line yAxisId="r" type="monotone" dataKey="remote"   name="Remote %"  stroke="#00cc96" strokeWidth={2} dot={false} strokeDasharray="5 3" />
-              </LineChart>
-            </ResponsiveContainer>
-          </ChartCard>
-        </div>
-        <InsightBlock label={t('p1.insight_label')} text={t('p1.s2_insight')} accent="var(--accent)" />
       </section>
 
       {/* Section 3: Skills + Geo */}
