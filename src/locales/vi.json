@@ -120,7 +120,7 @@
     "sub": "Một game developer chọn nghề dữ liệu tiếp theo — bằng dữ liệu. Năm nghề đối đầu về lương, rào cản gia nhập, chi phí chuyển nghề và ROI kỹ năng, trên 1,6 triệu tin tuyển dụng (2023–2025).",
     "python_link": "Xem Python Script",
     "sql_link": "Xem SQL Pipeline",
-    "sql_card_title": "04_skills_mart.sql — Truy Vấn Nhu Cầu Kỹ Năng",
+    "sql_card_title": "08_skill_roi.sql — Truy Vấn ROI Kỹ Năng",
     "kpi_postings": "Tin đã phân tích",
     "kpi_postings_sub": "2023 – 2025",
     "kpi_countries": "Nghề so sánh",

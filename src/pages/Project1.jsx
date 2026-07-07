@@ -81,27 +81,30 @@ function DegreeDumbbell({ x, y, width, height, payload }) {
   )
 }
 
-const SQL_SNIPPET = `-- Populate skills demand fact: boolean flags → integers, then aggregate by month
-WITH job_postings_prep AS (
-    SELECT
-        sjd.skill_id,
-        DATE_TRUNC('month', jpf.job_posted_date) AS month_start_date,
-        jpf.job_title_short,
-        CASE WHEN jpf.job_work_from_home    THEN 1 ELSE 0 END AS is_remote,
-        CASE WHEN jpf.job_health_insurance  THEN 1 ELSE 0 END AS has_health_insurance,
-        CASE WHEN jpf.job_no_degree_mention THEN 1 ELSE 0 END AS no_degree_mentioned
-    FROM job_postings_fact AS jpf
-    INNER JOIN skills_job_dim AS sjd ON sjd.job_id = jpf.job_id
+const SQL_SNIPPET = `-- Skill ROI: premium = median salary WITH the skill − median WITHOUT it,
+-- computed on mid-level DA postings only so seniority can't fake the gap
+WITH mid_da AS (
+    SELECT job_id, salary_year_avg
+    FROM job_postings_fact
+    WHERE job_title_short = 'Data Analyst'
+      AND salary_year_avg BETWEEN 10000 AND 600000
+      AND NOT regexp_matches(LOWER(job_title), 'senior|sr[. ]|staff|principal|lead')
+      AND NOT regexp_matches(LOWER(job_title), 'junior|jr[. ]|entry|intern|graduate')
+),
+job_skills AS (
+    SELECT DISTINCT m.job_id, m.salary_year_avg, sd.skills AS skill
+    FROM mid_da m
+    JOIN skills_job_dim sjd ON sjd.job_id  = m.job_id
+    JOIN skills_dim     sd  ON sd.skill_id = sjd.skill_id
 )
 SELECT
-    skill_id, month_start_date, job_title_short,
-    COUNT(*)                  AS postings_count,
-    SUM(is_remote)            AS remote_postings_count,
-    SUM(has_health_insurance) AS health_insurance_postings_count,
-    SUM(no_degree_mentioned)  AS no_degree_postings_count
-FROM  job_postings_prep
-GROUP BY ALL
-ORDER BY skill_id, month_start_date, job_title_short;`
+    skill,
+    ROUND(MEDIAN(salary_year_avg) FILTER (has_skill)
+        - MEDIAN(salary_year_avg) FILTER (NOT has_skill), 0) AS premium_usd,
+    ROUND(100.0 * COUNT(*) FILTER (has_skill) / COUNT(*), 1) AS demand_pct
+FROM flags   -- top-12 skills × every job, has_skill flag (full query on GitHub)
+GROUP BY skill
+ORDER BY premium_usd DESC;`
 
 const DAX_SNIPPET = `Degree Penalty ($) =
 -- Same-level comparison: raw medians are confounded by seniority

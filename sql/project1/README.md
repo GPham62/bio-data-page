@@ -13,6 +13,7 @@ DuckDB/MotherDuck pipeline that ingests 1.6 M job postings and builds a set of a
 | `05_priority_mart_create.sql` | Snapshot table for priority roles (Data Analyst / Scientist / Engineer) |
 | `06_priority_mart_update.sql` | SCD-style MERGE to keep the snapshot current |
 | `07_company_mart.sql` | Company, location, job-title dims + `fact_company_hiring_monthly` |
+| `08_skill_roi.sql` | Analysis query: salary premium vs demand per skill, mid-level Data Analyst |
 
 ## Quick start
 

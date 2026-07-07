@@ -120,7 +120,7 @@
     "sub": "A game developer picks his next data role — with data. Five careers head-to-head on pay, entry barriers, switching cost and skill ROI, across 1.6M job postings (2023–2025).",
     "python_link": "View Python Script",
     "sql_link": "View SQL Pipeline",
-    "sql_card_title": "04_skills_mart.sql — Skill Demand Query",
+    "sql_card_title": "08_skill_roi.sql — Skill ROI Query",
     "kpi_postings": "Postings Analyzed",
     "kpi_postings_sub": "2023 – 2025",
     "kpi_countries": "Roles Compared",
