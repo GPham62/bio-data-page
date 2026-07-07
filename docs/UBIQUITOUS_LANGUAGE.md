@@ -198,6 +198,47 @@ analysis, not a card on the home page.
 
 &nbsp;
 
+# Copy Style Rule — Plain English
+
+**Rule (2026-07-07, user directive):** All user-facing copy — headings, chart titles, KPI labels,
+badges, captions — must use plain, literal English readable by non-native speakers.
+No idioms, no metaphors, no culture-bound sports/gambling imagery. Say what the thing is.
+The Vietnamese locale follows the same rule: no literal translations of English metaphors.
+
+## Entry
+**Means:** How easy it is to get a first job in a role — junior-posting share, degree requirement, skill count.
+**In code:** `p1.kpi_median` ("Easiest Entry"), `p1.chart_junior` ("Junior Openings"), `p1.verdict_axis_entry`
+**Banned aliases:** `door` / `door width` / `entry door` (metaphor), `break into` (idiom)
+**Context:** Project Analysis
+
+## Compare
+**Means:** Putting the five roles next to each other on the same measure.
+**In code:** `p1.kpi_countries_sub` ("compared side by side"), Power BI page 1 "Role Comparison"
+**Banned aliases:** `head-to-head`, `face-off`, `contenders`, `showdown` (competition idioms)
+**Context:** Project Analysis
+
+## Idioms replaced (2026-07-07)
+
+| Key | Before (idiom) | After (plain) |
+|---|---|---|
+| `p1.s5_title` | "Does a model agree with the eyeballing?" | "Does a machine learning model agree with the charts?" |
+| `p1.s1_title` | "Meet the contenders" | "Meet the five roles" |
+| `p1.s2_title` | "…easiest to break into?" | "…easiest to enter?" |
+| `p1.chart_junior` / `verdict_axis_entry` | "Junior Door Width" | "Junior Openings" |
+| `p1.kpi_median` / `badge_da` | "Widest Entry Door" | "Easiest Entry" / "Easiest to enter" |
+| `p1.kpi_skill` | "Top Skill Bet" | "Best Skill to Learn" |
+| `p1.sub` / `kpi_countries_sub` | "head-to-head" | "compared side by side" |
+| `p1.dash_p1_caption` | "The Face-Off" | "Role Comparison" |
+| `p1.s6_sub` | "flip the global picture" | "reverse the global ranking" |
+| `p1.vn_title` | "Vietnam reality check" | "What the Vietnam data says" |
+| `p1.s7_sub` | "Six axes" | "Six criteria" |
+| `p1.ml_note` | "5-fold CV bake-off" | "5-fold cross-validation" |
+| `p1.strip_hint` | "5 contenders" | "5 roles" |
+
+---
+
+&nbsp;
+
 # Drift Register
 
 Places where the codebase currently uses a term other than the canonical one.
