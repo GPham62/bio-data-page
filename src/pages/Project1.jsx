@@ -271,7 +271,6 @@ export default function Project1({ setActive }) {
         <ChartCard title={t('p1.chart_overlap')} sub={t('p1.chart_overlap_sub')} delay={0.05}>
           <OverlapHeatmap matrix={overlapMatrix} />
         </ChartCard>
-        <SqlCard title={t('p1.sql_card_title')} code={SQL_SNIPPET} href={sqlUrl} linkLabel={t('p1.sql_link')} accent="var(--accent)" />
         <InsightBlock label={t('p1.insight_label')} text={t('p1.s3_insight')} accent="var(--accent)" />
       </section>
 
@@ -299,6 +298,7 @@ export default function Project1({ setActive }) {
             </ScatterChart>
           </ResponsiveContainer>
         </ChartCard>
+        <SqlCard title={t('p1.sql_card_title')} code={SQL_SNIPPET} href={sqlUrl} linkLabel={t('p1.sql_link')} accent="var(--accent)" />
         <InsightBlock label={t('p1.insight_label')} text={t('p1.s4_insight')} accent="var(--accent)" />
       </section>
 
