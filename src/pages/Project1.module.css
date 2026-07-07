@@ -74,10 +74,11 @@
   letter-spacing: 0.02em;
 }
 
-/* KPI row */
+/* KPI row — minmax(0,…) lets cards shrink below their content width; plain
+   1fr tracks refuse to and push a horizontal scrollbar onto the whole page */
 .kpiRow {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 0.75rem;
   margin-bottom: 3.5rem;
 }
@@ -85,7 +86,7 @@
 /* Section 01: role salary/trend small multiples */
 .multiples {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.75rem;
   margin-top: 0.75rem;
 }
@@ -151,6 +152,14 @@
 .vnTitle { font-size: 0.9375rem; font-weight: 700; margin-bottom: 1rem; }
 .vnRow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.75rem; margin-bottom: 1rem; }
 .vnStat { display: flex; flex-direction: column; gap: 0.25rem; padding: 0.75rem; border-left: 2px solid var(--vn-accent); background: rgba(255,255,255,0.02); border-radius: 4px; }
+
+/* Section 08: dashboard screenshots — fixed-aspect box so the pre-Task-12
+   missing-image state renders as a tidy placeholder, not a broken glyph */
+.dashImg {
+  display: block; width: 100%; aspect-ratio: 16 / 9;
+  object-fit: cover; border-radius: 6px;
+  background: var(--bg3);
+}
 .vnShort { font-weight: 800; color: var(--vn-accent); }
 .vnCount { font-size: 1.125rem; font-weight: 700; }
 .vnN { font-size: 0.625rem; color: #636e7b; }
@@ -163,13 +172,13 @@
 
 /* Responsive */
 @media (max-width: 900px) {
-  .kpiRow { grid-template-columns: repeat(3, 1fr); }
+  .kpiRow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .mlMeta { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 860px) { .vnRow { grid-template-columns: repeat(2, 1fr); } }
 
 @media (max-width: 600px) {
-  .kpiRow { grid-template-columns: repeat(2, 1fr); }
+  .kpiRow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .mlMeta { grid-template-columns: 1fr 1fr; }
 }

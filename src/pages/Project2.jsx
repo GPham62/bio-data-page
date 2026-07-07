@@ -84,7 +84,7 @@ export default function Project2({ setActive }) {
 
       {/* Section 1: Experiment Design */}
       <section className="projectSection">
-        <SectionTitle index="01" title={t('p2.s1_title')} sub={t('p2.s1_sub')} />
+        <SectionTitle index="01" title={t('p2.s1_title')} sub={t('p2.s1_sub')} fxIndex fxTitle />
         <div className="projectGrid1">
           <ChartCard title={t('p2.chart_groups')} sub={t('p2.chart_groups_sub')} delay={0.05}>
             <ResponsiveContainer width="100%" height={200}>
@@ -106,7 +106,7 @@ export default function Project2({ setActive }) {
 
       {/* Section 2: Retention Analysis */}
       <section className="projectSection">
-        <SectionTitle index="02" title={t('p2.s2_title')} sub={t('p2.s2_sub')} />
+        <SectionTitle index="02" title={t('p2.s2_title')} sub={t('p2.s2_sub')} fxIndex fxTitle />
         <div className="projectGrid2">
           <ChartCard title={t('p2.chart_ret1')} sub={t('p2.chart_ret1_sub')} delay={0.05}>
             <ResponsiveContainer width="100%" height={220}>
@@ -145,7 +145,7 @@ export default function Project2({ setActive }) {
 
       {/* Section 3: Bootstrap Analysis */}
       <section className="projectSection">
-        <SectionTitle index="03" title={t('p2.s3_title')} sub={t('p2.s3_sub')} />
+        <SectionTitle index="03" title={t('p2.s3_title')} sub={t('p2.s3_sub')} fxIndex fxTitle />
         <div className="projectGrid1">
           <ChartCard title={t('p2.chart_bootstrap')} sub={t('p2.chart_bootstrap_sub')} delay={0.05}>
             <ResponsiveContainer width="100%" height={280}>
@@ -173,7 +173,7 @@ export default function Project2({ setActive }) {
 
       {/* Section 4: Game Rounds Distribution */}
       <section className="projectSection">
-        <SectionTitle index="04" title={t('p2.s4_title')} sub={t('p2.s4_sub')} />
+        <SectionTitle index="04" title={t('p2.s4_title')} sub={t('p2.s4_sub')} fxIndex fxTitle />
         <div className="projectGrid1">
           <ChartCard title={t('p2.chart_rounds')} sub={t('p2.chart_rounds_sub')} delay={0.05}>
             <ResponsiveContainer width="100%" height={280}>

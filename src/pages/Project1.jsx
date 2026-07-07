@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  LineChart, Line, Cell, ErrorBar,
+  LineChart, Line, Cell,
   ScatterChart, Scatter, LabelList, ReferenceLine,
 } from 'recharts'
 import StatCard            from '../components/StatCard.jsx'
@@ -15,7 +15,7 @@ import Note                from '../components/Note.jsx'
 import RoleSelectStrip from '../components/RoleSelectStrip.jsx'
 import OverlapHeatmap  from '../components/OverlapHeatmap.jsx'
 import { fmt, fmtUSD } from '../utils/formatters.js'
-import { gridProps, axisMuted, axisStrong } from '../utils/chartTheme.js'
+import { gridProps, axisMuted, axisStrong, barCursor, lineCursor, ROLE_TEXT } from '../utils/chartTheme.js'
 import {
   mlResults, pythonUrl, sqlUrl,
 } from '../data/project1.js'
@@ -29,6 +29,24 @@ import styles from './Project1.module.css'
 // Recharts renders the first datum at the bottom of a vertical bar chart, so
 // reverse the most-important-first list to put the strongest driver on top.
 const importanceData = [...mlResults.featureImportance].reverse()
+
+// Floating P25–P75 salary band with a solid median tick (levels.fyi-style).
+// Rendered as the visible half of a stacked bar: an invisible base bar spans
+// 0→p25, this shape draws the p25→p75 segment. Median position is linear
+// interpolation, which only holds on a linear x-axis.
+function IQRBand({ x, y, width, height, payload }) {
+  const { p25, median, p75, short } = payload
+  const c = ROLE_COLORS[short]
+  const span = p75 - p25
+  const tickX = span > 0 ? x + (width * (median - p25)) / span : x
+  return (
+    <g>
+      <rect x={x} y={y} width={Math.max(width, 2)} height={height} rx={3}
+            fill={c} fillOpacity={0.22} stroke={c} strokeOpacity={0.55} />
+      <rect x={tickX - 1.5} y={y - 3} width={3} height={height + 6} rx={1.5} fill={c} />
+    </g>
+  )
+}
 
 const SQL_SNIPPET = `-- Populate skills demand fact: boolean flags → integers, then aggregate by month
 WITH job_postings_prep AS (
@@ -124,20 +142,24 @@ export default function Project1({ setActive }) {
 
       {/* Section 01: The Contenders */}
       <section className="projectSection">
-        <SectionTitle index="01" title={t('p1.s1_title')} sub={t('p1.s1_sub')} />
+        <SectionTitle index="01" title={t('p1.s1_title')} sub={t('p1.s1_sub')} fxIndex fxTitle />
         <div className="projectGrid1">
           <ChartCard title={t('p1.chart_salary')} sub={t('p1.chart_salary_sub')} delay={0.05}>
             <ResponsiveContainer width="100%" height={260}>
-              <BarChart data={roleSalary.map(r => ({ ...r, err: [r.median - r.p25, r.p75 - r.median] }))}
+              <BarChart data={roleSalary.map(r => ({ ...r, band: r.p75 - r.p25 }))}
                         layout="vertical" margin={{ left: 0, right: 30 }}>
                 <CartesianGrid {...gridProps} horizontal={false} />
                 <XAxis type="number" tickFormatter={fmtUSD} {...axisMuted} />
                 <YAxis type="category" dataKey="role" width={130} {...axisStrong} />
-                <Tooltip content={<ChartTooltip prefix="$" />} />
-                <Bar dataKey="median" radius={[0, 3, 3, 0]} barSize={18}>
-                  {roleSalary.map(r => <Cell key={r.short} fill={ROLE_COLORS[r.short]} />)}
-                  <ErrorBar dataKey="err" direction="x" width={5} strokeWidth={1.5} stroke="#8b949e" />
-                </Bar>
+                <Tooltip cursor={barCursor} content={({ active, payload, label }) => (
+                  <ChartTooltip active={active} label={label} prefix="$" payload={!payload?.length ? [] : [
+                    { name: t('p1.tt_median'), value: payload[0].payload.median, color: ROLE_COLORS[payload[0].payload.short] },
+                    { name: 'P25', value: payload[0].payload.p25, color: '#8b949e' },
+                    { name: 'P75', value: payload[0].payload.p75, color: '#8b949e' },
+                  ]} />
+                )} />
+                <Bar dataKey="p25" stackId="iqr" fill="transparent" barSize={18} />
+                <Bar dataKey="band" stackId="iqr" barSize={18} shape={<IQRBand />} />
               </BarChart>
             </ResponsiveContainer>
           </ChartCard>
@@ -145,12 +167,12 @@ export default function Project1({ setActive }) {
 
         <div className={styles.multiples}>
           {roleSalary.map((r, i) => (
-            <ChartCard key={r.short} title={r.role} sub={`${fmt(roleTrend.reduce((s, m) => s + (m[r.role] || 0), 0))} postings`} delay={0.05 + i * 0.04}>
+            <ChartCard key={r.short} title={r.role} sub={`${fmt(roleTrend.reduce((s, m) => s + (m[r.role] || 0), 0))} ${t('p1.unit_postings')}`} delay={0.05 + i * 0.04}>
               <ResponsiveContainer width="100%" height={110}>
                 <LineChart data={roleTrend} margin={{ left: 0, right: 8, top: 4 }}>
                   <XAxis dataKey="month" hide />
                   <YAxis hide domain={[0, 'dataMax']} />
-                  <Tooltip content={<ChartTooltip />} />
+                  <Tooltip cursor={lineCursor} content={<ChartTooltip />} />
                   <Line type="monotone" dataKey={r.role} stroke={ROLE_COLORS[r.short]} strokeWidth={2} dot={false} />
                 </LineChart>
               </ResponsiveContainer>
@@ -162,7 +184,7 @@ export default function Project1({ setActive }) {
 
       {/* Section 02: Entry Barriers */}
       <section className="projectSection">
-        <SectionTitle index="02" title={t('p1.s2_title')} sub={t('p1.s2_sub')} />
+        <SectionTitle index="02" title={t('p1.s2_title')} sub={t('p1.s2_sub')} fxIndex fxTitle />
         <div className="projectGrid2">
           <ChartCard title={t('p1.chart_junior')} sub={t('p1.chart_junior_sub')} delay={0.05}>
             <ResponsiveContainer width="100%" height={260}>
@@ -170,7 +192,7 @@ export default function Project1({ setActive }) {
                 <CartesianGrid {...gridProps} horizontal={false} />
                 <XAxis type="number" tickFormatter={v => `${v}%`} {...axisMuted} />
                 <YAxis type="category" dataKey="role" width={130} {...axisStrong} />
-                <Tooltip content={<ChartTooltip suffix="%" />} />
+                <Tooltip cursor={barCursor} content={<ChartTooltip suffix="%" />} />
                 <Bar dataKey="juniorPct" radius={[0, 3, 3, 0]} barSize={18}>
                   {roleBarriers.map(r => {
                     const short = roleSalary.find(x => x.role === r.role).short
@@ -187,7 +209,7 @@ export default function Project1({ setActive }) {
                 <CartesianGrid {...gridProps} horizontal={false} />
                 <XAxis type="number" tickFormatter={fmtUSD} {...axisMuted} />
                 <YAxis type="category" dataKey="role" width={130} {...axisStrong} />
-                <Tooltip content={<ChartTooltip prefix="$" />} />
+                <Tooltip cursor={barCursor} content={<ChartTooltip prefix="$" />} />
                 <Bar dataKey="degreePenaltyMid" radius={[0, 3, 3, 0]} barSize={18}>
                   {roleBarriers.map(r => (
                     <Cell key={r.role} fill={r.degreePenaltyMid < -5000 ? '#ef553b' : '#00cc96'} />
@@ -203,7 +225,7 @@ export default function Project1({ setActive }) {
 
       {/* Section 03: Transition Map */}
       <section className="projectSection">
-        <SectionTitle index="03" title={t('p1.s3_title')} sub={t('p1.s3_sub')} />
+        <SectionTitle index="03" title={t('p1.s3_title')} sub={t('p1.s3_sub')} fxIndex fxTitle />
         <ChartCard title={t('p1.chart_overlap')} sub={t('p1.chart_overlap_sub')} delay={0.05}>
           <OverlapHeatmap matrix={overlapMatrix} />
         </ChartCard>
@@ -213,7 +235,7 @@ export default function Project1({ setActive }) {
 
       {/* Section 04: Skill ROI */}
       <section className="projectSection">
-        <SectionTitle index="04" title={t('p1.s4_title')} sub={t('p1.s4_sub')} />
+        <SectionTitle index="04" title={t('p1.s4_title')} sub={t('p1.s4_sub')} fxIndex fxTitle />
         <ChartCard title={t('p1.chart_roi')} sub={t('p1.chart_roi_sub')} delay={0.05}>
           <ResponsiveContainer width="100%" height={340}>
             <ScatterChart margin={{ left: 8, right: 30, top: 16, bottom: 8 }}>
@@ -221,12 +243,16 @@ export default function Project1({ setActive }) {
               <XAxis type="number" dataKey="demandPct" name="Demand" tickFormatter={v => `${v}%`} {...axisMuted} />
               <YAxis type="number" dataKey="premium" name="Premium" tickFormatter={fmtUSD} {...axisMuted} />
               <ReferenceLine y={0} stroke="#636e7b" strokeDasharray="4 3" />
-              <Tooltip content={<ChartTooltip prefix="$" />} cursor={{ strokeDasharray: '3 3' }} />
+              <Tooltip content={<ChartTooltip prefix="$" />} cursor={lineCursor} />
               <Scatter data={skillPremiumsDA} fill="#00e5ff">
                 {skillPremiumsDA.map(d => (
                   <Cell key={d.skill} fill={d.premium >= 0 ? '#00cc96' : '#ef553b'} />
                 ))}
-                <LabelList dataKey="skill" position="top" style={{ fontSize: '0.6875rem', fill: '#8b949e' }} />
+                {/* ponytail: aws/azure collide at top-left — hand-nudge aws below its dot; revisit if the skill list changes */}
+                <LabelList dataKey="skill" position="top" content={({ x, y, value }) => (
+                  <text x={x} y={value === 'aws' ? y + 26 : y - 4} textAnchor="middle"
+                        style={{ fontSize: '0.6875rem', fill: 'var(--muted)' }}>{value}</text>
+                )} />
               </Scatter>
             </ScatterChart>
           </ResponsiveContainer>
@@ -236,7 +262,7 @@ export default function Project1({ setActive }) {
 
       {/* Section 05: ML reframe */}
       <section className="projectSection">
-        <SectionTitle index="05" title={t('p1.s5_title')} sub={t('p1.s5_sub')} />
+        <SectionTitle index="05" title={t('p1.s5_title')} sub={t('p1.s5_sub')} fxIndex fxTitle />
 
         <div className={styles.mlMeta}>
           <div className={styles.mlScore} style={{ '--ml-accent': 'var(--accent)' }}>
@@ -267,7 +293,7 @@ export default function Project1({ setActive }) {
               <CartesianGrid {...gridProps} horizontal={false} />
               <XAxis type="number" tickFormatter={v => `${v}%`} {...axisMuted} />
               <YAxis type="category" dataKey="feature" width={130} {...axisStrong} />
-              <Tooltip content={<ChartTooltip suffix="%" />} />
+              <Tooltip cursor={barCursor} content={<ChartTooltip suffix="%" />} />
               <Bar dataKey="importance" radius={[0, 3, 3, 0]}>
                 {importanceData.map((d, i) => <Cell key={i} fill={d.direction > 0 ? '#00cc96' : '#ef553b'} />)}
               </Bar>
@@ -281,17 +307,17 @@ export default function Project1({ setActive }) {
 
       {/* Section 06: Vietnam reality check */}
       <section className="projectSection">
-        <SectionTitle index="06" title={t('p1.s6_title')} sub={t('p1.s6_sub')} />
+        <SectionTitle index="06" title={t('p1.s6_title')} sub={t('p1.s6_sub')} fxIndex fxTitle />
         <div className={styles.vnCard}>
           <div className={styles.vnTitle}>{t('p1.vn_title')}</div>
           <div className={styles.vnRow}>
             {vietnamPostings.map(v => {
               const short = roleSalary.find(x => x.role === v.role).short
               return (
-                <div key={v.role} className={styles.vnStat} style={{ '--vn-accent': ROLE_COLORS[short] }}>
+                <div key={v.role} className={styles.vnStat} style={{ '--vn-accent': ROLE_TEXT[short] }}>
                   <span className={styles.vnShort}>{short}</span>
-                  <span className={styles.vnCount}>{fmt(v.postings)}</span>
-                  <span className={styles.vnN}>n = {fmt(v.postings)}</span>
+                  <span className={styles.vnCount}>{v.postings.toLocaleString()}</span>
+                  <span className={styles.vnN}>n = {v.postings.toLocaleString()}</span>
                 </div>
               )
             })}
@@ -302,14 +328,14 @@ export default function Project1({ setActive }) {
 
       {/* Section 07: Verdict */}
       <section className="projectSection">
-        <SectionTitle index="07" title={t('p1.s7_title')} sub={t('p1.s7_sub')} />
+        <SectionTitle index="07" title={t('p1.s7_title')} sub={t('p1.s7_sub')} fxIndex fxTitle />
         <div className={styles.verdictWrap}>
           <table className={styles.verdictTable}>
             <thead>
               <tr>
                 <th />
                 {['DA', 'BA', 'DE', 'DS', 'SE'].map(s => (
-                  <th key={s} style={{ color: ROLE_COLORS[s] }}>{s}</th>
+                  <th key={s} style={{ color: ROLE_TEXT[s] }}>{s}</th>
                 ))}
                 <th>{t('p1.verdict_winner')}</th>
               </tr>
@@ -323,7 +349,7 @@ export default function Project1({ setActive }) {
                       {row.cells[s]}
                     </td>
                   ))}
-                  <td className={styles.verdictWinner} style={{ color: ROLE_COLORS[row.winnerShort] }}>
+                  <td className={styles.verdictWinner} style={{ color: ROLE_TEXT[row.winnerShort] }}>
                     {row.winnerShort}
                   </td>
                 </tr>
@@ -336,13 +362,13 @@ export default function Project1({ setActive }) {
 
       {/* Section 08: Power BI dashboard */}
       <section className="projectSection">
-        <SectionTitle index="08" title={t('p1.s8_title')} sub={t('p1.s8_sub')} />
+        <SectionTitle index="08" title={t('p1.s8_title')} sub={t('p1.s8_sub')} fxIndex fxTitle />
         <div className="projectGrid1">
           <ChartCard title={t('p1.dash_p1_caption')} delay={0.05}>
-            <img src="/p1_dashboard_faceoff.png" alt={t('p1.dash_p1_caption')} style={{ width: '100%', borderRadius: 6 }} />
+            <img src="/p1_dashboard_faceoff.png" alt={t('p1.dash_p1_caption')} className={styles.dashImg} />
           </ChartCard>
           <ChartCard title={t('p1.dash_p2_caption')} delay={0.1}>
-            <img src="/p1_dashboard_switching.png" alt={t('p1.dash_p2_caption')} style={{ width: '100%', borderRadius: 6 }} />
+            <img src="/p1_dashboard_switching.png" alt={t('p1.dash_p2_caption')} className={styles.dashImg} />
           </ChartCard>
         </div>
         <SqlCard

@@ -1,6 +1,8 @@
 .strip {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  /* minmax(0,…) lets cards shrink below content width — without it the row
+     overflows the page column and drags a horizontal scrollbar onto the body */
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.75rem;
   margin-top: 1.5rem;
 }

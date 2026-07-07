@@ -123,7 +123,7 @@ export default function Project3({ setActive }) {
 
       {/* Section 1: Revenue Overview */}
       <section className="projectSection">
-        <SectionTitle index="01" title={t('p3.s1_title')} sub={t('p3.s1_sub')} />
+        <SectionTitle index="01" title={t('p3.s1_title')} sub={t('p3.s1_sub')} fxIndex fxTitle />
         <div className="projectGrid2">
           <ChartCard title={t('p3.chart_revenue')} sub={t('p3.chart_revenue_sub')} delay={0.05}>
             <ResponsiveContainer width="100%" height={280}>
@@ -154,7 +154,7 @@ export default function Project3({ setActive }) {
 
       {/* Section 2: RFM Segmentation */}
       <section className="projectSection">
-        <SectionTitle index="02" title={t('p3.s2_title')} sub={t('p3.s2_sub')} />
+        <SectionTitle index="02" title={t('p3.s2_title')} sub={t('p3.s2_sub')} fxIndex fxTitle />
         <div className="projectGrid2">
           <ChartCard title={t('p3.chart_rfm_scatter')} sub={t('p3.chart_rfm_scatter_sub')} delay={0.05}>
             <ResponsiveContainer width="100%" height={300}>
@@ -197,14 +197,14 @@ export default function Project3({ setActive }) {
 
       {/* Section 3: Cohort Analysis */}
       <section className="projectSection">
-        <SectionTitle index="03" title={t('p3.s3_title')} sub={t('p3.s3_sub')} />
+        <SectionTitle index="03" title={t('p3.s3_title')} sub={t('p3.s3_sub')} fxIndex fxTitle />
         <CohortHeatmap data={cohortData} />
         <InsightBlock label={t('p3.insight_label')} text={t('p3.s3_insight')} accent="var(--green)" />
       </section>
 
       {/* Section 4: Recommendations */}
       <section className="projectSection">
-        <SectionTitle index="04" title={t('p3.s4_title')} sub={t('p3.s4_sub')} />
+        <SectionTitle index="04" title={t('p3.s4_title')} sub={t('p3.s4_sub')} fxIndex fxTitle />
         <RecommendationsList
           title={t('p3.recs_title')}
           items={t('p3.recs_items', { returnObjects: true })}

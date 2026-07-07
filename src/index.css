@@ -29,6 +29,10 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Recharts draws grid strokes as SVG attributes (no CSS-var support in JS
+   props); this CSS rule outranks the attribute so grids follow the theme. */
+.recharts-cartesian-grid line { stroke: var(--border); }
 /* Global size knob: all sizing is rem-based, so this one value scales the
    whole UI. 140% = browser-default 16px × 1.4. Adjust here, nowhere else. */
 html { scroll-behavior: smooth; font-size: 140%; }
