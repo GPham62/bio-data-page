@@ -143,8 +143,6 @@
     "chart_junior_sub": "% of postings at junior level",
     "chart_degpen": "The Degree Penalty",
     "chart_degpen_sub": "mid-level salary gap: no-degree vs degree postings",
-    "chart_trend": "Demand: Monthly Postings per Role",
-    "chart_trend_sub": "small multiples · shared scale",
     "s3_title": "What does switching actually cost?",
     "s3_sub": "Skill-set overlap between roles — Jaccard similarity of each role's top-15 skills",
     "chart_overlap": "Role Transition Map",

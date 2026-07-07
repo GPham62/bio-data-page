@@ -7,7 +7,7 @@ import vi from './vi.json'
 // translated array changes length (which would break index-based rendering).
 
 /**
- * Walk an object and collect every leaf key path, e.g. "p1.recs_title".
+ * Walk an object and collect every leaf key path, e.g. "p3.recs_title".
  * Arrays are recorded as their path plus length so structural drift is caught.
  */
 function collectKeyPaths(obj, prefix = '', acc = new Set()) {

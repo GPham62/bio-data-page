@@ -143,8 +143,6 @@
     "chart_junior_sub": "% tin đăng ở cấp junior",
     "chart_degpen": "Mức phạt bằng cấp",
     "chart_degpen_sub": "chênh lệch lương bậc giữa: không yêu cầu bằng vs có yêu cầu",
-    "chart_trend": "Nhu cầu: Tin đăng hằng tháng theo nghề",
-    "chart_trend_sub": "biểu đồ nhỏ · cùng thang đo",
     "s3_title": "Chuyển nghề thực sự tốn bao nhiêu?",
     "s3_sub": "Độ trùng kỹ năng giữa các nghề — hệ số Jaccard trên top-15 kỹ năng mỗi nghề",
     "chart_overlap": "Bản đồ chuyển nghề",
