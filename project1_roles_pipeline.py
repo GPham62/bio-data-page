@@ -51,13 +51,15 @@ skills_per = sj.merge(f[['job_id', 'job_title_short']], on='job_id') \
 for r in ROLES:
     d, ds_ = f[f.job_title_short == r], s[s.job_title_short == r]
     mid = ds_[ds_.level == 'mid']
-    pen = (mid[mid.job_no_degree_mention].salary_year_avg.median()
-           - mid[~mid.job_no_degree_mention].salary_year_avg.median())
+    med_nodeg = mid[mid.job_no_degree_mention].salary_year_avg.median()
+    med_deg = mid[~mid.job_no_degree_mention].salary_year_avg.median()
     rows.append({'role': r,
                  'juniorPct': round((d.level == 'junior').mean() * 100, 1),
                  'noDegreePct': round(d.job_no_degree_mention.mean() * 100, 1),
                  'skillsPerPosting': float(skills_per[r]),
-                 'degreePenaltyMid': round(pen, 0)})
+                 'degreePenaltyMid': round(med_nodeg - med_deg, 0),
+                 'medNoDegreeMid': round(med_nodeg, 0),
+                 'medDegreeMid': round(med_deg, 0)})
 barriers = pd.DataFrame(rows)
 barriers.to_csv(f'{OUT}/role_barriers.csv', index=False)
 

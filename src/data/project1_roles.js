@@ -294,35 +294,45 @@ export const roleBarriers = [
     "juniorPct": 7.6,
     "noDegreePct": 40.7,
     "skillsPerPosting": 3.0,
-    "degreePenaltyMid": -378.0
+    "degreePenaltyMid": -378.0,
+    "medNoDegreeMid": 87500.0,
+    "medDegreeMid": 87878.0
   },
   {
     "role": "Business Analyst",
     "juniorPct": 5.1,
     "noDegreePct": 28.2,
     "skillsPerPosting": 3.0,
-    "degreePenaltyMid": -2500.0
+    "degreePenaltyMid": -2500.0,
+    "medNoDegreeMid": 87500.0,
+    "medDegreeMid": 90000.0
   },
   {
     "role": "Data Engineer",
     "juniorPct": 3.3,
     "noDegreePct": 46.4,
     "skillsPerPosting": 6.0,
-    "degreePenaltyMid": 0.0
+    "degreePenaltyMid": 0.0,
+    "medNoDegreeMid": 125000.0,
+    "medDegreeMid": 125000.0
   },
   {
     "role": "Data Scientist",
     "juniorPct": 6.5,
     "noDegreePct": 8.5,
     "skillsPerPosting": 5.0,
-    "degreePenaltyMid": -24750.0
+    "degreePenaltyMid": -24750.0,
+    "medNoDegreeMid": 97750.0,
+    "medDegreeMid": 122500.0
   },
   {
     "role": "Software Engineer",
     "juniorPct": 3.3,
     "noDegreePct": 50.3,
     "skillsPerPosting": 5.0,
-    "degreePenaltyMid": -25000.0
+    "degreePenaltyMid": -25000.0,
+    "medNoDegreeMid": 100000.0,
+    "medDegreeMid": 125000.0
   }
 ]
 

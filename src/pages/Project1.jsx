@@ -48,6 +48,39 @@ function IQRBand({ x, y, width, height, payload }) {
   )
 }
 
+// Degree-penalty dumbbell: hollow dot = median pay when a degree is required,
+// filled dot = median when no degree is mentioned, connector = the gap.
+// Same stacked-bar trick as IQRBand: invisible base 0→min(medians), this shape
+// draws the min→max segment. Equal medians (DE) render as a concentric target.
+function DegreeDumbbell({ x, y, width, height, payload }) {
+  const { medDegreeMid: deg, medNoDegreeMid: nodeg, degreePenaltyMid: pen } = payload
+  const cy = y + height / 2
+  const xLo = x, xHi = x + width
+  const xDeg = deg >= nodeg ? xHi : xLo
+  const xNo = deg >= nodeg ? xLo : xHi
+  const label = pen === 0 ? '±$0' : `−$${(Math.abs(pen) / 1000).toFixed(1).replace(/\.0$/, '')}K`
+  return (
+    <g>
+      <line x1={xLo} x2={xHi} y1={cy} y2={cy} strokeWidth={2} style={{ stroke: 'var(--muted)' }} />
+      {width < 2 ? (
+        <>
+          <circle cx={xDeg} cy={cy} r={7} fill="none" strokeWidth={2} style={{ stroke: 'var(--muted)' }} />
+          <circle cx={xNo} cy={cy} r={4} style={{ fill: 'var(--accent)' }} />
+        </>
+      ) : (
+        <>
+          <circle cx={xDeg} cy={cy} r={5.5} strokeWidth={2} style={{ fill: 'var(--bg2)', stroke: 'var(--muted)' }} />
+          <circle cx={xNo} cy={cy} r={5.5} style={{ fill: 'var(--accent)' }} />
+        </>
+      )}
+      <text x={xHi + 12} y={cy} dominantBaseline="central"
+            style={{ fontSize: '0.6875rem', fontWeight: 700, fill: pen <= -10000 ? '#ef553b' : 'var(--muted)' }}>
+        {label}
+      </text>
+    </g>
+  )
+}
+
 const SQL_SNIPPET = `-- Populate skills demand fact: boolean flags → integers, then aggregate by month
 WITH job_postings_prep AS (
     SELECT
@@ -205,16 +238,25 @@ export default function Project1({ setActive }) {
 
           <ChartCard title={t('p1.chart_degpen')} sub={t('p1.chart_degpen_sub')} delay={0.1}>
             <ResponsiveContainer width="100%" height={260}>
-              <BarChart data={roleBarriers} layout="vertical" margin={{ left: 0, right: 30 }}>
+              <BarChart data={roleBarriers.map(r => ({
+                          ...r,
+                          lo: Math.min(r.medDegreeMid, r.medNoDegreeMid),
+                          gap: Math.abs(r.degreePenaltyMid),
+                        }))}
+                        layout="vertical" margin={{ left: 0, right: 64 }}>
                 <CartesianGrid {...gridProps} horizontal={false} />
                 <XAxis type="number" tickFormatter={fmtUSD} {...axisMuted} />
                 <YAxis type="category" dataKey="role" width={130} {...axisStrong} />
-                <Tooltip cursor={barCursor} content={<ChartTooltip prefix="$" />} />
-                <Bar dataKey="degreePenaltyMid" radius={[0, 3, 3, 0]} barSize={18}>
-                  {roleBarriers.map(r => (
-                    <Cell key={r.role} fill={r.degreePenaltyMid < -5000 ? '#ef553b' : '#00cc96'} />
-                  ))}
-                </Bar>
+                <Tooltip cursor={barCursor} content={({ active, payload, label }) => (
+                  <ChartTooltip active={active} label={label} payload={!payload?.length ? [] : [
+                    { name: t('p1.tt_nodeg'), value: `$${payload[0].payload.medNoDegreeMid.toLocaleString()}`, color: '#e6edf3' },
+                    { name: t('p1.tt_deg'), value: `$${payload[0].payload.medDegreeMid.toLocaleString()}`, color: '#8b949e' },
+                    { name: t('p1.tt_gap'), value: `${payload[0].payload.degreePenaltyMid === 0 ? '±' : '−'}$${Math.abs(payload[0].payload.degreePenaltyMid).toLocaleString()}`,
+                      color: payload[0].payload.degreePenaltyMid <= -10000 ? '#ef553b' : '#8b949e' },
+                  ]} />
+                )} />
+                <Bar dataKey="lo" stackId="dp" fill="transparent" barSize={18} />
+                <Bar dataKey="gap" stackId="dp" barSize={18} shape={<DegreeDumbbell />} />
               </BarChart>
             </ResponsiveContainer>
           </ChartCard>

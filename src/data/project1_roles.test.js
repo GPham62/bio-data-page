@@ -14,6 +14,10 @@ describe('project1_roles data module', () => {
       expect(r.median).toBeLessThanOrEqual(r.p75)
     }
   })
+  it('degree penalty equals the gap between its two medians', () => {
+    for (const r of d.roleBarriers)
+      expect(r.medNoDegreeMid - r.medDegreeMid).toBe(r.degreePenaltyMid)
+  })
   it('overlap matrix is 5x5 with unit diagonal', () => {
     expect(d.overlapMatrix).toHaveLength(25)
     d.overlapMatrix.filter(c => c.a === c.b).forEach(c => expect(c.j).toBe(1))
