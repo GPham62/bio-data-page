@@ -14,3 +14,6 @@ coverage/
 *.pbix
 !powerbi/p1/p1.pbix
 powerbi/p1/project1_data/
+
+# brainstorm visual companion
+.superpowers/
