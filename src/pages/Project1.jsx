@@ -304,7 +304,13 @@ export default function Project1({ setActive }) {
             </ScatterChart>
           </ResponsiveContainer>
         </ChartCard>
-        <SqlCard title={t('p1.sql_card_title')} code={SQL_SNIPPET} href={sqlUrl} linkLabel={t('p1.sql_link')} accent="var(--accent)" />
+        <SqlCard
+          accent="var(--accent)"
+          tabs={[
+            { label: 'SQL', title: t('p1.sql_card_title'), code: SQL_SNIPPET, href: sqlUrl, linkLabel: t('p1.sql_link') },
+            { label: 'DAX', title: t('p1.dax_card_title'), code: DAX_SNIPPET, href: PBIX_DOWNLOAD_URL, linkLabel: t('p1.dash_download') },
+          ]}
+        />
         <InsightBlock label={t('p1.insight_label')} text={t('p1.s4_insight')} accent="var(--accent)" />
       </section>
 
@@ -423,13 +429,11 @@ export default function Project1({ setActive }) {
             </a>
           </ChartCard>
         </div>
-        <SqlCard
-          title={t('p1.dax_card_title')}
-          code={DAX_SNIPPET}
-          href={PBIX_DOWNLOAD_URL}
-          linkLabel={t('p1.dash_download')}
-          accent="var(--purple)"
-        />
+        <div className={styles.dashDownloadRow}>
+          <a className={styles.dashDownload} href={PBIX_DOWNLOAD_URL} target="_blank" rel="noopener noreferrer">
+            {t('p1.dash_download')} ↓
+          </a>
+        </div>
       </section>
 
     </div>

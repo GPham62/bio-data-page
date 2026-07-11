@@ -83,6 +83,30 @@
   margin-bottom: 3.5rem;
 }
 
+/* Section 08: centered .pbix download button */
+.dashDownloadRow {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.dashDownload {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  border: 0.0625rem solid var(--accent);
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s, background 0.2s;
+}
+
+.dashDownload:hover {
+  background: var(--accent);
+  color: var(--bg2);
+  text-decoration: none;
+}
+
 /* Section 01: role salary/trend small multiples */
 .multiples {
   display: grid;
