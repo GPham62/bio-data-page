@@ -5,7 +5,6 @@ import {
   LineChart, Line, Cell,
   ScatterChart, Scatter, LabelList, ReferenceLine,
 } from 'recharts'
-import StatCard            from '../components/StatCard.jsx'
 import SectionTitle        from '../components/SectionTitle.jsx'
 import ChartCard           from '../components/ChartCard.jsx'
 import ChartTooltip        from '../components/ChartTooltip.jsx'
@@ -157,26 +156,25 @@ export default function Project1({ setActive }) {
             <span key={tech} className="projectPill">{tech}</span>
           ))}
         </div>
-        <RoleSelectStrip cards={heroCards} />
-        <p className={styles.stripHint}>{t('p1.strip_hint')}</p>
-        <div className={styles.linkRow}>
-          <a className={styles.pythonLink} href={pythonUrl} target="_blank" rel="noopener noreferrer">
-            {t('p1.python_link')} <span aria-hidden>↗</span>
-          </a>
-          <a className={styles.sqlLink} href={sqlUrl} target="_blank" rel="noopener noreferrer">
-            {t('p1.sql_link')} <span aria-hidden>↗</span>
-          </a>
+        <div className={styles.statStrip}>
+          <span><b>1.6M</b> {t('p1.kpi_postings')}</span>
+          <span aria-hidden>·</span>
+          <span><b>40K</b> {t('p1.kpi_salary_rec')}</span>
+          <span aria-hidden>·</span>
+          <span><b>5</b> {t('p1.kpi_countries')}</span>
         </div>
-      </section>
-
-      {/* KPIs */}
-      <section className={styles.kpiRow}>
-        <StatCard label={t('p1.kpi_postings')}   value="1.6M"   sub={t('p1.kpi_postings_sub')}   accent="var(--accent)"  delay={0.05} />
-        <StatCard label={t('p1.kpi_countries')}  value="5"      sub={t('p1.kpi_countries_sub')}  accent="var(--green)"   delay={0.10} />
-        <StatCard label={t('p1.kpi_salary_rec')} value="40K"    sub={t('p1.kpi_salary_rec_sub')} accent="var(--purple)"  delay={0.15} />
-        <StatCard label={t('p1.kpi_median')}     value="7.6%"   sub={t('p1.kpi_median_sub')}     accent="var(--accent2)" delay={0.20} />
-        <StatCard label={t('p1.kpi_r2')}         value="0.88"   sub={t('p1.kpi_r2_sub')}         accent="var(--green)"   delay={0.25} />
-        <StatCard label={t('p1.kpi_skill')}      value="+$12K"  sub={t('p1.kpi_skill_sub')}      accent="var(--purple)"  delay={0.30} />
+        <RoleSelectStrip cards={heroCards} />
+        <div className={styles.stripRow}>
+          <p className={styles.stripHint}>{t('p1.strip_hint')}</p>
+          <div className={styles.stripLinks}>
+            <a href={pythonUrl} target="_blank" rel="noopener noreferrer">
+              {t('p1.python_link')} <span aria-hidden>↗</span>
+            </a>
+            <a href={sqlUrl} target="_blank" rel="noopener noreferrer">
+              {t('p1.sql_link')} <span aria-hidden>↗</span>
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* Section 01: The Contenders */}
