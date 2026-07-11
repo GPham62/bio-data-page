@@ -1,0 +1,56 @@
+table company_dim
+	lineageTag: eb1b6f0a-bf7a-43a0-9d0a-2187d7e18745
+
+	column company_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 712b7ec9-7862-4877-933c-426a7d70c5ca
+		summarizeBy: none
+		sourceColumn: company_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 11dcfd22-c025-4b1e-8bc1-e7b4d9ea5609
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column link
+		dataType: string
+		lineageTag: 2631966c-c7d3-4d14-ab9a-d5971ad297bb
+		summarizeBy: none
+		sourceColumn: link
+
+		annotation SummarizationSetBy = Automatic
+
+	column link_google
+		dataType: string
+		lineageTag: 61bb2b0b-5847-4cb1-980d-3cc953025b93
+		summarizeBy: none
+		sourceColumn: link_google
+
+		annotation SummarizationSetBy = Automatic
+
+	column thumbnail
+		dataType: string
+		lineageTag: e2dfd67d-bd1f-425d-a44c-df720d94d66a
+		summarizeBy: none
+		sourceColumn: thumbnail
+
+		annotation SummarizationSetBy = Automatic
+
+	partition company_dim = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\ADMIN\Desktop\SQL_Data_engineering_projects\Project\portfolio\portfolio\powerbi\p1\project1_data\company_dim.csv"),[Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"company_id", Int64.Type}, {"name", type text}, {"link", type text}, {"link_google", type text}, {"thumbnail", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

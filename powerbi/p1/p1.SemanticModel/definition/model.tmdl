@@ -1,0 +1,23 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["company_dim","job_postings_fact","skills_dim","skills_job_dim"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table company_dim
+ref table job_postings_fact
+ref table DateTableTemplate_d204f6d0-8f69-44cd-9135-84605af467f4
+ref table LocalDateTable_b42a1beb-43d7-4f16-8830-86e2a16f21fa
+ref table skills_dim
+ref table skills_job_dim
+
+ref cultureInfo en-US
+

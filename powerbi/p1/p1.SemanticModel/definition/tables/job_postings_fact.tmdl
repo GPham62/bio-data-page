@@ -1,0 +1,185 @@
+table job_postings_fact
+	lineageTag: 7c511353-702a-4c91-bd9a-e4a3ab8bef44
+
+	/// Total number of job postings in the dataset
+	measure 'Total Postings' = COUNTROWS(job_postings_fact)
+		formatString: #,0
+		lineageTag: 2478be9d-4c02-41f2-a880-56d79ee70898
+
+	/// Number of unique countries with job postings
+	measure 'Countries Covered' = DISTINCTCOUNT(job_postings_fact[job_country])
+		formatString: #,0
+		lineageTag: 313302f8-1347-44d9-9662-7d05e8de75c3
+
+	/// Number of postings with salary data
+	measure 'Salary Records' = CALCULATE(COUNTROWS(job_postings_fact), NOT(ISBLANK(job_postings_fact[salary_year_avg])))
+		formatString: #,0
+		lineageTag: 119f9ffd-8726-4972-bf76-d30e90ed6fb8
+
+	/// Median annual salary across all postings with salary data
+	measure 'Median Salary' = MEDIAN(job_postings_fact[salary_year_avg])
+		formatString: $#,0
+		lineageTag: 430efabe-9234-4c8a-88e4-148ab3e9cf00
+
+	/// Percentage of postings that are remote
+	measure 'Remote %' = DIVIDE(CALCULATE(COUNTROWS(job_postings_fact), job_postings_fact[job_work_from_home] = TRUE()), COUNTROWS(job_postings_fact), 0)
+		formatString: 0.0%
+		lineageTag: dc391f04-42e3-40f7-a999-1b3fd2ca29ec
+
+	/// Job title with the highest number of postings
+	measure 'Top Role' = VAR RoleCounts = ADDCOLUMNS(VALUES(job_postings_fact[job_title_short]), "@cnt", CALCULATE(COUNTROWS(job_postings_fact))) RETURN MAXX(TOPN(1, RoleCounts, [@cnt], DESC), job_postings_fact[job_title_short])
+		lineageTag: 98980e99-092e-44ad-8272-38ca9cca27d4
+
+	column job_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 8d488e53-5d32-419c-9b02-ca980ca8f364
+		summarizeBy: none
+		sourceColumn: job_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 5e57669d-e9fb-4d4e-baa5-92173e41c817
+		summarizeBy: none
+		sourceColumn: company_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column job_title_short
+		dataType: string
+		lineageTag: 64fdffdc-a03c-466c-a169-358131aeec0a
+		summarizeBy: none
+		sourceColumn: job_title_short
+
+		annotation SummarizationSetBy = Automatic
+
+	column job_title
+		dataType: string
+		lineageTag: 8069feb3-ed61-44c8-99ac-0fda37294af7
+		summarizeBy: none
+		sourceColumn: job_title
+
+		annotation SummarizationSetBy = Automatic
+
+	column job_location
+		dataType: string
+		lineageTag: ff94232c-4c60-4ac1-bee3-97439c240aa2
+		summarizeBy: none
+		sourceColumn: job_location
+
+		annotation SummarizationSetBy = Automatic
+
+	column job_via
+		dataType: string
+		lineageTag: d4af98ac-06cd-4a97-b870-18c0ace4ae76
+		summarizeBy: none
+		sourceColumn: job_via
+
+		annotation SummarizationSetBy = Automatic
+
+	column job_schedule_type
+		dataType: string
+		lineageTag: 7045ad08-8e53-42b5-8288-a043def4c936
+		summarizeBy: none
+		sourceColumn: job_schedule_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column job_work_from_home
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b2ec6106-90b0-45f5-a707-f68b011d544c
+		summarizeBy: none
+		sourceColumn: job_work_from_home
+
+		annotation SummarizationSetBy = Automatic
+
+	column search_location
+		dataType: string
+		lineageTag: fe74e3cd-ace9-40a3-b425-f96251a6f8ba
+		summarizeBy: none
+		sourceColumn: search_location
+
+		annotation SummarizationSetBy = Automatic
+
+	column job_posted_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8c60a8d1-9b6a-411b-b2d1-6d609af16fd7
+		summarizeBy: none
+		sourceColumn: job_posted_date
+
+		variation Variation
+			isDefault
+			relationship: d985e6e9-6c6d-462e-899f-584763acdbc1
+			defaultHierarchy: LocalDateTable_b42a1beb-43d7-4f16-8830-86e2a16f21fa.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column job_no_degree_mention
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a4dc4146-6855-4c61-923d-d98eb6c4c4c1
+		summarizeBy: none
+		sourceColumn: job_no_degree_mention
+
+		annotation SummarizationSetBy = Automatic
+
+	column job_health_insurance
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: dd7103a4-84d6-4f9e-aa00-08dc3e0aeac0
+		summarizeBy: none
+		sourceColumn: job_health_insurance
+
+		annotation SummarizationSetBy = Automatic
+
+	column job_country
+		dataType: string
+		lineageTag: 2a53364d-7a42-48d2-8d65-919b52bef64a
+		summarizeBy: none
+		sourceColumn: job_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column salary_rate
+		dataType: string
+		lineageTag: d5bd3d7d-a3a4-4436-aa07-387f351652ab
+		summarizeBy: none
+		sourceColumn: salary_rate
+
+		annotation SummarizationSetBy = Automatic
+
+	column salary_year_avg
+		dataType: int64
+		formatString: 0
+		lineageTag: b44ecdc9-b4d5-445e-85d0-12672e72b29b
+		summarizeBy: sum
+		sourceColumn: salary_year_avg
+
+		annotation SummarizationSetBy = Automatic
+
+	column salary_hour_avg
+		dataType: int64
+		formatString: 0
+		lineageTag: 83b93433-0a69-4ed4-bcc7-fb6462854b1d
+		summarizeBy: sum
+		sourceColumn: salary_hour_avg
+
+		annotation SummarizationSetBy = Automatic
+
+	partition job_postings_fact = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\ADMIN\Desktop\SQL_Data_engineering_projects\Project\portfolio\portfolio\powerbi\p1\project1_data\job_postings_fact.csv"),[Delimiter=",", Columns=16, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"job_id", Int64.Type}, {"company_id", Int64.Type}, {"job_title_short", type text}, {"job_title", type text}, {"job_location", type text}, {"job_via", type text}, {"job_schedule_type", type text}, {"job_work_from_home", type logical}, {"search_location", type text}, {"job_posted_date", type datetime}, {"job_no_degree_mention", type logical}, {"job_health_insurance", type logical}, {"job_country", type text}, {"salary_rate", type text}, {"salary_year_avg", Int64.Type}, {"salary_hour_avg", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

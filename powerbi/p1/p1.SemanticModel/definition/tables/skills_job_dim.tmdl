@@ -1,0 +1,38 @@
+table skills_job_dim
+	lineageTag: fdc5e8e7-af90-4c1f-8d11-436efb6393e7
+
+	/// Total number of skill-to-job associations
+	measure 'Skill Count' = COUNTROWS(skills_job_dim)
+		formatString: #,0
+		lineageTag: 6f5591db-dc2e-484e-9c7a-d8ed5cbeab5f
+
+	column job_id
+		dataType: int64
+		formatString: 0
+		lineageTag: d1d5d512-3724-48c6-96be-9b708d9bdafb
+		summarizeBy: none
+		sourceColumn: job_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column skill_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 15c9b53d-b4d9-46de-90f2-ede1af58641e
+		summarizeBy: none
+		sourceColumn: skill_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition skills_job_dim = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\ADMIN\Desktop\SQL_Data_engineering_projects\Project\portfolio\portfolio\powerbi\p1\project1_data\skills_job_dim.csv"),[Delimiter=",", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"job_id", Int64.Type}, {"skill_id", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

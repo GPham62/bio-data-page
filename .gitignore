@@ -11,9 +11,13 @@ coverage/
 /_*
 
 # large Power BI binary + raw source data (exceed GitHub's 100MB limit)
+# .pbix ships via GitHub Release, never via the repo
 *.pbix
-!powerbi/p1/p1.pbix
 powerbi/p1/project1_data/
+
+# Power BI project local state (data cache, user settings)
+powerbi/p1/p1.SemanticModel/.pbi/
+powerbi/p1/p1.Report/.pbi/
 
 # brainstorm visual companion
 .superpowers/

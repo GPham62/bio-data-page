@@ -1,0 +1,44 @@
+table skills_dim
+	lineageTag: 5a2d44e6-af7d-4d40-8ca1-7bbc70e25930
+
+	/// Skill appearing in the most job postings
+	measure 'Top Skill' = VAR SkillCounts = ADDCOLUMNS(VALUES(skills_dim[skills]), "@cnt", CALCULATE(COUNTROWS(skills_job_dim))) RETURN MAXX(TOPN(1, SkillCounts, [@cnt], DESC), skills_dim[skills])
+		lineageTag: 08486dd6-5706-49d1-82a6-e0b36332c08d
+
+	column skill_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 81d1b71e-fd20-4e37-9586-fee9b9c5fe93
+		summarizeBy: none
+		sourceColumn: skill_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column skills
+		dataType: string
+		lineageTag: 355e31ae-194a-4535-a019-5114c24ae1a6
+		summarizeBy: none
+		sourceColumn: skills
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 4d408fd2-6d06-48c5-ab29-4b7fd5244724
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition skills_dim = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\ADMIN\Desktop\SQL_Data_engineering_projects\Project\portfolio\portfolio\powerbi\p1\project1_data\skills_dim.csv"),[Delimiter=",", Columns=3, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"skill_id", Int64.Type}, {"skills", type text}, {"type", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
