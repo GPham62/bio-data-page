@@ -19,7 +19,7 @@ table _Measures
 
 	/// Median annual salary across all postings with salary data
 	measure 'Median Salary' = MEDIANX(FILTER(job_postings_fact, job_postings_fact[salary_year_avg] >= 10000 && job_postings_fact[salary_year_avg] <= 600000), job_postings_fact[salary_year_avg])
-		formatString: $#,0,K
+		formatString: $#,0
 		lineageTag: 430efabe-9234-4c8a-88e4-148ab3e9cf00
 
 	/// Percentage of postings that are remote
@@ -32,11 +32,11 @@ table _Measures
 		lineageTag: 98980e99-092e-44ad-8272-38ca9cca27d4
 
 	measure 'Salary P25' = PERCENTILEX.INC(FILTER(job_postings_fact, job_postings_fact[salary_year_avg] >= 10000 && job_postings_fact[salary_year_avg] <= 600000), job_postings_fact[salary_year_avg], 0.25)
-		formatString: $#,0,K
+		formatString: $#,0
 		lineageTag: 7c70b56a-5873-4cf2-946e-33ff4e82168f
 
 	measure 'Salary P75' = PERCENTILEX.INC(FILTER(job_postings_fact, job_postings_fact[salary_year_avg] >= 10000 && job_postings_fact[salary_year_avg] <= 600000), job_postings_fact[salary_year_avg], 0.75)
-		formatString: $#,0,K
+		formatString: $#,0
 		lineageTag: 15eac659-d288-4e40-89f9-07dd6457812b
 
 	measure 'Junior Share %' = DIVIDE(CALCULATE(COUNTROWS(job_postings_fact), job_postings_fact[Seniority Level] = "junior"), COUNTROWS(job_postings_fact))
@@ -64,8 +64,8 @@ table _Measures
 		formatString: 0.0%
 		lineageTag: eb04bb11-fb80-4eb8-a3aa-ad0450f292bb
 
-	measure 'Top Role Median' = MAXX(VALUES(job_postings_fact[job_title_short]), [Median Salary])
-		formatString: $#,0,K
+	measure 'Top Role Median' = MAXX(VALUES(job_postings_fact[job_title_short]), CALCULATE([Median Salary], job_postings_fact[Seniority Level] = "mid"))
+		formatString: $#,0
 		lineageTag: 0c4b6969-461c-4f48-80c9-55c3dc3fb5d7
 
 	/// Share of skills-listing postings (in current filter context) that require the current skill
@@ -96,7 +96,7 @@ table _Measures
 		lineageTag: dcfc7fe7-789c-4881-9531-67b2ebdcdf16
 
 	measure 'Avg Salary' = AVERAGEX(FILTER(job_postings_fact, job_postings_fact[salary_year_avg] >= 10000 && job_postings_fact[salary_year_avg] <= 600000), job_postings_fact[salary_year_avg])
-		formatString: $#,0,K
+		formatString: $#,0
 		lineageTag: b5c8c729-e5ba-4e7a-a041-b5afd2415be5
 
 	measure 'Avg Hourly Salary' = AVERAGEX(FILTER(job_postings_fact, job_postings_fact[salary_hour_avg] >= 15 && job_postings_fact[salary_hour_avg] <= 115), job_postings_fact[salary_hour_avg])
@@ -111,11 +111,11 @@ table _Measures
 		lineageTag: a38960b1-8f1e-4d74-818a-0dc7d7f20061
 
 	measure 'Gauge Min Yearly' = 10000
-		formatString: $#,0,K
+		formatString: $#,0
 		lineageTag: bea2c428-164e-4b7a-ac81-686545c75abd
 
 	measure 'Gauge Max Yearly' = 600000
-		formatString: $#,0,K
+		formatString: $#,0
 		lineageTag: b9c6c7d4-20b2-4165-8825-b14358b787b3
 
 	measure 'Gauge Min Hourly' = 15
