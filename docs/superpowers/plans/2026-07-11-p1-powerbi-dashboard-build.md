@@ -11,8 +11,9 @@
 ## Global Constraints
 
 - Salary window everywhere: `salary_year_avg >= 10000 && salary_year_avg <= 600000`. Hourly window pinned by probe in Task 7.
-- Theme: bg `#0d1117`, panel `#161b22`, border `#30363d`, text `#e6edf3`, muted `#8b949e`. Role colors: DA `#00e5ff`, BA `#a371f7`, DE `#00cc96`, DS `#ff6b35`, SE `#636e7b`.
+- Theme: bg `#ffffff`, panel `#f6f8fa`, border `#d0d7de`, text `#1f2328`, muted `#57606a`. Role colors: DA `#0087a3`, BA `#8250df`, DE `#00996f`, DS `#e8590c`, SE `#6e7781`.
 - Canvas 1280×720 (16:9) on all pages. Every page has a takeaway title + subtitle (screenshot-first).
+- The approved brainstorm mockups (`.superpowers/brainstorm/10657-1783716305/content/`) show the ORIGINAL dark palette — they remain the LAYOUT reference only; all colors follow the light palette above (user re-decision 2026-07-11 during execution).
 - NEVER hand-write PBIR JSON from memory — use the `powerbi-report-authoring` skill's reference files + CLI capability lookup for every visual type before authoring (skill rule).
 - While the MCP is connected, the live model is source of truth — do not edit TMDL files directly; after each model task the user presses **Save** in Desktop (writes TMDL), then commit.
 - User-facing web strings: update `src/locales/en.json` AND `vi.json` in the same change.
@@ -375,10 +376,10 @@ Expected: ≈125-126K · slightly above median · ≈$55-60 · ≈0.10.
 **Interfaces:**
 - Produces: 3 page folders (names: `The Face-Off`, `Switching Costs`, `Job Title Drill Through`), 1280×720, themed; active page = The Face-Off.
 
-- [ ] **Step 1: Read `theming.md` + `authoring.md`** (page creation) from the powerbi-report-authoring skill references. Build the theme with: `dataColors` = [`#00e5ff`, `#a371f7`, `#00cc96`, `#ff6b35`, `#636e7b`], background `#0d1117`, panel/card `#161b22`, `textClasses` label color `#e6edf3` / secondary `#8b949e`, visual borders `#30363d`.
+- [ ] **Step 1: Read `theming.md` + `authoring.md`** (page creation) from the powerbi-report-authoring skill references. Build the theme with: `dataColors` = [`#0087a3`, `#8250df`, `#00996f`, `#e8590c`, `#6e7781`], background `#ffffff`, panel/card `#f6f8fa`, `textClasses` label color `#1f2328` / secondary `#57606a`, visual borders `#d0d7de`.
 - [ ] **Step 2: Author** — delete stale page folder, create the 3 pages (canvas 1280×720), register theme.
-- [ ] **Step 3: Validate + reload**: `powerbi-report-author validate powerbi/p1/p1.Report` → expect pass; `powerbi-desktop` reload → screenshot → 3 empty dark pages.
-- [ ] **Step 4: Commit** (`git commit -m "feat(p1-report): dark theme + 3-page scaffold"`).
+- [ ] **Step 3: Validate + reload**: `powerbi-report-author validate powerbi/p1/p1.Report` → expect pass; `powerbi-desktop` reload → screenshot → 3 empty light pages.
+- [ ] **Step 4: Commit** (`git commit -m "feat(p1-report): light theme + 3-page scaffold"`).
 
 ---
 
@@ -392,7 +393,7 @@ Visual spec (positions on 1280×720; read the named reference file + run CLI cap
 
 | # | Visual (reference file) | x,y,w,h | Fields / config |
 |---|---|---|---|
-| 1 | textbox (`textbox.md`) | 16,12,700,64 | Title "THE FACE-OFF — 5 data careers, 1.6M job ads" 17pt bold; subtitle line "Data Engineer pays the most. Data Analyst opens the widest door." 10pt `#8b949e` |
+| 1 | textbox (`textbox.md`) | 16,12,700,64 | Title "THE FACE-OFF — 5 data careers, 1.6M job ads" 17pt bold; subtitle line "Data Engineer pays the most. Data Analyst opens the widest door." 10pt `#57606a` |
 | 2 | chiclet-style slicer (`slicers.md`) | 736,12,528,44 | `job_title_short`, horizontal orientation, default all-selected |
 | 3-6 | 4 cards (`card.md`) | y=84 h=88, x=16/329/642/955 w=305 | `Total Postings` ("Job postings") · `Salary Records` ("Salary records") · `Top Role Median` ("Top median salary · DE") · `DA Junior Share %` ("Junior door · DA") |
 | 7 | clustered column chart (`cartesian.md`) | 16,188,700,340 | Axis `job_title_short`, value `Median Salary`, data labels on, per-role data colors (color-strategy.md), error bars lower=`Salary P25` upper=`Salary P75` — capability-lookup error-bar support first; **fallback if unsupported in PBIR:** add `Salary P25`/`Salary P75` to tooltips and note "P25–P75 in tooltip" in subtitle |
@@ -415,13 +416,13 @@ Visual spec (positions on 1280×720; read the named reference file + run CLI cap
 | # | Visual (reference) | x,y,w,h | Fields / config |
 |---|---|---|---|
 | 1 | textbox | 16,12,1248,56 | "SWITCHING COSTS — how far is the jump?" + subtitle "DA→BA is nearly free (0.88 skill overlap) · Python adds +$13K to a mid-level DA salary" |
-| 2 | matrix + conditional formatting (`table.md`, `conditional-formatting.md`) | 16,84,430,270 | Rows `job_title_short`, columns `RoleB[Role]`, values `Jaccard Overlap` (0.00); FillRule background gradient `#102e36` → `#00e5ff`; compact row height — do NOT stretch |
+| 2 | matrix + conditional formatting (`table.md`, `conditional-formatting.md`) | 16,84,430,270 | Rows `job_title_short`, columns `RoleB[Role]`, values `Jaccard Overlap` (0.00); FillRule background gradient `#d6f1f7` → `#0087a3`; compact row height — do NOT stretch |
 | 3 | bar chart (`cartesian.md`) | 16,362,430,300 | Axis `job_title_short`, value `Skills per Posting`, title "Skills per posting · median required stack", role data colors, labels on |
 | 4 | scatter (`cartesian.md`) | 454,84,420,578 | Details `skills_dim[skills]`, X `Skill Demand %`, Y `Skill Premium ($)`, size `Skill Count`; visual filters `job_title_short = Data Analyst`, `Seniority Level = mid`, TopN 10 skills by `Skill Demand %`; category labels ON; title "Skill ROI — mid-level DA" |
 | 5 | bar chart | 882,84,382,190 | Axis `job_title_short`, value `Junior Share %`, sort desc, labels, title "Junior door · % open to juniors" |
 | 6 | bar chart | 882,282,382,190 | Axis `job_title_short`, value `Degree Penalty ($)`, visual filter role ∈ {Data Analyst, Data Scientist, Software Engineer}, labels, title "No-degree salary gap · mid-level" |
 | 7 | multi-row card (`card.md`) | 882,480,382,182 | `job_title_short` + `Vietnam Postings`, title "Vietnam postings" |
-| 8 | textbox | 16,670,1248,34 | "⚠ Degree penalty compared within mid-level only — raw comparison is confounded by seniority. BA Vietnam n=145 — too small to chart." 9pt italic `#8b949e` |
+| 8 | textbox | 16,670,1248,34 | "⚠ Degree penalty compared within mid-level only — raw comparison is confounded by seniority. BA Vietnam n=145 — too small to chart." 9pt italic `#57606a` |
 
 - [ ] **Step 1: Author 1-2-3** → validate → reload → screenshot (check matrix gradient + diagonal = 1.00).
 - [ ] **Step 2: Author 4-8** → validate → reload → screenshot (check scatter has ≤10 labeled points, no label overlap).
@@ -440,7 +441,7 @@ Visual spec (positions on 1280×720; read the named reference file + run CLI cap
 
 | # | Visual (reference) | x,y,w,h | Fields / config |
 |---|---|---|---|
-| 1 | back button (`authoring.md` actionButton) | 20,20,36,36 | Back action, arrow, `#e6edf3` |
+| 1 | back button (`authoring.md` actionButton) | 20,20,36,36 | Back action, arrow, `#1f2328` |
 | 2 | textbox | 440,12,400,32 | "Job Title Drill Through" 14pt centered |
 | 3 | card | 440,44,400,68 | `Drill Role Title`, callout ~32pt — the dynamic role headline |
 | 4 | gauge (capability lookup: `gauge` roles) | 16,128,340,180 | Value `Median Salary`, target `Avg Salary` (target label visible = the "avg" tick), min `Gauge Min Yearly`, max `Gauge Max Yearly`, title "Yearly Salary ($USD) · tick = avg" |
@@ -453,7 +454,7 @@ Visual spec (positions on 1280×720; read the named reference file + run CLI cap
 | 11 | treemap (capability lookup) | 1008,324,256,380 | Group `job_schedule_type`, values `Total Postings`, title "Job Schedule Type" |
 
 - [ ] **Step 2: Author all visuals** → validate → reload.
-- [ ] **Step 3: Drill test** — in Desktop (or via screenshots after drilling), right-click each of the 5 roles on page 1's column chart → drillthrough → page 3; verify title shows the role, gauges/donuts repopulate, back button returns. Capture one screenshot of the DE drill state and eyeball against the course original's fixed version (cleaned platform bars — one LinkedIn only; labeled avg ticks; dark theme).
+- [ ] **Step 3: Drill test** — in Desktop (or via screenshots after drilling), right-click each of the 5 roles on page 1's column chart → drillthrough → page 3; verify title shows the role, gauges/donuts repopulate, back button returns. Capture one screenshot of the DE drill state and eyeball against the course original's fixed version (cleaned platform bars — one LinkedIn only; labeled avg ticks; light theme).
 - [ ] **Step 4: Commit** (`git commit -m "feat(p1-report): job title drillthrough page"`).
 
 ---
@@ -530,6 +531,6 @@ Run: `npm test -- p1Download` → FAIL (const not exported yet).
 
 ## Self-review notes
 
-- Spec coverage: format/tooling→T1-2, model→T3-7, theme/pages→T8-11, screenshots→T12, release/hosting→T13, web+i18n+tests→T14. Drill de-templating fixes: platform cleaning T3, labeled avg tick T11 (gauge titles), windowed gauges T7, meaningful donut legends T3 columns, dark theme T8.
+- Spec coverage: format/tooling→T1-2, model→T3-7, theme/pages→T8-11, screenshots→T12, release/hosting→T13, web+i18n+tests→T14. Drill de-templating fixes: platform cleaning T3, labeled avg tick T11 (gauge titles), windowed gauges T7, meaningful donut legends T3 columns, light theme T8.
 - PBIR JSON is deliberately not inlined: the authoring skill forbids writing visual JSON from memory; each visual row carries exact fields/positions and the reference file + capability-lookup procedure instead.
 - Known runtime risks called out inline: error-bar support (T9 fallback), map geocoding (T11 fallback), Jaccard TOPN ties (T6 tolerance).

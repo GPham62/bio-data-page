@@ -34,11 +34,11 @@ DA mid median ≈ $88K, DA↔BA Jaccard ≈ 0.88, Vietnam DE = 1,608.
 - Power Query: clean `job_via` → strip leading `via ` prefix into a `Job Platform` column (fixes duplicate LinkedIn/BeBee bars seen in the course original).
 - Measures: `Remote %`, `Health Insurance %`, `Median Hourly Salary`, `Avg Salary` / `Avg Hourly` (gauge targets). All respect the salary window where salary-based.
 
-## Report — 3 pages, 16:9, dark theme
+## Report — 3 pages, 16:9, light theme
 
-Theme: background `#0d1117`, panel `#161b22`, border `#30363d`, text `#e6edf3`,
-muted `#8b949e`. Role colors: DA `#00e5ff`, BA `#a371f7`, DE `#00cc96`,
-DS `#ff6b35`, SE `#636e7b`. Every page carries a takeaway title + subtitle
+Theme: background `#ffffff`, panel `#f6f8fa`, border `#d0d7de`, text `#1f2328`,
+muted `#57606a`. Role colors: DA `#0087a3`, BA `#8250df`, DE `#00996f`,
+DS `#e8590c`, SE `#6e7781`. Every page carries a takeaway title + subtitle
 (screenshot-first: the page must self-explain as a static image).
 
 ### Page 1 — "The Face-Off" (Executive banner layout)
@@ -62,8 +62,8 @@ DS `#ff6b35`, SE `#636e7b`. Every page carries a takeaway title + subtitle
 
 - Drillthrough target on `job_title_short`; reachable from any role visual on pages 1–2; auto back button; dynamic title via `SELECTEDVALUE(job_postings_fact[job_title_short])`.
 - Visuals: yearly + hourly salary gauges (median callout, target tick labeled "avg", ranges use the $10K–$600K window; the hourly window is pinned at build time from a data probe, same outlier-trim logic as yearly); three donuts with meaningful legend labels (Remote/On-site, No degree required/Degree required, Insurance/None); "Jobs Globally" map (bubble = posting count, geocode `job_location`); Job Platform bar (cleaned `Job Platform` column); Job Schedule Type treemap.
-- Styling: dark theme; the drilled role's accent color drives the page's data color.
-- Deliberate de-templating vs the course original: cleaned platform bars, labeled gauge targets, windowed gauge ranges, meaningful donut legends, dark theme.
+- Styling: light theme; the drilled role's accent color drives the page's data color.
+- Deliberate de-templating vs the course original: cleaned platform bars, labeled gauge targets, windowed gauge ranges, meaningful donut legends, role-accent styling instead of default blue.
 
 ## Export, hosting, web integration
 
