@@ -106,23 +106,26 @@ FROM flags   -- top-12 skills × every job, has_skill flag (full query on GitHub
 GROUP BY skill
 ORDER BY premium_usd DESC;`
 
-const DAX_SNIPPET = `Degree Penalty ($) =
--- Same-level comparison: raw medians are confounded by seniority
-VAR MedDegree =
-    MEDIANX(
-        FILTER(job_postings_fact,
-            job_postings_fact[job_no_degree_mention] = FALSE()
-            && job_postings_fact[salary_year_avg] >= 10000
-            && job_postings_fact[salary_year_avg] <= 600000),
+const DAX_SNIPPET = `Skill Premium ($) =
+-- Same role, same level, same salary window — only the skill differs
+VAR SkillJobs = CALCULATETABLE(DISTINCT(skills_job_dim[job_id]))
+VAR BaseAll =
+    FILTER(ALL(job_postings_fact),
+        job_postings_fact[job_title_short] = "Data Analyst"
+        && job_postings_fact[Seniority Level] = "mid"
+        && job_postings_fact[salary_year_avg] >= 10000
+        && job_postings_fact[salary_year_avg] <= 600000)
+VAR WithSkill =
+    MEDIANX(FILTER(BaseAll, job_postings_fact[job_id] IN SkillJobs),
         job_postings_fact[salary_year_avg])
-VAR MedNoDegree =
-    MEDIANX(
-        FILTER(job_postings_fact,
-            job_postings_fact[job_no_degree_mention] = TRUE()
-            && job_postings_fact[salary_year_avg] >= 10000
-            && job_postings_fact[salary_year_avg] <= 600000),
+VAR WithoutSkill =
+    MEDIANX(FILTER(BaseAll, NOT(job_postings_fact[job_id] IN SkillJobs)),
         job_postings_fact[salary_year_avg])
-RETURN MedNoDegree - MedDegree`
+RETURN WithSkill - WithoutSkill`
+
+// .pbix is 114MB — over GitHub's 100MB repo limit, so it ships as a Release asset
+export const PBIX_DOWNLOAD_URL =
+  'https://github.com/GPham62/bio-data-page/releases/download/p1-dashboard-v1/p1_dashboard.pbix'
 
 export default function Project1({ setActive }) {
   const { t } = useTranslation()
@@ -419,7 +422,7 @@ export default function Project1({ setActive }) {
         <SqlCard
           title={t('p1.dax_card_title')}
           code={DAX_SNIPPET}
-          href="https://github.com/GPham62/bio-data-page/raw/main/powerbi/p1/p1.pbix"
+          href={PBIX_DOWNLOAD_URL}
           linkLabel={t('p1.dash_download')}
           accent="var(--purple)"
         />
