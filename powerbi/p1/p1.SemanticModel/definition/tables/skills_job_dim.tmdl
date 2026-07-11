@@ -1,11 +1,6 @@
 table skills_job_dim
 	lineageTag: fdc5e8e7-af90-4c1f-8d11-436efb6393e7
 
-	/// Total number of skill-to-job associations
-	measure 'Skill Count' = COUNTROWS(skills_job_dim)
-		formatString: #,0
-		lineageTag: 6f5591db-dc2e-484e-9c7a-d8ed5cbeab5f
-
 	column job_id
 		dataType: int64
 		formatString: 0

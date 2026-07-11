@@ -1,0 +1,12 @@
+/// Disconnected role axis for the Jaccard overlap matrix columns (5 comparison roles, no relationship by design)
+table RoleB
+	lineageTag: 32087d40-041c-4e1f-b643-24f6d2d489c3
+
+	column Role
+		isNameInferred
+		sourceColumn: [Role]
+
+	partition RoleB = calculated
+		mode: import
+		source = DATATABLE("Role", STRING, {{"Data Analyst"},{"Business Analyst"},{"Data Engineer"},{"Data Scientist"},{"Software Engineer"}})
+

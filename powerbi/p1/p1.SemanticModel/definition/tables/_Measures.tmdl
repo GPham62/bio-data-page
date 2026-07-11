@@ -1,0 +1,137 @@
+/// Measure home table — no data, exists only to group all report measures at the top of the field list
+table _Measures
+	lineageTag: d77f045e-ad5b-4bae-b1e5-55b2340845a1
+
+	/// Total number of job postings in the dataset
+	measure 'Total Postings' = COUNTROWS(job_postings_fact)
+		formatString: #,0
+		lineageTag: 2478be9d-4c02-41f2-a880-56d79ee70898
+
+	/// Number of unique countries with job postings
+	measure 'Countries Covered' = DISTINCTCOUNT(job_postings_fact[job_country])
+		formatString: #,0
+		lineageTag: 313302f8-1347-44d9-9662-7d05e8de75c3
+
+	/// Number of postings with salary data
+	measure 'Salary Records' = CALCULATE(COUNTROWS(job_postings_fact), NOT(ISBLANK(job_postings_fact[salary_year_avg])))
+		formatString: #,0
+		lineageTag: 119f9ffd-8726-4972-bf76-d30e90ed6fb8
+
+	/// Median annual salary across all postings with salary data
+	measure 'Median Salary' = MEDIANX(FILTER(job_postings_fact, job_postings_fact[salary_year_avg] >= 10000 && job_postings_fact[salary_year_avg] <= 600000), job_postings_fact[salary_year_avg])
+		formatString: $#,0,K
+		lineageTag: 430efabe-9234-4c8a-88e4-148ab3e9cf00
+
+	/// Percentage of postings that are remote
+	measure 'Remote %' = DIVIDE(CALCULATE(COUNTROWS(job_postings_fact), job_postings_fact[job_work_from_home] = TRUE()), COUNTROWS(job_postings_fact), 0)
+		formatString: 0.0%
+		lineageTag: dc391f04-42e3-40f7-a999-1b3fd2ca29ec
+
+	/// Job title with the highest number of postings
+	measure 'Top Role' = VAR RoleCounts = ADDCOLUMNS(VALUES(job_postings_fact[job_title_short]), "@cnt", CALCULATE(COUNTROWS(job_postings_fact))) RETURN MAXX(TOPN(1, RoleCounts, [@cnt], DESC), job_postings_fact[job_title_short])
+		lineageTag: 98980e99-092e-44ad-8272-38ca9cca27d4
+
+	measure 'Salary P25' = PERCENTILEX.INC(FILTER(job_postings_fact, job_postings_fact[salary_year_avg] >= 10000 && job_postings_fact[salary_year_avg] <= 600000), job_postings_fact[salary_year_avg], 0.25)
+		formatString: $#,0,K
+		lineageTag: 7c70b56a-5873-4cf2-946e-33ff4e82168f
+
+	measure 'Salary P75' = PERCENTILEX.INC(FILTER(job_postings_fact, job_postings_fact[salary_year_avg] >= 10000 && job_postings_fact[salary_year_avg] <= 600000), job_postings_fact[salary_year_avg], 0.75)
+		formatString: $#,0,K
+		lineageTag: 15eac659-d288-4e40-89f9-07dd6457812b
+
+	measure 'Junior Share %' = DIVIDE(CALCULATE(COUNTROWS(job_postings_fact), job_postings_fact[Seniority Level] = "junior"), COUNTROWS(job_postings_fact))
+		formatString: 0.0%
+		lineageTag: d52db9b0-7750-4503-8bd0-58ba52544a25
+
+	measure 'No-Degree Share %' = DIVIDE(CALCULATE(COUNTROWS(job_postings_fact), job_postings_fact[job_no_degree_mention] = TRUE()), COUNTROWS(job_postings_fact))
+		formatString: 0.0%
+		lineageTag: 8564ac13-6fe3-4f12-9d03-0dbb1afd16ca
+
+	measure 'Vietnam Postings' = CALCULATE(COUNTROWS(job_postings_fact), job_postings_fact[job_country] = "Vietnam")
+		formatString: #,0
+		lineageTag: ff5bded7-dbaa-494b-8167-5a91775e1eae
+
+	/// Median number of listed skills, among postings that list at least one skill
+	measure 'Skills per Posting' = MEDIANX(FILTER(VALUES(job_postings_fact[job_id]), CALCULATE(COUNTROWS(skills_job_dim)) > 0), CALCULATE(COUNTROWS(skills_job_dim)))
+		formatString: 0
+		lineageTag: 3f324e0c-2182-47e0-8bf7-239d5d1f4b6f
+
+	measure 'Degree Penalty ($)' = VAR MedDeg = MEDIANX(FILTER(job_postings_fact, job_postings_fact[Seniority Level] = "mid" && job_postings_fact[job_no_degree_mention] = FALSE() && job_postings_fact[salary_year_avg] >= 10000 && job_postings_fact[salary_year_avg] <= 600000), job_postings_fact[salary_year_avg]) VAR MedNoDeg = MEDIANX(FILTER(job_postings_fact, job_postings_fact[Seniority Level] = "mid" && job_postings_fact[job_no_degree_mention] = TRUE() && job_postings_fact[salary_year_avg] >= 10000 && job_postings_fact[salary_year_avg] <= 600000), job_postings_fact[salary_year_avg]) RETURN MedNoDeg - MedDeg
+		formatString: $#,0
+		lineageTag: 6a8d586d-c95a-4f0e-8d4d-84a2c8c6f60d
+
+	measure 'DA Junior Share %' = CALCULATE([Junior Share %], job_postings_fact[job_title_short] = "Data Analyst")
+		formatString: 0.0%
+		lineageTag: eb04bb11-fb80-4eb8-a3aa-ad0450f292bb
+
+	measure 'Top Role Median' = MAXX(VALUES(job_postings_fact[job_title_short]), [Median Salary])
+		formatString: $#,0,K
+		lineageTag: 0c4b6969-461c-4f48-80c9-55c3dc3fb5d7
+
+	/// Share of skills-listing postings (in current filter context) that require the current skill
+	measure 'Skill Demand %' = VAR WithSkill = CALCULATE(DISTINCTCOUNT(skills_job_dim[job_id])) VAR AllJobs = CALCULATE(DISTINCTCOUNT(skills_job_dim[job_id]), REMOVEFILTERS(skills_dim)) RETURN DIVIDE(WithSkill, AllJobs)
+		formatString: 0.0%
+		lineageTag: ade731c5-1f44-4802-a286-c8692ced4a6c
+
+	/// Median salary of mid-level DA postings requiring the current skill minus median of those not requiring it
+	measure 'Skill Premium ($)' = VAR SkillJobs = CALCULATETABLE(DISTINCT(skills_job_dim[job_id])) VAR BaseAll = FILTER(ALL(job_postings_fact), job_postings_fact[job_title_short] = "Data Analyst" && job_postings_fact[Seniority Level] = "mid" && job_postings_fact[salary_year_avg] >= 10000 && job_postings_fact[salary_year_avg] <= 600000) VAR WithSkill = MEDIANX(FILTER(BaseAll, job_postings_fact[job_id] IN SkillJobs), job_postings_fact[salary_year_avg]) VAR WithoutSkill = MEDIANX(FILTER(BaseAll, NOT(job_postings_fact[job_id] IN SkillJobs)), job_postings_fact[salary_year_avg]) RETURN WithSkill - WithoutSkill
+		formatString: $#,0
+		lineageTag: ad5fc675-7788-4093-9198-b35437beefa2
+
+	measure 'Jaccard Overlap' = VAR RoleA = SELECTEDVALUE(job_postings_fact[job_title_short]) VAR RoleBv = SELECTEDVALUE(RoleB[Role]) VAR TopA = SELECTCOLUMNS(TOPN(15, ADDCOLUMNS(CALCULATETABLE(VALUES(skills_dim[skills]), job_postings_fact[job_title_short] = RoleA), "@cnt", CALCULATE(COUNTROWS(skills_job_dim), job_postings_fact[job_title_short] = RoleA)), [@cnt], DESC), "s", skills_dim[skills]) VAR TopB = SELECTCOLUMNS(TOPN(15, ADDCOLUMNS(CALCULATETABLE(VALUES(skills_dim[skills]), job_postings_fact[job_title_short] = RoleBv), "@cnt", CALCULATE(COUNTROWS(skills_job_dim), job_postings_fact[job_title_short] = RoleBv)), [@cnt], DESC), "s", skills_dim[skills]) RETURN IF(NOT ISBLANK(RoleA) && NOT ISBLANK(RoleBv), DIVIDE(COUNTROWS(INTERSECT(TopA, TopB)), COUNTROWS(DISTINCT(UNION(TopA, TopB)))))
+		formatString: 0.00
+		lineageTag: bf3f530d-ee42-4b26-bed6-ccfd97a0fb2e
+
+	/// Skill appearing in the most job postings
+	measure 'Top Skill' = VAR SkillCounts = ADDCOLUMNS(VALUES(skills_dim[skills]), "@cnt", CALCULATE(COUNTROWS(skills_job_dim))) RETURN MAXX(TOPN(1, SkillCounts, [@cnt], DESC), skills_dim[skills])
+		lineageTag: 08486dd6-5706-49d1-82a6-e0b36332c08d
+
+	/// Total number of skill-to-job associations
+	measure 'Skill Count' = COUNTROWS(skills_job_dim)
+		formatString: #,0
+		lineageTag: 6f5591db-dc2e-484e-9c7a-d8ed5cbeab5f
+
+	measure 'Median Hourly Salary' = MEDIANX(FILTER(job_postings_fact, job_postings_fact[salary_hour_avg] >= 15 && job_postings_fact[salary_hour_avg] <= 115), job_postings_fact[salary_hour_avg])
+		formatString: $#,0
+		lineageTag: dcfc7fe7-789c-4881-9531-67b2ebdcdf16
+
+	measure 'Avg Salary' = AVERAGEX(FILTER(job_postings_fact, job_postings_fact[salary_year_avg] >= 10000 && job_postings_fact[salary_year_avg] <= 600000), job_postings_fact[salary_year_avg])
+		formatString: $#,0,K
+		lineageTag: b5c8c729-e5ba-4e7a-a041-b5afd2415be5
+
+	measure 'Avg Hourly Salary' = AVERAGEX(FILTER(job_postings_fact, job_postings_fact[salary_hour_avg] >= 15 && job_postings_fact[salary_hour_avg] <= 115), job_postings_fact[salary_hour_avg])
+		formatString: $#,0
+		lineageTag: 1afb0de0-2e1d-4104-af30-638a2119918d
+
+	measure 'Health Insurance %' = DIVIDE(CALCULATE(COUNTROWS(job_postings_fact), job_postings_fact[job_health_insurance] = TRUE()), COUNTROWS(job_postings_fact))
+		formatString: 0.0%
+		lineageTag: 2795bdb4-f832-4bad-9ab0-51ef92b77567
+
+	measure 'Drill Role Title' = SELECTEDVALUE(job_postings_fact[job_title_short], "All Roles")
+		lineageTag: a38960b1-8f1e-4d74-818a-0dc7d7f20061
+
+	measure 'Gauge Min Yearly' = 10000
+		formatString: $#,0,K
+		lineageTag: bea2c428-164e-4b7a-ac81-686545c75abd
+
+	measure 'Gauge Max Yearly' = 600000
+		formatString: $#,0,K
+		lineageTag: b9c6c7d4-20b2-4165-8825-b14358b787b3
+
+	measure 'Gauge Min Hourly' = 15
+		formatString: $#,0
+		lineageTag: 8415a1fb-224b-4a8e-852d-e05ac80aac26
+
+	measure 'Gauge Max Hourly' = 115
+		formatString: $#,0
+		lineageTag: f3f48a6e-949d-4a33-9d50-f1e8bb385b59
+
+	column Col1
+		isHidden
+		isNameInferred
+		sourceColumn: [Col1]
+
+	partition _Measures = calculated
+		mode: import
+		source = ROW("Col1", BLANK())
+

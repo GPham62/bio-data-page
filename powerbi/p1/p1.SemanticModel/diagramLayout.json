@@ -59,6 +59,32 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1136,
+            "y": 50
+          },
+          "nodeIndex": "RoleB",
+          "nodeLineageTag": "32087d40-041c-4e1f-b643-24f6d2d489c3",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1420,
+            "y": 50
+          },
+          "nodeIndex": "_Measures",
+          "nodeLineageTag": "d77f045e-ad5b-4bae-b1e5-55b2340845a1",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

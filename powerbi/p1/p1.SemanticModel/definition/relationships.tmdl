@@ -8,10 +8,12 @@ relationship AutoDetected_4abb63c1-6d74-4442-8692-07ff067a93b8
 	toColumn: company_dim.company_id
 
 relationship AutoDetected_8eae1400-a821-4af8-9d72-41471662d34c
+	crossFilteringBehavior: bothDirections
 	fromColumn: skills_job_dim.job_id
 	toColumn: job_postings_fact.job_id
 
 relationship AutoDetected_0b66e3ec-1257-4e0f-bf92-244e60641e26
+	crossFilteringBehavior: bothDirections
 	fromColumn: skills_job_dim.skill_id
 	toColumn: skills_dim.skill_id
 
