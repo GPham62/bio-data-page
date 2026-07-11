@@ -261,6 +261,34 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "d3e19e0db7aa6d665c53",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "job_postings_fact"
+              }
+            },
+            "Property": "Job Platform"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e13d6e5d125eecc70642",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Total Postings"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

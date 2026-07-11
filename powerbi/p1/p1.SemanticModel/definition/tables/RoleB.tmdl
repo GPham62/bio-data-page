@@ -3,16 +3,19 @@ table RoleB
 	lineageTag: 32087d40-041c-4e1f-b643-24f6d2d489c3
 
 	column Role
+		lineageTag: a552b333-a71e-4109-b831-f2c742b28f53
 		isNameInferred
 		sourceColumn: [Role]
 
 	column Code
-		sortByColumn: CodeSort
+		lineageTag: 862e059a-94f8-47dd-8ee9-3b542d31b80d
 		isNameInferred
 		sourceColumn: [Code]
+		sortByColumn: CodeSort
 
 	column CodeSort
 		isHidden
+		lineageTag: 05303a17-9263-48bb-aad8-19f2ab9eee35
 		isNameInferred
 		sourceColumn: [CodeSort]
 

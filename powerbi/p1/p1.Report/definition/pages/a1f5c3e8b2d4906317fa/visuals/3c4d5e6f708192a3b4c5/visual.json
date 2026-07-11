@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "3c4d5e6f708192a3b4c5",
   "position": {
     "x": 16,
@@ -188,5 +188,37 @@
         }
       ]
     }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "340b408737bd0fb5a513",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Total Postings"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6572978f921eef968d72",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Salary Records"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

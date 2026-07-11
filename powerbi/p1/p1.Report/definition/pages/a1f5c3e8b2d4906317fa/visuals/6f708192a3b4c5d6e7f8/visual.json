@@ -218,8 +218,35 @@
               }
             }
           ]
+        }
+      },
+      {
+        "name": "57224dbcde2728893564",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "job_postings_fact"
+              }
+            },
+            "Property": "Seniority Level"
+          }
         },
-        "howCreated": "User"
+        "type": "Categorical"
+      },
+      {
+        "name": "27d3dd3aac76be874d3e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Median Salary"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

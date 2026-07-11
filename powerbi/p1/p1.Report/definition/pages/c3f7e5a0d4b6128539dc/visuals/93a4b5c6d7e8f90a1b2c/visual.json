@@ -90,5 +90,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "5ccee8f5faf3527743c9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "job_postings_fact"
+              }
+            },
+            "Property": "job_schedule_type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "0ddbfc7acceaeef6ed17",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Total Postings"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

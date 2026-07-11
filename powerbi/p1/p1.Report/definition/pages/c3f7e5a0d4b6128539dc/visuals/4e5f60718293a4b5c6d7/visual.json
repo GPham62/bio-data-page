@@ -131,5 +131,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0673c21dbcd52115f05a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "job_postings_fact"
+              }
+            },
+            "Property": "Remote Status"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ba156c255abb41dde00b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Total Postings"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

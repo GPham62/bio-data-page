@@ -131,5 +131,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "6260f1fe2b7946a75b06",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "job_postings_fact"
+              }
+            },
+            "Property": "Insurance"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "835ab85cb4987d422885",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Total Postings"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }
