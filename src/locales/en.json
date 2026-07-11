@@ -194,7 +194,7 @@
     "s8_sub": "A 3-page Power BI dashboard built on the same source data — the download adds a job-title drill-through page",
     "dash_p1_caption": "Page 1 · The Face-Off — every visual reacts to the role slicer",
     "dash_p2_caption": "Page 2 · Switching Costs — overlap matrix, skill ROI, entry barriers",
-    "dash_download": "Download the .pbix",
+    "dash_download": "Download the .pbix (opens in Power BI Desktop)",
     "dax_card_title": "Skill Premium ($) — the DAX behind the Skill ROI chart",
     "strip_median": "median salary",
     "strip_hint": "5 roles. Scroll to see who wins.",

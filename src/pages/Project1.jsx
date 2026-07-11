@@ -413,10 +413,14 @@ export default function Project1({ setActive }) {
         <SectionTitle index="08" title={t('p1.s8_title')} sub={t('p1.s8_sub')} fxIndex fxTitle />
         <div className="projectGrid1">
           <ChartCard title={t('p1.dash_p1_caption')} delay={0.05}>
-            <img src="/p1_dashboard_faceoff.png" alt={t('p1.dash_p1_caption')} className={styles.dashImg} />
+            <a href="/p1_dashboard_faceoff.png" target="_blank" rel="noopener">
+              <img src="/p1_dashboard_faceoff.png" alt={t('p1.dash_p1_caption')} className={styles.dashImg} />
+            </a>
           </ChartCard>
           <ChartCard title={t('p1.dash_p2_caption')} delay={0.1}>
-            <img src="/p1_dashboard_switching.png" alt={t('p1.dash_p2_caption')} className={styles.dashImg} />
+            <a href="/p1_dashboard_switching.png" target="_blank" rel="noopener">
+              <img src="/p1_dashboard_switching.png" alt={t('p1.dash_p2_caption')} className={styles.dashImg} />
+            </a>
           </ChartCard>
         </div>
         <SqlCard

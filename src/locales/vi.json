@@ -194,7 +194,7 @@
     "s8_sub": "Dashboard Power BI 3 trang dựng trên cùng dữ liệu nguồn — bản tải về có thêm trang drill-through theo chức danh",
     "dash_p1_caption": "Trang 1 · The Face-Off — mọi biểu đồ phản ứng theo slicer nghề",
     "dash_p2_caption": "Trang 2 · Switching Costs — ma trận trùng kỹ năng, ROI kỹ năng, rào cản gia nhập",
-    "dash_download": "Tải file .pbix",
+    "dash_download": "Tải file .pbix (mở bằng Power BI Desktop)",
     "dax_card_title": "Skill Premium ($) — DAX đằng sau biểu đồ Skill ROI",
     "strip_median": "lương trung vị",
     "strip_hint": "5 nghề. Cuộn xuống xem ai thắng.",
