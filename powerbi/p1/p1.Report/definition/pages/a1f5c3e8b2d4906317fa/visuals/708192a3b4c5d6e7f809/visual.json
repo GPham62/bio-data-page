@@ -1,7 +1,14 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "708192a3b4c5d6e7f809",
-  "position": { "x": 16, "y": 556, "z": 7000, "height": 148, "width": 1248, "tabOrder": 7000 },
+  "position": {
+    "x": 16,
+    "y": 556,
+    "z": 7000,
+    "height": 148,
+    "width": 1248,
+    "tabOrder": 7000
+  },
   "visual": {
     "visualType": "lineChart",
     "query": {
@@ -15,7 +22,11 @@
                     "Hierarchy": {
                       "Expression": {
                         "PropertyVariationSource": {
-                          "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "job_postings_fact"
+                            }
+                          },
                           "Name": "Variation",
                           "Property": "job_posted_date"
                         }
@@ -35,7 +46,16 @@
         "Y": {
           "projections": [
             {
-              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Total Postings" } },
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total Postings"
+                }
+              },
               "queryRef": "_Measures.Total Postings",
               "nativeQueryRef": "Total Postings"
             }
@@ -47,25 +67,51 @@
       "categoryAxis": [
         {
           "properties": {
-            "showAxisTitle": { "expr": { "Literal": { "Value": "false" } } }
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
           }
         }
       ],
       "valueAxis": [
         {
           "properties": {
-            "showAxisTitle": { "expr": { "Literal": { "Value": "false" } } }
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
           }
         }
       ]
     },
     "visualContainerObjects": {
-      "title": [{
-        "properties": {
-          "show": { "expr": { "Literal": { "Value": "true" } } },
-          "text": { "expr": { "Literal": { "Value": "'POSTINGS BY MONTH · DEMAND IS SEASONAL, NOT SHRINKING'" } } }
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'POSTINGS BY MONTH · DEMAND IS SEASONAL, NOT SHRINKING'"
+                }
+              }
+            }
+          }
         }
-      }]
+      ]
     },
     "drillFilterOtherVisuals": true
   }

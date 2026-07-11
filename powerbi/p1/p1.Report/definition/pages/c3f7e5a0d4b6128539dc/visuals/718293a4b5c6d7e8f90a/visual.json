@@ -1,7 +1,14 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "718293a4b5c6d7e8f90a",
-  "position": { "x": 16, "y": 324, "z": 8000, "height": 380, "width": 688, "tabOrder": 8000 },
+  "position": {
+    "x": 16,
+    "y": 324,
+    "z": 8000,
+    "height": 380,
+    "width": 688,
+    "tabOrder": 8000
+  },
   "visual": {
     "visualType": "map",
     "query": {
@@ -11,19 +18,33 @@
             {
               "field": {
                 "Column": {
-                  "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "job_postings_fact"
+                    }
+                  },
                   "Property": "job_country"
                 }
               },
               "queryRef": "job_postings_fact.job_country",
-              "nativeQueryRef": "job_country"
+              "nativeQueryRef": "job_country",
+              "active": true
             }
           ]
         },
         "Size": {
           "projections": [
             {
-              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Total Postings" } },
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total Postings"
+                }
+              },
               "queryRef": "_Measures.Total Postings",
               "nativeQueryRef": "Total Postings"
             }
@@ -35,25 +56,55 @@
       "dataPoint": [
         {
           "properties": {
-            "defaultColor": { "solid": { "color": { "expr": { "Literal": { "Value": "'#0087a3'" } } } } }
+            "defaultColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0087a3'"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       ],
       "legend": [
         {
           "properties": {
-            "show": { "expr": { "Literal": { "Value": "false" } } }
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
           }
         }
       ]
     },
     "visualContainerObjects": {
-      "title": [{
-        "properties": {
-          "show": { "expr": { "Literal": { "Value": "true" } } },
-          "text": { "expr": { "Literal": { "Value": "'JOBS GLOBALLY · BUBBLE = POSTING COUNT'" } } }
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'JOBS GLOBALLY · BUBBLE = POSTING COUNT'"
+                }
+              }
+            }
+          }
         }
-      }]
+      ]
     },
     "drillFilterOtherVisuals": true
   }

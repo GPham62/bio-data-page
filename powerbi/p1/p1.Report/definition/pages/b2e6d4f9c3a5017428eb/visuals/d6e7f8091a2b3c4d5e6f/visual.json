@@ -1,21 +1,38 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "d6e7f8091a2b3c4d5e6f",
-  "position": { "x": 882, "y": 282, "z": 6000, "height": 190, "width": 382, "tabOrder": 6000 },
+  "position": {
+    "x": 882,
+    "y": 282,
+    "z": 6000,
+    "height": 190,
+    "width": 382,
+    "tabOrder": 6000
+  },
   "filterConfig": {
     "filters": [
       {
         "name": "Filter2a3b4c5d6e7f8a9b0c1d2e3f",
         "field": {
           "Column": {
-            "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+            "Expression": {
+              "SourceRef": {
+                "Entity": "job_postings_fact"
+              }
+            },
             "Property": "job_title_short"
           }
         },
         "type": "Categorical",
         "filter": {
           "Version": 2,
-          "From": [{ "Name": "j", "Entity": "job_postings_fact", "Type": 0 }],
+          "From": [
+            {
+              "Name": "j",
+              "Entity": "job_postings_fact",
+              "Type": 0
+            }
+          ],
           "Where": [
             {
               "Condition": {
@@ -23,15 +40,37 @@
                   "Expressions": [
                     {
                       "Column": {
-                        "Expression": { "SourceRef": { "Source": "j" } },
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "j"
+                          }
+                        },
                         "Property": "job_title_short"
                       }
                     }
                   ],
                   "Values": [
-                    [{ "Literal": { "Value": "'Data Analyst'" } }],
-                    [{ "Literal": { "Value": "'Data Scientist'" } }],
-                    [{ "Literal": { "Value": "'Software Engineer'" } }]
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Data Analyst'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Data Scientist'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Software Engineer'"
+                        }
+                      }
+                    ]
                   ]
                 }
               }
@@ -51,7 +90,11 @@
             {
               "field": {
                 "Column": {
-                  "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "job_postings_fact"
+                    }
+                  },
                   "Property": "Role Code"
                 }
               },
@@ -64,7 +107,16 @@
         "Y": {
           "projections": [
             {
-              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Degree Penalty ($)" } },
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Degree Penalty ($)"
+                }
+              },
               "queryRef": "_Measures.Degree Penalty ($)",
               "nativeQueryRef": "Degree Penalty ($)"
             }
@@ -76,40 +128,88 @@
       "dataPoint": [
         {
           "properties": {
-            "defaultColor": { "solid": { "color": { "expr": { "Literal": { "Value": "'#e8590c'" } } } } }
+            "defaultColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#e8590c'"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       ],
       "labels": [
         {
           "properties": {
-            "show": { "expr": { "Literal": { "Value": "true" } } }
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
           }
         }
       ],
       "categoryAxis": [
         {
           "properties": {
-            "showAxisTitle": { "expr": { "Literal": { "Value": "false" } } }
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
           }
         }
       ],
       "valueAxis": [
         {
           "properties": {
-            "showAxisTitle": { "expr": { "Literal": { "Value": "false" } } },
-            "show": { "expr": { "Literal": { "Value": "false" } } }
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
           }
         }
       ]
     },
     "visualContainerObjects": {
-      "title": [{
-        "properties": {
-          "show": { "expr": { "Literal": { "Value": "true" } } },
-          "text": { "expr": { "Literal": { "Value": "'NO-DEGREE SALARY GAP · MID-LEVEL, LEVEL-CONTROLLED'" } } }
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'NO-DEGREE SALARY GAP · MID-LEVEL, LEVEL-CONTROLLED'"
+                }
+              }
+            }
+          }
         }
-      }]
+      ]
     },
     "drillFilterOtherVisuals": true
   }

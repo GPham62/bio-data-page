@@ -6,7 +6,17 @@ table RoleB
 		isNameInferred
 		sourceColumn: [Role]
 
+	column Code
+		sortByColumn: CodeSort
+		isNameInferred
+		sourceColumn: [Code]
+
+	column CodeSort
+		isHidden
+		isNameInferred
+		sourceColumn: [CodeSort]
+
 	partition RoleB = calculated
 		mode: import
-		source = DATATABLE("Role", STRING, {{"Data Analyst"},{"Business Analyst"},{"Data Engineer"},{"Data Scientist"},{"Software Engineer"}})
+		source = DATATABLE("Role", STRING, "Code", STRING, "CodeSort", INTEGER, {{"Data Analyst", "DA", 1},{"Business Analyst", "BA", 2},{"Data Engineer", "DE", 3},{"Data Scientist", "DS", 4},{"Software Engineer", "SE", 5}})
 

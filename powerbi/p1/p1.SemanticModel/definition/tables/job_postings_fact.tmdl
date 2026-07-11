@@ -180,6 +180,19 @@ table job_postings_fact
 		summarizeBy: none
 		sourceColumn: Insurance
 
+	/// Acronym role labels for the tile slicer and compact axes (DA/BA/DE/DS/SE + senior/ML/cloud codes)
+	column 'Role Code' = SWITCH(job_postings_fact[job_title_short], "Data Analyst", "DA", "Business Analyst", "BA", "Data Engineer", "DE", "Data Scientist", "DS", "Software Engineer", "SE", "Senior Data Analyst", "Sr DA", "Senior Data Engineer", "Sr DE", "Senior Data Scientist", "Sr DS", "Machine Learning Engineer", "MLE", "Cloud Engineer", "CE", job_postings_fact[job_title_short])
+		dataType: string
+		lineageTag: 3e1a9c7b-5d20-48f6-9b41-c8a2e07d5f13
+		summarizeBy: none
+		sortByColumn: 'Role Sort'
+
+	column 'Role Sort' = SWITCH(job_postings_fact[job_title_short], "Data Analyst", 1, "Business Analyst", 2, "Data Engineer", 3, "Data Scientist", 4, "Software Engineer", 5, "Senior Data Analyst", 6, "Senior Data Engineer", 7, "Senior Data Scientist", 8, "Machine Learning Engineer", 9, "Cloud Engineer", 10, 11)
+		dataType: int64
+		isHidden
+		lineageTag: 8f4b2d6e-1a37-4c95-b208-7e5c3a90d461
+		summarizeBy: none
+
 	partition job_postings_fact = m
 		mode: import
 		source =

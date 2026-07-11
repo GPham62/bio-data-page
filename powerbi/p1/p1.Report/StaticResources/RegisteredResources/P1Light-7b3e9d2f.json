@@ -1,6 +1,15 @@
 {
   "name": "P1Light-7b3e9d2f.json",
-  "dataColors": ["#0087a3", "#8250df", "#00996f", "#e8590c", "#4467a8", "#b08800", "#bc4c00", "#0969da"],
+  "dataColors": [
+    "#0087a3",
+    "#8250df",
+    "#00996f",
+    "#e8590c",
+    "#4467a8",
+    "#b08800",
+    "#bc4c00",
+    "#0969da"
+  ],
   "good": "#00996f",
   "neutral": "#d9b300",
   "bad": "#e8590c",
@@ -16,42 +25,90 @@
   "secondaryBackground": "#f6f8fa",
   "tableAccent": "#0087a3",
   "textClasses": {
-    "label": { "fontFace": "Segoe UI", "fontSize": 10, "color": "#1f2328" },
-    "title": { "fontFace": "Segoe UI Semibold", "fontSize": 12, "color": "#1f2328" },
-    "callout": { "fontFace": "Segoe UI Semibold", "fontSize": 28, "color": "#1f2328" },
-    "header": { "fontFace": "Segoe UI Semibold", "fontSize": 12, "color": "#1f2328" }
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 10,
+      "color": "#1f2328"
+    },
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 12,
+      "color": "#1f2328"
+    },
+    "callout": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 28,
+      "color": "#1f2328"
+    },
+    "header": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 12,
+      "color": "#1f2328"
+    }
   },
   "visualStyles": {
     "*": {
       "*": {
-        "title": [{
-          "show": true,
-          "fontFamily": "Segoe UI Semibold",
-          "fontSize": 10,
-          "fontColor": { "solid": { "color": "#57606a" } }
-        }],
-        "border": [{
-          "show": true,
-          "color": { "solid": { "color": "#d0d7de" } },
-          "radius": 6,
-          "width": 1
-        }]
+        "title": [
+          {
+            "show": true,
+            "fontFamily": "Segoe UI Semibold",
+            "fontSize": 10,
+            "fontColor": {
+              "solid": {
+                "color": "#57606a"
+              }
+            }
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#d0d7de"
+              }
+            },
+            "radius": 6,
+            "width": 1
+          }
+        ]
       }
     },
     "pivotTable": {
       "*": {
-        "values": [{
-          "backColorPrimary": { "solid": { "color": "#ffffff" } },
-          "backColorSecondary": { "solid": { "color": "#f6f8fa" } }
-        }]
+        "values": [
+          {
+            "backColorPrimary": {
+              "solid": {
+                "color": "#ffffff"
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": "#f6f8fa"
+              }
+            }
+          }
+        ]
       }
     },
     "tableEx": {
       "*": {
-        "values": [{
-          "backColorPrimary": { "solid": { "color": "#ffffff" } },
-          "backColorSecondary": { "solid": { "color": "#f6f8fa" } }
-        }]
+        "values": [
+          {
+            "backColorPrimary": {
+              "solid": {
+                "color": "#ffffff"
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": "#f6f8fa"
+              }
+            }
+          }
+        ]
       }
     }
   }

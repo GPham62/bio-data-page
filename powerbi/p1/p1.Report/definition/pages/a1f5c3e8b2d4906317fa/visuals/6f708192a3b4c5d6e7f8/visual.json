@@ -1,21 +1,166 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "6f708192a3b4c5d6e7f8",
-  "position": { "x": 732, "y": 216, "z": 6000, "height": 332, "width": 532, "tabOrder": 6000 },
+  "position": {
+    "x": 732,
+    "y": 216,
+    "z": 6000,
+    "height": 332,
+    "width": 532,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "job_postings_fact"
+                    }
+                  },
+                  "Property": "Seniority Level"
+                }
+              },
+              "queryRef": "job_postings_fact.Seniority Level",
+              "nativeQueryRef": "Seniority Level",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "job_postings_fact"
+                    }
+                  },
+                  "Property": "job_title_short"
+                }
+              },
+              "queryRef": "job_postings_fact.job_title_short",
+              "nativeQueryRef": "job_title_short",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Median Salary"
+                }
+              },
+              "queryRef": "_Measures.Median Salary",
+              "nativeQueryRef": "Median Salary"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTotals": [
+        {
+          "properties": {
+            "rowSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "columnSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'GROWTH LADDER · MEDIAN SALARY BY SENIORITY'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
   "filterConfig": {
     "filters": [
       {
         "name": "Filter4d5e6f708192a3b4c5d6e7f8",
         "field": {
           "Column": {
-            "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+            "Expression": {
+              "SourceRef": {
+                "Entity": "job_postings_fact"
+              }
+            },
             "Property": "job_title_short"
           }
         },
         "type": "Categorical",
         "filter": {
           "Version": 2,
-          "From": [{ "Name": "j", "Entity": "job_postings_fact", "Type": 0 }],
+          "From": [
+            {
+              "Name": "j",
+              "Entity": "job_postings_fact",
+              "Type": 0
+            }
+          ],
           "Where": [
             {
               "Condition": {
@@ -23,17 +168,51 @@
                   "Expressions": [
                     {
                       "Column": {
-                        "Expression": { "SourceRef": { "Source": "j" } },
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "j"
+                          }
+                        },
                         "Property": "job_title_short"
                       }
                     }
                   ],
                   "Values": [
-                    [{ "Literal": { "Value": "'Data Analyst'" } }],
-                    [{ "Literal": { "Value": "'Business Analyst'" } }],
-                    [{ "Literal": { "Value": "'Data Engineer'" } }],
-                    [{ "Literal": { "Value": "'Data Scientist'" } }],
-                    [{ "Literal": { "Value": "'Software Engineer'" } }]
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Data Analyst'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Business Analyst'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Data Engineer'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Data Scientist'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Software Engineer'"
+                        }
+                      }
+                    ]
                   ]
                 }
               }
@@ -43,72 +222,5 @@
         "howCreated": "User"
       }
     ]
-  },
-  "visual": {
-    "visualType": "pivotTable",
-    "query": {
-      "queryState": {
-        "Rows": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
-                  "Property": "job_title_short"
-                }
-              },
-              "queryRef": "job_postings_fact.job_title_short",
-              "nativeQueryRef": "job_title_short"
-            }
-          ]
-        },
-        "Columns": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
-                  "Property": "Seniority Level"
-                }
-              },
-              "queryRef": "job_postings_fact.Seniority Level",
-              "nativeQueryRef": "Seniority Level"
-            }
-          ]
-        },
-        "Values": {
-          "projections": [
-            {
-              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Median Salary" } },
-              "queryRef": "_Measures.Median Salary",
-              "nativeQueryRef": "Median Salary"
-            }
-          ]
-        }
-      }
-    },
-    "objects": {
-      "columnHeaders": [{
-        "properties": {
-          "columnAdjustment": { "expr": { "Literal": { "Value": "'growToFit'" } } },
-          "autoSizeColumnWidth": { "expr": { "Literal": { "Value": "true" } } }
-        }
-      }],
-      "subTotals": [{
-        "properties": {
-          "rowSubtotals": { "expr": { "Literal": { "Value": "false" } } },
-          "columnSubtotals": { "expr": { "Literal": { "Value": "false" } } }
-        }
-      }]
-    },
-    "visualContainerObjects": {
-      "title": [{
-        "properties": {
-          "show": { "expr": { "Literal": { "Value": "true" } } },
-          "text": { "expr": { "Literal": { "Value": "'GROWTH LADDER · MEDIAN SALARY BY SENIORITY'" } } }
-        }
-      }]
-    },
-    "drillFilterOtherVisuals": true
   }
 }

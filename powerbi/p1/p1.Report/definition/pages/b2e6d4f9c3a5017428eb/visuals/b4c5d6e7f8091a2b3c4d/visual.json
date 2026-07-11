@@ -1,21 +1,220 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "b4c5d6e7f8091a2b3c4d",
-  "position": { "x": 454, "y": 84, "z": 4000, "height": 578, "width": 420, "tabOrder": 4000 },
+  "position": {
+    "x": 454,
+    "y": 84,
+    "z": 4000,
+    "height": 578,
+    "width": 420,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "skills_dim"
+                    }
+                  },
+                  "Property": "skills"
+                }
+              },
+              "queryRef": "skills_dim.skills",
+              "nativeQueryRef": "skills",
+              "active": true
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Skill Count"
+                }
+              },
+              "queryRef": "_Measures.Skill Count",
+              "nativeQueryRef": "Skill Count"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Skill Demand %"
+                }
+              },
+              "queryRef": "_Measures.Skill Demand %",
+              "nativeQueryRef": "Skill Demand %",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Skill Premium ($)"
+                }
+              },
+              "queryRef": "_Measures.Skill Premium ($)",
+              "nativeQueryRef": "Skill Premium ($)"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "categoryLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "bubbles": [
+        {
+          "properties": {
+            "bubbleSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "-10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "defaultColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0087a3'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'SKILL ROI — MID-LEVEL DATA ANALYST · TOP 10 SKILLS BY DEMAND'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
   "filterConfig": {
     "filters": [
       {
         "name": "Filter8c9d0e1f2a3b4c5d6e7f8a9b",
         "field": {
           "Column": {
-            "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+            "Expression": {
+              "SourceRef": {
+                "Entity": "job_postings_fact"
+              }
+            },
             "Property": "job_title_short"
           }
         },
         "type": "Categorical",
         "filter": {
           "Version": 2,
-          "From": [{ "Name": "j", "Entity": "job_postings_fact", "Type": 0 }],
+          "From": [
+            {
+              "Name": "j",
+              "Entity": "job_postings_fact",
+              "Type": 0
+            }
+          ],
           "Where": [
             {
               "Condition": {
@@ -23,13 +222,23 @@
                   "Expressions": [
                     {
                       "Column": {
-                        "Expression": { "SourceRef": { "Source": "j" } },
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "j"
+                          }
+                        },
                         "Property": "job_title_short"
                       }
                     }
                   ],
                   "Values": [
-                    [{ "Literal": { "Value": "'Data Analyst'" } }]
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Data Analyst'"
+                        }
+                      }
+                    ]
                   ]
                 }
               }
@@ -42,14 +251,24 @@
         "name": "Filter9d0e1f2a3b4c5d6e7f8a9b0c",
         "field": {
           "Column": {
-            "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+            "Expression": {
+              "SourceRef": {
+                "Entity": "job_postings_fact"
+              }
+            },
             "Property": "Seniority Level"
           }
         },
         "type": "Categorical",
         "filter": {
           "Version": 2,
-          "From": [{ "Name": "j", "Entity": "job_postings_fact", "Type": 0 }],
+          "From": [
+            {
+              "Name": "j",
+              "Entity": "job_postings_fact",
+              "Type": 0
+            }
+          ],
           "Where": [
             {
               "Condition": {
@@ -57,13 +276,23 @@
                   "Expressions": [
                     {
                       "Column": {
-                        "Expression": { "SourceRef": { "Source": "j" } },
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "j"
+                          }
+                        },
                         "Property": "Seniority Level"
                       }
                     }
                   ],
                   "Values": [
-                    [{ "Literal": { "Value": "'mid'" } }]
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'mid'"
+                        }
+                      }
+                    ]
                   ]
                 }
               }
@@ -76,7 +305,11 @@
         "name": "Filter0e1f2a3b4c5d6e7f8a9b0c1d",
         "field": {
           "Column": {
-            "Expression": { "SourceRef": { "Entity": "skills_dim" } },
+            "Expression": {
+              "SourceRef": {
+                "Entity": "skills_dim"
+              }
+            },
             "Property": "skills"
           }
         },
@@ -91,13 +324,25 @@
                   "Query": {
                     "Version": 2,
                     "From": [
-                      { "Name": "s", "Entity": "skills_dim", "Type": 0 },
-                      { "Name": "sj", "Entity": "skills_job_dim", "Type": 0 }
+                      {
+                        "Name": "s",
+                        "Entity": "skills_dim",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "sj",
+                        "Entity": "skills_job_dim",
+                        "Type": 0
+                      }
                     ],
                     "Select": [
                       {
                         "Column": {
-                          "Expression": { "SourceRef": { "Source": "s" } },
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "s"
+                            }
+                          },
                           "Property": "skills"
                         },
                         "Name": "field"
@@ -110,7 +355,11 @@
                           "Aggregation": {
                             "Expression": {
                               "Column": {
-                                "Expression": { "SourceRef": { "Source": "sj" } },
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "sj"
+                                  }
+                                },
                                 "Property": "job_id"
                               }
                             },
@@ -125,7 +374,11 @@
               },
               "Type": 2
             },
-            { "Name": "sd", "Entity": "skills_dim", "Type": 0 }
+            {
+              "Name": "sd",
+              "Entity": "skills_dim",
+              "Type": 0
+            }
           ],
           "Where": [
             {
@@ -134,114 +387,83 @@
                   "Expressions": [
                     {
                       "Column": {
-                        "Expression": { "SourceRef": { "Source": "sd" } },
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "sd"
+                          }
+                        },
                         "Property": "skills"
                       }
                     }
                   ],
-                  "Table": { "SourceRef": { "Source": "subquery" } }
+                  "Table": {
+                    "SourceRef": {
+                      "Source": "subquery"
+                    }
+                  }
                 }
               }
             }
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "9c8cd1dd20e4fa40614d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "skills_dim"
+              }
+            },
+            "Property": "skills"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d5cd6c888d75f487021d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Skill Demand %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "367e8048c1c7af1b17d3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Skill Premium ($)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a1950db9e07e43553522",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Skill Count"
+          }
+        },
+        "type": "Advanced"
       }
     ]
-  },
-  "visual": {
-    "visualType": "scatterChart",
-    "query": {
-      "queryState": {
-        "Category": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": { "SourceRef": { "Entity": "skills_dim" } },
-                  "Property": "skills"
-                }
-              },
-              "queryRef": "skills_dim.skills",
-              "nativeQueryRef": "skills"
-            }
-          ]
-        },
-        "X": {
-          "projections": [
-            {
-              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Skill Demand %" } },
-              "queryRef": "_Measures.Skill Demand %",
-              "nativeQueryRef": "Skill Demand %"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Skill Premium ($)" } },
-              "queryRef": "_Measures.Skill Premium ($)",
-              "nativeQueryRef": "Skill Premium ($)"
-            }
-          ]
-        },
-        "Size": {
-          "projections": [
-            {
-              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Skill Count" } },
-              "queryRef": "_Measures.Skill Count",
-              "nativeQueryRef": "Skill Count"
-            }
-          ]
-        }
-      }
-    },
-    "objects": {
-      "categoryLabels": [
-        {
-          "properties": {
-            "show": { "expr": { "Literal": { "Value": "true" } } },
-            "fontSize": { "expr": { "Literal": { "Value": "9D" } } }
-          }
-        }
-      ],
-      "bubbles": [
-        {
-          "properties": {
-            "bubbleSize": { "expr": { "Literal": { "Value": "-10D" } } }
-          }
-        }
-      ],
-      "dataPoint": [
-        {
-          "properties": {
-            "defaultColor": { "solid": { "color": { "expr": { "Literal": { "Value": "'#0087a3'" } } } } }
-          }
-        }
-      ],
-      "categoryAxis": [
-        {
-          "properties": {
-            "showAxisTitle": { "expr": { "Literal": { "Value": "true" } } }
-          }
-        }
-      ],
-      "valueAxis": [
-        {
-          "properties": {
-            "showAxisTitle": { "expr": { "Literal": { "Value": "true" } } }
-          }
-        }
-      ]
-    },
-    "visualContainerObjects": {
-      "title": [{
-        "properties": {
-          "show": { "expr": { "Literal": { "Value": "true" } } },
-          "text": { "expr": { "Literal": { "Value": "'SKILL ROI — MID-LEVEL DATA ANALYST · TOP 10 SKILLS BY DEMAND'" } } }
-        }
-      }]
-    },
-    "drillFilterOtherVisuals": true
   }
 }

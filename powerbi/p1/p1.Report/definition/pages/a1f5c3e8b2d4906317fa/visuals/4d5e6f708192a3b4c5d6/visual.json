@@ -1,21 +1,38 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "4d5e6f708192a3b4c5d6",
-  "position": { "x": 640, "y": 88, "z": 4000, "height": 120, "width": 624, "tabOrder": 4000 },
+  "position": {
+    "x": 640,
+    "y": 88,
+    "z": 4000,
+    "height": 120,
+    "width": 624,
+    "tabOrder": 4000
+  },
   "filterConfig": {
     "filters": [
       {
         "name": "Filter5e6f708192a3b4c5d6e7f809",
         "field": {
           "Column": {
-            "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+            "Expression": {
+              "SourceRef": {
+                "Entity": "job_postings_fact"
+              }
+            },
             "Property": "job_title_short"
           }
         },
         "type": "Categorical",
         "filter": {
           "Version": 2,
-          "From": [{ "Name": "j", "Entity": "job_postings_fact", "Type": 0 }],
+          "From": [
+            {
+              "Name": "j",
+              "Entity": "job_postings_fact",
+              "Type": 0
+            }
+          ],
           "Where": [
             {
               "Condition": {
@@ -23,17 +40,51 @@
                   "Expressions": [
                     {
                       "Column": {
-                        "Expression": { "SourceRef": { "Source": "j" } },
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "j"
+                          }
+                        },
                         "Property": "job_title_short"
                       }
                     }
                   ],
                   "Values": [
-                    [{ "Literal": { "Value": "'Data Analyst'" } }],
-                    [{ "Literal": { "Value": "'Business Analyst'" } }],
-                    [{ "Literal": { "Value": "'Data Engineer'" } }],
-                    [{ "Literal": { "Value": "'Data Scientist'" } }],
-                    [{ "Literal": { "Value": "'Software Engineer'" } }]
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Data Analyst'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Business Analyst'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Data Engineer'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Data Scientist'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Software Engineer'"
+                        }
+                      }
+                    ]
                   ]
                 }
               }
@@ -51,12 +102,30 @@
         "Data": {
           "projections": [
             {
-              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Top Role Median" } },
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Top Role Median"
+                }
+              },
               "queryRef": "_Measures.Top Role Median",
               "nativeQueryRef": "Top Role Median"
             },
             {
-              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "DA Junior Share %" } },
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "DA Junior Share %"
+                }
+              },
               "queryRef": "_Measures.DA Junior Share %",
               "nativeQueryRef": "DA Junior Share %"
             }
@@ -65,38 +134,138 @@
       }
     },
     "objects": {
-      "value": [{
-        "properties": { "fontSize": { "expr": { "Literal": { "Value": "24D" } } } },
-        "selector": { "id": "default" }
-      }],
-      "padding": [{
-        "properties": { "paddingUniform": { "expr": { "Literal": { "Value": "8L" } } } },
-        "selector": { "id": "default" }
-      }],
-      "layout": [{
-        "properties": { "paddingUniform": { "expr": { "Literal": { "Value": "8L" } } } },
-        "selector": { "id": "default" }
-      }],
-      "outline": [{
-        "properties": { "show": { "expr": { "Literal": { "Value": "false" } } } },
-        "selector": { "id": "default" }
-      }],
-      "accentBar": [{
-        "properties": {
-          "show": { "expr": { "Literal": { "Value": "true" } } },
-          "position": { "expr": { "Literal": { "Value": "'Left'" } } },
-          "width": { "expr": { "Literal": { "Value": "4D" } } },
-          "color": { "solid": { "color": { "expr": { "Literal": { "Value": "'#00996f'" } } } } }
-        },
-        "selector": { "id": "default" }
-      }],
-      "fillCustom": [{
-        "properties": {
-          "show": { "expr": { "Literal": { "Value": "true" } } },
-          "fillColor": { "solid": { "color": { "expr": { "Literal": { "Value": "'#e9f7f2'" } } } } }
-        },
-        "selector": { "id": "default" }
-      }]
+      "value": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "24D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "paddingUniform": {
+              "expr": {
+                "Literal": {
+                  "Value": "8L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "layout": [
+        {
+          "properties": {
+            "paddingUniform": {
+              "expr": {
+                "Literal": {
+                  "Value": "8L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "outline": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "accentBar": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#00996f'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "fillCustom": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fillColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#e9f7f2'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ]
     }
   }
 }

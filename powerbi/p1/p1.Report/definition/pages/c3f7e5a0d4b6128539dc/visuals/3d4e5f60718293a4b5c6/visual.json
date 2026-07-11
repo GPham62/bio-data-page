@@ -1,44 +1,87 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "3d4e5f60718293a4b5c6",
-  "position": { "x": 364, "y": 132, "z": 4000, "height": 180, "width": 340, "tabOrder": 4000 },
+  "position": {
+    "x": 364,
+    "y": 132,
+    "z": 4000,
+    "height": 180,
+    "width": 340,
+    "tabOrder": 4000
+  },
   "visual": {
     "visualType": "gauge",
     "query": {
       "queryState": {
-        "Y": {
+        "MaxValue": {
           "projections": [
             {
-              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Median Hourly Salary" } },
-              "queryRef": "_Measures.Median Hourly Salary",
-              "nativeQueryRef": "Median Hourly Salary"
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Gauge Max Hourly"
+                }
+              },
+              "queryRef": "_Measures.Gauge Max Hourly",
+              "nativeQueryRef": "Gauge Max Hourly"
             }
           ]
         },
         "MinValue": {
           "projections": [
             {
-              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Gauge Min Hourly" } },
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Gauge Min Hourly"
+                }
+              },
               "queryRef": "_Measures.Gauge Min Hourly",
               "nativeQueryRef": "Gauge Min Hourly"
-            }
-          ]
-        },
-        "MaxValue": {
-          "projections": [
-            {
-              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Gauge Max Hourly" } },
-              "queryRef": "_Measures.Gauge Max Hourly",
-              "nativeQueryRef": "Gauge Max Hourly"
             }
           ]
         },
         "TargetValue": {
           "projections": [
             {
-              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Avg Hourly Salary" } },
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Avg Hourly Salary"
+                }
+              },
               "queryRef": "_Measures.Avg Hourly Salary",
               "nativeQueryRef": "Avg Hourly Salary"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Median Hourly Salary"
+                }
+              },
+              "queryRef": "_Measures.Median Hourly Salary",
+              "nativeQueryRef": "Median Hourly Salary"
             }
           ]
         }
@@ -48,19 +91,103 @@
       "dataPoint": [
         {
           "properties": {
-            "fill": { "solid": { "color": { "expr": { "Literal": { "Value": "'#0087a3'" } } } } }
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0087a3'"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       ]
     },
     "visualContainerObjects": {
-      "title": [{
-        "properties": {
-          "show": { "expr": { "Literal": { "Value": "true" } } },
-          "text": { "expr": { "Literal": { "Value": "'HOURLY SALARY (USD) · MEDIAN, TICK = AVG'" } } }
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'HOURLY SALARY (USD) · MEDIAN, TICK = AVG'"
+                }
+              }
+            }
+          }
         }
-      }]
+      ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3e89149a5a85591e2c43",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Median Hourly Salary"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d9e1a144f61408228cd4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Gauge Min Hourly"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ee2b5fca3f17cbff96ab",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Gauge Max Hourly"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2eed6738286ef3d00e68",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Avg Hourly Salary"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

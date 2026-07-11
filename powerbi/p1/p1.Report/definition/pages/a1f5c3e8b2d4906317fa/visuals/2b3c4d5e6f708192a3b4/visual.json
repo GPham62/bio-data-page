@@ -1,21 +1,38 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "2b3c4d5e6f708192a3b4",
-  "position": { "x": 814, "y": 8, "z": 2000, "height": 72, "width": 450, "tabOrder": 2000 },
+  "position": {
+    "x": 814,
+    "y": 8,
+    "z": 2000,
+    "height": 72,
+    "width": 450,
+    "tabOrder": 2000
+  },
   "filterConfig": {
     "filters": [
       {
         "name": "Filter1a2b3c4d5e6f708192a3b4c5",
         "field": {
           "Column": {
-            "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+            "Expression": {
+              "SourceRef": {
+                "Entity": "job_postings_fact"
+              }
+            },
             "Property": "job_title_short"
           }
         },
         "type": "Categorical",
         "filter": {
           "Version": 2,
-          "From": [{ "Name": "j", "Entity": "job_postings_fact", "Type": 0 }],
+          "From": [
+            {
+              "Name": "j",
+              "Entity": "job_postings_fact",
+              "Type": 0
+            }
+          ],
           "Where": [
             {
               "Condition": {
@@ -23,17 +40,51 @@
                   "Expressions": [
                     {
                       "Column": {
-                        "Expression": { "SourceRef": { "Source": "j" } },
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "j"
+                          }
+                        },
                         "Property": "job_title_short"
                       }
                     }
                   ],
                   "Values": [
-                    [{ "Literal": { "Value": "'Data Analyst'" } }],
-                    [{ "Literal": { "Value": "'Business Analyst'" } }],
-                    [{ "Literal": { "Value": "'Data Engineer'" } }],
-                    [{ "Literal": { "Value": "'Data Scientist'" } }],
-                    [{ "Literal": { "Value": "'Software Engineer'" } }]
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Data Analyst'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Business Analyst'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Data Engineer'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Data Scientist'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Software Engineer'"
+                        }
+                      }
+                    ]
                   ]
                 }
               }
@@ -53,7 +104,11 @@
             {
               "field": {
                 "Column": {
-                  "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "job_postings_fact"
+                    }
+                  },
                   "Property": "Role Code"
                 }
               },
@@ -68,56 +123,190 @@
       "label": [
         {
           "properties": {
-            "show": { "expr": { "Literal": { "Value": "true" } } },
-            "fontColor": { "solid": { "color": { "expr": { "Literal": { "Value": "'#0087a3'" } } } } },
-            "fontSize": { "expr": { "Literal": { "Value": "12D" } } },
-            "bold": { "expr": { "Literal": { "Value": "true" } } },
-            "horizontalAlignment": { "expr": { "Literal": { "Value": "'center'" } } }
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0087a3'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "horizontalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
           },
-          "selector": { "id": "default" }
+          "selector": {
+            "id": "default"
+          }
         },
         {
           "properties": {
-            "fontColor": { "solid": { "color": { "expr": { "Literal": { "Value": "'#ffffff'" } } } } },
-            "bold": { "expr": { "Literal": { "Value": "true" } } }
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#ffffff'"
+                    }
+                  }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
           },
-          "selector": { "id": "selected" }
+          "selector": {
+            "id": "selected"
+          }
         }
       ],
       "fillCustom": [
         {
           "properties": {
-            "fillColor": { "solid": { "color": { "expr": { "Literal": { "Value": "'#eaf6f9'" } } } } }
+            "fillColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#eaf6f9'"
+                    }
+                  }
+                }
+              }
+            }
           },
-          "selector": { "id": "default" }
+          "selector": {
+            "id": "default"
+          }
         },
         {
           "properties": {
-            "fillColor": { "solid": { "color": { "expr": { "Literal": { "Value": "'#0087a3'" } } } } }
+            "fillColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0087a3'"
+                    }
+                  }
+                }
+              }
+            }
           },
-          "selector": { "id": "selected" }
+          "selector": {
+            "id": "selected"
+          }
         }
       ],
       "layout": [
         {
           "properties": {
-            "rowCount": { "expr": { "Literal": { "Value": "1L" } } },
-            "columnCount": { "expr": { "Literal": { "Value": "5L" } } },
-            "cellPadding": { "expr": { "Literal": { "Value": "4L" } } }
+            "rowCount": {
+              "expr": {
+                "Literal": {
+                  "Value": "1L"
+                }
+              }
+            },
+            "columnCount": {
+              "expr": {
+                "Literal": {
+                  "Value": "5L"
+                }
+              }
+            },
+            "cellPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "4L"
+                }
+              }
+            }
           }
         }
       ]
     },
     "visualContainerObjects": {
-      "title": [{ "properties": { "show": { "expr": { "Literal": { "Value": "false" } } } } }],
-      "padding": [{
-        "properties": {
-          "top": { "expr": { "Literal": { "Value": "8D" } } },
-          "bottom": { "expr": { "Literal": { "Value": "8D" } } },
-          "left": { "expr": { "Literal": { "Value": "8D" } } },
-          "right": { "expr": { "Literal": { "Value": "8D" } } }
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
         }
-      }]
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ]
     }
   }
 }

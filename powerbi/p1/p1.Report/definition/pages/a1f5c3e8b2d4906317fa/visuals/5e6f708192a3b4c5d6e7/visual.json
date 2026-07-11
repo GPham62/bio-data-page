@@ -1,21 +1,226 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "5e6f708192a3b4c5d6e7",
-  "position": { "x": 16, "y": 216, "z": 5000, "height": 332, "width": 700, "tabOrder": 5000 },
+  "position": {
+    "x": 16,
+    "y": 216,
+    "z": 5000,
+    "height": 332,
+    "width": 700,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "job_postings_fact"
+                    }
+                  },
+                  "Property": "job_title_short"
+                }
+              },
+              "queryRef": "job_postings_fact.job_title_short",
+              "nativeQueryRef": "job_title_short",
+              "active": true
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Salary P25"
+                }
+              },
+              "queryRef": "_Measures.Salary P25",
+              "nativeQueryRef": "Salary P25"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Salary P75"
+                }
+              },
+              "queryRef": "_Measures.Salary P75",
+              "nativeQueryRef": "Salary P75"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Median Salary"
+                }
+              },
+              "queryRef": "_Measures.Median Salary",
+              "nativeQueryRef": "Median Salary"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measures"
+                  }
+                },
+                "Property": "Median Salary"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "defaultColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0087a3'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'MEDIAN SALARY · MID-LEVEL, $10K–$600K WINDOW · P25–P75 IN TOOLTIP'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
   "filterConfig": {
     "filters": [
       {
         "name": "Filter2b3c4d5e6f708192a3b4c5d6",
         "field": {
           "Column": {
-            "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+            "Expression": {
+              "SourceRef": {
+                "Entity": "job_postings_fact"
+              }
+            },
             "Property": "job_title_short"
           }
         },
         "type": "Categorical",
         "filter": {
           "Version": 2,
-          "From": [{ "Name": "j", "Entity": "job_postings_fact", "Type": 0 }],
+          "From": [
+            {
+              "Name": "j",
+              "Entity": "job_postings_fact",
+              "Type": 0
+            }
+          ],
           "Where": [
             {
               "Condition": {
@@ -23,17 +228,51 @@
                   "Expressions": [
                     {
                       "Column": {
-                        "Expression": { "SourceRef": { "Source": "j" } },
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "j"
+                          }
+                        },
                         "Property": "job_title_short"
                       }
                     }
                   ],
                   "Values": [
-                    [{ "Literal": { "Value": "'Data Analyst'" } }],
-                    [{ "Literal": { "Value": "'Business Analyst'" } }],
-                    [{ "Literal": { "Value": "'Data Engineer'" } }],
-                    [{ "Literal": { "Value": "'Data Scientist'" } }],
-                    [{ "Literal": { "Value": "'Software Engineer'" } }]
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Data Analyst'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Business Analyst'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Data Engineer'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Data Scientist'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Software Engineer'"
+                        }
+                      }
+                    ]
                   ]
                 }
               }
@@ -46,14 +285,24 @@
         "name": "Filter3c4d5e6f708192a3b4c5d6e7",
         "field": {
           "Column": {
-            "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+            "Expression": {
+              "SourceRef": {
+                "Entity": "job_postings_fact"
+              }
+            },
             "Property": "Seniority Level"
           }
         },
         "type": "Categorical",
         "filter": {
           "Version": 2,
-          "From": [{ "Name": "j", "Entity": "job_postings_fact", "Type": 0 }],
+          "From": [
+            {
+              "Name": "j",
+              "Entity": "job_postings_fact",
+              "Type": 0
+            }
+          ],
           "Where": [
             {
               "Condition": {
@@ -61,13 +310,23 @@
                   "Expressions": [
                     {
                       "Column": {
-                        "Expression": { "SourceRef": { "Source": "j" } },
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "j"
+                          }
+                        },
                         "Property": "Seniority Level"
                       }
                     }
                   ],
                   "Values": [
-                    [{ "Literal": { "Value": "'mid'" } }]
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'mid'"
+                        }
+                      }
+                    ]
                   ]
                 }
               }
@@ -77,100 +336,5 @@
         "howCreated": "User"
       }
     ]
-  },
-  "visual": {
-    "visualType": "clusteredColumnChart",
-    "query": {
-      "queryState": {
-        "Category": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
-                  "Property": "job_title_short"
-                }
-              },
-              "queryRef": "job_postings_fact.job_title_short",
-              "nativeQueryRef": "job_title_short",
-              "active": true
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Median Salary" } },
-              "queryRef": "_Measures.Median Salary",
-              "nativeQueryRef": "Median Salary"
-            }
-          ]
-        },
-        "Tooltips": {
-          "projections": [
-            {
-              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Salary P25" } },
-              "queryRef": "_Measures.Salary P25",
-              "nativeQueryRef": "Salary P25"
-            },
-            {
-              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Salary P75" } },
-              "queryRef": "_Measures.Salary P75",
-              "nativeQueryRef": "Salary P75"
-            }
-          ]
-        }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Median Salary" } },
-            "direction": "Descending"
-          }
-        ],
-        "isDefaultSort": false
-      }
-    },
-    "objects": {
-      "dataPoint": [
-        {
-          "properties": {
-            "defaultColor": { "solid": { "color": { "expr": { "Literal": { "Value": "'#0087a3'" } } } } }
-          }
-        }
-      ],
-      "labels": [
-        {
-          "properties": {
-            "show": { "expr": { "Literal": { "Value": "true" } } }
-          }
-        }
-      ],
-      "categoryAxis": [
-        {
-          "properties": {
-            "titleText": { "expr": { "Literal": { "Value": "''" } } },
-            "showAxisTitle": { "expr": { "Literal": { "Value": "false" } } }
-          }
-        }
-      ],
-      "valueAxis": [
-        {
-          "properties": {
-            "start": { "expr": { "Literal": { "Value": "0D" } } },
-            "showAxisTitle": { "expr": { "Literal": { "Value": "false" } } }
-          }
-        }
-      ]
-    },
-    "visualContainerObjects": {
-      "title": [{
-        "properties": {
-          "show": { "expr": { "Literal": { "Value": "true" } } },
-          "text": { "expr": { "Literal": { "Value": "'MEDIAN SALARY · MID-LEVEL, $10K–$600K WINDOW · P25–P75 IN TOOLTIP'" } } }
-        }
-      }]
-    },
-    "drillFilterOtherVisuals": true
   }
 }

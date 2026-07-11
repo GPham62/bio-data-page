@@ -1,7 +1,14 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "5f60718293a4b5c6d7e8",
-  "position": { "x": 908, "y": 132, "z": 6000, "height": 180, "width": 180, "tabOrder": 6000 },
+  "position": {
+    "x": 908,
+    "y": 132,
+    "z": 6000,
+    "height": 180,
+    "width": 180,
+    "tabOrder": 6000
+  },
   "visual": {
     "visualType": "donutChart",
     "query": {
@@ -11,19 +18,33 @@
             {
               "field": {
                 "Column": {
-                  "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "job_postings_fact"
+                    }
+                  },
                   "Property": "Degree Requirement"
                 }
               },
               "queryRef": "job_postings_fact.Degree Requirement",
-              "nativeQueryRef": "Degree Requirement"
+              "nativeQueryRef": "Degree Requirement",
+              "active": true
             }
           ]
         },
         "Y": {
           "projections": [
             {
-              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Total Postings" } },
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total Postings"
+                }
+              },
               "queryRef": "_Measures.Total Postings",
               "nativeQueryRef": "Total Postings"
             }
@@ -35,29 +56,79 @@
       "labels": [
         {
           "properties": {
-            "show": { "expr": { "Literal": { "Value": "true" } } },
-            "labelStyle": { "expr": { "Literal": { "Value": "'Percent of total'" } } },
-            "fontSize": { "expr": { "Literal": { "Value": "9D" } } }
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "labelStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Percent of total'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            }
           }
         }
       ],
       "legend": [
         {
           "properties": {
-            "show": { "expr": { "Literal": { "Value": "true" } } },
-            "showTitle": { "expr": { "Literal": { "Value": "false" } } },
-            "position": { "expr": { "Literal": { "Value": "'BottomCenter'" } } }
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'BottomCenter'"
+                }
+              }
+            }
           }
         }
       ]
     },
     "visualContainerObjects": {
-      "title": [{
-        "properties": {
-          "show": { "expr": { "Literal": { "Value": "true" } } },
-          "text": { "expr": { "Literal": { "Value": "'DEGREE MENTION'" } } }
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'DEGREE MENTION'"
+                }
+              }
+            }
+          }
         }
-      }]
+      ]
     },
     "drillFilterOtherVisuals": true
   }
