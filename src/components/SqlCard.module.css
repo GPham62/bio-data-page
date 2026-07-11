@@ -42,6 +42,33 @@
   text-decoration: none;
 }
 
+.tabs {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.tab {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  background: none;
+  border: 0.0625rem solid transparent;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.tab:hover {
+  color: var(--sql-accent, var(--accent));
+}
+
+.tabActive {
+  color: var(--sql-accent, var(--accent));
+  border-color: var(--sql-accent, var(--accent));
+}
+
 .code {
   font-family: var(--mono);
   font-size: 0.75rem;
