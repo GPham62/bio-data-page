@@ -161,7 +161,7 @@ export default function Project1({ setActive }) {
           <span aria-hidden>·</span>
           <span><b>40K</b> {t('p1.kpi_salary_rec')}</span>
           <span aria-hidden>·</span>
-          <span><b>5</b> {t('p1.kpi_countries')}</span>
+          <span><b>5</b> {t('p1.kpi_roles')}</span>
         </div>
         <RoleSelectStrip cards={heroCards} />
         <div className={styles.stripRow}>
@@ -306,7 +306,7 @@ export default function Project1({ setActive }) {
           accent="var(--accent)"
           tabs={[
             { label: 'SQL', title: t('p1.sql_card_title'), code: SQL_SNIPPET, href: sqlUrl, linkLabel: t('p1.sql_link') },
-            { label: 'DAX', title: t('p1.dax_card_title'), code: DAX_SNIPPET, href: PBIX_DOWNLOAD_URL, linkLabel: t('p1.dash_download') },
+            { label: 'DAX', title: t('p1.dax_card_title'), code: DAX_SNIPPET, href: PBIX_DOWNLOAD_URL, linkLabel: t('p1.dax_download_short') },
           ]}
         />
         <InsightBlock label={t('p1.insight_label')} text={t('p1.s4_insight')} accent="var(--accent)" />

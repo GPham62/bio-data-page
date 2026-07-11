@@ -23,11 +23,11 @@
   font-family: var(--mono);
   font-size: 0.75rem;
   letter-spacing: 0.04em;
-  color: var(--muted);
+  color: var(--muted-2);
 }
 
 .statStrip b {
-  color: var(--accent);
+  color: var(--accent-strong);
   font-weight: 700;
   margin-right: 0.3rem;
 }
@@ -45,12 +45,13 @@
 .stripHint {
   margin: 0;
   font-size: 0.75rem;
-  color: #636e7b;
+  color: var(--muted-2);
   letter-spacing: 0.02em;
 }
 
 .stripLinks {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
@@ -58,7 +59,7 @@
   font-family: var(--mono);
   font-size: 0.6875rem;
   letter-spacing: 0.06em;
-  color: var(--accent);
+  color: var(--accent-strong);
   white-space: nowrap;
 }
 
@@ -77,15 +78,15 @@
   font-family: var(--mono);
   font-size: 0.75rem;
   letter-spacing: 0.04em;
-  color: var(--accent);
-  border: 0.0625rem solid var(--accent);
+  color: var(--accent-strong);
+  border: 0.0625rem solid var(--accent-strong);
   border-radius: 0.25rem;
   padding: 0.5rem 1rem;
   transition: color 0.2s, background 0.2s;
 }
 
 .dashDownload:hover {
-  background: var(--accent);
+  background: var(--accent-strong);
   color: var(--bg2);
   text-decoration: none;
 }
