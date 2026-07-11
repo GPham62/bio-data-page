@@ -45,6 +45,7 @@
         {
           "properties": {
             "show": { "expr": { "Literal": { "Value": "true" } } },
+            "showTitle": { "expr": { "Literal": { "Value": "false" } } },
             "position": { "expr": { "Literal": { "Value": "'BottomCenter'" } } }
           }
         }

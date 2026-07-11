@@ -34,6 +34,19 @@
                   }
                 ],
                 "horizontalTextAlignment": "left"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Right-click any role in a chart → Drill through → Job Title Drill Through",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "10px",
+                      "color": "#0087a3"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
               }
             ]
           }

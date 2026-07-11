@@ -3,7 +3,7 @@
   "name": "718293a4b5c6d7e8f90a",
   "position": { "x": 16, "y": 324, "z": 8000, "height": 380, "width": 688, "tabOrder": 8000 },
   "visual": {
-    "visualType": "azureMap",
+    "visualType": "map",
     "query": {
       "queryState": {
         "Category": {
@@ -32,10 +32,17 @@
       }
     },
     "objects": {
-      "bubbleLayer": [
+      "dataPoint": [
         {
           "properties": {
-            "fillColor": { "solid": { "color": { "expr": { "Literal": { "Value": "'#0087a3'" } } } } }
+            "defaultColor": { "solid": { "color": { "expr": { "Literal": { "Value": "'#0087a3'" } } } } }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "show": { "expr": { "Literal": { "Value": "false" } } }
           }
         }
       ]

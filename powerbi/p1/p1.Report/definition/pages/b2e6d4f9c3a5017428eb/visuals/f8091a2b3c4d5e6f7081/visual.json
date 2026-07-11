@@ -19,6 +19,14 @@
                       "fontStyle": "italic",
                       "color": "#57606a"
                     }
+                  },
+                  {
+                    "value": "  Right-click any role → Drill through → Job Title Drill Through",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "10px",
+                      "color": "#0087a3"
+                    }
                   }
                 ],
                 "horizontalTextAlignment": "left"
