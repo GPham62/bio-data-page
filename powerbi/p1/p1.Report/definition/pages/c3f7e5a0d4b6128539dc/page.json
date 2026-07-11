@@ -4,5 +4,36 @@
   "displayName": "Job Title Drill Through",
   "displayOption": "FitToPage",
   "height": 720,
-  "width": 1280
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filterd1e2f3a4b5c6d7e8f9a0b1c2",
+        "field": {
+          "Column": {
+            "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+            "Property": "job_title_short"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "Pod",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "Param_Filterd1e2f3a4b5c6d7e8f9a0b1c2",
+        "boundFilter": "Filterd1e2f3a4b5c6d7e8f9a0b1c2",
+        "fieldExpr": {
+          "Column": {
+            "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+            "Property": "job_title_short"
+          }
+        }
+      }
+    ]
+  }
 }

@@ -1,0 +1,63 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "4e5f60718293a4b5c6d7",
+  "position": { "x": 720, "y": 132, "z": 5000, "height": 180, "width": 180, "tabOrder": 5000 },
+  "visual": {
+    "visualType": "donutChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+                  "Property": "Remote Status"
+                }
+              },
+              "queryRef": "job_postings_fact.Remote Status",
+              "nativeQueryRef": "Remote Status"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Total Postings" } },
+              "queryRef": "_Measures.Total Postings",
+              "nativeQueryRef": "Total Postings"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": { "expr": { "Literal": { "Value": "true" } } },
+            "labelStyle": { "expr": { "Literal": { "Value": "'Percent of total'" } } },
+            "fontSize": { "expr": { "Literal": { "Value": "9D" } } }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "show": { "expr": { "Literal": { "Value": "true" } } },
+            "position": { "expr": { "Literal": { "Value": "'BottomCenter'" } } }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [{
+        "properties": {
+          "show": { "expr": { "Literal": { "Value": "true" } } },
+          "text": { "expr": { "Literal": { "Value": "'WORK FROM HOME'" } } }
+        }
+      }]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

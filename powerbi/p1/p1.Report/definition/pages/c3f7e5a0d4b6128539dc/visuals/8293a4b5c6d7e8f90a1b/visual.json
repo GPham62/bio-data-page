@@ -1,0 +1,161 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "8293a4b5c6d7e8f90a1b",
+  "position": { "x": 720, "y": 324, "z": 9000, "height": 380, "width": 280, "tabOrder": 9000 },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filter4a5b6c7d8e9f0a1b2c3d4e5f",
+        "field": {
+          "Column": {
+            "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+            "Property": "Job Platform"
+          }
+        },
+        "type": "TopN",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "subquery",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [{ "Name": "j", "Entity": "job_postings_fact", "Type": 0 }],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": { "SourceRef": { "Source": "j" } },
+                          "Property": "Job Platform"
+                        },
+                        "Name": "field"
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 2,
+                        "Expression": {
+                          "Aggregation": {
+                            "Expression": {
+                              "Column": {
+                                "Expression": { "SourceRef": { "Source": "j" } },
+                                "Property": "job_id"
+                              }
+                            },
+                            "Function": 5
+                          }
+                        }
+                      }
+                    ],
+                    "Top": 7
+                  }
+                }
+              },
+              "Type": 2
+            },
+            { "Name": "jf", "Entity": "job_postings_fact", "Type": 0 }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": { "SourceRef": { "Source": "jf" } },
+                        "Property": "Job Platform"
+                      }
+                    }
+                  ],
+                  "Table": { "SourceRef": { "Source": "subquery" } }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+                  "Property": "Job Platform"
+                }
+              },
+              "queryRef": "job_postings_fact.Job Platform",
+              "nativeQueryRef": "Job Platform",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Total Postings" } },
+              "queryRef": "_Measures.Total Postings",
+              "nativeQueryRef": "Total Postings"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Total Postings" } },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "defaultColor": { "solid": { "color": { "expr": { "Literal": { "Value": "'#0087a3'" } } } } }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": { "expr": { "Literal": { "Value": "true" } } }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": { "expr": { "Literal": { "Value": "false" } } }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": { "expr": { "Literal": { "Value": "false" } } },
+            "show": { "expr": { "Literal": { "Value": "false" } } }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [{
+        "properties": {
+          "show": { "expr": { "Literal": { "Value": "true" } } },
+          "text": { "expr": { "Literal": { "Value": "'JOB PLATFORM · TOP 7'" } } }
+        }
+      }]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

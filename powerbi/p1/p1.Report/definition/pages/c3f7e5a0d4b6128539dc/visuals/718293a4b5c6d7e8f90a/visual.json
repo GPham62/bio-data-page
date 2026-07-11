@@ -1,0 +1,53 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "718293a4b5c6d7e8f90a",
+  "position": { "x": 16, "y": 324, "z": 8000, "height": 380, "width": 688, "tabOrder": 8000 },
+  "visual": {
+    "visualType": "azureMap",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+                  "Property": "job_country"
+                }
+              },
+              "queryRef": "job_postings_fact.job_country",
+              "nativeQueryRef": "job_country"
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Total Postings" } },
+              "queryRef": "_Measures.Total Postings",
+              "nativeQueryRef": "Total Postings"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "bubbleLayer": [
+        {
+          "properties": {
+            "fillColor": { "solid": { "color": { "expr": { "Literal": { "Value": "'#0087a3'" } } } } }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [{
+        "properties": {
+          "show": { "expr": { "Literal": { "Value": "true" } } },
+          "text": { "expr": { "Literal": { "Value": "'JOBS GLOBALLY · BUBBLE = POSTING COUNT'" } } }
+        }
+      }]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
