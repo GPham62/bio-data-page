@@ -1,0 +1,47 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "3c4d5e6f708192a3b4c5",
+  "position": { "x": 16, "y": 88, "z": 3000, "height": 120, "width": 616, "tabOrder": 3000 },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Total Postings" } },
+              "queryRef": "_Measures.Total Postings",
+              "nativeQueryRef": "Total Postings"
+            },
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Salary Records" } },
+              "queryRef": "_Measures.Salary Records",
+              "nativeQueryRef": "Salary Records"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "value": [{
+        "properties": {
+          "fontSize": { "expr": { "Literal": { "Value": "24D" } } },
+          "labelPrecision": { "expr": { "Literal": { "Value": "1L" } } }
+        },
+        "selector": { "id": "default" }
+      }],
+      "padding": [{
+        "properties": { "paddingUniform": { "expr": { "Literal": { "Value": "8L" } } } },
+        "selector": { "id": "default" }
+      }],
+      "layout": [{
+        "properties": { "paddingUniform": { "expr": { "Literal": { "Value": "8L" } } } },
+        "selector": { "id": "default" }
+      }],
+      "outline": [{
+        "properties": { "show": { "expr": { "Literal": { "Value": "false" } } } },
+        "selector": { "id": "default" }
+      }]
+    }
+  }
+}
