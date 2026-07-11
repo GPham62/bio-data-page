@@ -1,0 +1,104 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "e7f8091a2b3c4d5e6f70",
+  "position": { "x": 882, "y": 480, "z": 7000, "height": 182, "width": 382, "tabOrder": 7000 },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filter3b4c5d6e7f8a9b0c1d2e3f4a",
+        "field": {
+          "Column": {
+            "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+            "Property": "job_title_short"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [{ "Name": "j", "Entity": "job_postings_fact", "Type": 0 }],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": { "SourceRef": { "Source": "j" } },
+                        "Property": "job_title_short"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [{ "Literal": { "Value": "'Data Analyst'" } }],
+                    [{ "Literal": { "Value": "'Business Analyst'" } }],
+                    [{ "Literal": { "Value": "'Data Engineer'" } }],
+                    [{ "Literal": { "Value": "'Data Scientist'" } }],
+                    [{ "Literal": { "Value": "'Software Engineer'" } }]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+                  "Property": "job_title_short"
+                }
+              },
+              "queryRef": "job_postings_fact.job_title_short",
+              "nativeQueryRef": "job_title_short"
+            },
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Vietnam Postings" } },
+              "queryRef": "_Measures.Vietnam Postings",
+              "nativeQueryRef": "Vietnam Postings"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Vietnam Postings" } },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "objects": {
+      "columnHeaders": [{
+        "properties": {
+          "columnAdjustment": { "expr": { "Literal": { "Value": "'growToFit'" } } },
+          "autoSizeColumnWidth": { "expr": { "Literal": { "Value": "true" } } }
+        }
+      }],
+      "total": [{
+        "properties": {
+          "totals": { "expr": { "Literal": { "Value": "false" } } }
+        }
+      }]
+    },
+    "visualContainerObjects": {
+      "title": [{
+        "properties": {
+          "show": { "expr": { "Literal": { "Value": "true" } } },
+          "text": { "expr": { "Literal": { "Value": "'VIETNAM POSTINGS'" } } }
+        }
+      }]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

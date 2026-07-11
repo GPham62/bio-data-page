@@ -1,0 +1,150 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "92a3b4c5d6e7f8091a2b",
+  "position": { "x": 16, "y": 84, "z": 2000, "height": 270, "width": 430, "tabOrder": 2000 },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filter6a7b8c9d0e1f2a3b4c5d6e7f",
+        "field": {
+          "Column": {
+            "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+            "Property": "job_title_short"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [{ "Name": "j", "Entity": "job_postings_fact", "Type": 0 }],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": { "SourceRef": { "Source": "j" } },
+                        "Property": "job_title_short"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [{ "Literal": { "Value": "'Data Analyst'" } }],
+                    [{ "Literal": { "Value": "'Business Analyst'" } }],
+                    [{ "Literal": { "Value": "'Data Engineer'" } }],
+                    [{ "Literal": { "Value": "'Data Scientist'" } }],
+                    [{ "Literal": { "Value": "'Software Engineer'" } }]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+                  "Property": "Role Code"
+                }
+              },
+              "queryRef": "job_postings_fact.Role Code",
+              "nativeQueryRef": "Role Code"
+            }
+          ]
+        },
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": { "SourceRef": { "Entity": "RoleB" } },
+                  "Property": "Code"
+                }
+              },
+              "queryRef": "RoleB.Code",
+              "nativeQueryRef": "Code"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Jaccard Overlap" } },
+              "queryRef": "_Measures.Jaccard Overlap",
+              "nativeQueryRef": "Jaccard Overlap"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnHeaders": [{
+        "properties": {
+          "columnAdjustment": { "expr": { "Literal": { "Value": "'growToFit'" } } },
+          "autoSizeColumnWidth": { "expr": { "Literal": { "Value": "true" } } }
+        }
+      }],
+      "subTotals": [{
+        "properties": {
+          "rowSubtotals": { "expr": { "Literal": { "Value": "false" } } },
+          "columnSubtotals": { "expr": { "Literal": { "Value": "false" } } }
+        }
+      }],
+      "values": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "FillRule": {
+                      "Input": {
+                        "SelectRef": { "ExpressionName": "_Measures.Jaccard Overlap" }
+                      },
+                      "FillRule": {
+                        "linearGradient2": {
+                          "min": {
+                            "color": { "Literal": { "Value": "'#d6f1f7'" } }
+                          },
+                          "max": {
+                            "color": { "Literal": { "Value": "'#0087a3'" } }
+                          },
+                          "nullColoringStrategy": {
+                            "strategy": { "Literal": { "Value": "'noColor'" } }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [{ "dataViewWildcard": { "matchingOption": 1 } }],
+            "metadata": "_Measures.Jaccard Overlap"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [{
+        "properties": {
+          "show": { "expr": { "Literal": { "Value": "true" } } },
+          "text": { "expr": { "Literal": { "Value": "'SKILL OVERLAP BETWEEN ROLES · JACCARD, TOP-15 SKILLS'" } } }
+        }
+      }]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,6 +1,6 @@
 {
-  "name": "P1Light-4f8a2c1e.json",
-  "dataColors": ["#0087a3", "#8250df", "#00996f", "#e8590c", "#6e7781", "#b08800", "#bc4c00", "#0969da"],
+  "name": "P1Light-7b3e9d2f.json",
+  "dataColors": ["#0087a3", "#8250df", "#00996f", "#e8590c", "#4467a8", "#b08800", "#bc4c00", "#0969da"],
   "good": "#00996f",
   "neutral": "#d9b300",
   "bad": "#e8590c",
@@ -11,7 +11,7 @@
   "firstLevelElements": "#1f2328",
   "secondLevelElements": "#57606a",
   "thirdLevelElements": "#d0d7de",
-  "fourthLevelElements": "#6e7781",
+  "fourthLevelElements": "#4467a8",
   "background": "#ffffff",
   "secondaryBackground": "#f6f8fa",
   "tableAccent": "#0087a3",

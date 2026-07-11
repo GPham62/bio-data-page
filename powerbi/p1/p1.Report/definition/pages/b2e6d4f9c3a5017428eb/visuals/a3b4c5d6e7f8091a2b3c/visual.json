@@ -1,0 +1,126 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "a3b4c5d6e7f8091a2b3c",
+  "position": { "x": 16, "y": 362, "z": 3000, "height": 300, "width": 430, "tabOrder": 3000 },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filter7b8c9d0e1f2a3b4c5d6e7f8a",
+        "field": {
+          "Column": {
+            "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+            "Property": "job_title_short"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [{ "Name": "j", "Entity": "job_postings_fact", "Type": 0 }],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": { "SourceRef": { "Source": "j" } },
+                        "Property": "job_title_short"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [{ "Literal": { "Value": "'Data Analyst'" } }],
+                    [{ "Literal": { "Value": "'Business Analyst'" } }],
+                    [{ "Literal": { "Value": "'Data Engineer'" } }],
+                    [{ "Literal": { "Value": "'Data Scientist'" } }],
+                    [{ "Literal": { "Value": "'Software Engineer'" } }]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": { "SourceRef": { "Entity": "job_postings_fact" } },
+                  "Property": "job_title_short"
+                }
+              },
+              "queryRef": "job_postings_fact.job_title_short",
+              "nativeQueryRef": "job_title_short",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Skills per Posting" } },
+              "queryRef": "_Measures.Skills per Posting",
+              "nativeQueryRef": "Skills per Posting"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Skills per Posting" } },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "defaultColor": { "solid": { "color": { "expr": { "Literal": { "Value": "'#0087a3'" } } } } }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": { "expr": { "Literal": { "Value": "true" } } }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": { "expr": { "Literal": { "Value": "false" } } }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": { "expr": { "Literal": { "Value": "false" } } }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [{
+        "properties": {
+          "show": { "expr": { "Literal": { "Value": "true" } } },
+          "text": { "expr": { "Literal": { "Value": "'SKILLS PER POSTING · MEDIAN REQUIRED STACK'" } } }
+        }
+      }]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

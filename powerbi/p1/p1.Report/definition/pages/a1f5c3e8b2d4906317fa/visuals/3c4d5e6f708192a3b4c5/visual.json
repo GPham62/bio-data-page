@@ -41,6 +41,22 @@
       "outline": [{
         "properties": { "show": { "expr": { "Literal": { "Value": "false" } } } },
         "selector": { "id": "default" }
+      }],
+      "accentBar": [{
+        "properties": {
+          "show": { "expr": { "Literal": { "Value": "true" } } },
+          "position": { "expr": { "Literal": { "Value": "'Left'" } } },
+          "width": { "expr": { "Literal": { "Value": "4D" } } },
+          "color": { "solid": { "color": { "expr": { "Literal": { "Value": "'#0087a3'" } } } } }
+        },
+        "selector": { "id": "default" }
+      }],
+      "fillCustom": [{
+        "properties": {
+          "show": { "expr": { "Literal": { "Value": "true" } } },
+          "fillColor": { "solid": { "color": { "expr": { "Literal": { "Value": "'#eaf6f9'" } } } } }
+        },
+        "selector": { "id": "default" }
       }]
     }
   }

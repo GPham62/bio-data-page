@@ -38,7 +38,7 @@ DA mid median ≈ $88K, DA↔BA Jaccard ≈ 0.88, Vietnam DE = 1,608.
 
 Theme: background `#ffffff`, panel `#f6f8fa`, border `#d0d7de`, text `#1f2328`,
 muted `#57606a`. Role colors: DA `#0087a3`, BA `#8250df`, DE `#00996f`,
-DS `#e8590c`, SE `#6e7781`. Every page carries a takeaway title + subtitle
+DS `#e8590c`, SE `#4467a8`. Every page carries a takeaway title + subtitle
 (screenshot-first: the page must self-explain as a static image).
 
 ### Page 1 — "The Face-Off" (Executive banner layout)

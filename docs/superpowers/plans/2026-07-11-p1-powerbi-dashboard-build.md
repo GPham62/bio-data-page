@@ -11,7 +11,7 @@
 ## Global Constraints
 
 - Salary window everywhere: `salary_year_avg >= 10000 && salary_year_avg <= 600000`. Hourly window pinned by probe in Task 7.
-- Theme: bg `#ffffff`, panel `#f6f8fa`, border `#d0d7de`, text `#1f2328`, muted `#57606a`. Role colors: DA `#0087a3`, BA `#8250df`, DE `#00996f`, DS `#e8590c`, SE `#6e7781`.
+- Theme: bg `#ffffff`, panel `#f6f8fa`, border `#d0d7de`, text `#1f2328`, muted `#57606a`. Role colors: DA `#0087a3`, BA `#8250df`, DE `#00996f`, DS `#e8590c`, SE `#4467a8`.
 - Canvas 1280×720 (16:9) on all pages. Every page has a takeaway title + subtitle (screenshot-first).
 - The approved brainstorm mockups (`.superpowers/brainstorm/10657-1783716305/content/`) show the ORIGINAL dark palette — they remain the LAYOUT reference only; all colors follow the light palette above (user re-decision 2026-07-11 during execution).
 - NEVER hand-write PBIR JSON from memory — use the `powerbi-report-authoring` skill's reference files + CLI capability lookup for every visual type before authoring (skill rule).
@@ -376,7 +376,7 @@ Expected: ≈125-126K · slightly above median · ≈$55-60 · ≈0.10.
 **Interfaces:**
 - Produces: 3 page folders (names: `The Face-Off`, `Switching Costs`, `Job Title Drill Through`), 1280×720, themed; active page = The Face-Off.
 
-- [ ] **Step 1: Read `theming.md` + `authoring.md`** (page creation) from the powerbi-report-authoring skill references. Build the theme with: `dataColors` = [`#0087a3`, `#8250df`, `#00996f`, `#e8590c`, `#6e7781`], background `#ffffff`, panel/card `#f6f8fa`, `textClasses` label color `#1f2328` / secondary `#57606a`, visual borders `#d0d7de`.
+- [ ] **Step 1: Read `theming.md` + `authoring.md`** (page creation) from the powerbi-report-authoring skill references. Build the theme with: `dataColors` = [`#0087a3`, `#8250df`, `#00996f`, `#e8590c`, `#4467a8`], background `#ffffff`, panel/card `#f6f8fa`, `textClasses` label color `#1f2328` / secondary `#57606a`, visual borders `#d0d7de`.
 - [ ] **Step 2: Author** — delete stale page folder, create the 3 pages (canvas 1280×720), register theme.
 - [ ] **Step 3: Validate + reload**: `powerbi-report-author validate powerbi/p1/p1.Report` → expect pass; `powerbi-desktop` reload → screenshot → 3 empty light pages.
 - [ ] **Step 4: Commit** (`git commit -m "feat(p1-report): light theme + 3-page scaffold"`).

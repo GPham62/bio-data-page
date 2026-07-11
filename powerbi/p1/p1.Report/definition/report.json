@@ -11,7 +11,7 @@
       "type": "SharedResources"
     },
     "customTheme": {
-      "name": "P1Light-4f8a2c1e.json",
+      "name": "P1Light-7b3e9d2f.json",
       "reportVersionAtImport": {
         "visual": "2.9.0",
         "report": "3.3.0",
@@ -52,8 +52,8 @@
       "type": "RegisteredResources",
       "items": [
         {
-          "name": "P1Light-4f8a2c1e.json",
-          "path": "P1Light-4f8a2c1e.json",
+          "name": "P1Light-7b3e9d2f.json",
+          "path": "P1Light-7b3e9d2f.json",
           "type": "CustomTheme"
         }
       ]
