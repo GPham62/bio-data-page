@@ -35,11 +35,11 @@
     },
     "charSheet": {
       "title": "Hồ Sơ Nhân Vật",
-      "sub": "Chỉ số tổng hợp từ 4 năm thực chiến.",
+      "sub": "Chỉ số tổng hợp từ 3 năm thực chiến.",
       "class": "Data Analyst",
       "former": "Game Developer",
       "level": "Junior",
-      "exp": "4 năm (3 game dev · 1 tự học DA)",
+      "exp": "3 năm game dev · 1 năm tự học DA",
       "labels": {
         "class": "NGHỀ",
         "former": "TRƯỚC ĐÂY",
@@ -59,9 +59,14 @@
       "title": "Một Chút Về Mình",
       "sub": "Từ làm game đến làm insight.",
       "pivot_label": "Bước chuyển sự nghiệp",
-      "pivot_text": "Mình từng có nhiều năm làm game developer tại các studio như Zitga Studio và Inwave Studio — làm đủ thứ từ gameplay code, live-ops đến theo dõi chỉ số retention người chơi, và đã phát hành 5 game lên Google Play. Chính việc đào sâu vào số liệu retention là thứ kéo mình đến với data: mình muốn hiểu \"tại sao\" đằng sau biểu đồ, không chỉ nhìn nó thay đổi. Vậy là mình chuyển hẳn sang làm data analyst full-time.",
+      "pivot_text": "Mình có ba năm làm game developer tại ba studio: Mirabo, Wingsmob (tách ra từ Inwave Studio) và Zitga. Mình làm gameplay code, live-ops và theo dõi chỉ số retention người chơi, và đã phát hành 5 game lên Google Play tại Zitga. Chính việc đào sâu vào số liệu retention là thứ kéo mình đến với data: mình muốn hiểu \"tại sao\" đằng sau biểu đồ, không chỉ nhìn nó thay đổi. Vậy là mình chuyển hẳn sang làm data analyst full-time.",
       "think_label": "Cách Mình Tư Duy",
-      "think_text": "Mình tiếp cận vấn đề theo cách mình từng thiết kế game system — tìm vòng phản hồi, đo cái gì thay đổi hành vi, cắt bỏ cái không hiệu quả. Theory of Fun nói đúng: học mới là niềm vui. Phân tích dữ liệu cũng thế, chỉ là đổi dataset thôi."
+      "think_text": "Mình tiếp cận vấn đề theo cách mình từng thiết kế game system — tìm vòng phản hồi, đo cái gì thay đổi hành vi, cắt bỏ cái không hiệu quả. Theory of Fun nói đúng: học mới là niềm vui. Phân tích dữ liệu cũng thế, chỉ là đổi dataset thôi.",
+      "work_label": "Cách Mình Làm Việc",
+      "work_text": "Mình tự động hoá những phần lặp đi lặp lại trong công việc của chính mình. Năm agent chuyên trách review trang này trước khi bạn nhìn thấy nó: review code, kiểm tra UX, rà soát phần SQL và Power BI, cùng một lượt duyệt theo góc nhìn nhà tuyển dụng được thiết kế để khắt khe. Agent cuối bắt buộc phải tìm ra ít nhất ba lỗi, không bao giờ mở đầu bằng lời khen, và coi như không tồn tại mọi tuyên bố mà nó không kiểm chứng được từ code hiển thị hoặc link chạy thật. Hai trong số các agent đó ra đời vì nó chỉ ra những kỹ năng mình có liệt kê nhưng chưa chứng minh.",
+      "work_link": "Xem định nghĩa các agent ↗",
+      "cert_label": "Chứng Chỉ",
+      "cert_text": "Google Data Analytics Professional Certificate, Coursera, hoàn thành tháng 04/2026."
     },
     "games": {
       "title": "Game Đã Phát Hành",

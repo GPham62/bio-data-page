@@ -35,11 +35,11 @@
     },
     "charSheet": {
       "title": "Player Profile",
-      "sub": "Stats compiled from 4 years in the field.",
+      "sub": "Stats compiled from 3 years in the field.",
       "class": "Data Analyst",
       "former": "Game Developer",
       "level": "Junior",
-      "exp": "4 years (3 game dev · 1 self-directed DA)",
+      "exp": "3 years game dev · 1 self-directed DA",
       "labels": {
         "class": "CLASS",
         "former": "FORMER",
@@ -59,9 +59,14 @@
       "title": "A Bit About Me",
       "sub": "From shipping games to shipping insights.",
       "pivot_label": "Career switch",
-      "pivot_text": "I spent years as a mobile game developer at studios like Zitga Studio and Inwave Studio — working across gameplay code, live-ops, and player-retention metrics, and shipping 5 games to Google Play. Chasing those retention numbers is what pulled me toward data: I wanted to understand the \"why\" behind the charts, not just watch them move. So I switched lanes into data analysis full-time.",
+      "pivot_text": "I spent three years as a mobile game developer across three studios: Mirabo, Wingsmob (spun off from Inwave Studio), and Zitga. I worked on gameplay code, live-ops, and player-retention metrics, and shipped 5 games to Google Play at Zitga. Chasing those retention numbers is what pulled me toward data: I wanted to understand the \"why\" behind the charts, not just watch them move. So I switched lanes into data analysis full-time.",
       "think_label": "How I Think",
-      "think_text": "I approach problems the way I designed game systems — find the feedback loop, measure what changes behaviour, cut what doesn't move the needle. Theory of Fun put words to it: learning IS the fun. Data analysis is the same thing with a different dataset."
+      "think_text": "I approach problems the way I designed game systems — find the feedback loop, measure what changes behaviour, cut what doesn't move the needle. Theory of Fun put words to it: learning IS the fun. Data analysis is the same thing with a different dataset.",
+      "work_label": "How I Work",
+      "work_text": "I automate the repetitive parts of my own workflow. Five specialist agents review this site before you see it: code review, UX audit, SQL and Power BI coverage, and a recruiter pass built to be hostile. That last one has to find at least three faults, never opens with praise, and treats any claim it cannot verify from visible code or a live link as if it does not exist. Two of those agents exist because it flagged skills I had listed but not shown.",
+      "work_link": "See the agent definitions ↗",
+      "cert_label": "Credentials",
+      "cert_text": "Google Data Analytics Professional Certificate, Coursera, completed April 2026."
     },
     "games": {
       "title": "Shipped Games",

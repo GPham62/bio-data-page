@@ -189,6 +189,28 @@ export default function Home({ setActive }) {
             <p className={styles.thinkText}>{t('home.about.think_text')}</p>
           </div>
         </div>
+
+        <div className={styles.thinkBox}>
+          <div>
+            <span className={styles.thinkLabel}>{t('home.about.work_label')}</span>
+            <p className={styles.thinkText}>{t('home.about.work_text')}</p>
+            <a
+              href="https://github.com/GPham62/bio-data-page/tree/main/.claude/agents"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.contactLink}
+            >
+              {t('home.about.work_link')}
+            </a>
+          </div>
+        </div>
+
+        <div className={styles.thinkBox}>
+          <div>
+            <span className={styles.thinkLabel}>{t('home.about.cert_label')}</span>
+            <p className={styles.thinkText}>{t('home.about.cert_text')}</p>
+          </div>
+        </div>
       </section>
 
       {/* ── Shipped Games ── */}
