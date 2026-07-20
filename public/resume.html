@@ -27,10 +27,11 @@
     <h2>Tóm Tắt</h2>
     <p class="summary">
       Cử nhân Khoa học Máy tính với kinh nghiệm thực tế phân tích dữ liệu người dùng
-      trong ngành game (Firebase, AdMob, live-ops KPIs). Đã tự xây dựng 3 dự án phân
-      tích độc lập sử dụng SQL, Python và Power BI trên tập dữ liệu thực tế quy mô lớn
-      (&gt;1.6 triệu bản ghi). Tìm kiếm vị trí Junior Data Analyst để áp dụng kỹ năng
-      phân tích vào môi trường kinh doanh.
+      trong ngành game (Firebase, AdMob, live-ops KPIs). Đã tự xây dựng 5 dự án độc
+      lập sử dụng SQL, Python, Power BI và DuckDB trên tập dữ liệu thực tế quy mô lớn
+      (&gt;1.6 triệu bản ghi) — từ phân tích và mô hình ML đến pipeline ELT và tự động
+      hóa. Tìm kiếm vị trí Junior Data Analyst để áp dụng kỹ năng phân tích vào môi
+      trường kinh doanh.
     </p>
   </section>
 
@@ -68,7 +69,8 @@
       </div>
       <ul>
         <li>Phân tích 1.6 triệu bản ghi từ tập dữ liệu việc làm toàn cầu</li>
-        <li>Xây dựng mô hình ML dự đoán mức lương với độ chính xác 80% (ROC-AUC)</li>
+        <li>Mô hình hồi quy dự đoán mức lương tại Mỹ (HistGradientBoosting): R² 0.53 trên tập test, MAE $22.3k so với $36.5k của baseline</li>
+        <li>Mô hình phân loại riêng cho nhóm vị trí lương cao (trên mức trung vị $110K): ROC-AUC 80%</li>
         <li>Trực quan hóa kết quả qua dashboard Power BI và portfolio web tương tác</li>
         <li>Portfolio: <a href="https://bio-ta.vercel.app">bio-ta.vercel.app</a></li>
       </ul>
@@ -95,6 +97,32 @@
         <li>Phân khúc khách hàng theo mô hình RFM từ dữ liệu giao dịch thực tế</li>
         <li>Xác định nhóm khách hàng giá trị cao để hỗ trợ chiến lược marketing</li>
         <li>Trực quan hóa phân bố khách hàng theo segment bằng heatmap &amp; scatter plot</li>
+      </ul>
+    </div>
+
+    <div class="project">
+      <div class="project-header">
+        <strong>Recruitment Data Warehouse (pipeline ELT)</strong>
+        <span class="tags">SQL · DuckDB · MotherDuck · Google Cloud Storage</span>
+      </div>
+      <ul>
+        <li>Pipeline phía sau dự án phân tích thị trường tuyển dụng: trích xuất 4 file CSV nguồn từ Google Cloud Storage, nạp 1.6 triệu bản ghi vào star schema trên DuckDB</li>
+        <li>Chuyển đổi thành 4 data mart (nhu cầu kỹ năng theo tháng, tuyển dụng theo công ty, nhóm vị trí ưu tiên, bảng báo cáo phẳng) — 22 bảng trên 5 schema, mỗi mart có date dimension và grain riêng</li>
+        <li>Script cập nhật tăng dần cho 2 mart, một script build_marts.sql điều phối toàn bộ, đích đến là kho dữ liệu đám mây MotherDuck</li>
+      </ul>
+    </div>
+
+    <div class="project">
+      <div class="project-header">
+        <strong>Lớp tự động hóa &amp; báo cáo quanh career-ops</strong>
+        <span class="tags">Claude Code (headless) · PowerShell · Windows Task Scheduler</span>
+      </div>
+      <ul>
+        <li>Lớp tự động hóa tôi xây quanh career-ops — một pipeline tìm việc mã nguồn mở — chạy agent LLM theo lịch mỗi sáng, không cần giám sát</li>
+        <li>Số liệu mỗi lần chạy được đo bằng cách so sánh file pipeline với snapshot chụp trước khi chạy, không lấy từ phần agent tự thuật lại (phần này có lúc sai)</li>
+        <li>Giới hạn 2 lần thử mỗi ngày và chỉ đánh dấu hoàn thành khi exit code bằng 0, nên một lần chạy lỗi sẽ được thử lại thay vì mất cả ngày</li>
+        <li>Mỗi lần chạy ghi một dòng trạng thái vào file TSV (ngày, giờ, lần thử, kết quả), giúp giải thích được các ngày trống</li>
+        <li>Đã đóng góp một tính năng được merge vào repo gốc: bảng hoạt động daily-scan trên màn hình Progress của dashboard</li>
       </ul>
     </div>
   </section>
