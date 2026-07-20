@@ -4,7 +4,7 @@ import SectionTitle from '../components/SectionTitle.jsx'
 import Fx from '../components/Fx.jsx'
 import styles from './Home.module.css'
 
-const PROJECTS = ['p1', 'p2', 'p3']
+const PROJECTS = ['p3', 'p1', 'p2']
 
 const SHOWCASE_GAMES = [
   {

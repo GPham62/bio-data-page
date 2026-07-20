@@ -97,7 +97,7 @@
       },
       "p3": {
         "title": "Phân Khúc Khách Hàng TMDT",
-        "desc": "Tôi chia 4.372 khách hàng từ 542K giao dịch thành các nhóm RFM, vẽ bản đồ ai hay quay lại, rồi biến thành hành động kinh doanh thật.",
+        "desc": "Tôi phân khúc 4.372 khách hàng từ 542K giao dịch bằng RFM. Nhóm Champions chiếm 14,5% tệp khách và có doanh thu trung bình gấp 22 lần nhóm Lost. 1.040 khách Hibernating là mục tiêu kéo lại rõ ràng nhất.",
         "tags": ["RFM", "SQL", "Cohort", "Pandas"]
       },
       "coming": {
@@ -251,7 +251,7 @@
     "tag2": "Phân Khúc",
     "title1": "Thương Mại Điện Tử",
     "title2": "Phân Khúc Khách Hàng",
-    "sub": "Phân tích 541.909 giao dịch từ một nhà bán lẻ trực tuyến tại Anh để phân khúc 4.372 khách hàng bằng phân tích RFM, xây dựng heatmap giữ chân theo cohort và tạo đề xuất kinh doanh khả thi.",
+    "sub": "Không phải khách hàng nào cũng có giá trị như nhau. Tôi phân khúc 4.372 khách hàng từ 541.909 giao dịch của một nhà bán lẻ trực tuyến tại Anh và thấy nhóm cao nhất có doanh thu trung bình gấp 22 lần nhóm thấp nhất. Đây là ai nên giữ, ai nên kéo lại, và mỗi nhóm đáng giá bao nhiêu.",
     "kaggle_link": "Xem bộ dữ liệu trên Kaggle",
     "sql_link": "Xem SQL Queries",
     "sql_card_title": "01_rfm_scoring.sql — Truy Vấn Chấm Điểm RFM",

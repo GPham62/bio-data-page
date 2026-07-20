@@ -97,7 +97,7 @@
       },
       "p3": {
         "title": "E-Commerce Segmentation",
-        "desc": "I sorted 4,372 customers from 542K transactions into RFM groups, mapped who keeps coming back, and turned it into real business moves.",
+        "desc": "I segmented 4,372 customers from 542K transactions with RFM. Champions are 14.5% of the base and average 22× the revenue of Lost customers. The 1,040 Hibernating customers are the win-back target that follows.",
         "tags": ["RFM", "SQL", "Cohort", "Pandas"]
       },
       "coming": {
@@ -251,7 +251,7 @@
     "tag2": "Segmentation",
     "title1": "E-Commerce",
     "title2": "Customer Segmentation",
-    "sub": "Analysed 541,909 transactions from a UK-based online retailer to segment 4,372 customers using RFM analysis, build cohort retention heatmaps, and generate actionable business recommendations for improving customer lifetime value.",
+    "sub": "Not every customer is worth the same. I segmented 4,372 customers from 541,909 transactions of a UK online retailer and found the top group averages 22× the revenue of the bottom one. Here is who to keep, who to win back, and what each is worth.",
     "kaggle_link": "View dataset on Kaggle",
     "sql_link": "View SQL Queries",
     "sql_card_title": "01_rfm_scoring.sql — RFM Scoring Query",
