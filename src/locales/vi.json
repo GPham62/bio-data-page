@@ -3,7 +3,8 @@
     "home": "← Trang Chủ",
     "p1": "01 / Phân Tích Tuyển Dụng →",
     "p2": "02 / Cookie Cats A/B →",
-    "p3": "03 / Thương Mại Điện Tử →"
+    "p3": "03 / Thương Mại Điện Tử →",
+    "p4": "04 / Kho Dữ Liệu →"
   },
   "sidebar": {
     "role": "Junior Data Analyst",
@@ -75,7 +76,7 @@
     },
     "portfolio": {
       "title": "Dự Án Tiêu Biểu",
-      "sub": "Ba dự án end-to-end — từ dữ liệu thô đến đề xuất hành động.",
+      "sub": "Bốn dự án end-to-end — từ dữ liệu thô đến đề xuất hành động.",
       "label": "Dự Án Cá Nhân"
     },
     "contact": {
@@ -99,6 +100,11 @@
         "title": "Phân Khúc Khách Hàng TMDT",
         "desc": "Tôi phân khúc 4.372 khách hàng từ 542K giao dịch bằng RFM. Nhóm Champions chiếm 14,5% tệp khách và có doanh thu trung bình gấp 22 lần nhóm Lost. 1.040 khách Hibernating là mục tiêu kéo lại rõ ràng nhất.",
         "tags": ["RFM", "SQL", "Cohort", "Pandas"]
+      },
+      "p4": {
+        "title": "Recruitment Data Warehouse",
+        "desc": "Pipeline ELT nằm dưới Project 01. Tôi nạp 1,6 triệu tin tuyển dụng từ 4 file CSV trên cloud storage vào star schema DuckDB, rồi dựng 4 mart để mỗi câu hỏi mới chỉ còn là một bộ lọc thay vì phải viết lại.",
+        "tags": ["SQL", "DuckDB", "MotherDuck", "ELT"]
       },
       "coming": {
         "title": "Sắp Có Thêm",
@@ -297,5 +303,55 @@
       "Phát triển <strong>Hà Lan và Đức</strong> — nhu cầu mạnh nhưng cả hai chỉ chiếm ~5.8% doanh thu. Marketing bản địa hóa là đòn bẩy rẻ.",
       "Nghiên cứu lại <strong>cohort T12/2010</strong> — giữ chân 36–41% mỗi tháng là ngoại lệ. Tìm ra điều gì giữ họ lại và nhân rộng."
     ]
+  },
+  "p4": {
+    "tag": "Project 04",
+    "tag2": "Data Engineering",
+    "title1": "Recruitment",
+    "title2": "Data Warehouse",
+    "sub": "Pipeline nằm dưới Project 01. Bốn file CSV được nạp từ Google Cloud Storage, 1,6 triệu tin tuyển dụng vào DuckDB, rồi bốn mart phân tích được dựng lên trên đó để cùng một câu hỏi không phải viết lại cùng một phép join mỗi lần.",
+    "sql_link": "Xem mã SQL",
+    "gcs_link": "Dữ liệu nguồn trên GCS",
+    "sql_view": "Xem file đầy đủ trên GitHub",
+    "kpi_postings": "Tin Tuyển Dụng",
+    "kpi_postings_sub": "đã nạp vào DuckDB",
+    "kpi_sources": "File CSV Nguồn",
+    "kpi_sources_sub": "đọc từ GCS",
+    "kpi_tables": "Bảng",
+    "kpi_tables_sub": "đếm được trong mã SQL",
+    "kpi_schemas": "Schema",
+    "kpi_schemas_sub": "nguồn cộng 4 mart",
+    "insight_label": "// insight",
+    "unit_tables": "bảng",
+    "s1_title": "Sao không query thẳng file CSV?",
+    "s1_sub": "Mô hình hoá được gì, và đánh đổi những gì.",
+    "chart_schema_sizes": "Số bảng theo schema",
+    "chart_schema_sizes_sub": "Đếm từ các câu lệnh CREATE TABLE",
+    "sql_load_title": "Nạp trực tiếp từ cloud storage",
+    "s1_insight": "Bốn file CSV chỉ trả lời được một câu hỏi mỗi lần. Mỗi câu hỏi mới lại phải viết lại đúng những phép join đó trên <strong>1,6 triệu dòng</strong>, và mỗi câu hỏi có một grain khác nhau: theo tin đăng, theo kỹ năng theo tháng, theo công ty theo tháng. Mô hình hoá một lần thành <strong>bốn mart</strong> biến mỗi câu hỏi mới thành một bộ lọc thay vì phải viết lại.",
+    "s2_title": "Star schema trông như thế nào?",
+    "s2_sub": "Bảng nguồn vào, mart ra, mỗi mart một grain.",
+    "flow_source": "Nguồn",
+    "flow_warehouse": "Kho dữ liệu",
+    "flow_warehouse_sub": "18 bảng, 5 schema",
+    "flow_marts": "Mart",
+    "role_fact": "Fact",
+    "role_dim": "Dimension",
+    "role_bridge": "Bridge",
+    "s2_insight": "Mỗi grain một bảng fact, dimension dùng chung ở chỗ nào lặp lại. <strong>company_mart</strong> rộng nhất với <strong>8 bảng</strong> vì công ty, địa điểm và chức danh đều cần dimension riêng, cộng thêm một bảng bridge cho quan hệ nhiều-nhiều giữa chức danh rút gọn và chức danh đầy đủ.",
+    "s3_title": "Chuyện gì xảy ra khi có dữ liệu mới?",
+    "s3_sub": "Một mart cập nhật tại chỗ. Ba mart dựng lại.",
+    "col_schema": "Schema",
+    "col_grain": "Grain",
+    "col_tables": "Số bảng",
+    "col_refresh": "Cách làm mới",
+    "grain_flat_mart": "Mỗi dòng một tin tuyển dụng",
+    "grain_skills_mart": "Mỗi dòng một kỹ năng theo tháng",
+    "grain_priority_mart": "Mỗi dòng một tin đang theo dõi",
+    "grain_company_mart": "Mỗi dòng một công ty theo tháng",
+    "refresh_incremental": "Tăng dần",
+    "refresh_rebuild": "Dựng lại toàn bộ",
+    "sql_merge_title": "Mart duy nhất cập nhật tại chỗ",
+    "s3_insight": "Chỉ có <strong>priority_mart</strong> làm mới theo kiểu tăng dần. Câu lệnh MERGE cập nhật dòng thay đổi, chèn dòng mới và xoá những tin đã ra khỏi phạm vi, nên chạy lại chỉ tốn vài giây thay vì nạp lại toàn bộ. Ba mart còn lại dựng lại toàn bộ. Ở quy mô này chi phí đó đủ rẻ để phần phức tạp thêm không đáng, và nói rõ mart nào theo cách nào thì hữu ích hơn là ngụ ý cả kho dữ liệu đều tăng dần."
   }
 }

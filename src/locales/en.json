@@ -3,7 +3,8 @@
     "home": "← Home",
     "p1": "01 / Recruit Analysis →",
     "p2": "02 / Cookie Cats A/B →",
-    "p3": "03 / E-Commerce →"
+    "p3": "03 / E-Commerce →",
+    "p4": "04 / Data Warehouse →"
   },
   "sidebar": {
     "role": "Junior Data Analyst",
@@ -75,7 +76,7 @@
     },
     "portfolio": {
       "title": "Selected Projects",
-      "sub": "Three end-to-end projects — from raw data to a recommendation.",
+      "sub": "Four end-to-end projects — from raw data to a recommendation.",
       "label": "Personal Project"
     },
     "contact": {
@@ -99,6 +100,11 @@
         "title": "E-Commerce Segmentation",
         "desc": "I segmented 4,372 customers from 542K transactions with RFM. Champions are 14.5% of the base and average 22× the revenue of Lost customers. The 1,040 Hibernating customers are the win-back target that follows.",
         "tags": ["RFM", "SQL", "Cohort", "Pandas"]
+      },
+      "p4": {
+        "title": "Recruitment Data Warehouse",
+        "desc": "The ELT pipeline underneath Project 01. I loaded 1.6M job postings from 4 cloud-storage CSVs into a DuckDB star schema, then built 4 marts so each new question became a filter instead of a rewrite.",
+        "tags": ["SQL", "DuckDB", "MotherDuck", "ELT"]
       },
       "coming": {
         "title": "More Coming Soon",
@@ -297,5 +303,55 @@
       "Grow <strong>Netherlands and Germany</strong> — strong demand, but together they’re only ~5.8% of revenue. Localised marketing is a cheap unlock.",
       "Reverse-engineer the <strong>Dec 2010 cohort</strong> — 36–41% monthly retention is exceptional. Find out what made them stick and replicate it."
     ]
+  },
+  "p4": {
+    "tag": "Project 04",
+    "tag2": "Data Engineering",
+    "title1": "Recruitment",
+    "title2": "Data Warehouse",
+    "sub": "The pipeline underneath Project 01. Four CSVs land from Google Cloud Storage, 1.6M job postings load into DuckDB, and four analytical marts get built on top so the same questions stop needing the same joins rewritten every time.",
+    "sql_link": "View the SQL",
+    "gcs_link": "Source data on GCS",
+    "sql_view": "Full file on GitHub",
+    "kpi_postings": "Job Postings",
+    "kpi_postings_sub": "loaded into DuckDB",
+    "kpi_sources": "Source CSVs",
+    "kpi_sources_sub": "read from GCS",
+    "kpi_tables": "Tables",
+    "kpi_tables_sub": "countable in the SQL",
+    "kpi_schemas": "Schemas",
+    "kpi_schemas_sub": "source plus 4 marts",
+    "insight_label": "// insight",
+    "unit_tables": "tables",
+    "s1_title": "Why not just query the CSVs?",
+    "s1_sub": "What modelling buys you, and what it costs.",
+    "chart_schema_sizes": "Tables per schema",
+    "chart_schema_sizes_sub": "Counted from CREATE TABLE statements",
+    "sql_load_title": "Loading straight from cloud storage",
+    "s1_insight": "Four CSVs answer one question at a time. Every new question meant rewriting the same joins across <strong>1.6M rows</strong>, and each one had a different grain: per posting, per skill per month, per company per month. Modelling it once into <strong>four marts</strong> turned each new question into a filter instead of a rewrite.",
+    "s2_title": "What does the star schema look like?",
+    "s2_sub": "Source tables in, marts out, one grain each.",
+    "flow_source": "Source",
+    "flow_warehouse": "Warehouse",
+    "flow_warehouse_sub": "18 tables, 5 schemas",
+    "flow_marts": "Marts",
+    "role_fact": "Fact",
+    "role_dim": "Dimension",
+    "role_bridge": "Bridge",
+    "s2_insight": "One fact table per grain, with dimensions shared where they repeat. <strong>company_mart</strong> is the widest at <strong>8 tables</strong> because company, location and job title each needed their own dimension, plus a bridge table for the many-to-many between short job titles and full ones.",
+    "s3_title": "What happens when new data arrives?",
+    "s3_sub": "One mart updates in place. Three rebuild.",
+    "col_schema": "Schema",
+    "col_grain": "Grain",
+    "col_tables": "Tables",
+    "col_refresh": "Refresh",
+    "grain_flat_mart": "One row per job posting",
+    "grain_skills_mart": "One row per skill per month",
+    "grain_priority_mart": "One row per tracked posting",
+    "grain_company_mart": "One row per company per month",
+    "refresh_incremental": "Incremental",
+    "refresh_rebuild": "Full rebuild",
+    "sql_merge_title": "The one mart that updates in place",
+    "s3_insight": "Only <strong>priority_mart</strong> refreshes incrementally. Its MERGE updates changed rows, inserts new ones, and deletes postings that fell out of scope, so a rerun costs seconds instead of a full reload. The other three rebuild in full. At this size that is cheap enough that the extra complexity would not pay for itself, and being specific about which is which is more useful than implying the whole warehouse is incremental."
   }
 }

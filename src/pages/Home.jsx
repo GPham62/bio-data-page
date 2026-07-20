@@ -4,7 +4,11 @@ import SectionTitle from '../components/SectionTitle.jsx'
 import Fx from '../components/Fx.jsx'
 import styles from './Home.module.css'
 
-const PROJECTS = ['p3', 'p1', 'p2']
+// Display order. The card number comes from PROJECT_NUM, not the array index,
+// so reordering this list never desyncs a card from its page's "Project NN" tag.
+const PROJECTS = ['p3', 'p4', 'p1', 'p2']
+
+const PROJECT_NUM = { p1: '01', p2: '02', p3: '03', p4: '04' }
 
 const SHOWCASE_GAMES = [
   {
@@ -139,7 +143,7 @@ export default function Home({ setActive }) {
               <div className={styles.projectThumbWrap}>
                 <img src={`/gif_import/${id}.gif`} className={styles.projectThumb} alt="" />
                 <div className={styles.projectTopRow}>
-                  <span className={styles.projectNum}>0{i + 1}</span>
+                  <span className={styles.projectNum}>{PROJECT_NUM[id]}</span>
                   <Fx effect="[pulse a=0.5]" pop="100,150,280" className={styles.badgeLive}>{t('home.badge_live')}</Fx>
                 </div>
                 <span className={styles.projectKicker}>{t('home.portfolio.label')}</span>

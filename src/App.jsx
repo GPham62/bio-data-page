@@ -6,6 +6,7 @@ import Resume    from './pages/Resume.jsx'
 import Project1  from './pages/Project1.jsx'
 import Project2  from './pages/Project2.jsx'
 import Project3  from './pages/Project3.jsx'
+import Project4  from './pages/Project4.jsx'
 import styles    from './App.module.css'
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
             {active === 'p1'   && <Project1  setActive={setActive} />}
             {active === 'p2'   && <Project2  setActive={setActive} />}
             {active === 'p3'   && <Project3  setActive={setActive} />}
+            {active === 'p4'   && <Project4  setActive={setActive} />}
           </main>
           {active !== 'home' && (
             <footer className={styles.footer}>
