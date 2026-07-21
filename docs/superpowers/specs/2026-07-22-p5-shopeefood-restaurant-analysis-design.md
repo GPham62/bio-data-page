@@ -47,6 +47,33 @@ notebook → portfolio page), with a collection stage added in front.
    and, if reachable, reviews.
 2. **Clean** — normalize mixed Vietnamese/English text, derive price bands,
    cuisine tags, district; deduplicate restaurants. Lives in the Colab notebook.
+
+### Collector / notebook boundary (binding)
+
+**Collector = fetch + parse raw. Notebook = clean + analyze.**
+
+- The collector **parses only**: pull fields out of ShopeeFood's JSON response
+  into flat records and write the raw snapshot. No judgment calls, no derived
+  fields, no normalization.
+- The notebook **cleans**: deduplicate restaurants, derive price bands,
+  normalize cuisine tags and districts, normalize VN/English review text — then
+  analyzes on top.
+
+Two reasons cleaning must not migrate into the collector:
+
+1. **Reproducibility.** The page's numbers trace to one notebook plus one raw
+   snapshot. If cleaning were baked into the collector, a re-run of collection
+   could silently change the cleaned data with nothing to audit.
+2. **Visibility of the analyst work.** Price banding, a defensible cuisine
+   taxonomy, and VN text normalization *are* the judgment calls worth showing.
+   In a collector script they are invisible; in the notebook they are the
+   deliverable. This also matches how every existing project keeps its transform
+   logic in its linked Colab notebook.
+
+**Branch caveat:** this line holds fully in Branch B (structured). In Branch A
+(review-text mining) some heavy cleaning *is* the analysis — the complaint
+taxonomy is the cleaning of free text — so the notebook does more and the
+boundary moves further right. The collector stays parse-only in both branches.
 3. **Analyze** — in a Colab notebook. Shape locks after the spike (see below).
    Produces the aggregate figures the page renders.
 4. **Deliver** — `Project5.jsx` + `Project5.module.css` + `src/data/project5.js`,
@@ -91,7 +118,12 @@ page; they differ only in method.
 - **Collection script** — standalone, in its own small repo/folder. Committed and
   pushed to GitHub so it is visible.
 - **Colab notebook** — collect-snapshot → clean → analyze, linked from the page.
-- **Data snapshot** — committed so the page's numbers are reproducible.
+- **Data artifacts** — two tiers, so reproducibility does not become republication:
+  - *Raw snapshot* — stays **local and gitignored**. Never committed, never
+    published. It is the collector's output and the notebook's input.
+  - *Aggregate dataset* — the notebook's analysis-ready output (counts, medians,
+    per-segment rollups). **This** is what gets committed and what the page reads,
+    so the numbers are reproducible without republishing scraped records.
 - **Portfolio page** — `Project5.jsx` (`p5`, number `05`), scaffolded via the
   `add-project` skill. Recharts + insight blocks. Includes a section on the
   collection method and an ethics/ToS line.
