@@ -60,14 +60,12 @@
       "title": "Một Chút Về Mình",
       "sub": "Từ làm game đến làm insight.",
       "pivot_label": "Bước chuyển sự nghiệp",
-      "pivot_text": "Mình có ba năm làm game developer tại ba studio: Mirabo, Wingsmob (tách ra từ Inwave Studio) và Zitga. Mình làm gameplay code, live-ops và theo dõi chỉ số retention người chơi, và đã phát hành 5 game lên Google Play tại Zitga. Chính việc đào sâu vào số liệu retention là thứ kéo mình đến với data: mình muốn hiểu \"tại sao\" đằng sau biểu đồ, không chỉ nhìn nó thay đổi. Vậy là mình chuyển hẳn sang làm data analyst full-time.",
+      "pivot_text": "Mình có ba năm làm game developer tại ba studio: Mirabo, Wingsmob (tách ra từ Inwave Studio) và Zitga. Mình làm gameplay code, live-ops và theo dõi chỉ số retention người chơi. Tại Zitga mình đã phát hành 5 game lên Google Play. Chính việc đào sâu vào số liệu retention là thứ kéo mình đến với data: mình muốn hiểu \"tại sao\" đằng sau biểu đồ, không chỉ nhìn nó thay đổi. Vậy là mình chuyển hẳn sang làm data analyst full-time.",
       "think_label": "Cách Mình Tư Duy",
       "think_text": "Mình tiếp cận vấn đề theo cách mình từng thiết kế game system — tìm vòng phản hồi, đo cái gì thay đổi hành vi, cắt bỏ cái không hiệu quả. Theory of Fun nói đúng: học mới là niềm vui. Phân tích dữ liệu cũng thế, chỉ là đổi dataset thôi.",
-      "work_label": "Cách Mình Làm Việc",
-      "work_text": "Mình tự động hoá những phần lặp đi lặp lại trong công việc của chính mình. Năm agent chuyên trách review trang này trước khi bạn nhìn thấy nó: review code, kiểm tra UX, rà soát phần SQL và Power BI, cùng một lượt duyệt theo góc nhìn nhà tuyển dụng được thiết kế để khắt khe. Agent cuối bắt buộc phải tìm ra ít nhất ba lỗi, không bao giờ mở đầu bằng lời khen, và coi như không tồn tại mọi tuyên bố mà nó không kiểm chứng được từ code hiển thị hoặc link chạy thật. Hai trong số các agent đó ra đời vì nó chỉ ra những kỹ năng mình có liệt kê nhưng chưa chứng minh.",
-      "work_link": "Xem định nghĩa các agent ↗",
       "cert_label": "Chứng Chỉ",
-      "cert_text": "Google Data Analytics Professional Certificate, Coursera, hoàn thành tháng 04/2026."
+      "cert_text": "Google Data Analytics Professional Certificate, Coursera, hoàn thành tháng 04/2026.",
+      "cert_link": "Xác minh trên Coursera ↗"
     },
     "games": {
       "title": "Game Đã Phát Hành",
@@ -352,6 +350,6 @@
     "refresh_incremental": "Tăng dần",
     "refresh_rebuild": "Dựng lại toàn bộ",
     "sql_merge_title": "Mart duy nhất cập nhật tại chỗ",
-    "s3_insight": "Chỉ có <strong>priority_mart</strong> làm mới theo kiểu tăng dần. Câu lệnh MERGE cập nhật dòng thay đổi, chèn dòng mới và xoá những tin đã ra khỏi phạm vi, nên chạy lại chỉ tốn vài giây thay vì nạp lại toàn bộ. Ba mart còn lại dựng lại toàn bộ. Ở quy mô này chi phí đó đủ rẻ để phần phức tạp thêm không đáng, và nói rõ mart nào theo cách nào thì hữu ích hơn là ngụ ý cả kho dữ liệu đều tăng dần."
+    "s3_insight": "Chỉ có <strong>priority_mart</strong> làm mới theo kiểu tăng dần, và lý do nằm ngay trong schema của nó. Bảng <strong>priority_jobs_snapshot</strong> có cột <strong>updated_at</strong>, và câu lệnh MERGE chỉ chạm vào những dòng thực sự đổi mức ưu tiên, nên dấu thời gian đó ghi lại thời điểm một vai trò thay đổi chứ không phải thời điểm pipeline chạy lần cuối. Dựng lại toàn bộ sẽ đóng cùng một dấu thời gian lên mọi dòng và làm mất thông tin đó. Ba mart còn lại không giữ trạng thái nào bị mất khi dựng lại, nên chúng dựng lại. Logic tăng dần chỉ đáng phần phức tạp của nó khi nạp lại sẽ làm mất thông tin, và ở đây điều đó đúng đúng một lần."
   }
 }

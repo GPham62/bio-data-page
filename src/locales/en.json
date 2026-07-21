@@ -60,14 +60,12 @@
       "title": "A Bit About Me",
       "sub": "From shipping games to shipping insights.",
       "pivot_label": "Career switch",
-      "pivot_text": "I spent three years as a mobile game developer across three studios: Mirabo, Wingsmob (spun off from Inwave Studio), and Zitga. I worked on gameplay code, live-ops, and player-retention metrics, and shipped 5 games to Google Play at Zitga. Chasing those retention numbers is what pulled me toward data: I wanted to understand the \"why\" behind the charts, not just watch them move. So I switched lanes into data analysis full-time.",
+      "pivot_text": "I spent three years as a mobile game developer across three studios: Mirabo, Wingsmob (spun off from Inwave Studio), and Zitga. I worked on gameplay code, live-ops, and player-retention metrics. At Zitga I shipped 5 games to Google Play. Chasing those retention numbers is what pulled me toward data: I wanted to understand the \"why\" behind the charts, not just watch them move. So I switched lanes into data analysis full-time.",
       "think_label": "How I Think",
       "think_text": "I approach problems the way I designed game systems — find the feedback loop, measure what changes behaviour, cut what doesn't move the needle. Theory of Fun put words to it: learning IS the fun. Data analysis is the same thing with a different dataset.",
-      "work_label": "How I Work",
-      "work_text": "I automate the repetitive parts of my own workflow. Five specialist agents review this site before you see it: code review, UX audit, SQL and Power BI coverage, and a recruiter pass built to be hostile. That last one has to find at least three faults, never opens with praise, and treats any claim it cannot verify from visible code or a live link as if it does not exist. Two of those agents exist because it flagged skills I had listed but not shown.",
-      "work_link": "See the agent definitions ↗",
       "cert_label": "Credentials",
-      "cert_text": "Google Data Analytics Professional Certificate, Coursera, completed April 2026."
+      "cert_text": "Google Data Analytics Professional Certificate, Coursera, completed April 2026.",
+      "cert_link": "Verify on Coursera ↗"
     },
     "games": {
       "title": "Shipped Games",
@@ -352,6 +350,6 @@
     "refresh_incremental": "Incremental",
     "refresh_rebuild": "Full rebuild",
     "sql_merge_title": "The one mart that updates in place",
-    "s3_insight": "Only <strong>priority_mart</strong> refreshes incrementally. Its MERGE updates changed rows, inserts new ones, and deletes postings that fell out of scope, so a rerun costs seconds instead of a full reload. The other three rebuild in full. At this size that is cheap enough that the extra complexity would not pay for itself, and being specific about which is which is more useful than implying the whole warehouse is incremental."
+    "s3_insight": "Only <strong>priority_mart</strong> refreshes incrementally, and the reason is in its schema. <strong>priority_jobs_snapshot</strong> carries an <strong>updated_at</strong> column, and the MERGE only touches rows whose priority level actually changed, so that timestamp records when a role changed rather than when the pipeline last ran. A full rebuild would stamp every row identically and throw that away. The other three marts hold no state a rebuild would destroy, so they rebuild. Incremental logic earns its complexity when a reload would lose information, which here is true exactly once."
   }
 }

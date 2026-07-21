@@ -6,9 +6,14 @@ import styles from './Home.module.css'
 
 // Display order. The card number comes from PROJECT_NUM, not the array index,
 // so reordering this list never desyncs a card from its page's "Project NN" tag.
-const PROJECTS = ['p3', 'p4', 'p1', 'p2']
+const PROJECTS = ['p3', 'p1', 'p2', 'p4']
 
 const PROJECT_NUM = { p1: '01', p2: '02', p3: '03', p4: '04' }
+
+// Google Data Analytics certificate verify link. Paste the public Coursera /
+// Credly URL here; the "Verify" link renders only when this is set, so an
+// unlinked certificate claim never ships.
+const CERT_URL = 'https://coursera.org/share/61b9fe5ece766f306870b0dd9f1fcc09'
 
 const SHOWCASE_GAMES = [
   {
@@ -196,23 +201,18 @@ export default function Home({ setActive }) {
 
         <div className={styles.thinkBox}>
           <div>
-            <span className={styles.thinkLabel}>{t('home.about.work_label')}</span>
-            <p className={styles.thinkText}>{t('home.about.work_text')}</p>
-            <a
-              href="https://github.com/GPham62/bio-data-page/tree/main/.claude/agents"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.contactLink}
-            >
-              {t('home.about.work_link')}
-            </a>
-          </div>
-        </div>
-
-        <div className={styles.thinkBox}>
-          <div>
             <span className={styles.thinkLabel}>{t('home.about.cert_label')}</span>
             <p className={styles.thinkText}>{t('home.about.cert_text')}</p>
+            {CERT_URL && (
+              <a
+                href={CERT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.contactLink}
+              >
+                {t('home.about.cert_link')}
+              </a>
+            )}
           </div>
         </div>
       </section>
