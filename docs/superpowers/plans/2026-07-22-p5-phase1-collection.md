@@ -251,11 +251,30 @@ def test_parse_restaurants_ids_are_unique():
     assert len(ids) == len(set(ids))
 
 
-def test_parse_restaurants_missing_fields_become_none_not_defaults():
-    # Parser must not invent values. An empty payload yields no rows,
-    # and a row with no rating must carry None rather than 0.
+def test_parse_restaurants_empty_payload_returns_empty_list():
     rows = parse_restaurants({}, collected_at="2026-07-22T00:00:00")
     assert rows == []
+
+
+def test_parse_restaurants_missing_fields_become_none_not_defaults():
+    # Guards the parse-only boundary: the collector must never invent a value.
+    # rating=0 means "rated zero"; rating=None means "no rating exists". If the
+    # parser defaults to 0, the notebook's average rating is silently wrong.
+    # NOTE: the "reply.delivery_infos" path and the field names below are the
+    # same guesses as RESTAURANTS_ROOT in parse.py — correct them from the
+    # captured fixture in the same edit.
+    raw = {"reply": {"delivery_infos": [{"restaurant_id": "x", "name": "Quan X"}]}}
+    rows = parse_restaurants(raw, collected_at="2026-07-22T00:00:00")
+
+    assert len(rows) == 1
+    r = rows[0]
+    assert r.rating is None
+    assert r.review_count is None
+    assert r.price_min is None
+    assert r.price_max is None
+    assert r.delivery_fee is None
+    assert r.district is None
+    assert r.cuisine_raw == []
 
 
 @pytest.mark.skipif(
