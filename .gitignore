@@ -21,3 +21,6 @@ powerbi/p1/p1.Report/.pbi/
 
 # brainstorm visual companion
 .superpowers/
+
+# treehouse worktree-pool config — local tool settings, not portfolio code
+treehouse.toml
