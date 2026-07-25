@@ -1,0 +1,169 @@
+.heroAccent {
+  color: var(--accent);
+  -webkit-text-stroke: 0.0625rem var(--accent);
+}
+
+.tag {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 0.0625rem solid rgba(0, 229, 255, 0.3);
+  border-radius: 0.1875rem;
+  padding: 0.1875rem 0.625rem;
+}
+
+.linkRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  margin-top: 0;
+}
+
+.collectorLink,
+.notebookLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: 1.125rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  border-radius: 0.375rem;
+  padding: 0.4375rem 0.75rem;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.collectorLink {
+  color: var(--accent);
+  border: 0.0625rem solid rgba(0, 229, 255, 0.3);
+}
+
+.collectorLink:hover {
+  border-color: var(--accent);
+  background: rgba(0, 229, 255, 0.06);
+  text-decoration: none;
+}
+
+.notebookLink {
+  color: var(--purple);
+  border: 0.0625rem solid rgba(163, 113, 247, 0.3);
+}
+
+.notebookLink:hover {
+  border-color: var(--purple);
+  background: rgba(163, 113, 247, 0.06);
+  text-decoration: none;
+}
+
+/* KPI row — 4 stats, not 6 */
+.kpiRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 3.5rem;
+}
+
+/* ── Complaint drag legend ─────────────────────────────────────────── */
+
+.dragLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.dragLegendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4375rem;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  color: var(--muted);
+}
+
+.dragSwatch {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 0.125rem;
+  flex: none;
+}
+
+/* ── Method and limits ─────────────────────────────────────────────── */
+
+.methodGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.methodItem {
+  border: 0.0625rem solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--bg2);
+  padding: 1.25rem 1.375rem;
+}
+
+.methodLabel {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.methodText {
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.caveatsBox {
+  margin-top: 1.5rem;
+  border: 0.0625rem solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--bg2);
+  padding: 1.25rem 1.375rem;
+}
+
+.caveatsLabel {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin-bottom: 0.75rem;
+}
+
+.caveatsList {
+  margin: 0;
+  padding-left: 1.125rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.caveatsList li {
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.caveatsList strong {
+  color: var(--text);
+}
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .kpiRow { grid-template-columns: repeat(2, 1fr); }
+  .methodGrid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .kpiRow { grid-template-columns: 1fr; }
+}

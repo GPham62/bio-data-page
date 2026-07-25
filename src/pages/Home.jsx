@@ -8,9 +8,9 @@ import styles from './Home.module.css'
 // so reordering this list never desyncs a card from its page's "Project NN" tag.
 // p1 and p4 sit adjacent on purpose: p1's card links to the warehouse (p4) that
 // powers it, so the linked pair must read back-to-back, not across the grid.
-const PROJECTS = ['p3', 'p1', 'p4', 'p2']
+const PROJECTS = ['p5', 'p3', 'p1', 'p4', 'p2']
 
-const PROJECT_NUM = { p1: '01', p2: '02', p3: '03', p4: '04' }
+const PROJECT_NUM = { p1: '01', p2: '02', p3: '03', p4: '04', p5: '05' }
 
 // Projects 01 and 04 are one system on the same 1.6M-posting dataset: 04 is the
 // warehouse (sql/project1/) that feeds 01's analysis. Cross-link the two cards so
@@ -19,8 +19,9 @@ const LINKED = { p1: 'p4', p4: 'p1' }
 
 // Thumbnails are `${id}.gif` by default. p4 is a static PNG (the warehouse
 // diagram), so it overrides the extension here — keeps the honest MIME type
-// instead of PNG bytes hiding under a .gif name.
-const THUMB = { p4: 'p4.png' }
+// instead of PNG bytes hiding under a .gif name. p5 has no captured GIF yet,
+// so it borrows the WIP placeholder until a real one is recorded.
+const THUMB = { p4: 'p4.png', p5: 'coming.gif' }
 
 // Google Data Analytics certificate verify link. Paste the public Coursera /
 // Credly URL here; the "Verify" link renders only when this is set, so an
