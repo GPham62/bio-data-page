@@ -28,3 +28,7 @@ treehouse.toml
 # P5: raw ShopeeFood snapshot copies used temporarily for notebook execution
 # (must never enter git history — local-only/private source data)
 snapshot_*.json
+
+# P5: per-review complaint labels, derived from the private review text
+review_labels.json
+ShopeeFoodCollector/data/derived/
