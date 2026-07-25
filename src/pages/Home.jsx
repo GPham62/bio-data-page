@@ -6,9 +6,21 @@ import styles from './Home.module.css'
 
 // Display order. The card number comes from PROJECT_NUM, not the array index,
 // so reordering this list never desyncs a card from its page's "Project NN" tag.
-const PROJECTS = ['p3', 'p1', 'p2', 'p4']
+// p1 and p4 sit adjacent on purpose: p1's card links to the warehouse (p4) that
+// powers it, so the linked pair must read back-to-back, not across the grid.
+const PROJECTS = ['p3', 'p1', 'p4', 'p2']
 
 const PROJECT_NUM = { p1: '01', p2: '02', p3: '03', p4: '04' }
+
+// Projects 01 and 04 are one system on the same 1.6M-posting dataset: 04 is the
+// warehouse (sql/project1/) that feeds 01's analysis. Cross-link the two cards so
+// the relationship reads at a glance, without opening either page.
+const LINKED = { p1: 'p4', p4: 'p1' }
+
+// Thumbnails are `${id}.gif` by default. p4 is a static PNG (the warehouse
+// diagram), so it overrides the extension here — keeps the honest MIME type
+// instead of PNG bytes hiding under a .gif name.
+const THUMB = { p4: 'p4.png' }
 
 // Google Data Analytics certificate verify link. Paste the public Coursera /
 // Credly URL here; the "Verify" link renders only when this is set, so an
@@ -146,7 +158,7 @@ export default function Home({ setActive }) {
           {PROJECTS.map((id, i) => (
             <div key={id} className={styles.projectCard} onClick={() => setActive(id)}>
               <div className={styles.projectThumbWrap}>
-                <img src={`/gif_import/${id}.gif`} className={styles.projectThumb} alt="" />
+                <img src={`/gif_import/${THUMB[id] || `${id}.gif`}`} className={styles.projectThumb} alt="" />
                 <div className={styles.projectTopRow}>
                   <span className={styles.projectNum}>{PROJECT_NUM[id]}</span>
                   <Fx effect="[pulse a=0.5]" pop="100,150,280" className={styles.badgeLive}>{t('home.badge_live')}</Fx>
@@ -157,6 +169,16 @@ export default function Home({ setActive }) {
                 <h3 className={styles.projectCardTitle}>
                   <Fx effect="[wave]" pop="110,200,300">{t(`home.projects.${id}.title`)}</Fx>
                 </h3>
+                {LINKED[id] && (
+                  <button
+                    type="button"
+                    className={styles.projectLink}
+                    onClick={(e) => { e.stopPropagation(); setActive(LINKED[id]) }}
+                  >
+                    <span className={styles.projectLinkGlyph}>⛓</span>
+                    {t(`home.portfolio.link_${id}`)}
+                  </button>
+                )}
                 <div className={styles.projectDetails}>
                   <p className={styles.projectCardDesc}>{t(`home.projects.${id}.desc`)}</p>
                   <div className={styles.projectTags}>

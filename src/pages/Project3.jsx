@@ -12,7 +12,7 @@ import InsightBlock        from '../components/InsightBlock.jsx'
 import RecommendationsList from '../components/RecommendationsList.jsx'
 import CohortHeatmap       from '../components/CohortHeatmap.jsx'
 import SqlCard             from '../components/SqlCard.jsx'
-import { fmt, fmtUSD } from '../utils/formatters.js'
+import { fmt, fmtGBP } from '../utils/formatters.js'
 import { gridProps, axisMuted, axisStrong } from '../utils/chartTheme.js'
 import {
   stats, monthlyRevenue, topCountries, rfmSegments,
@@ -66,7 +66,7 @@ const ScatterTip = ({ active, payload }) => {
       <p style={{ color: SEGMENT_COLORS[d.segment] || '#00cc96', marginBottom: 4 }}>{d.segment}</p>
       <p style={{ color: '#cdd9e5' }}>Recency: <strong>{d.recency} days</strong></p>
       <p style={{ color: '#cdd9e5' }}>Frequency: <strong>{d.frequency} orders</strong></p>
-      <p style={{ color: '#cdd9e5' }}>Revenue: <strong>${d.monetary.toLocaleString()}</strong></p>
+      <p style={{ color: '#cdd9e5' }}>Revenue: <strong>£{d.monetary.toLocaleString()}</strong></p>
     </div>
   )
 }
@@ -115,8 +115,8 @@ export default function Project3({ setActive }) {
       <section className={styles.kpiRow}>
         <StatCard label={t('p3.kpi_transactions')} value="542K"    sub={t('p3.kpi_transactions_sub')} accent="var(--green)"   delay={0.05} />
         <StatCard label={t('p3.kpi_customers')}    value="4,372"   sub={t('p3.kpi_customers_sub')}    accent="var(--accent)"  delay={0.10} />
-        <StatCard label={t('p3.kpi_revenue')}      value="$8.9M"   sub={t('p3.kpi_revenue_sub')}      accent="var(--green)"   delay={0.15} />
-        <StatCard label={t('p3.kpi_aov')}          value="$19.86"  sub={t('p3.kpi_aov_sub')}          accent="var(--purple)"  delay={0.20} />
+        <StatCard label={t('p3.kpi_revenue')}      value="£8.9M"   sub={t('p3.kpi_revenue_sub')}      accent="var(--green)"   delay={0.15} />
+        <StatCard label={t('p3.kpi_aov')}          value="£19.86"  sub={t('p3.kpi_aov_sub')}          accent="var(--purple)"  delay={0.20} />
         <StatCard label={t('p3.kpi_return')}       value="2.2%"    sub={t('p3.kpi_return_sub')}       accent="var(--accent2)" delay={0.25} />
         <StatCard label={t('p3.kpi_top_country')}  value="UK"      sub={t('p3.kpi_top_country_sub')}  accent="var(--green)"   delay={0.30} />
       </section>
@@ -130,8 +130,8 @@ export default function Project3({ setActive }) {
               <LineChart data={monthlyRevenue} margin={{ left: 10, right: 20 }}>
                 <CartesianGrid {...gridProps} />
                 <XAxis dataKey="month" {...axisMuted} />
-                <YAxis tickFormatter={fmtUSD} {...axisMuted} />
-                <Tooltip content={<ChartTooltip prefix="$" color="#00cc96" />} />
+                <YAxis tickFormatter={fmtGBP} {...axisMuted} />
+                <Tooltip content={<ChartTooltip prefix="£" color="#00cc96" />} />
                 <Line type="monotone" dataKey="revenue" name="Revenue" stroke="#00cc96" strokeWidth={2} dot={{ r: 3, fill: '#00cc96' }} />
               </LineChart>
             </ResponsiveContainer>
@@ -141,9 +141,9 @@ export default function Project3({ setActive }) {
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={topCountries} layout="vertical" margin={{ left: 0, right: 24 }}>
                 <CartesianGrid {...gridProps} horizontal={false} />
-                <XAxis type="number" tickFormatter={fmtUSD} {...axisMuted} />
+                <XAxis type="number" tickFormatter={fmtGBP} {...axisMuted} />
                 <YAxis type="category" dataKey="country" width={100} {...axisStrong} />
-                <Tooltip content={<ChartTooltip prefix="$" color="#00cc96" />} />
+                <Tooltip content={<ChartTooltip prefix="£" color="#00cc96" />} />
                 <Bar dataKey="revenue" name="Revenue" fill="#00cc96" radius={[0, 3, 3, 0]} />
               </BarChart>
             </ResponsiveContainer>

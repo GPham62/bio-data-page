@@ -48,7 +48,7 @@
         "exp": "KINH NGHIỆM"
       },
       "skills": [
-        { "name": "SQL",                  "level": "Nâng cao",       "icon": "/skill-icons/sql.png" },
+        { "name": "SQL",                  "level": "Trung bình",     "icon": "/skill-icons/sql.png" },
         { "name": "Python",               "level": "Trung bình",     "icon": "/skill-icons/python.png" },
         { "name": "Power BI",             "level": "Trung bình",     "icon": "/skill-icons/powerbi.png" },
         { "name": "Excel",                "level": "Trung bình",     "icon": "/skill-icons/excel.png" },
@@ -75,7 +75,9 @@
     "portfolio": {
       "title": "Dự Án Tiêu Biểu",
       "sub": "Bốn dự án end-to-end — từ dữ liệu thô đến đề xuất hành động.",
-      "label": "Dự Án Cá Nhân"
+      "label": "Dự Án Cá Nhân",
+      "link_p1": "Xây trên Kho dữ liệu Tuyển dụng →",
+      "link_p4": "Cấp dữ liệu cho bài Phân tích Tuyển dụng →"
     },
     "contact": {
       "kicker": "// nói chuyện nhé",
@@ -291,8 +293,8 @@
     "s4_title": "Vậy doanh nghiệp nên làm gì tiếp theo?",
     "s4_sub": "Chiến lược dựa trên dữ liệu để cải thiện giữ chân và doanh thu",
     "insight_label": "// nhận xét",
-    "s1_insight": "Doanh thu tăng mạnh vào Q4 — <strong>tháng 11 một mình đạt $1.46M</strong>. Anh chiếm <strong>82% tổng doanh thu</strong>, một rủi ro tập trung mà một quý thị trường xấu có thể tác động mạnh.",
-    "s2_insight": "<strong>Champions (14.5% khách hàng)</strong> trung bình $6.820 doanh thu so với $310 cho nhóm Lost — <strong>chênh lệch 22 lần</strong>. 1.040 khách Hibernating là mục tiêu kích hoạt lại có đòn bẩy cao nhất.",
+    "s1_insight": "Doanh thu tăng mạnh vào Q4 — <strong>tháng 11 một mình đạt £1.46M</strong>. Anh chiếm <strong>82% tổng doanh thu</strong>, một rủi ro tập trung mà một quý thị trường xấu có thể tác động mạnh.",
+    "s2_insight": "<strong>Champions (14.5% khách hàng)</strong> trung bình £6.820 doanh thu so với £310 cho nhóm Lost — <strong>chênh lệch 22 lần</strong>. 1.040 khách Hibernating là mục tiêu kích hoạt lại có đòn bẩy cao nhất.",
     "s3_insight": "Cohort T12/2010 giữ chân ở mức <strong>36–41% mỗi tháng</strong> — mọi cohort sau đều giảm rõ rệt. Người mua dịp lễ vốn có ý định cao hơn; mục tiêu là tái tạo chất lượng thu hút đó ngoài Q4.",
     "recs_title": "Khuyến Nghị Chính",
     "recs_items": [

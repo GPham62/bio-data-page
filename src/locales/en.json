@@ -48,7 +48,7 @@
         "exp": "EXP"
       },
       "skills": [
-        { "name": "SQL",                  "level": "Advanced",     "icon": "/skill-icons/sql.png" },
+        { "name": "SQL",                  "level": "Intermediate", "icon": "/skill-icons/sql.png" },
         { "name": "Python",               "level": "Intermediate", "icon": "/skill-icons/python.png" },
         { "name": "Power BI",             "level": "Intermediate", "icon": "/skill-icons/powerbi.png" },
         { "name": "Excel",                "level": "Intermediate", "icon": "/skill-icons/excel.png" },
@@ -75,7 +75,9 @@
     "portfolio": {
       "title": "Selected Projects",
       "sub": "Four end-to-end projects — from raw data to a recommendation.",
-      "label": "Personal Project"
+      "label": "Personal Project",
+      "link_p1": "Built on the Recruitment Warehouse →",
+      "link_p4": "Powers the Recruit Analysis →"
     },
     "contact": {
       "kicker": "// say hi",
@@ -291,8 +293,8 @@
     "s4_title": "So what should the business do next?",
     "s4_sub": "Data-driven strategies to improve customer retention and revenue",
     "insight_label": "// insight",
-    "s1_insight": "Revenue spikes hard in Q4 — <strong>November alone hit $1.46M</strong>. The UK drives <strong>82% of total revenue</strong>, a concentration risk that one bad market quarter could hit hard.",
-    "s2_insight": "<strong>Champions (14.5% of customers)</strong> average $6,820 revenue vs $310 for Lost — a <strong>22× gap</strong>. The 1,040 Hibernating customers are the highest-leverage win-back target right now.",
+    "s1_insight": "Revenue spikes hard in Q4 — <strong>November alone hit £1.46M</strong>. The UK drives <strong>82% of total revenue</strong>, a concentration risk that one bad market quarter could hit hard.",
+    "s2_insight": "<strong>Champions (14.5% of customers)</strong> average £6,820 revenue vs £310 for Lost — a <strong>22× gap</strong>. The 1,040 Hibernating customers are the highest-leverage win-back target right now.",
     "s3_insight": "The Dec 2010 cohort retains at <strong>36–41% monthly</strong> — every cohort after drops off noticeably. Holiday buyers are inherently higher-intent; the goal is recreating that acquisition quality outside Q4.",
     "recs_title": "Key Recommendations",
     "recs_items": [

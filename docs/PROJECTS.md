@@ -25,11 +25,14 @@ you go. Use `/projects <name>` to jump into one.
 ## Project 1 — Home (`src/pages/Home.jsx` + `Home.module.css`)
 
 **Current state**
-- Card carousel of 4 cards driven by `CARDS` (`bio`/00, `p1`/01, `p2`/02, `p3`/03); `p1`–`p3` show a `live` badge.
-- Navigation: arrow keys (←/→), wheel/trackpad scroll (700ms throttle), arrow buttons, and dot indicators. Swipes are locked for 550ms via `locked` ref.
-- Blurred GIF background per card (`/gif_import/<id>.gif`), cross-fades on change; all GIFs preloaded on mount.
-- Clicking the centered card calls `setActive(card.id)` to open that page; side cards re-center.
-- Copy comes from i18n keys `home.cards.<id>.{title,role,desc,tags}`, `home.badge_live`, `home.badge_wip`, `home.open_hint`.
+- Single-page CV brief (the old card carousel is gone — its GIF + motion folded into the project grid).
+- Sections in order: hero/greeting → `02` Character sheet (skill chips, `former` chips get a `↩`) → `03` Selected projects → `04` About → `05` Games → contact.
+- Project grid driven by `PROJECTS = ['p3', 'p1', 'p4', 'p2']` (display order only). The card number comes from `PROJECT_NUM` (`p1`/01, `p2`/02, `p3`/03, `p4`/04), so reordering never desyncs a card from its page's tag.
+- `LINKED = { p1: 'p4', p4: 'p1' }` cross-links the pair that share the 1.6M-posting dataset (04 is the warehouse feeding 01's analysis); renders a `⛓` button that opens the other page.
+- Thumbnails are `/gif_import/<id>.gif` by default; `THUMB = { p4: 'p4.png' }` overrides p4 to a static PNG (warehouse diagram) rather than hiding PNG bytes under a `.gif` name.
+- All four cards render the `home.badge_live` badge unconditionally (no `wip` badge in the grid any more).
+- `CERT_URL` gates the Google Data Analytics "Verify" link — the link only renders when it is set, so an unlinked certificate claim never ships.
+- Copy comes from i18n keys `home.projects.<id>.{title,desc,tags}`, `home.portfolio.{title,sub,label,link_<id>}`, `home.badge_live`, plus `home.greeting.*`, `home.charSheet.*`, `home.about.*`, `home.games.*`, `home.contact.*`.
 
 **To fix**
 - [ ]
@@ -38,16 +41,20 @@ you go. Use `/projects <name>` to jump into one.
 
 ---
 
-## Project 2 — Biography (`src/pages/Biography.jsx` + `Biography.module.css`)
+## Project 2 — Resume (`src/pages/Resume.jsx`) + `public/resume.html`
 
-**Current state**
-- Prev/next buttons → Home / Project 01.
-- Hero: tag, two-line title (`bio.title1` + accented `bio.title2`), intro, and avatar `/bio/profile.png`.
-- Section 01 — Technical Skills: pills rendered from the `bio.skills` array.
-- Section 02 — Background: pivot box with text, then a 3-card game grid linking to **Relic Bag: Shadow Hunter**, **Shadow War: Idle RPG Survival**, **Stickman vs Monster: Idle RPG**, **Epic Shadow Idle RPG**, and **Space War Idle RPG** on Google Play (purple-accented `.gameCard` style).
-- Section 03 — Contact: GitHub (`GPham62`), LinkedIn (`pham-tuan-anh`), email (`mailto:phamtuananh6200@gmail.com`).
-- Note: email handle shown here (`phamtuananh6200`) differs from the account email in project config (`ptuananh196@gmail.com`) — confirm which is intended.
-- Copy comes from i18n keys under `bio.*` and `nav.*`.
+> The standalone **Biography** page (`Biography.jsx`) has been deleted. Its content now
+> lives on Home as sections `04` About, `05` Games, and the contact block — do not
+> re-add a `bio.*` section here.
+
+**Canonical contact details** — these are the single source of truth. Any new surface
+must match them exactly:
+- Email: `ptuananh196@gmail.com`
+- LinkedIn: `https://www.linkedin.com/in/tuananhpham6296/` (CV/print surfaces may display it bare as `linkedin.com/in/tuananhpham6296`)
+- GitHub: `GPham62`
+
+Currently correct in `Home.jsx`, `Sidebar.jsx`, `public/resume.html`, and
+`E:\career-ops\cv.md`; asserted in `Sidebar.test.jsx`.
 
 **To fix**
 - [ ]
@@ -68,7 +75,9 @@ you go. Use `/projects <name>` to jump into one.
 - Section 01 — Salary: vertical bar (salary by title) + remote-% bar, with insight.
 - Section 02 — Trends: dual-axis line chart (postings + remote %), with insight.
 - Section 03 — Skills + Geo: top-skills bar + top-countries bar, with insight.
-- Section 04 — ML: **binary classifier** (Gradient Boosting) — Accuracy/ROC-AUC/F1/Baseline score tiles, feature-impact bar (green = pushes high pay, red = pushes low pay), `ml_note` via `dangerouslySetInnerHTML`, and insight. Target = high pay (above $110K median). Not a regression model.
+- Section 04 — ML: **regression** (`HistGradientBoosting`) predicting US annual salary (`salary_year_avg`, USD/year, US postings only) — score tiles are R² `0.53` / MAE `$22.3K` / train R² `0.61` / baseline MAE `$36.5K` (CV R² `0.54`), feature-impact bar (green = pushes pay up, red = pushes pay down), `ml_note` via `dangerouslySetInnerHTML`, and insight.
+- ML details: 79 features (top-50 skill flags + skill count + ordinal seniority parsed from raw `job_title` + role one-hot + top-10 state dummies + extras + interactions); 31,554 train / 7,889 test. Won a 5-fold CV bake-off vs Linear, Ridge, Random Forest. Restricting to the US + a granular seniority tier lifted test R² from 0.33 → 0.53. Importance = permutation importance (top 12).
+- Values in `mlResults` (`src/data/project1.js`) are pasted from the Colab notebook (Section 10) — re-run it to update them.
 - Recharts custom `Tip` tooltip; `fmt`/`fmtUSD` axis formatters. Insight blocks use `.insight*` styles (recently resized).
 
 **To fix**
@@ -123,7 +132,38 @@ you go. Use `/projects <name>` to jump into one.
 
 ---
 
-## Project 6 — Coming Soon _(placeholder — keep last)_
+## Project 6 — Project 04 page (`src/pages/Project4.jsx` + `Project4.module.css`)
+
+**Recruitment Data Warehouse** — the ELT pipeline behind Project 01. The two are one
+system on the same 1.6M-posting dataset (04 builds the warehouse, 01 analyses it), and
+the Home grid cross-links them via `LINKED`.
+
+**SQL source:** https://github.com/GPham62/bio-data-page/tree/main/sql/project1
+**Raw CSVs:** https://storage.googleapis.com/sql_de/ (loaded by `02_load_data.sql`)
+
+**Current state**
+- Data from `src/data/project4.js` (unit-tested in `src/data/project4.test.js`).
+- KPI row: 1.6M postings, 4 source CSVs, 18 tables, 5 schemas, 4 marts.
+- Section 01 — schema sizes bar (`company_mart` 8, `source` 4, `skills_mart` 3, `priority_mart` 2, `flat_mart` 1) + the `02_load_data.sql` snippet.
+- Section 02 — star schema: 4 source tables — `job_postings_fact` (fact), `company_dim` / `skills_dim` (dims), `skills_job_dim` (bridge).
+- Section 03 — the 4 marts, each with grain + refresh strategy, plus a merge-SQL snippet:
+  - `flat_mart` — one row per job posting — rebuild (`03_flat_mart.sql`)
+  - `skills_mart` — one row per skill per month — rebuild (`04_skills_mart.sql`)
+  - `priority_mart` — one row per tracked job posting — **incremental** (`06_priority_mart_update.sql`)
+  - `company_mart` — one row per company per month — rebuild (`07_company_mart.sql`)
+- Copy comes from i18n keys under `p4.*`.
+- **Table count is code-backed:** the 18 total is counted from `CREATE TABLE` statements
+  (see the header comment in `project4.js`, counted 2026-07-20). If the pipeline gains a
+  table, update `project4.js`, the KPI, and `E:\career-ops\cv.md` together.
+
+**To fix**
+- [ ]
+- [ ]
+- [ ]
+
+---
+
+## Project 7 — Coming Soon _(placeholder — keep last)_
 
 **Current state**
 - _Empty by default._ This is the continuous-project placeholder that always

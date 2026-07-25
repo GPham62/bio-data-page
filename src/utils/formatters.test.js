@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { fmt, fmtUSD, pct } from './formatters'
+import { fmt, fmtUSD, fmtGBP, pct } from './formatters'
 
 describe('fmt', () => {
   describe('happy path', () => {
@@ -81,6 +81,26 @@ describe('fmtUSD', () => {
 
   it('renders $0 for a zero amount', () => {
     expect(fmtUSD(0)).toBe('$0')
+  })
+})
+
+describe('fmtGBP', () => {
+  // Project 3's UK retailer bills in sterling. These assertions are what keeps a
+  // £ figure from drifting back to $ and overstating the revenue by a third.
+  it('prefixes a pound sign onto the formatted millions value', () => {
+    expect(fmtGBP(8_900_000)).toBe('£8.9M')
+  })
+
+  it('prefixes a pound sign onto the formatted thousands value', () => {
+    expect(fmtGBP(1_460_000)).toBe('£1.5M')
+  })
+
+  it('prefixes a pound sign onto a raw sub-thousand value', () => {
+    expect(fmtGBP(310)).toBe('£310')
+  })
+
+  it('renders £0 for a zero amount', () => {
+    expect(fmtGBP(0)).toBe('£0')
   })
 })
 
