@@ -30,3 +30,11 @@ export function pickTopByDrag(complaints) {
   const top = scored.reduce((best, row) => (row.drag > best.drag ? row : best))
   return { category: top.category, drag: top.drag }
 }
+
+export function pickTopByReach(complaintReach) {
+  if (!complaintReach || complaintReach.length === 0) return null
+  const top = complaintReach.reduce((best, row) =>
+    row.nRestaurants > best.nRestaurants ? row : best
+  )
+  return { category: top.category, nRestaurants: top.nRestaurants }
+}

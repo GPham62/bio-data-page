@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { pickMaxGapPair, pickTopByShare, pickTopByDrag } from './project5Synthesis.js'
+import { pickMaxGapPair, pickTopByShare, pickTopByDrag, pickTopByReach } from './project5Synthesis.js'
 
 describe('pickMaxGapPair', () => {
   it('picks the pair with the largest normalized gap', () => {
@@ -47,5 +47,19 @@ describe('pickTopByDrag', () => {
   it('returns null if every category lacks a drag figure', () => {
     const complaints = [{ category: 'thin', n: 5, share: 0.01, drag: null }]
     expect(pickTopByDrag(complaints)).toBeNull()
+  })
+})
+
+describe('pickTopByReach', () => {
+  it('picks the category touching the most restaurants', () => {
+    const complaintReach = [
+      { category: 'taste', nRestaurants: 40, drag: 2.0, nReviews: 200 },
+      { category: 'cleanliness', nRestaurants: 12, drag: 2.9, nReviews: 31 },
+    ]
+    expect(pickTopByReach(complaintReach)).toEqual({ category: 'taste', nRestaurants: 40 })
+  })
+
+  it('returns null for an empty list', () => {
+    expect(pickTopByReach([])).toBeNull()
   })
 })

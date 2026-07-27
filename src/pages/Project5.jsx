@@ -11,9 +11,9 @@ import ChartTooltip from '../components/ChartTooltip.jsx'
 import InsightBlock from '../components/InsightBlock.jsx'
 import Note         from '../components/Note.jsx'
 import { gridProps, axisMuted, axisStrong } from '../utils/chartTheme.js'
-import { pickMaxGapPair, pickTopByShare, pickTopByDrag } from '../utils/project5Synthesis.js'
+import { pickMaxGapPair, pickTopByShare, pickTopByDrag, pickTopByReach } from '../utils/project5Synthesis.js'
 import {
-  stats, ratingHistogram, byCategory, ratingPairs, complaints,
+  stats, ratingHistogram, byCategory, ratingPairs, complaints, complaintReach,
   collectorUrl, notebookUrl,
 } from '../data/project5.js'
 import styles from './Project5.module.css'
@@ -53,6 +53,7 @@ export default function Project5({ setActive }) {
 
   const topByShare = pickTopByShare(complaints)
   const topByDrag = pickTopByDrag(complaints)
+  const topByReach = pickTopByReach(complaintReach)
 
   return (
     <div className="projectPage" style={{ position: 'relative' }}>
@@ -220,9 +221,46 @@ export default function Project5({ setActive }) {
         />
       </section>
 
-      {/* Section 05: method and limits */}
+      {/* Section 05: what actually moves the rating */}
       <section className="projectSection">
-        <SectionTitle index="05" title={t('p5.s5_title')} sub={t('p5.s5_sub')} fxIndex fxTitle />
+        <SectionTitle index="05" title={t('p5.s5_synthesis_title')} sub={t('p5.s5_synthesis_sub')} fxIndex fxTitle />
+        <ChartCard title={t('p5.chart_rating_wall')} sub={t('p5.chart_rating_wall_sub')} delay={0.05} span={1}>
+          <ResponsiveContainer width="100%" height={200}>
+            <BarChart data={ratingHistogram} margin={{ left: 0, right: 20 }}>
+              <CartesianGrid {...gridProps} />
+              <XAxis dataKey="rating" {...axisMuted} />
+              <YAxis allowDecimals={false} {...axisMuted} />
+              <Tooltip content={<ChartTooltip color={RATING_ACCENT} />} />
+              <Bar dataKey="count" name={t('p5.unit_restaurants')} radius={[3, 3, 0, 0]}>
+                {ratingHistogram.map(row => (
+                  <Cell key={row.rating} fill={row.rating >= 4.5 ? RATING_ACCENT : RATING_MUTED} />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </ChartCard>
+        <Note
+          text={t('p5.s5_synthesis_context', {
+            p25: stats.ratingP25, p75: stats.ratingP75, median: stats.ratingMedian,
+          })}
+          accent="var(--accent)"
+        />
+        <InsightBlock
+          label={t('p5.insight_label')}
+          text={t('p5.s5_synthesis_insight', {
+            leadCategory: topByReach ? t(`p5.complaint_${topByReach.category}`) : t('p5.legend_no_drag'),
+            nRestaurants: topByReach ? topByReach.nRestaurants : 0,
+            nReviewed: stats.reviewedRestaurants,
+            dragCategory: topByDrag ? t(`p5.complaint_${topByDrag.category}`) : t('p5.legend_no_drag'),
+            dragValue: topByDrag ? topByDrag.drag : '—',
+          })}
+          accent="var(--accent2)"
+        />
+      </section>
+
+      {/* Section 06: method and limits */}
+      <section className="projectSection">
+        <SectionTitle index="06" title={t('p5.s5_title')} sub={t('p5.s5_sub')} fxIndex fxTitle />
 
         <div className={styles.methodGrid}>
           <div className={styles.methodItem}>
