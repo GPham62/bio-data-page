@@ -37,4 +37,13 @@ describe('Project5 locale interpolation', () => {
       screen.getByText(new RegExp(`${stats.analysable} restaurants with enough ratings`))
     ).toBeInTheDocument()
   })
+
+  it('no longer renders a standalone section 01', () => {
+    render(
+      <I18nextProvider i18n={i18n}>
+        <Project5 setActive={() => {}} />
+      </I18nextProvider>
+    )
+    expect(screen.queryByText('01')).not.toBeInTheDocument()
+  })
 })

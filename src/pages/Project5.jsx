@@ -123,27 +123,6 @@ export default function Project5({ setActive }) {
         />
       </section>
 
-      {/* Section 01: the rating wall */}
-      <section className="projectSection">
-        <SectionTitle index="01" title={t('p5.s1_title')} sub={t('p5.s1_sub')} fxIndex fxTitle />
-        <ChartCard title={t('p5.chart_rating_wall')} sub={t('p5.chart_rating_wall_sub')} delay={0.05}>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={ratingHistogram} margin={{ left: 0, right: 20 }}>
-              <CartesianGrid {...gridProps} />
-              <XAxis dataKey="rating" {...axisMuted} />
-              <YAxis allowDecimals={false} {...axisMuted} />
-              <Tooltip content={<ChartTooltip color={RATING_ACCENT} />} />
-              <Bar dataKey="count" name={t('p5.unit_restaurants')} radius={[3, 3, 0, 0]}>
-                {ratingHistogram.map(row => (
-                  <Cell key={row.rating} fill={row.rating >= 4.5 ? RATING_ACCENT : RATING_MUTED} />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-        </ChartCard>
-        <InsightBlock label={t('p5.insight_label')} text={t('p5.s1_insight')} accent="var(--accent)" />
-      </section>
-
       {/* Section 02: price does not move it */}
       <section className="projectSection">
         <SectionTitle index="02" title={t('p5.s2_title')} sub={t('p5.s2_sub')} fxIndex fxTitle />
