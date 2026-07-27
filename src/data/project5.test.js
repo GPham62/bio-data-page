@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import {
-  stats, ratingHistogram, byCategory, ratingPairs, complaints, districts,
+  stats, ratingHistogram, byCategory, ratingPairs, complaints, complaintReach, districts,
 } from './project5.js'
 
 // These figures are published on the Project 5 page and all come from one run
@@ -78,5 +78,19 @@ describe('project5 published figures', () => {
   it('publishes a labelling accuracy the page can quote', () => {
     expect(stats.labelAccuracy).toBeGreaterThanOrEqual(0.8)
     expect(stats.labelAccuracy).toBeLessThanOrEqual(1)
+  })
+
+  it('complaintReach accounts for every complaint-bearing restaurant exactly once', () => {
+    const summed = complaintReach.reduce((acc, row) => acc + row.nRestaurants, 0)
+    expect(summed).toBe(stats.restaurantsWithComplaint)
+  })
+
+  it('complaintReach never claims more restaurants than reviewed', () => {
+    expect(stats.restaurantsWithComplaint).toBeLessThanOrEqual(stats.reviewedRestaurants)
+  })
+
+  it('every complaintReach category also appears in complaints', () => {
+    const knownCategories = new Set(complaints.map(row => row.category))
+    complaintReach.forEach(row => expect(knownCategories.has(row.category)).toBe(true))
   })
 })
