@@ -11,7 +11,7 @@ import ChartTooltip from '../components/ChartTooltip.jsx'
 import InsightBlock from '../components/InsightBlock.jsx'
 import Note         from '../components/Note.jsx'
 import { gridProps, axisMuted, axisStrong } from '../utils/chartTheme.js'
-import { pickMaxGapPair } from '../utils/project5Synthesis.js'
+import { pickMaxGapPair, pickTopByShare, pickTopByDrag } from '../utils/project5Synthesis.js'
 import {
   stats, ratingHistogram, byCategory, ratingPairs, complaints,
   collectorUrl, notebookUrl,
@@ -50,6 +50,9 @@ export default function Project5({ setActive }) {
     ...c,
     label: t(`p5.complaint_${c.category}`),
   }))
+
+  const topByShare = pickTopByShare(complaints)
+  const topByDrag = pickTopByDrag(complaints)
 
   return (
     <div className="projectPage" style={{ position: 'relative' }}>
@@ -226,7 +229,16 @@ export default function Project5({ setActive }) {
             {t('p5.legend_no_drag')}
           </span>
         </div>
-        <InsightBlock label={t('p5.insight_label')} text={t('p5.s4_insight')} accent="var(--accent2)" />
+        <InsightBlock
+          label={t('p5.insight_label')}
+          text={t('p5.s4_insight', {
+            topShareLabel: t(`p5.complaint_${topByShare.category}`),
+            topShareN: topByShare.n,
+            topSharePct: (topByShare.share * 100).toFixed(0),
+            topDragLabel: topByDrag ? t(`p5.complaint_${topByDrag.category}`) : t('p5.legend_no_drag'),
+          })}
+          accent="var(--accent2)"
+        />
       </section>
 
       {/* Section 05: method and limits */}

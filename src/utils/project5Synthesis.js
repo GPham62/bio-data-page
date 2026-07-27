@@ -17,3 +17,16 @@ export function pickMaxGapPair(ratingPairs) {
   }
   return { sf: best.sf, foody: best.foody }
 }
+
+export function pickTopByShare(complaints) {
+  if (complaints.length === 0) return null
+  const top = complaints.reduce((best, row) => (row.share > best.share ? row : best))
+  return { category: top.category, n: top.n, share: top.share }
+}
+
+export function pickTopByDrag(complaints) {
+  const scored = complaints.filter(row => row.drag != null)
+  if (scored.length === 0) return null
+  const top = scored.reduce((best, row) => (row.drag > best.drag ? row : best))
+  return { category: top.category, drag: top.drag }
+}

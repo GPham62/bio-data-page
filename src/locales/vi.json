@@ -412,7 +412,7 @@
     "legend_low_drag": "kéo điểm sao xuống ít",
     "legend_high_drag": "kéo điểm sao xuống mạnh",
     "legend_no_drag": "quá ít đánh giá để tính",
-    "s4_insight": "Hương vị là phàn nàn phổ biến nhất (<strong>229 đánh giá</strong>, một phần ba tổng số phàn nàn) nhưng chỉ kéo điểm sao xuống ở mức trung bình. Vệ sinh và giao hàng hiếm gặp hơn nhưng kéo điểm sao xuống mạnh hơn — mức độ phổ biến và mức độ gây thiệt hại là hai thứ khác nhau.",
+    "s4_insight": "<strong>{{topShareLabel}}</strong> là khiếu nại phổ biến nhất (<strong>{{topShareN}} bài đánh giá</strong>, {{topSharePct}}% tổng số khiếu nại) nhưng chỉ kéo điểm xuống ở mức trung bình. <strong>{{topDragLabel}}</strong> kéo điểm đánh giá xuống mạnh nhất trong tất cả các nhóm — tần suất một khiếu nại xuất hiện và mức độ tốn kém của nó là hai chuyện khác nhau.",
     "s5_title": "Dữ liệu được thu thập thế nào, và những gì nó không thể hiện",
     "s5_sub": "Phương pháp, ranh giới chỉ-đọc-dữ-liệu, và bốn điều bộ dữ liệu này không bao quát",
     "method_collect_title": "Thu thập",

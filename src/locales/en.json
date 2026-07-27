@@ -412,7 +412,7 @@
     "legend_low_drag": "barely drags the rating",
     "legend_high_drag": "drags the rating hard",
     "legend_no_drag": "too few reviews to score",
-    "s4_insight": "Taste is the most common complaint (<strong>229 reviews</strong>, a third of all complaints) but only a mid-size drag. Cleanliness and delivery are rarer but pull the rating down harder — how often a complaint appears and how costly it is are two different things.",
+    "s4_insight": "<strong>{{topShareLabel}}</strong> is the most common complaint (<strong>{{topShareN}} reviews</strong>, {{topSharePct}}% of all complaints) but only a mid-size drag. <strong>{{topDragLabel}}</strong> pulls the rating down hardest of any category — how often a complaint appears and how costly it is are two different things.",
     "s5_title": "How this was collected, and what it does not show",
     "s5_sub": "Method, the parse-only boundary, and the four things this dataset does not cover",
     "method_collect_title": "Collection",
