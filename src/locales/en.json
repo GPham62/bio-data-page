@@ -365,7 +365,7 @@
     "tag2": "Web Scraping · NLP · Python",
     "title1": "Hanoi Delivery",
     "title2": "Ratings",
-    "sub": "402 Hanoi restaurants from ShopeeFood's delivery listing, matched against their written reviews on Foody. Does the platform star rating and the review score actually agree on which restaurants are good?",
+    "sub": "{{n}} Hanoi restaurants from ShopeeFood's delivery listing, matched against their written reviews on Foody. Does the platform star rating and the review score actually agree on which restaurants are good?",
     "collector_link": "View the collector on GitHub",
     "notebook_link": "View the notebook on GitHub",
     "insight_label": "// insight",
@@ -374,9 +374,9 @@
     "kpi_restaurants": "restaurants",
     "kpi_restaurants_sub": "in the promoted, deliverable-to-one-address slice of ShopeeFood Hanoi",
     "kpi_reviews": "reviews",
-    "kpi_reviews_sub": "written 2018–2021, covering 115 of the 402 restaurants",
+    "kpi_reviews_sub": "written 2018–2021, covering {{reviewed}} of the {{total}} restaurants",
     "kpi_share45": "rate 4.5 stars or higher",
-    "kpi_share45_sub": "of the 337 restaurants with enough ratings to compare",
+    "kpi_share45_sub": "of the {{n}} restaurants with enough ratings to compare",
     "kpi_correlation": "correlation between the star rating and the review score",
     "kpi_correlation_sub": "0 means no agreement, 1 means the two always move together",
     "s1_title": "Do the stars separate anything?",
@@ -390,7 +390,7 @@
     "chart_price_rating_sub": "bars = median price (left axis, VND) · line = median star rating (right axis, fixed to 4–5 stars)",
     "tt_median_price": "Median price",
     "tt_median_rating": "Median rating",
-    "s2_insight": "Median price ranges <strong>9.2×</strong> across categories — from street food up to full restaurants — while the median rating moves only <strong>0.3 stars</strong> total, and it moves in the opposite direction: the cheaper categories rate slightly higher. Price is not what these stars are measuring.",
+    "s2_insight": "Median price ranges <strong>{{spread}}×</strong> across categories — from street food up to full restaurants — while the median rating moves only <strong>{{ratingSpread}} stars</strong> total, and it moves in the opposite direction: the cheaper categories rate slightly higher. Price is not what these stars are measuring.",
     "s3_title": "Do the two rating systems agree?",
     "s3_sub": "ShopeeFood star rating against the average Foody review score, for restaurants with both",
     "chart_two_ratings": "Star Rating vs. Review Score",
@@ -429,7 +429,7 @@
     "caveats_items": [
       "This is the <strong>promoted, deliverable-to-one-address</strong> slice of the ShopeeFood Hanoi listing — not all of Hanoi.",
       "The reviews run <strong>2018–2021</strong>, not the present day.",
-      "Review coverage reaches <strong>115 of the 402 restaurants</strong> and skews toward the more popular ones.",
+      "Review coverage reaches <strong>{{reviewed}} of the {{total}} restaurants</strong> and skews toward the more popular ones.",
       "The review count shown per restaurant is a <strong>display bucket</strong> ShopeeFood renders, not an exact count."
     ],
     "method_note": "Read every number on this page against those four points — a rating gap here is a gap in what was measurable, not necessarily a gap in the restaurant."

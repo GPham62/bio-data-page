@@ -70,7 +70,7 @@ export default function Project5({ setActive }) {
           {t('p5.title1')}<br />
           <span className={styles.heroAccent}>{t('p5.title2')}</span>
         </h1>
-        <p className="projectHeroSub">{t('p5.sub')}</p>
+        <p className="projectHeroSub">{t('p5.sub', { n: stats.restaurants })}</p>
         <div className="projectHeroStack">
           {['Python', 'pandas', 'BeautifulSoup', 'Claude API'].map(tech => (
             <span key={tech} className="projectPill">{tech}</span>
@@ -98,14 +98,14 @@ export default function Project5({ setActive }) {
         <StatCard
           label={t('p5.kpi_reviews')}
           value={String(stats.reviews)}
-          sub={t('p5.kpi_reviews_sub')}
+          sub={t('p5.kpi_reviews_sub', { reviewed: stats.reviewedRestaurants, total: stats.restaurants })}
           accent="var(--purple)"
           delay={0.10}
         />
         <StatCard
           label={t('p5.kpi_share45')}
           value={`${(stats.shareAbove45 * 100).toFixed(1)}%`}
-          sub={t('p5.kpi_share45_sub')}
+          sub={t('p5.kpi_share45_sub', { n: stats.analysable })}
           accent="var(--accent2)"
           delay={0.15}
         />
@@ -163,7 +163,7 @@ export default function Project5({ setActive }) {
             </ComposedChart>
           </ResponsiveContainer>
         </ChartCard>
-        <InsightBlock label={t('p5.insight_label')} text={t('p5.s2_insight')} accent="var(--green)" />
+        <InsightBlock label={t('p5.insight_label')} text={t('p5.s2_insight', { spread: stats.priceSpread, ratingSpread: stats.ratingSpread })} accent="var(--green)" />
       </section>
 
       {/* Section 03: the two ratings disagree */}
@@ -260,7 +260,7 @@ export default function Project5({ setActive }) {
         <div className={styles.caveatsBox}>
           <span className={styles.caveatsLabel}>{t('p5.caveats_title')}</span>
           <ul className={styles.caveatsList}>
-            {t('p5.caveats_items', { returnObjects: true }).map((item, i) => (
+            {t('p5.caveats_items', { returnObjects: true, reviewed: stats.reviewedRestaurants, total: stats.restaurants }).map((item, i) => (
               <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
             ))}
           </ul>

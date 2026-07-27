@@ -24,6 +24,14 @@ function createLocalStorageMock() {
 
 vi.stubGlobal('localStorage', createLocalStorageMock())
 
+// jsdom does not implement ResizeObserver; Recharts uses it.
+class ResizeObserverMock {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+vi.stubGlobal('ResizeObserver', ResizeObserverMock)
+
 // jsdom does not implement scrollTo; App.jsx calls it in an effect.
 vi.stubGlobal('scrollTo', vi.fn())
 

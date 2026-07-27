@@ -365,7 +365,7 @@
     "tag2": "Thu Thập Web · NLP · Python",
     "title1": "Đánh Giá Giao Đồ Ăn",
     "title2": "Hà Nội",
-    "sub": "402 nhà hàng Hà Nội từ danh sách giao hàng của ShopeeFood, đối chiếu với các bài đánh giá viết tay của họ trên Foody. Điểm sao trên nền tảng và điểm đánh giá có thực sự khớp nhau về việc nhà hàng nào tốt không?",
+    "sub": "{{n}} nhà hàng Hà Nội từ danh sách giao hàng của ShopeeFood, đối chiếu với các bài đánh giá viết tay của họ trên Foody. Điểm sao trên nền tảng và điểm đánh giá có thực sự khớp nhau về việc nhà hàng nào tốt không?",
     "collector_link": "Xem bộ thu thập trên GitHub",
     "notebook_link": "Xem notebook trên GitHub",
     "insight_label": "// nhận xét",
@@ -374,9 +374,9 @@
     "kpi_restaurants": "nhà hàng",
     "kpi_restaurants_sub": "trong nhóm nhà hàng nổi bật, giao được đến một địa chỉ trên ShopeeFood Hà Nội",
     "kpi_reviews": "đánh giá",
-    "kpi_reviews_sub": "viết trong giai đoạn 2018–2021, phủ 115 trên 402 nhà hàng",
+    "kpi_reviews_sub": "viết trong giai đoạn 2018–2021, phủ {{reviewed}} trên {{total}} nhà hàng",
     "kpi_share45": "đạt từ 4,5 sao trở lên",
-    "kpi_share45_sub": "trong số 337 nhà hàng có đủ lượt đánh giá để so sánh",
+    "kpi_share45_sub": "trong số {{n}} nhà hàng có đủ lượt đánh giá để so sánh",
     "kpi_correlation": "tương quan giữa điểm sao và điểm đánh giá",
     "kpi_correlation_sub": "0 nghĩa là không khớp nhau, 1 nghĩa là hai điểm luôn thay đổi cùng nhau",
     "s1_title": "Điểm sao có phân biệt được gì không?",
@@ -390,7 +390,7 @@
     "chart_price_rating_sub": "cột = giá trung vị (trục trái, VNĐ) · đường = điểm sao trung vị (trục phải, cố định 4–5 sao)",
     "tt_median_price": "Giá trung vị",
     "tt_median_rating": "Điểm sao trung vị",
-    "s2_insight": "Giá trung vị chênh lệch <strong>9,2 lần</strong> giữa các nhóm — từ đồ ăn vặt đến nhà hàng đầy đủ — trong khi điểm sao trung vị chỉ dịch chuyển <strong>0,3 điểm</strong>, và lại dịch chuyển theo chiều ngược lại: nhóm rẻ hơn có điểm sao nhỉnh hơn một chút. Giá không phải là thứ mà điểm sao này đang đo.",
+    "s2_insight": "Giá trung vị chênh lệch <strong>{{spread}} lần</strong> giữa các nhóm — từ đồ ăn vặt đến nhà hàng đầy đủ — trong khi điểm sao trung vị chỉ dịch chuyển <strong>{{ratingSpread}} điểm</strong>, và lại dịch chuyển theo chiều ngược lại: nhóm rẻ hơn có điểm sao nhỉnh hơn một chút. Giá không phải là thứ mà điểm sao này đang đo.",
     "s3_title": "Hai hệ thống đánh giá có khớp nhau không?",
     "s3_sub": "Điểm sao ShopeeFood so với điểm đánh giá trung bình trên Foody, với các nhà hàng có cả hai",
     "chart_two_ratings": "Điểm Sao so với Điểm Đánh Giá",
@@ -429,7 +429,7 @@
     "caveats_items": [
       "Đây là nhóm nhà hàng <strong>nổi bật, giao được đến một địa chỉ</strong> trong danh sách ShopeeFood Hà Nội — không phải toàn bộ Hà Nội.",
       "Các đánh giá thuộc giai đoạn <strong>2018–2021</strong>, không phải hiện tại.",
-      "Phạm vi đánh giá phủ <strong>115 trên 402 nhà hàng</strong> và nghiêng về các nhà hàng phổ biến hơn.",
+      "Phạm vi đánh giá phủ <strong>{{reviewed}} trên {{total}} nhà hàng</strong> và nghiêng về các nhà hàng phổ biến hơn.",
       "Số lượt đánh giá hiển thị trên mỗi nhà hàng là một <strong>khoảng hiển thị</strong> do ShopeeFood đưa ra, không phải con số chính xác."
     ],
     "method_note": "Hãy đọc mọi con số trên trang này cùng với bốn điều trên — một khoảng chênh lệch điểm sao ở đây là khoảng trống trong những gì đo được, không hẳn là khoảng trống ở chính nhà hàng."
