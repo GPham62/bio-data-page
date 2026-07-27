@@ -11,6 +11,7 @@ import ChartTooltip from '../components/ChartTooltip.jsx'
 import InsightBlock from '../components/InsightBlock.jsx'
 import Note         from '../components/Note.jsx'
 import { gridProps, axisMuted, axisStrong } from '../utils/chartTheme.js'
+import { pickMaxGapPair } from '../utils/project5Synthesis.js'
 import {
   stats, ratingHistogram, byCategory, ratingPairs, complaints,
   collectorUrl, notebookUrl,
@@ -32,6 +33,7 @@ const DRAG_NONE     = '#3a4048'          // too few reviews to score
 const dragValues = complaints.map(c => c.drag).filter(d => d != null)
 const DRAG_MIN = Math.min(...dragValues)
 const DRAG_MAX = Math.max(...dragValues)
+const MAX_GAP_PAIR = pickMaxGapPair(ratingPairs)
 
 function dragColor(drag) {
   if (drag == null) return DRAG_NONE
@@ -185,7 +187,11 @@ export default function Project5({ setActive }) {
             </ScatterChart>
           </ResponsiveContainer>
         </ChartCard>
-        <InsightBlock label={t('p5.insight_label')} text={t('p5.s3_insight')} accent="var(--purple)" />
+        <InsightBlock
+          label={t('p5.insight_label')}
+          text={t('p5.s3_insight', { sf: MAX_GAP_PAIR.sf, foody: MAX_GAP_PAIR.foody })}
+          accent="var(--purple)"
+        />
       </section>
 
       {/* Section 04: what people actually complained about (reviews are 2018-2021) */}

@@ -397,7 +397,7 @@
     "chart_two_ratings_sub": "n = {{n}} nhà hàng · r = {{r}}",
     "axis_sf": "Điểm sao",
     "axis_foody": "Điểm đánh giá",
-    "s3_insight": "Cùng một nhà hàng có thể vừa đạt <strong>4,6 sao</strong> vừa có điểm đánh giá trung bình <strong>4/10</strong>. Hai con số này mô tả hai thứ khác nhau: điểm sao dồn gần mức trần, còn điểm đánh giá thực sự thay đổi theo nội dung người dùng viết.",
+    "s3_insight": "Cùng một nhà hàng có thể có <strong>{{sf}} sao</strong> trên nền tảng và điểm đánh giá trung bình chỉ <strong>{{foody}} trên 10</strong> từ bài viết. Hai con số này mô tả hai thứ khác nhau: điểm sao dồn gần mức trần, còn điểm đánh giá bài viết thực sự biến động theo nội dung người dùng viết.",
     "s4_title": "Người dùng thực sự phàn nàn về điều gì (đánh giá thuộc giai đoạn 2018–2021)",
     "s4_sub": "Các nhóm phàn nàn rút ra từ nội dung đánh giá, kích thước theo tần suất xuất hiện và màu sắc theo mức độ kéo điểm sao xuống",
     "chart_complaints": "Nhóm Phàn Nàn",

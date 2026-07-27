@@ -397,7 +397,7 @@
     "chart_two_ratings_sub": "n = {{n}} restaurants · r = {{r}}",
     "axis_sf": "Star rating",
     "axis_foody": "Review score",
-    "s3_insight": "The same restaurant can hold a <strong>4.6-star listing</strong> and a review average of <strong>4 out of 10</strong>. The two numbers describe different things: a star rating clustered near the ceiling, and a review score that actually moves with what people wrote.",
+    "s3_insight": "The same restaurant can hold a <strong>{{sf}}-star listing</strong> and a review average of <strong>{{foody}} out of 10</strong>. The two numbers describe different things: a star rating clustered near the ceiling, and a review score that actually moves with what people wrote.",
     "s4_title": "What people actually complained about (reviews are 2018–2021)",
     "s4_sub": "Complaint categories pulled from the written reviews, sized by how often they appear and coloured by how much they drag the rating down",
     "chart_complaints": "Complaint Categories",
