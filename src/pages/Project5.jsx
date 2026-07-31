@@ -18,9 +18,10 @@ import {
 } from '../data/project5.js'
 import styles from './Project5.module.css'
 
-// Literal SVG colors, not CSS vars — Recharts writes `fill` as a presentation
-// attribute, and marks need to stay visible in both themes rather than
-// silently reading `var(--accent)` (see chartTheme.js's note on this).
+// Dark-theme literals for Recharts' `fill` presentation attribute, each
+// paired with a `style.fill` CSS var override at the call site — same
+// dual-prop trick chartTheme.js uses for axis ticks, since inline style
+// beats a presentation attribute and Recharts doesn't read CSS vars itself.
 const RATING_ACCENT = '#00e5ff'
 const RATING_MUTED  = '#3a4048'
 const PRICE_BAR     = '#00cc96'
@@ -34,6 +35,23 @@ const dragValues = complaints.map(c => c.drag).filter(d => d != null)
 const DRAG_MIN = Math.min(...dragValues)
 const DRAG_MAX = Math.max(...dragValues)
 const MAX_GAP_PAIR = pickMaxGapPair(ratingPairs)
+
+// ratingHistogram only has bins that occurred, at irregular 0.1-ish gaps —
+// a categorical axis over it draws every bin the same width regardless of
+// its real rating span, so the visual "how wide is the 4.4-4.7 band" claim
+// in the copy doesn't match what's plotted. Backfill every 0.1 step from
+// 2.0 to 5.0 with a zero count so the (still categorical) axis renders
+// evenly-spaced bins that actually match the numeric spacing.
+function fillRatingBins(histogram) {
+  const byRating = new Map(histogram.map(row => [row.rating.toFixed(1), row.count]))
+  const bins = []
+  for (let i = 20; i <= 50; i++) {
+    const rating = i / 10
+    bins.push({ rating, count: byRating.get(rating.toFixed(1)) || 0 })
+  }
+  return bins
+}
+const RATING_BINS = fillRatingBins(ratingHistogram)
 
 function dragColor(drag) {
   if (drag == null) return DRAG_NONE
@@ -124,9 +142,9 @@ export default function Project5({ setActive }) {
         />
       </section>
 
-      {/* Section 02: price does not move it */}
+      {/* Section 01: price does not move it */}
       <section className="projectSection">
-        <SectionTitle index="02" title={t('p5.s2_title')} sub={t('p5.s2_sub')} fxIndex fxTitle />
+        <SectionTitle index="01" title={t('p5.s2_title')} sub={t('p5.s2_sub')} fxIndex fxTitle />
         <ChartCard title={t('p5.chart_price_rating')} sub={t('p5.chart_price_rating_sub')} delay={0.05}>
           <ResponsiveContainer width="100%" height={320}>
             <ComposedChart data={byCategory} margin={{ left: 0, right: 20, bottom: 10 }}>
@@ -135,7 +153,7 @@ export default function Project5({ setActive }) {
               <YAxis yAxisId="left" {...axisMuted} />
               <YAxis yAxisId="right" orientation="right" domain={[4, 5]} {...axisMuted} />
               <Tooltip content={<ChartTooltip color={PRICE_BAR} />} />
-              <Bar yAxisId="left" dataKey="medianPrice" name={t('p5.tt_median_price')} fill={PRICE_BAR} radius={[3, 3, 0, 0]} />
+              <Bar yAxisId="left" dataKey="medianPrice" name={t('p5.tt_median_price')} fill={PRICE_BAR} style={{ fill: 'var(--green)' }} radius={[3, 3, 0, 0]} />
               <Line
                 yAxisId="right"
                 type="monotone"
@@ -151,9 +169,9 @@ export default function Project5({ setActive }) {
         <InsightBlock label={t('p5.insight_label')} text={t('p5.s2_insight', { spread: stats.priceSpread, ratingSpread: stats.ratingSpread })} accent="var(--green)" />
       </section>
 
-      {/* Section 03: the two ratings disagree */}
+      {/* Section 02: the two ratings disagree */}
       <section className="projectSection">
-        <SectionTitle index="03" title={t('p5.s3_title')} sub={t('p5.s3_sub')} fxIndex fxTitle />
+        <SectionTitle index="02" title={t('p5.s3_title')} sub={t('p5.s3_sub')} fxIndex fxTitle />
         <ChartCard
           title={t('p5.chart_two_ratings')}
           sub={t('p5.chart_two_ratings_sub', { n: stats.pairedRestaurants, r: stats.correlation.toFixed(2) })}
@@ -177,9 +195,9 @@ export default function Project5({ setActive }) {
         />
       </section>
 
-      {/* Section 04: what people actually complained about (reviews are 2018-2021) */}
+      {/* Section 03: what people actually complained about (reviews are 2018-2021) */}
       <section className="projectSection">
-        <SectionTitle index="04" title={t('p5.s4_title')} sub={t('p5.s4_sub')} fxIndex fxTitle />
+        <SectionTitle index="03" title={t('p5.s4_title')} sub={t('p5.s4_sub')} fxIndex fxTitle />
         <ChartCard title={t('p5.chart_complaints')} sub={t('p5.chart_complaints_sub')} delay={0.05}>
           <ResponsiveContainer width="100%" height={320}>
             <BarChart data={complaintRows} layout="vertical" margin={{ left: 0, right: 24 }}>
@@ -221,19 +239,23 @@ export default function Project5({ setActive }) {
         />
       </section>
 
-      {/* Section 05: what actually moves the rating */}
+      {/* Section 04: what actually moves the rating */}
       <section className="projectSection">
-        <SectionTitle index="05" title={t('p5.s5_synthesis_title')} sub={t('p5.s5_synthesis_sub')} fxIndex fxTitle />
+        <SectionTitle index="04" title={t('p5.s5_synthesis_title')} sub={t('p5.s5_synthesis_sub')} fxIndex fxTitle />
         <ChartCard title={t('p5.chart_rating_wall')} sub={t('p5.chart_rating_wall_sub')} delay={0.05} span={1}>
           <ResponsiveContainer width="100%" height={200}>
-            <BarChart data={ratingHistogram} margin={{ left: 0, right: 20 }}>
+            <BarChart data={RATING_BINS} margin={{ left: 0, right: 20 }}>
               <CartesianGrid {...gridProps} />
-              <XAxis dataKey="rating" {...axisMuted} />
+              <XAxis dataKey="rating" tickFormatter={v => v.toFixed(1)} interval={4} {...axisMuted} />
               <YAxis allowDecimals={false} {...axisMuted} />
               <Tooltip content={<ChartTooltip color={RATING_ACCENT} />} />
               <Bar dataKey="count" name={t('p5.unit_restaurants')} radius={[3, 3, 0, 0]}>
-                {ratingHistogram.map(row => (
-                  <Cell key={row.rating} fill={row.rating >= 4.5 ? RATING_ACCENT : RATING_MUTED} />
+                {RATING_BINS.map(row => (
+                  <Cell
+                    key={row.rating}
+                    fill={row.rating >= 4.5 ? RATING_ACCENT : RATING_MUTED}
+                    style={{ fill: row.rating >= 4.5 ? 'var(--accent)' : 'var(--muted)' }}
+                  />
                 ))}
               </Bar>
             </BarChart>
@@ -251,16 +273,14 @@ export default function Project5({ setActive }) {
             leadCategory: topByReach ? t(`p5.complaint_${topByReach.category}`) : t('p5.legend_no_drag'),
             nRestaurants: topByReach ? topByReach.nRestaurants : 0,
             nReviewed: stats.reviewedRestaurants,
-            dragCategory: topByDrag ? t(`p5.complaint_${topByDrag.category}`) : t('p5.legend_no_drag'),
-            dragValue: topByDrag ? topByDrag.drag : '—',
           })}
           accent="var(--accent2)"
         />
       </section>
 
-      {/* Section 06: method and limits */}
+      {/* Section 05: method and limits */}
       <section className="projectSection">
-        <SectionTitle index="06" title={t('p5.s5_title')} sub={t('p5.s5_sub')} fxIndex fxTitle />
+        <SectionTitle index="05" title={t('p5.s5_title')} sub={t('p5.s5_sub')} fxIndex fxTitle />
 
         <div className={styles.methodGrid}>
           <div className={styles.methodItem}>

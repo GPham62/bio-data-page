@@ -413,7 +413,7 @@
     "s5_synthesis_title": "Vậy điều gì thực sự làm thay đổi điểm đánh giá?",
     "s5_synthesis_sub": "Gộp ba phát hiện ở trên thành một con số đáng để hành động",
     "s5_synthesis_context": "Bản thân điểm sao gần như không phân biệt được nhà hàng này với nhà hàng khác — một nửa số nhà hàng có thể so sánh nằm trong khoảng từ <strong>{{p25}} đến {{p75}} sao</strong> (trung vị {{median}}). Một khoảng điểm hẹp như vậy không thể cho chủ nhà hàng hay nền tảng biết nên sửa nhà hàng nào.",
-    "s5_synthesis_insight": "<strong>{{leadCategory}}</strong> là đòn bẩy lớn nhất: đây là khiếu nại số 1 của <strong>{{nRestaurants}} trên {{nReviewed}}</strong> nhà hàng được đánh giá, nhiều hơn bất kỳ nhóm nào khác — dù {{dragCategory}} mới là nhóm kéo điểm xuống mạnh nhất trên mỗi bài đánh giá ({{dragValue}} điểm). Sửa {{leadCategory}} trước sẽ chạm tới nhiều nhà hàng hơn việc đổi giá (mục 02) hay chọn nền tảng đánh giá (mục 03).",
+    "s5_synthesis_insight": "<strong>{{nRestaurants}} trên {{nReviewed}}</strong> nhà hàng được đánh giá xếp <strong>{{leadCategory}}</strong> là khiếu nại số 1 — nhiều hơn bất kỳ nhóm nào khác. Sửa {{leadCategory}} trước sẽ chạm tới nhiều nhà hàng hơn việc đổi giá (mục 01) hay chọn nền tảng đánh giá (mục 02).",
     "s5_title": "Dữ liệu được thu thập thế nào, và những gì nó không thể hiện",
     "s5_sub": "Phương pháp, ranh giới chỉ-đọc-dữ-liệu, và bốn điều bộ dữ liệu này không bao quát",
     "method_collect_title": "Thu thập",

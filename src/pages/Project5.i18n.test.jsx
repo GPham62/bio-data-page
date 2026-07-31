@@ -38,12 +38,23 @@ describe('Project5 locale interpolation', () => {
     ).toBeInTheDocument()
   })
 
-  it('no longer renders a standalone section 01', () => {
+  it('no longer renders the cut standalone rating-wall section', () => {
     render(
       <I18nextProvider i18n={i18n}>
         <Project5 setActive={() => {}} />
       </I18nextProvider>
     )
-    expect(screen.queryByText('01')).not.toBeInTheDocument()
+    expect(screen.queryByText('Do the stars separate anything?')).not.toBeInTheDocument()
+  })
+
+  it('renumbers sections 01-05 with no gap after the cut', () => {
+    render(
+      <I18nextProvider i18n={i18n}>
+        <Project5 setActive={() => {}} />
+      </I18nextProvider>
+    )
+    for (const n of ['01', '02', '03', '04', '05']) {
+      expect(screen.getByText(n)).toBeInTheDocument()
+    }
   })
 })
