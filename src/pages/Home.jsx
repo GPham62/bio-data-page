@@ -23,6 +23,9 @@ const LINKED = { p1: 'p4', p4: 'p1' }
 // so it borrows the WIP placeholder until a real one is recorded.
 const THUMB = { p4: 'p4.png', p5: 'coming.gif' }
 
+// p5's cloud-pipeline track isn't shipped yet — its card shows WIP, not Live.
+const WIP = ['p5']
+
 // Google Data Analytics certificate verify link. Paste the public Coursera /
 // Credly URL here; the "Verify" link renders only when this is set, so an
 // unlinked certificate claim never ships.
@@ -162,7 +165,17 @@ export default function Home({ setActive }) {
                 <img src={`/gif_import/${THUMB[id] || `${id}.gif`}`} className={styles.projectThumb} alt="" />
                 <div className={styles.projectTopRow}>
                   <span className={styles.projectNum}>{PROJECT_NUM[id]}</span>
-                  <Fx effect="[pulse a=0.5]" pop="100,150,280" className={styles.badgeLive}>{t('home.badge_live')}</Fx>
+                  {WIP.includes(id) ? (
+                    <span className={styles.badgeWip}>
+                      <span className={styles.badgeDotWip} />
+                      {t('home.badge_wip')}
+                    </span>
+                  ) : (
+                    <span className={styles.badgeLive}>
+                      <span className={styles.badgeDotLive} />
+                      <Fx effect="[pulse a=0.5]" pop="100,150,280">{t('home.badge_live')}</Fx>
+                    </span>
+                  )}
                 </div>
                 <span className={styles.projectKicker}>{t('home.portfolio.label')}</span>
               </div>
