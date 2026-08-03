@@ -28,12 +28,19 @@
   font-family: var(--mono);
   font-size: 0.75rem;
   color: var(--muted-2);
+  margin: 0 0 0.5rem;
+}
+
+.count {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  color: var(--muted-2);
   margin: 0 0 2rem;
 }
 
 .list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 1.25rem;
 }
 
@@ -72,6 +79,7 @@
 
 .statusReading,
 .statusFinished {
+  display: inline-block;
   font-family: var(--mono);
   font-size: 0.625rem;
   text-transform: uppercase;
@@ -80,14 +88,19 @@
   padding: 0.1875rem 0.625rem;
 }
 
+.statusReading + .title,
+.statusFinished + .title {
+  margin-top: 0.75rem;
+}
+
 .statusReading {
-  color: var(--accent2);
-  border: 0.0625rem solid rgba(255, 107, 53, 0.35);
+  color: var(--accent2-strong);
+  border: 0.0625rem solid color-mix(in srgb, var(--accent2-strong) 35%, transparent);
 }
 
 .statusFinished {
-  color: var(--green);
-  border: 0.0625rem solid rgba(0, 204, 150, 0.4);
+  color: var(--green-strong);
+  border: 0.0625rem solid color-mix(in srgb, var(--green-strong) 40%, transparent);
 }
 
 .back {
@@ -96,6 +109,7 @@
   font-size: 0.75rem;
   letter-spacing: 0.06em;
   color: var(--accent-blue);
+  text-decoration: underline;
   background: none;
   border: none;
   padding: 0;
@@ -141,6 +155,7 @@
   font-size: 0.9375rem;
   line-height: 1.8;
   color: var(--text);
+  max-width: 34rem;
   margin: 0;
 }
 
@@ -149,10 +164,6 @@
   font-size: 0.8125rem;
   color: var(--muted-2);
   margin-top: 1.75rem;
-}
-
-@media (max-width: 640px) {
-  .list { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 600px) {

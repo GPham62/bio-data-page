@@ -11,6 +11,7 @@
     "kicker": "// reading",
     "title": "Reading notes",
     "hint": "Books I've read or I'm reading, with what stuck.",
+    "count": "{{count}} books, notes added as I finish each one",
     "by": "by",
     "back": "← All books",
     "status_reading": "Reading",

@@ -75,7 +75,7 @@ const SHOWCASE_GAMES = [
   },
 ]
 
-export default function Home({ setActive }) {
+export default function Home({ setActive, openReading }) {
   const { t, i18n } = useTranslation()
   const currentBook = books.find((b) => b.status === 'reading')
   const finishedBooks = books.filter((b) => b.status === 'finished')
@@ -125,15 +125,16 @@ export default function Home({ setActive }) {
                       key={book.slug}
                       type="button"
                       className={styles.finishedChip}
-                      onClick={() => setActive('reading')}
+                      onClick={() => openReading(book.slug)}
                     >
-                      ✓ {book.title}
+                      <span className={styles.finishedChipDot} />
+                      {book.title}
                     </button>
                   ))}
                 </span>
               </div>
             )}
-            <button type="button" className={styles.currentlySeeAll} onClick={() => setActive('reading')}>
+            <button type="button" className={styles.currentlySeeAll} onClick={() => openReading(null)}>
               {t('home.greeting.currently.see_all')}
             </button>
           </div>

@@ -45,4 +45,15 @@ describe('Reading', () => {
     fireEvent.click(screen.getByText(en.reading.back))
     expect(screen.getByRole('heading', { level: 1, name: en.reading.title })).toBeInTheDocument()
   })
+
+  it('opens directly to the book matching initialSlug', () => {
+    const book = books[1]
+    renderWithI18n(<Reading initialSlug={book.slug} />)
+    expect(screen.getByRole('heading', { level: 1, name: book.title })).toBeInTheDocument()
+  })
+
+  it('shows a count of how many books are listed', () => {
+    renderWithI18n(<Reading />)
+    expect(screen.getByText(en.reading.count.replace('{{count}}', books.length))).toBeInTheDocument()
+  })
 })

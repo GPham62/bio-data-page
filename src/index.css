@@ -12,6 +12,8 @@
   --muted:    #636e7b;
   --muted-2:  #8b949e; /* secondary labels that must clear AA on --bg */
   --accent-strong: #00e5ff; /* accent for small text; darkened in light theme for AA */
+  --green-strong: #00cc96; /* green for small pill text; darkened in light theme for AA */
+  --accent2-strong: #ff6b35; /* accent2 for small pill text; darkened in light theme for AA */
   --mono:     'Space Mono', monospace;
   --head:     'Syne', 'Be Vietnam Pro', sans-serif;
 }
@@ -30,6 +32,8 @@
   --muted:    #7a6350;
   --muted-2:  #7a6350;
   --accent-strong: #00707f;
+  --green-strong: #066b4e;
+  --accent2-strong: #b8441a;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -158,6 +162,17 @@ body::before {
   border-color: var(--accent);
   color: var(--accent);
   background: rgba(0, 229, 255, 0.05);
+}
+
+/* Below ~640px the corner-anchored prev/next buttons collide with each
+   other and with hero content that starts flowing right under them.
+   Drop them back into normal document flow so they stack instead. */
+@media (max-width: 640px) {
+  .prev-btn,
+  .next-btn {
+    position: static;
+    margin: 0 0 0.75rem;
+  }
 }
 
 a { color: var(--accent); text-decoration: none; }

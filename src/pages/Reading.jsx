@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next'
 import { books } from '../data/bookNotes.js'
 import styles from './Reading.module.css'
 
-export default function Reading({ setActive }) {
+export default function Reading({ setActive, initialSlug = null }) {
   const { t } = useTranslation()
-  const [selectedSlug, setSelectedSlug] = useState(null)
+  const [selectedSlug, setSelectedSlug] = useState(initialSlug)
   const selectedBook = books.find((b) => b.slug === selectedSlug) || null
 
   if (selectedBook) {
@@ -19,11 +19,11 @@ export default function Reading({ setActive }) {
           {t('reading.back')}
         </button>
         <span className={styles.kicker}>{t('reading.kicker')}</span>
-        <h1 className={styles.title}>{selectedBook.title}</h1>
-        <p className={styles.byline}>{t('reading.by')} {selectedBook.author}</p>
         <span className={isFinished ? styles.statusFinished : styles.statusReading}>
           {isFinished ? t('reading.status_finished') : t('reading.status_reading')}
         </span>
+        <h1 className={styles.title}>{selectedBook.title}</h1>
+        <p className={styles.byline}>{t('reading.by')} {selectedBook.author}</p>
         {selectedBook.sections.length > 0 ? (
           <div className={styles.sections}>
             {selectedBook.sections.map((section) => (
@@ -50,6 +50,7 @@ export default function Reading({ setActive }) {
       <span className={styles.kicker}>{t('reading.kicker')}</span>
       <h1 className={styles.title}>{t('reading.title')}</h1>
       <p className={styles.hint}>{t('reading.hint')}</p>
+      <p className={styles.count}>{t('reading.count', { count: books.length })}</p>
       <div className={styles.list}>
         {books.map((book) => {
           const isFinished = book.status === 'finished'

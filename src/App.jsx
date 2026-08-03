@@ -13,7 +13,13 @@ import styles    from './App.module.css'
 
 export default function App() {
   const [active, setActive] = useState('home')
+  const [readingSlug, setReadingSlug] = useState(null)
   const { t } = useTranslation()
+
+  const openReading = (slug) => {
+    setReadingSlug(slug)
+    setActive('reading')
+  }
 
   useEffect(() => { window.scrollTo(0, 0) }, [active])
 
@@ -23,14 +29,14 @@ export default function App() {
         <Sidebar active={active} setActive={setActive} />
         <div className={styles.contentCol}>
           <main className={styles.main} key={active}>
-            {active === 'home'   && <Home    setActive={setActive} />}
+            {active === 'home'   && <Home    setActive={setActive} openReading={openReading} />}
             {active === 'resume' && <Resume  setActive={setActive} />}
             {active === 'p1'   && <Project1  setActive={setActive} />}
             {active === 'p2'   && <Project2  setActive={setActive} />}
             {active === 'p3'   && <Project3  setActive={setActive} />}
             {active === 'p4'   && <Project4  setActive={setActive} />}
             {active === 'p5'   && <Project5  setActive={setActive} />}
-            {active === 'reading' && <Reading setActive={setActive} />}
+            {active === 'reading' && <Reading setActive={setActive} initialSlug={readingSlug} />}
           </main>
           {active !== 'home' && (
             <footer className={styles.footer}>

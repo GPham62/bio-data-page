@@ -11,6 +11,7 @@
     "kicker": "// đọc sách",
     "title": "Ghi chú đọc sách",
     "hint": "Những cuốn sách tôi đã đọc hoặc đang đọc, cùng những điều tôi rút ra được.",
+    "count": "{{count}} cuốn sách, ghi chú được thêm khi tôi đọc xong từng cuốn",
     "by": "của",
     "back": "← Tất cả sách",
     "status_reading": "Đang đọc",

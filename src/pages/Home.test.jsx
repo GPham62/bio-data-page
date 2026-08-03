@@ -36,15 +36,22 @@ describe('Home', () => {
       expect(screen.getByText(en.home.greeting.currently.building)).toBeInTheDocument()
     })
 
-    it('renders a chip for each finished book and links to the Reading page', () => {
-      const setActive = vi.fn()
-      renderWithI18n(<Home setActive={setActive} />)
+    it('renders a chip for each finished book that opens that book directly', () => {
+      const openReading = vi.fn()
+      renderWithI18n(<Home setActive={noop} openReading={openReading} />)
       const finishedBooks = books.filter((b) => b.status === 'finished')
       finishedBooks.forEach((book) => {
-        expect(screen.getByText(`✓ ${book.title}`)).toBeInTheDocument()
+        expect(screen.getByText(book.title)).toBeInTheDocument()
       })
+      fireEvent.click(screen.getByText(finishedBooks[0].title))
+      expect(openReading).toHaveBeenCalledWith(finishedBooks[0].slug)
+    })
+
+    it('links "Reading notes" to the general list, not a specific book', () => {
+      const openReading = vi.fn()
+      renderWithI18n(<Home setActive={noop} openReading={openReading} />)
       fireEvent.click(screen.getByText(en.home.greeting.currently.see_all))
-      expect(setActive).toHaveBeenCalledWith('reading')
+      expect(openReading).toHaveBeenCalledWith(null)
     })
 
     it('no longer renders an empty "[ photo ]" hero placeholder', () => {
