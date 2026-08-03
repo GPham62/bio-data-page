@@ -7,6 +7,16 @@
     "p4": "04 / Data Warehouse →",
     "p5": "05 / Hanoi Delivery →"
   },
+  "reading": {
+    "kicker": "// reading",
+    "title": "Reading notes",
+    "hint": "Books I've read or I'm reading, with what stuck.",
+    "by": "by",
+    "back": "← All books",
+    "status_reading": "Reading",
+    "status_finished": "Finished",
+    "empty_notes": "Notes coming once I finish this one."
+  },
   "sidebar": {
     "role": "Junior Data Analyst",
     "nav": {
@@ -31,7 +41,7 @@
       "currently": {
         "label_reading": "Reading",
         "label_building": "Building",
-        "reading": "Naked Statistics — Charles Wheelan",
+        "reading": "Lean Analytics — Croll & Yoskovitz",
         "building": "Data portfolio + job hunt"
       }
     },

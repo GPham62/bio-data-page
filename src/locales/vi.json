@@ -7,6 +7,16 @@
     "p4": "04 / Kho Dữ Liệu →",
     "p5": "05 / Đánh Giá Giao Đồ Ăn Hà Nội →"
   },
+  "reading": {
+    "kicker": "// đọc sách",
+    "title": "Ghi chú đọc sách",
+    "hint": "Những cuốn sách tôi đã đọc hoặc đang đọc, cùng những điều tôi rút ra được.",
+    "by": "của",
+    "back": "← Tất cả sách",
+    "status_reading": "Đang đọc",
+    "status_finished": "Đã đọc",
+    "empty_notes": "Ghi chú sẽ có khi tôi đọc xong cuốn này."
+  },
   "sidebar": {
     "role": "Junior Data Analyst",
     "nav": {
@@ -31,7 +41,7 @@
       "currently": {
         "label_reading": "Đang đọc",
         "label_building": "Đang làm",
-        "reading": "Naked Statistics — Charles Wheelan",
+        "reading": "Lean Analytics — Croll & Yoskovitz",
         "building": "Portfolio dữ liệu + tìm việc"
       }
     },
