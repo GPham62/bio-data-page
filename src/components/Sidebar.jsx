@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next'
 import styles from './Sidebar.module.css'
 
 const NAV = [
-  { id: 'home',   key: 'home' },
-  { id: 'resume', key: 'resume' },
+  { id: 'home',    key: 'home' },
+  { id: 'resume',  key: 'resume' },
+  { id: 'reading', key: 'reading' },
 ]
 
 export default function Sidebar({ active, setActive }) {

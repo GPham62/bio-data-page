@@ -8,6 +8,7 @@ import Project2  from './pages/Project2.jsx'
 import Project3  from './pages/Project3.jsx'
 import Project4  from './pages/Project4.jsx'
 import Project5  from './pages/Project5.jsx'
+import Reading   from './pages/Reading.jsx'
 import styles    from './App.module.css'
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
             {active === 'p3'   && <Project3  setActive={setActive} />}
             {active === 'p4'   && <Project4  setActive={setActive} />}
             {active === 'p5'   && <Project5  setActive={setActive} />}
+            {active === 'reading' && <Reading />}
           </main>
           {active !== 'home' && (
             <footer className={styles.footer}>

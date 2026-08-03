@@ -30,6 +30,11 @@ describe('Sidebar', () => {
       expect(screen.getByRole('button', { name: en.sidebar.nav.resume })).toBeInTheDocument()
     })
 
+    it('renders a Reading nav button with a localized label', () => {
+      renderWithI18n(<Sidebar active="home" setActive={() => {}} />)
+      expect(screen.getByRole('button', { name: en.sidebar.nav.reading })).toBeInTheDocument()
+    })
+
     it('renders the three social links with correct hrefs', () => {
       renderWithI18n(<Sidebar active="home" setActive={() => {}} />)
       expect(screen.getByRole('link', { name: en.sidebar.social.github })).toHaveAttribute(
