@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { books } from '../data/bookNotes.js'
 import styles from './Reading.module.css'
 
-export default function Reading() {
+export default function Reading({ setActive }) {
   const { t } = useTranslation()
   const [selectedSlug, setSelectedSlug] = useState(null)
   const selectedBook = books.find((b) => b.slug === selectedSlug) || null
@@ -12,6 +12,9 @@ export default function Reading() {
     const isFinished = selectedBook.status === 'finished'
     return (
       <div className={styles.page}>
+        <button className="prev-btn" onClick={() => setActive('home')}>
+          {t('nav.home')}
+        </button>
         <button type="button" className={styles.back} onClick={() => setSelectedSlug(null)}>
           {t('reading.back')}
         </button>
@@ -31,7 +34,9 @@ export default function Reading() {
             ))}
           </div>
         ) : (
-          <p className={styles.empty}>{t('reading.empty_notes')}</p>
+          <p className={styles.empty}>
+            {t(isFinished ? 'reading.empty_notes_finished' : 'reading.empty_notes')}
+          </p>
         )}
       </div>
     )
@@ -39,6 +44,9 @@ export default function Reading() {
 
   return (
     <div className={styles.page}>
+      <button className="prev-btn" onClick={() => setActive('home')}>
+        {t('nav.home')}
+      </button>
       <span className={styles.kicker}>{t('reading.kicker')}</span>
       <h1 className={styles.title}>{t('reading.title')}</h1>
       <p className={styles.hint}>{t('reading.hint')}</p>

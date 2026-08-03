@@ -30,7 +30,7 @@ export default function App() {
             {active === 'p3'   && <Project3  setActive={setActive} />}
             {active === 'p4'   && <Project4  setActive={setActive} />}
             {active === 'p5'   && <Project5  setActive={setActive} />}
-            {active === 'reading' && <Reading />}
+            {active === 'reading' && <Reading setActive={setActive} />}
           </main>
           {active !== 'home' && (
             <footer className={styles.footer}>

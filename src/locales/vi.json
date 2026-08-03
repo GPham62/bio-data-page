@@ -15,7 +15,8 @@
     "back": "← Tất cả sách",
     "status_reading": "Đang đọc",
     "status_finished": "Đã đọc",
-    "empty_notes": "Ghi chú sẽ có khi tôi đọc xong cuốn này."
+    "empty_notes": "Ghi chú sẽ có khi tôi đọc xong cuốn này.",
+    "empty_notes_finished": "Ghi chú cho cuốn này đang được viết."
   },
   "sidebar": {
     "role": "Junior Data Analyst",

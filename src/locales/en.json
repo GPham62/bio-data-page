@@ -15,7 +15,8 @@
     "back": "← All books",
     "status_reading": "Reading",
     "status_finished": "Finished",
-    "empty_notes": "Notes coming once I finish this one."
+    "empty_notes": "Notes coming once I finish this one.",
+    "empty_notes_finished": "Notes for this one are still being written."
   },
   "sidebar": {
     "role": "Junior Data Analyst",

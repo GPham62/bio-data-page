@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { screen, fireEvent } from '@testing-library/react'
 import { renderWithI18n } from '../test/i18nTestUtils.jsx'
 import Reading from './Reading.jsx'
@@ -11,6 +11,20 @@ describe('Reading', () => {
     books.forEach((book) => {
       expect(screen.getByText(book.title)).toBeInTheDocument()
     })
+  })
+
+  it('shows finished-book empty-state copy for a finished book with no notes yet', () => {
+    renderWithI18n(<Reading />)
+    const finishedBook = books.find((b) => b.status === 'finished' && b.sections.length === 0)
+    fireEvent.click(screen.getByText(finishedBook.title))
+    expect(screen.getByText(en.reading.empty_notes_finished)).toBeInTheDocument()
+  })
+
+  it('calls setActive with home when the back-to-home nav is clicked', () => {
+    const setActive = vi.fn()
+    renderWithI18n(<Reading setActive={setActive} />)
+    fireEvent.click(screen.getByText(en.nav.home))
+    expect(setActive).toHaveBeenCalledWith('home')
   })
 
   it('shows the book detail when a card is clicked', () => {

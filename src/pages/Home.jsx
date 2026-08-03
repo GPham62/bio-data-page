@@ -103,11 +103,13 @@ export default function Home({ setActive }) {
           </h1>
           <p className={styles.tagline}>{t('home.greeting.tagline')}</p>
           <div className={styles.currentlyBlock}>
-            <div className={styles.currentlyRow}>
-              <span className={styles.currentlyIcon}>📚</span>
-              <span className={styles.currentlyLabel}>{t('home.greeting.currently.label_reading')}</span>
-              <span className={styles.currentlyVal}>{currentBook.title} — {currentBook.author}</span>
-            </div>
+            {currentBook && (
+              <div className={styles.currentlyRow}>
+                <span className={styles.currentlyIcon}>📚</span>
+                <span className={styles.currentlyLabel}>{t('home.greeting.currently.label_reading')}</span>
+                <span className={styles.currentlyVal}>{currentBook.title} — {currentBook.author}</span>
+              </div>
+            )}
             <div className={styles.currentlyRow}>
               <span className={styles.currentlyIcon}>🛠️</span>
               <span className={styles.currentlyLabel}>{t('home.greeting.currently.label_building')}</span>

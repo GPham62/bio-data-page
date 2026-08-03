@@ -1,4 +1,5 @@
 .page {
+  position: relative;
   max-width: 56.25rem;
   margin: 0 auto;
   padding: 4rem 2rem 6.25rem;
@@ -26,7 +27,7 @@
 .hint {
   font-family: var(--mono);
   font-size: 0.75rem;
-  color: var(--muted);
+  color: var(--muted-2);
   margin: 0 0 2rem;
 }
 
@@ -66,7 +67,7 @@
 .cardAuthor {
   font-family: var(--mono);
   font-size: 0.75rem;
-  color: var(--muted);
+  color: var(--muted-2);
 }
 
 .statusReading,
@@ -109,7 +110,7 @@
 .byline {
   font-family: var(--mono);
   font-size: 0.8125rem;
-  color: var(--muted);
+  color: var(--muted-2);
   margin: 0 0 0.875rem;
 }
 
@@ -146,7 +147,7 @@
 .empty {
   font-family: var(--mono);
   font-size: 0.8125rem;
-  color: var(--muted);
+  color: var(--muted-2);
   margin-top: 1.75rem;
 }
 
