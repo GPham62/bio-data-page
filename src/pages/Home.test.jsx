@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeAll } from 'vitest'
 import { screen, fireEvent, within } from '@testing-library/react'
 import { renderWithI18n } from '../test/i18nTestUtils.jsx'
 import Home from './Home.jsx'
+import { books } from '../data/bookNotes.js'
 import en from '../locales/en.json'
 // Imported as viLocale to avoid colliding with Vitest's `vi` mock utility.
 import viLocale from '../locales/vi.json'
@@ -30,8 +31,20 @@ describe('Home', () => {
 
     it('renders the "Currently" rows with their values', () => {
       renderWithI18n(<Home setActive={noop} />)
-      expect(screen.getByText(en.home.greeting.currently.reading)).toBeInTheDocument()
+      const currentBook = books.find((b) => b.status === 'reading')
+      expect(screen.getByText(`${currentBook.title} — ${currentBook.author}`)).toBeInTheDocument()
       expect(screen.getByText(en.home.greeting.currently.building)).toBeInTheDocument()
+    })
+
+    it('renders a chip for each finished book and links to the Reading page', () => {
+      const setActive = vi.fn()
+      renderWithI18n(<Home setActive={setActive} />)
+      const finishedBooks = books.filter((b) => b.status === 'finished')
+      finishedBooks.forEach((book) => {
+        expect(screen.getByText(`✓ ${book.title}`)).toBeInTheDocument()
+      })
+      fireEvent.click(screen.getByText(en.home.greeting.currently.see_all))
+      expect(setActive).toHaveBeenCalledWith('reading')
     })
 
     it('no longer renders an empty "[ photo ]" hero placeholder', () => {

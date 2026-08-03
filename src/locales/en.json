@@ -42,8 +42,9 @@
       "currently": {
         "label_reading": "Reading",
         "label_building": "Building",
-        "reading": "Lean Analytics — Croll & Yoskovitz",
-        "building": "Data portfolio + job hunt"
+        "label_finished": "Finished",
+        "building": "Data portfolio + job hunt",
+        "see_all": "→ Reading notes"
       }
     },
     "charSheet": {

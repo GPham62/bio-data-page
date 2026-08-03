@@ -2,6 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import SectionTitle from '../components/SectionTitle.jsx'
 import Fx from '../components/Fx.jsx'
+import { books } from '../data/bookNotes.js'
 import styles from './Home.module.css'
 
 // Display order. The card number comes from PROJECT_NUM, not the array index,
@@ -76,6 +77,8 @@ const SHOWCASE_GAMES = [
 
 export default function Home({ setActive }) {
   const { t, i18n } = useTranslation()
+  const currentBook = books.find((b) => b.status === 'reading')
+  const finishedBooks = books.filter((b) => b.status === 'finished')
 
   // ── Text FX hero title ──
   // ponytail: the engine spans every UTF-16 unit, which splits astral emoji into
@@ -103,13 +106,34 @@ export default function Home({ setActive }) {
             <div className={styles.currentlyRow}>
               <span className={styles.currentlyIcon}>📚</span>
               <span className={styles.currentlyLabel}>{t('home.greeting.currently.label_reading')}</span>
-              <span className={styles.currentlyVal}>{t('home.greeting.currently.reading')}</span>
+              <span className={styles.currentlyVal}>{currentBook.title} — {currentBook.author}</span>
             </div>
             <div className={styles.currentlyRow}>
               <span className={styles.currentlyIcon}>🛠️</span>
               <span className={styles.currentlyLabel}>{t('home.greeting.currently.label_building')}</span>
               <span className={styles.currentlyVal}>{t('home.greeting.currently.building')}</span>
             </div>
+            {finishedBooks.length > 0 && (
+              <div className={styles.currentlyRow}>
+                <span className={styles.currentlyIcon}>✅</span>
+                <span className={styles.currentlyLabel}>{t('home.greeting.currently.label_finished')}</span>
+                <span className={styles.finishedChips}>
+                  {finishedBooks.map((book) => (
+                    <button
+                      key={book.slug}
+                      type="button"
+                      className={styles.finishedChip}
+                      onClick={() => setActive('reading')}
+                    >
+                      ✓ {book.title}
+                    </button>
+                  ))}
+                </span>
+              </div>
+            )}
+            <button type="button" className={styles.currentlySeeAll} onClick={() => setActive('reading')}>
+              {t('home.greeting.currently.see_all')}
+            </button>
           </div>
         </div>
       </section>

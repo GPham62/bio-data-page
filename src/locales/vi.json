@@ -42,8 +42,9 @@
       "currently": {
         "label_reading": "Đang đọc",
         "label_building": "Đang làm",
-        "reading": "Lean Analytics — Croll & Yoskovitz",
-        "building": "Portfolio dữ liệu + tìm việc"
+        "label_finished": "Đã đọc",
+        "building": "Portfolio dữ liệu + tìm việc",
+        "see_all": "→ Ghi chú đọc sách"
       }
     },
     "charSheet": {
